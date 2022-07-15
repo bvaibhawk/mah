@@ -163,12 +163,12 @@ def page1():
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                        'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
 
-    result = 30
+    result = -30
     st.text("\n")
 
     if st.button("Calculate Discount"):
         if int(rap)!=0:
-            st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>- {int(result)}</font>",unsafe_allow_html=True)
+            st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{int(result)}% </font>",unsafe_allow_html=True)
         else:
             st.error("RAP cannot be Zero!")
 
