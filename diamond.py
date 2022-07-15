@@ -75,6 +75,7 @@ def page1():
 
     color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
+    fluo_dict = {"FNT":1,"MED":2,"NON":3,"SIG":4,"VST":5}
 
     with col1:
         szgr = st.selectbox("SZ GR",options=['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.45-0.49', '0.50-0.59',
@@ -158,12 +159,12 @@ def page1():
     with col34:
         tableclean = st.selectbox("TABLE_CLEAN",options=['YES', 'NO'])   
     with col35:
-        fluo = st.selectbox("FLUO",options=['FNT', 'MED','NON','SIG','VST'])                                          
+        fluo = st.selectbox("COLOUR",options=list(fluo_dict.keys()))                                          
 
-    #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
-    #                        'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
+    test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
+                            'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
 
-    result = -30
+    result = model.predict(test_df)[0]
     st.text("\n")
 
     if st.button("Calculate Discount"):
