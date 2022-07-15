@@ -164,7 +164,7 @@ def page1():
     test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
                             'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
 
-    result = model.predict(test_df)[0]
+    result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
     st.text("\n")
 
     if st.button("Calculate Discount"):
