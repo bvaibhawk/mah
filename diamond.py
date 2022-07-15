@@ -158,10 +158,10 @@ def page1():
     with col34:
         tableclean = st.selectbox("TABLE_CLEAN",options=['YES', 'NO'])   
     with col35:
-        fluo = st.number_input("GIRDLE_PERCENTAGE")                                          
+        fluo = st.selectbox("FLUO",options=['FNT', 'MED','NON','SIG','VST'])                                          
 
-    test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
-                            'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
+    #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
+    #                        'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
 
     result = 30
     st.text("\n")
