@@ -1,0 +1,11 @@
+[theme]
+base = "light"
+primaryColor = "#daa522"
+
+[server]
+headless = true
+port = 80
+
+[client]
+showErrorDetails = false
+
