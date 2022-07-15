@@ -168,7 +168,7 @@ def page1():
 
     if st.button("Calculate Discount"):
         if int(rap)!=0:
-            st.markdown(f"<big><b>Price/ct:</b> </big><font color='green' size=6>₹ {int(result)}</font>",unsafe_allow_html=True)
+            st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>- {int(result)}</font>",unsafe_allow_html=True)
         else:
             st.error("RAP cannot be Zero!")
 
