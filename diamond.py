@@ -159,7 +159,7 @@ def page1():
     with col34:
         tableclean = st.selectbox("TABLE_CLEAN",options=['YES', 'NO'])   
     with col35:
-        fluo = st.selectbox("FLUO",options=list(fluo_dict.keys()))                                          
+        fluo = st.number_input("FLUO")                                          
 
     test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
                             'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
