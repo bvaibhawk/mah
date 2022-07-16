@@ -111,7 +111,7 @@ def page1():
     with col10:
         pur_rap_dis = st.number_input("PCS")
     with col11:
-        ha = st.selectbox("HA",options=['YES', 'NO']) 
+        shape = st.selectbox("SHAPE",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
     with col12:
         td = st.number_input("TD")   
     with col13:
@@ -164,9 +164,16 @@ def page1():
     test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
                             'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
 
-    result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
+    #result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
+    df = pd.read_csv('Toamin.csv')
+    result = 0.00
+    for i in range(len(df)):
+        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and pol == df['POL'][i] and sym == df['SYM'][i] and fluo == df['FLUO'][i] and size == df['Size'][i] : 
+            result=df['Discount'][i]
+            break
+    result=result*100        
     st.text("\n")
-
+    
     if st.button("Calculate Discount"):
         if int(rap)!=0:
             st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{int(result)}% </font>",unsafe_allow_html=True)
