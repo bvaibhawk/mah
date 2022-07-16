@@ -105,7 +105,7 @@ def page1():
         rap = st.number_input("RAP")
 
     with col10:
-        pur_rap_dis = st.number_input("PCS")
+        ktos = st.number_input("KTOS")
     with col11:
         shape = st.selectbox("SHAPE",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
     with col12:
@@ -168,6 +168,98 @@ def page1():
             result=df['Discount'][i]
             break
     result=result*100 
+    xx=0
+    if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+        if color=='D' or color=='E' or color=='F'): 
+            xx=1
+        if color=='G' or color=='H' or color=='I'): 
+            xx=2
+        if color=='J' or color=='K' or color=='L' or color=='M'): 
+            xx=3    
+    if (clarity=='VS1' or clarity=='VS2'):
+        if color=='D' or color=='E' or color=='F'): 
+            xx=4
+        if color=='G' or color=='H' or color=='I'): 
+            xx=5
+        if color=='J' or color=='K' or color=='L' or color=='M'): 
+            xx=6
+    if (clarity=='SI1' or clarity=='SI2' or clarity=='I1'):
+        if color=='D' or color=='E' or color=='F'): 
+            xx=7
+        if color=='G' or color=='H' or color=='I'): 
+            xx=8
+        if color=='J' or color=='K' or color=='L' or color=='M'): 
+            xx=9        
+    if shape=='RO':
+        if xx==1:
+            if ktos==1:
+                result=result+1.0
+            if ktos>=5:
+                result=-1.0+result  
+        if xx==2:
+            if ktos==1:
+                result=result+1.0
+            if ktos>=5:
+                result=-1.0+result 
+        if xx==3:
+            if ktos==1:
+                result=result+1.0
+            if ktos>=5:
+                result=-1.0+result
+        if xx==4:
+            if ktos==1:
+                result=result+1.5
+            if ktos>=5:
+                result=-1.0+result         
+        if xx==5:
+            if ktos==1:
+                result=result+1.5
+            if ktos>=5:
+                result=-1.0+result 
+        if xx==6:
+            if ktos==1:
+                result=result+1.0
+            if ktos>=5:
+                result=0.0+result 
+        if xx==1:
+            if ktos==1:
+                result=result+3.0
+            if ktos>=5:
+                result=0.0+result 
+
+        if color=='M':
+            if szgr=='1.01-1.09' or szgr=='2.01-2.09' or szgr=='1.50-1.69': 
+                if cut=='EX':
+                    result=-7+result
+
+
+        # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
+        #     if cut=='VG':
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     st.text("\n")
     
@@ -176,7 +268,7 @@ def page1():
             st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{int(result)}% </font>",unsafe_allow_html=True)
         else:
             st.error("Please input proper values")
-
+    
 
 
 
