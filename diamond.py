@@ -170,25 +170,25 @@ def page1():
     result=result*100 
     xx=0
     if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-        if color=='D' or color=='E' or color=='F'): 
+        if color=='D' or color=='E' or color=='F': 
             xx=1
-        if color=='G' or color=='H' or color=='I'): 
+        if color=='G' or color=='H' or color=='I': 
             xx=2
-        if color=='J' or color=='K' or color=='L' or color=='M'): 
+        if color=='J' or color=='K' or color=='L' or color=='M': 
             xx=3    
     if (clarity=='VS1' or clarity=='VS2'):
-        if color=='D' or color=='E' or color=='F'): 
+        if color=='D' or color=='E' or color=='F': 
             xx=4
-        if color=='G' or color=='H' or color=='I'): 
+        if color=='G' or color=='H' or color=='I': 
             xx=5
-        if color=='J' or color=='K' or color=='L' or color=='M'): 
+        if color=='J' or color=='K' or color=='L' or color=='M': 
             xx=6
     if (clarity=='SI1' or clarity=='SI2' or clarity=='I1'):
-        if color=='D' or color=='E' or color=='F'): 
+        if color=='D' or color=='E' or color=='F': 
             xx=7
-        if color=='G' or color=='H' or color=='I'): 
+        if color=='G' or color=='H' or color=='I': 
             xx=8
-        if color=='J' or color=='K' or color=='L' or color=='M'): 
+        if color=='J' or color=='K' or color=='L' or color=='M': 
             xx=9        
     if shape=='RO':
         if xx==1:
