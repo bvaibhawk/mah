@@ -88,13 +88,13 @@ def page1():
         certct = st.number_input("CERTCT")
 
     with col3:
-        color = st.selectbox("Color",options=list(color_dict.keys()))
+        color = st.selectbox("COLOUR",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
 
     with col4:
-        clarity = st.selectbox("Clarity",options=list(clarity_dict.keys()))
+        clarity = st.selectbox("CLARITY",options=['IF', 'VVS1', 'VVS2','VS1','VS2','S1','S2','I1'])
 
     with col5:
-        cut = st.number_input("Cut")
+        cut = st.selectbox("CUT",options=['EX', 'GD', 'VG'])
 
     with col6:
         polish = st.number_input("Polish")
@@ -159,19 +159,20 @@ def page1():
     with col34:
         tableclean = st.selectbox("TABLE_CLEAN",options=['YES', 'NO'])   
     with col35:
-        fluo = st.number_input("FLUO")                                          
+        fluo = st.selectbox("FLUO",options=['FNT', 'MED','None','SIG','VST'])                                         
 
-    test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
-                            'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
+    #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
+     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
 
     #result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
     df = pd.read_csv('Toamin.csv')
     result = 0.00
     for i in range(len(df)):
-        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and pol == df['POL'][i] and sym == df['SYM'][i] and fluo == df['FLUO'][i] and size == df['Size'][i] : 
+        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and pol == df['POL'][i] and sym == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
             result=df['Discount'][i]
             break
-    result=result*100        
+    result=result*100 
+
     st.text("\n")
     
     if st.button("Calculate Discount"):
