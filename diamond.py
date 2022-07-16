@@ -78,7 +78,7 @@ def page1():
     # fluo_dict = {"FNT":1,"MED":2,"NON":3,"SIG":4,"VST":5}
 
     with col1:
-        szgr= st.selectbox("SIZE",option=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
+        szgr= st.selectbox("SIZE",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col2:
         certct = st.number_input("CERTCT")
