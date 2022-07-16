@@ -78,11 +78,12 @@ def page1():
     fluo_dict = {"FNT":1,"MED":2,"NON":3,"SIG":4,"VST":5}
 
     with col1:
-        szgr = st.selectbox("SZ GR",options=['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.45-0.49', '0.50-0.59',
-        '0.60-0.69', '0.70-0.74', '0.75-0.79', '0.80-0.89', '0.90-0.94',
-        '1.00-1.19', '1.20-1.29', '1.30-1.39', '1.40-1.49', '1.50-1.69',
-        '1.70-1.79', '1.80-1.89', '1.90-1.99', '2.00-2.19', '2.50-2.69',
-        '2.70-2.79'])
+        #szgr = st.selectbox("SZ GR",options=['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.45-0.49', '0.50-0.59',
+        #'0.60-0.69', '0.70-0.74', '0.75-0.79', '0.80-0.89', '0.90-0.94',
+        #'1.00-1.19', '1.20-1.29', '1.30-1.39', '1.40-1.49', '1.50-1.69',
+        #'1.70-1.79', '1.80-1.89', '1.90-1.99', '2.00-2.19', '2.50-2.69',
+        #'2.70-2.79'])
+        szgr= st.selectbox("SIZE",option=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col2:
         certct = st.number_input("CERTCT")
@@ -168,7 +169,7 @@ def page1():
     df = pd.read_csv('Toamin.csv')
     result = 0.00
     for i in range(len(df)):
-        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and pol == df['POL'][i] and sym == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
+        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and polish == df['POL'][i] and symmetry == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
             result=df['Discount'][i]
             break
     result=result*100 
