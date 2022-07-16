@@ -93,10 +93,10 @@ def page1():
         cut = st.selectbox("CUT",options=['EX', 'GD', 'VG'])
 
     with col6:
-        polish = st.number_input("Polish")
+        polish =st.selectbox("POLISH",options=['EX', 'GD', 'VG'])
 
     with col7:
-        symmetry = st.number_input("Symmetry")
+        symmetry = st.selectbox("SYMMETRY",options=['EX', 'GD', 'VG'])
 
     with col8:
         cert = st.selectbox("CERT",options=['GIA', 'FACT', 'FM', 'IIDGR'])
