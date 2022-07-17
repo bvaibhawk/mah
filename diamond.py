@@ -239,7 +239,7 @@ def page1():
             # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
             #     if cut=='VG':
     else:
-        df2 = pd.read_csv('Toaminfancy.csv')
+        df2 = pd.read_csv('toaminfancy.csv')
         result = 0.00
         
         for i in range(len(df2)):
