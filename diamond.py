@@ -239,43 +239,43 @@ def page1():
             # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
             #     if cut=='VG':
     else:
-        df2 = pd.read_csv('Toaminfancy.csv')
+        df = pd.read_csv('Toaminfancy.csv')
         result = 0.00
         
         for i in range(len(df)):
             if clarity=='IF':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['IF'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['IF'][i]
                     ff=2
                     break
             if clarity=='VVS1':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['VVS1'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['VVS1'][i]
                     ff=2
                     break        
             if clarity=='VVS2':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['VVS2'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['VVS2'][i]
                     ff=2
                     break        
             if clarity=='VS1':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['VS1'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['VS1'][i]
                     ff=2
                     break    
             if clarity=='VS2':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['VS2'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['VS2'][i]
                     ff=2
                     break    
             if clarity=='SI1':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['SI1'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['SI1'][i]
                     ff=2
                     break    
             if clarity=='SI2':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
-                    result=df2['SI2'][i]
+                if shape == df['Shape'][i] and color == df['EX'][i] and cut == 'EX' and szgr == df['Size'][i] : 
+                    result=df['SI2'][i]
                     ff=2
                     break    
 
