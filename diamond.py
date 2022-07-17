@@ -163,80 +163,121 @@ def page1():
     #result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
     df = pd.read_csv('Toamin.csv')
     result = 0.00
+    ff=0
     for i in range(len(df)):
         if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and polish == df['POL'][i] and symmetry == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
             result=df['Discount'][i]
+            ff=1
             break
-    result=result*100 
-    xx=0
-    if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-        if color=='D' or color=='E' or color=='F': 
-            xx=1
-        if color=='G' or color=='H' or color=='I': 
-            xx=2
-        if color=='J' or color=='K' or color=='L' or color=='M': 
-            xx=3    
-    if (clarity=='VS1' or clarity=='VS2'):
-        if color=='D' or color=='E' or color=='F': 
-            xx=4
-        if color=='G' or color=='H' or color=='I': 
-            xx=5
-        if color=='J' or color=='K' or color=='L' or color=='M': 
-            xx=6
-    if (clarity=='SI1' or clarity=='SI2' or clarity=='I1'):
-        if color=='D' or color=='E' or color=='F': 
-            xx=7
-        if color=='G' or color=='H' or color=='I': 
-            xx=8
-        if color=='J' or color=='K' or color=='L' or color=='M': 
-            xx=9        
-    if shape=='RO':
-        if xx==1:
-            if ktos==1:
-                result=result+1.0
-            if ktos>=5:
-                result=-1.0+result  
-        if xx==2:
-            if ktos==1:
-                result=result+1.0
-            if ktos>=5:
-                result=-1.0+result 
-        if xx==3:
-            if ktos==1:
-                result=result+1.0
-            if ktos>=5:
-                result=-1.0+result
-        if xx==4:
-            if ktos==1:
-                result=result+1.5
-            if ktos>=5:
-                result=-1.0+result         
-        if xx==5:
-            if ktos==1:
-                result=result+1.5
-            if ktos>=5:
-                result=-1.0+result 
-        if xx==6:
-            if ktos==1:
-                result=result+1.0
-            if ktos>=5:
-                result=0.0+result 
-        if xx==1:
-            if ktos==1:
-                result=result+3.0
-            if ktos>=5:
-                result=0.0+result 
+    if ff==1:
+        result=result*100 
+        xx=0
+        if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+            if color=='D' or color=='E' or color=='F': 
+                xx=1
+            if color=='G' or color=='H' or color=='I': 
+                xx=2
+            if color=='J' or color=='K' or color=='L' or color=='M': 
+                xx=3    
+        if (clarity=='VS1' or clarity=='VS2'):
+            if color=='D' or color=='E' or color=='F': 
+                xx=4
+            if color=='G' or color=='H' or color=='I': 
+                xx=5
+            if color=='J' or color=='K' or color=='L' or color=='M': 
+                xx=6
+        if (clarity=='SI1' or clarity=='SI2' or clarity=='I1'):
+            if color=='D' or color=='E' or color=='F': 
+                xx=7
+            if color=='G' or color=='H' or color=='I': 
+                xx=8
+            if color=='J' or color=='K' or color=='L' or color=='M': 
+                xx=9        
+        if shape=='RO':
+            if xx==1:
+                if ktos==1:
+                    result=result+1.0
+                if ktos>=5:
+                    result=-1.0+result  
+            if xx==2:
+                if ktos==1:
+                    result=result+1.0
+                if ktos>=5:
+                    result=-1.0+result 
+            if xx==3:
+                if ktos==1:
+                    result=result+1.0
+                if ktos>=5:
+                    result=-1.0+result
+            if xx==4:
+                if ktos==1:
+                    result=result+1.5
+                if ktos>=5:
+                    result=-1.0+result         
+            if xx==5:
+                if ktos==1:
+                    result=result+1.5
+                if ktos>=5:
+                    result=-1.0+result 
+            if xx==6:
+                if ktos==1:
+                    result=result+1.0
+                if ktos>=5:
+                    result=0.0+result 
+            if xx==1:
+                if ktos==1:
+                    result=result+3.0
+                if ktos>=5:
+                    result=0.0+result 
 
-        if color=='M':
-            if szgr=='1.01-1.09' or szgr=='2.01-2.09' or szgr=='1.50-1.69': 
-                if cut=='EX':
-                    result=-7+result
-
-
-        # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
-        #     if cut=='VG':
+            if color=='M':
+                if szgr=='1.01-1.09' or szgr=='2.01-2.09' or szgr=='1.50-1.69': 
+                    if cut=='EX':
+                        result=-7+result
 
 
+            # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
+            #     if cut=='VG':
+    else:
+        df2 = pd.read_csv('Toaminfancy.csv')
+        result = 0.00
+        
+        for i in range(len(df)):
+            if clarity=='IF':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['IF'][i]
+                ff=2
+                break
+            if clarity=='VVS1':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['VVS1'][i]
+                ff=2
+                break        
+            if clarity=='VVS2':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['VVS2'][i]
+                ff=2
+                break        
+            if clarity=='VS1':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['VS1'][i]
+                ff=2
+                break    
+            if clarity=='VS2':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['VS2'][i]
+                ff=2
+                break    
+            if clarity=='SI1':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['SI1'][i]
+                ff=2
+                break    
+            if clarity=='SI2':
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                result=df2['SI2'][i]
+                ff=2
+                break    
 
 
 
@@ -245,12 +286,8 @@ def page1():
 
 
 
-
-
-
-
-
-
+    if ff==0:
+        rap=0; 
 
 
 
