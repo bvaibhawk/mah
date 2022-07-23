@@ -166,26 +166,26 @@ def page1():
     ff=0
     xx=0
     if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-            if color=='D' or color=='E' or color=='F': 
-                xx=1
-            if color=='G' or color=='H' or color=='I': 
-                xx=2
-            if color=='J' or color=='K' or color=='L' or color=='M': 
-                xx=3    
-        if (clarity=='VS1' or clarity=='VS2'):
-            if color=='D' or color=='E' or color=='F': 
-                xx=4
-            if color=='G' or color=='H' or color=='I': 
-                xx=5
-            if color=='J' or color=='K' or color=='L' or color=='M': 
-                xx=6
-        if (clarity=='SI1' or clarity=='SI2' or clarity=='I1'):
-            if color=='D' or color=='E' or color=='F': 
-                xx=7
-            if color=='G' or color=='H' or color=='I': 
-                xx=8
-            if color=='J' or color=='K' or color=='L' or color=='M': 
-                xx=9 
+        if color=='D' or color=='E' or color=='F': 
+            xx=1
+        if color=='G' or color=='H' or color=='I': 
+            xx=2
+        if color=='J' or color=='K' or color=='L' or color=='M': 
+            xx=3    
+    if (clarity=='VS1' or clarity=='VS2'):
+        if color=='D' or color=='E' or color=='F': 
+            xx=4
+        if color=='G' or color=='H' or color=='I': 
+            xx=5
+        if color=='J' or color=='K' or color=='L' or color=='M': 
+            xx=6
+    if (clarity=='SI1' or clarity=='SI2' or clarity=='I1'):
+        if color=='D' or color=='E' or color=='F': 
+            xx=7
+        if color=='G' or color=='H' or color=='I': 
+            xx=8
+        if color=='J' or color=='K' or color=='L' or color=='M': 
+            xx=9 
     for i in range(len(df)):
         if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and polish == df['POL'][i] and symmetry == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
             result=df['Discount'][i]
