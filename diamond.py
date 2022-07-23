@@ -72,6 +72,7 @@ def page1():
     col21, col22, col23, col24, col25 = st.columns(5)
     col26, col27, col28, col29, col30 = st.columns(5)
     col31, col32, col33, col34, col35 = st.columns(5)
+    col36, col37, col38, col49, col40 = st.columns(5)
 
     # color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     # clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
@@ -155,7 +156,14 @@ def page1():
     with col34:
         bgm = st.selectbox("BGM",options=['B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])   
     with col35:
-        fluo = st.selectbox("FLUO",options=['Faint', 'Medium','None','Strong','Very Strong'])                                         
+        fluo = st.selectbox("FLUO",options=['Faint', 'Medium','None','Strong','Very Strong'])    
+    with col36:
+        ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
+    with col37:
+        eyeclean = st.selectbox("EYE_CLEAN",options=['100%','90%','No'])    
+    with col37:
+        tableclean = st.selectbox("TABLE_CLEAN",options=['100%','90%','No'])
+
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
      #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
@@ -426,10 +434,135 @@ def page1():
             result=result-1.5
         elif xx==3 or xx==5 or xx==6:
             result=result-1
-                    
 
 
+    #extras- properly written
+    df4=pd.read_csv(extras.csv)
+    for i in range(len(df4)):
+        if(shape=='RO'):
+            if(df4['extras[i]']=='H&A' and df4['shape'][i]=='RO'):
+                if(df4['value'][i]==ha):
+                    if xx==1:
+                        result=result+df4['1'][i] 
+                    if xx==2:
+                        result=result+df4['2'][i]    
+                    if xx==3:
+                        result=result+df4['3'][i]
+                    if xx==4:
+                        result=result+df4['4'][i]    
+                    if xx==5:
+                        result=result+df4['5'][i]
+                    if xx==6:
+                        result=result+df4['6'][i]
+                    if xx==7:
+                        result=result+df4['7'][i]
+                    if xx==8:
+                        result=result+df4['8'][i] 
+                    if xx==9:
+                        result=result+df4['9'][i]
 
+                if(df4['value'][i]==eyeclean):
+                    if xx==1:
+                        result=result+df4['1'][i] 
+                    if xx==2:
+                        result=result+df4['2'][i]    
+                    if xx==3:
+                        result=result+df4['3'][i]
+                    if xx==4:
+                        result=result+df4['4'][i]    
+                    if xx==5:
+                        result=result+df4['5'][i]
+                    if xx==6:
+                        result=result+df4['6'][i]
+                    if xx==7:
+                        result=result+df4['7'][i]
+                    if xx==8:
+                        result=result+df4['8'][i] 
+                    if xx==9:
+                        result=result+df4['9'][i]  
+
+                if(df4['value'][i]==tableclean):
+                    if xx==1:
+                        result=result+df4['1'][i] 
+                    if xx==2:
+                        result=result+df4['2'][i]    
+                    if xx==3:
+                        result=result+df4['3'][i]
+                    if xx==4:
+                        result=result+df4['4'][i]    
+                    if xx==5:
+                        result=result+df4['5'][i]
+                    if xx==6:
+                        result=result+df4['6'][i]
+                    if xx==7:
+                        result=result+df4['7'][i]
+                    if xx==8:
+                        result=result+df4['8'][i] 
+                    if xx==9:
+                        result=result+df4['9'][i]          
+
+        if(shape!='RO'):
+            if(df4['extras[i]']=='H&A' and df4['shape'][i]=='Fancy'):
+                if(df4['value'][i]==ha):
+                    if xx==1:
+                        result=result+df4['1'][i] 
+                    if xx==2:
+                        result=result+df4['2'][i]    
+                    if xx==3:
+                        result=result+df4['3'][i]
+                    if xx==4:
+                        result=result+df4['4'][i]    
+                    if xx==5:
+                        result=result+df4['5'][i]
+                    if xx==6:
+                        result=result+df4['6'][i]
+                    if xx==7:
+                        result=result+df4['7'][i]
+                    if xx==8:
+                        result=result+df4['8'][i] 
+                    if xx==9:
+                        result=result+df4['9'][i]
+
+                if(df4['value'][i]==eyeclean):
+                    if xx==1:
+                        result=result+df4['1'][i] 
+                    if xx==2:
+                        result=result+df4['2'][i]    
+                    if xx==3:
+                        result=result+df4['3'][i]
+                    if xx==4:
+                        result=result+df4['4'][i]    
+                    if xx==5:
+                        result=result+df4['5'][i]
+                    if xx==6:
+                        result=result+df4['6'][i]
+                    if xx==7:
+                        result=result+df4['7'][i]
+                    if xx==8:
+                        result=result+df4['8'][i] 
+                    if xx==9:
+                        result=result+df4['9'][i]  
+
+                if(df4['value'][i]==tableclean):
+                    if xx==1:
+                        result=result+df4['1'][i] 
+                    if xx==2:
+                        result=result+df4['2'][i]    
+                    if xx==3:
+                        result=result+df4['3'][i]
+                    if xx==4:
+                        result=result+df4['4'][i]    
+                    if xx==5:
+                        result=result+df4['5'][i]
+                    if xx==6:
+                        result=result+df4['6'][i]
+                    if xx==7:
+                        result=result+df4['7'][i]
+                    if xx==8:
+                        result=result+df4['8'][i] 
+                    if xx==9:
+                        result=result+df4['9'][i]          
+                
 
     if ff==0:
         rap=0; 
