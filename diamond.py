@@ -440,7 +440,7 @@ def page1():
     df4=pd.read_csv('extras.csv')
     for i in range(len(df4)):
         if(shape=='RO'):
-            if(df4['extras[i]']=='H&A' and df4['shape'][i]=='RO'):
+            if(df4['extras'][i]=='H&A' and df4['shape'][i]=='RO'):
                 if(df4['value'][i]==ha):
                     if xx==1:
                         result=result+df4['1'][i] 
