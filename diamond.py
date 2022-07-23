@@ -149,13 +149,13 @@ def page1():
     with col31:
          cavity= st.selectbox("CAVITY",options=['CTC', 'CTG','CTP','NN'])    
     with col32:
-        culet = st.selectbox("CULET",options=['NON', 'PTD', 'VSM'])
+        graining = st.selectbox("GRAINING",options=['Internal->None', 'Internal->GR1', 'Internal->GR2','Internal->GR3','Surface->None','Surface->SGR1','Surface->SGR2'])
     with col33:
         extras = st.selectbox("EXTRAS",options=['YES', 'NO'])
     with col34:
         bgm = st.selectbox("BGM",options=['B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])   
     with col35:
-        fluo = st.selectbox("FLUO",options=['faint', 'MED','None','SIG','VST'])                                         
+        fluo = st.selectbox("FLUO",options=['Faint', 'Medium','None','Strong','Very Strong'])                                         
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
      #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
@@ -323,7 +323,7 @@ def page1():
                         result=result+1.0                                
     #add dossiers
 
-    #bgm
+    #bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
     if (cut=='EX' or cut=='VG') and (fluo=='None' or fluo=='MED') :
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
@@ -404,6 +404,29 @@ def page1():
                 result=result+1.0	
             elif(xx==9):    
                 result=result+1.0
+
+
+    #Graining- add vg+ condition and the extra comment
+    if graining=='Internal->GR2':
+        if xx==1 or xx==2:
+            result=result-1.5
+        elif xx==3 or xx==4 or xx==5:
+            result=result-1.0
+        elif xx==6:
+            result=result-0.5
+    elif graining =='Internal->GR3':
+        if xx==1 or xx==2:
+            result=result-3.0
+        elif xx==3 or xx==4 or xx==5:
+            result=result-3.0
+        elif xx==6:
+            result=result-1.0
+    elif graining=='Surface->SGR2'
+        if xx ==1 or xx==2:
+            result=result-1.5
+        elif xx==3 or xx==5 or xx==6:
+            result=result-1
+                    
 
 
 
