@@ -429,7 +429,7 @@ def page1():
             result=result-3.0
         elif xx==6:
             result=result-1.0
-    elif graining=='Surface->SGR2'
+    elif graining=='Surface->SGR2':
         if xx ==1 or xx==2:
             result=result-1.5
         elif xx==3 or xx==5 or xx==6:
