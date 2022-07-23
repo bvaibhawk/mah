@@ -78,10 +78,10 @@ def page1():
     # fluo_dict = {"FNT":1,"MED":2,"NON":3,"SIG":4,"VST":5}
 
     with col1:
-        szgr= st.selectbox("SIZE",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
+        szgr= st.selectbox("SIZE RANGE",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col2:
-        certct = st.number_input("CERTCT")
+        sizeprec = st.number_input("PRECISE SIZE")
 
     with col3:
         color = st.selectbox("COLOUR",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
@@ -117,7 +117,7 @@ def page1():
     with col15:
         maxdiam = st.number_input("MAX_DIAM")
     with col16:
-        height = st.number_input("HEIGHT")
+        diameter = st.number_input("DIAMETER")
     with col17:
         ratio = st.number_input("RATIO")
     with col18:
@@ -145,17 +145,17 @@ def page1():
     with col29:
         starlength = st.number_input("STAR_LENGTH")
     with col30:
-        lowerhalf = st.number_input("LOWER_HALF")
+        cutcomments = st.selectbox("CUT_COMMENTS",options=['3EX->EX1','3EX->EX2','EX->EX1','EX->EX2','VG->VG1','VG->VG2','G->GD1','G->GD2','Fancy->Ideal','Fancy->Premium','Fancy->Very Good'])
     with col31:
          cavity= st.selectbox("CAVITY",options=['CTC', 'CTG','CTP','NN'])    
     with col32:
         culet = st.selectbox("CULET",options=['NON', 'PTD', 'VSM'])
     with col33:
-        eyeclean = st.selectbox("EYE_CLEAN",options=['YES', 'NO'])
+        extras = st.selectbox("EXTRAS",options=['YES', 'NO'])
     with col34:
-        tableclean = st.selectbox("TABLE_CLEAN",options=['YES', 'NO'])   
+        bgm = st.selectbox("BGM",options=['B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])   
     with col35:
-        fluo = st.selectbox("FLUO",options=['FNT', 'MED','None','SIG','VST'])                                         
+        fluo = st.selectbox("FLUO",options=['faint', 'MED','None','SIG','VST'])                                         
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
      #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
@@ -164,15 +164,8 @@ def page1():
     df = pd.read_csv('Toamin.csv')
     result = 0.00
     ff=0
-    for i in range(len(df)):
-        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and polish == df['POL'][i] and symmetry == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
-            result=df['Discount'][i]
-            ff=1
-            break
-    if ff==1:
-        result=result*100 
-        xx=0
-        if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+    xx=0
+    if (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
             if color=='D' or color=='E' or color=='F': 
                 xx=1
             if color=='G' or color=='H' or color=='I': 
@@ -192,7 +185,16 @@ def page1():
             if color=='G' or color=='H' or color=='I': 
                 xx=8
             if color=='J' or color=='K' or color=='L' or color=='M': 
-                xx=9        
+                xx=9 
+    for i in range(len(df)):
+        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and polish == df['POL'][i] and symmetry == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
+            result=df['Discount'][i]
+            ff=1
+            break
+    if ff==1:
+        result=result*100 
+        
+               
         if shape=='RO':
             if xx==1:
                 if ktos==1:
@@ -280,8 +282,128 @@ def page1():
                     break    
 
 
+    #DIAMETER                
+    if(shape=='RO'):
+        if sizeprec>=1.0 and sizeprec<=1.49:
+            if cut=='VG':
+                if(xx==1):
+                    if diameter<=6.2:
+                        result=result-0.5
+                    elif diameter>=6.3:
+                        result=result+1.5
+                elif(xx==2):
+                    if diameter<=6.2:
+                        result=result-0.5
+                    elif diameter>=6.3:
+                        result=result+1.5        
+                elif(xx==3 or xx==4):
+                    if diameter<=6.2:
+                        result=result-0.5
+                    elif diameter>=6.3:
+                        result=result+1.5        
+                elif(xx==5):
+                    if diameter<=6.2:
+                        result=result-0.1
+                    elif diameter>=6.3:
+                        result=result+1.5
+                elif(xx==6):
+                    if diameter<=6.2:
+                        result=result-0.5
+                    elif diameter>=6.3:
+                        result=result+1.5
+                elif(xx==7):
+                    if diameter<=6.2:
+                        result=result-0.0
+                    elif diameter>=6.3:
+                        result=result+1.0
+                elif(xx==8):
+                    if diameter<=6.2:
+                        result=result-0.0
+                    elif diameter>=6.3:
+                        result=result+1.0                                
+    #add dossiers
+
+    #bgm
+    if (cut=='EX' or cut=='VG') and (fluo=='None' or fluo=='MED') :
+        df3=pd.read_csv('bgmvg.csv')
+        for i in range(len(df3)):
+            if shape == 'RO' and xx == df3['Section'][i] and bgm == df3['bgm'][i] and df3['Shape']=='RO': 
+                result=result+df3['Discount'][i]
+                break
+            elif shape!='RO' and xx == df3['Section'][i] and bgm == df3['bgm'][i] and df3['Shape']=='FANCY':
+                result=result+df3['Discount'][i]
+                break
+    else:
+        df3=pd.read_csv('bgmroelse.csv')
+        for i in range(len(df3)):
+            if shape == 'RO' and xx == df3['Section'][i] and bgm == df3['bgm'][i]: 
+                result=result+df3['Discount'][i]    
+                break            
+    #add dossiers as well
 
 
+    #Cut
+    if ((fluo=='MED') and (cutcomments=='VG->VG2' or cutcomments=='G->GD2')) or shape!='RO':
+        result=result
+    else:
+        if cutcomments=='3EX->EX2':
+            if(xx==1):
+                result=result-2.0	
+            elif(xx==2):
+                result=result-2.0	
+            elif(xx==3):
+                result=result-1.0
+            elif(xx==4):
+                result=result-2.0	
+            elif(xx==5):    
+                result=result-2.0	
+            elif(xx==6):    
+                result=result-1.0	
+            elif(xx==7):    
+                result=result-1.0	
+            elif(xx==8):    
+                result=result-1.0	
+            elif(xx==9):    
+                result=result-0.5
+
+        if cutcomments=='EX->EX2':
+            if(xx==1):
+                result=result-2.0	
+            elif(xx==2):
+                result=result-2.0	
+            elif(xx==3):
+                result=result-1.0
+            elif(xx==4):
+                result=result-2.0	
+            elif(xx==5):    
+                result=result-2.0	
+            elif(xx==6):    
+                result=result-1.0	
+            elif(xx==7):    
+                result=result-1.5	
+            elif(xx==8):    
+                result=result-1.5	
+            elif(xx==9):    
+                result=result-0.5        
+        if cutcomments=='VG->VG1':
+            if(xx==1):
+                result=result+2.0	
+            elif(xx==2):
+                result=result+2.0	
+            elif(xx==3):
+                result=result+2.0
+            elif(xx==4):
+                result=result+2.0	
+            elif(xx==5):    
+                result=result+2.0	
+            elif(xx==6):    
+                result=result+1.5	
+            elif(xx==7):    
+                result=result+1.5	
+            elif(xx==8):    
+                result=result+1.0	
+            elif(xx==9):    
+                result=result+1.0
 
 
 
