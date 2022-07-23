@@ -437,7 +437,7 @@ def page1():
 
 
     #extras- properly written
-    df4=pd.read_csv(extras.csv)
+    df4=pd.read_csv('extras.csv')
     for i in range(len(df4)):
         if(shape=='RO'):
             if(df4['extras[i]']=='H&A' and df4['shape'][i]=='RO'):
