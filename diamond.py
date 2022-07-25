@@ -712,7 +712,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                     result=result+df6['1'][i] 
                     if xx==2:
@@ -779,7 +779,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                     result=result+df6['1'][i] 
                     if xx==2:
@@ -845,7 +845,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                     result=result+df6['1'][i] 
                     if xx==2:
@@ -911,7 +911,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                     result=result+df6['1'][i] 
                     if xx==2:
