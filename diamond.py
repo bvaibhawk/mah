@@ -714,7 +714,7 @@ def page1():
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
                 if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
-                    result=result+df6['1'][i] 
+                        result=result+df6['1'][i] 
                     if xx==2:
                         result=result+df6['2'][i]    
                     if xx==3:
@@ -781,7 +781,7 @@ def page1():
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
                 if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
-                    result=result+df6['1'][i] 
+                        result=result+df6['1'][i] 
                     if xx==2:
                         result=result+df6['2'][i]    
                     if xx==3:
@@ -847,7 +847,7 @@ def page1():
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
                 if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
-                    result=result+df6['1'][i] 
+                        result=result+df6['1'][i] 
                     if xx==2:
                         result=result+df6['2'][i]    
                     if xx==3:
@@ -913,7 +913,7 @@ def page1():
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
                 if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
-                    result=result+df6['1'][i] 
+                        result=result+df6['1'][i] 
                     if xx==2:
                         result=result+df6['2'][i]    
                     if xx==3:
