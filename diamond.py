@@ -337,16 +337,17 @@ def page1():
     if (cut=='EX' or cut=='VG') and (fluo=='None' or fluo=='MED') :
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
-            if shape == 'RO' and xx == df3['Section'][i] and bgm == df3['bgm'][i] and df3['Shape']=='RO': 
+            #next line giving eror
+            if (shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape']=='RO'): 
                 result=result+df3['Discount'][i]
                 break
-            elif shape!='RO' and xx == df3['Section'][i] and bgm == df3['bgm'][i] and df3['Shape']=='FANCY':
+            elif (shape!='RO')& (xx == df3['Section'][i]) &( bgm == df3['bgm'][i]) & (df3['Shape']=='FANCY'):
                 result=result+df3['Discount'][i]
                 break
     else:
         df3=pd.read_csv('bgmroelse.csv')
         for i in range(len(df3)):
-            if shape == 'RO' and xx == df3['Section'][i] and bgm == df3['bgm'][i]: 
+            if (shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]): 
                 result=result+df3['Discount'][i]    
                 break            
     #add dossiers as well
