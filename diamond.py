@@ -124,21 +124,21 @@ def page1():
     with col18:
         colshad = st.selectbox("COL_SHADE",options=['B1', 'B2', 'MT1', 'NN'])
     with col19:
-        milky = st.selectbox("MILKY",options=['M1', 'M2', 'M1+', 'NN'])  
+        pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=['0', '1', '2', '3','4'])  
     with col20:
-        tableblack = st.selectbox("TABLE_BLACK",options=['BT1', 'BT1+', 'BT2', 'NN'])
+        tableintensity = st.selectbox("TABLE_INTENSITY",options=['0', '1', '2', '3','4'])
     with col21:
-        sideblack= st.selectbox("SIDE_BLACK",options=['BC1', 'BC1+', 'BC2', 'BC3','NN'])  
+       crownintensity= st.selectbox("CROWN_INTENSITY",options=['0', '1', '2', '3','4'])
     with col22:
-        whiteinc = st.selectbox("WHT_INC",options=['NN', 'WC1', 'WC2', 'WC3','WP1','WP2','WT1','WT2','WT3'])  
+        girdleintensity = st.selectbox("GIRDLE_INTENSITY",options=['0', '1', '2', '3','4'])
     with col23:
-        crangle = st.number_input("CR_ANGLE")
+        girdle_inc = st.selectbox("GIRDLE_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col24:
-        crheight = st.number_input("CR_HEIGHT")
+        tableinc = st.selectbox("TABLE_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col25:
-        pvangle = st.number_input("PV_ANGLE") 
+        crowninc= st.selectbox("CROWN_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])  
     with col26:
-        pvdepth = st.number_input("PV_DEPTH")
+        pavilioninc = st.selectbox("PAVILION_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col27:
         girdleper = st.number_input("GIRDLE_PERCENTAGE")
     with col28:
@@ -207,39 +207,41 @@ def page1():
             if xx==1:
                 if ktos==1:
                     result=result+1.0
-                if ktos>=5:
+                elif ktos>=5:
                     result=-1.0+result  
-            if xx==2:
+            elif xx==2:
                 if ktos==1:
                     result=result+1.0
-                if ktos>=5:
+                elif ktos>=5:
                     result=-1.0+result 
-            if xx==3:
+            elif xx==3:
                 if ktos==1:
                     result=result+1.0
-                if ktos>=5:
+                elif ktos>=5:
                     result=-1.0+result
-            if xx==4:
+            elif xx==4:
                 if ktos==1:
                     result=result+1.5
-                if ktos>=5:
+                elif ktos>=5:
                     result=-1.0+result         
-            if xx==5:
+            elif xx==5:
                 if ktos==1:
                     result=result+1.5
                 if ktos>=5:
                     result=-1.0+result 
-            if xx==6:
+            elif xx==6:
                 if ktos==1:
                     result=result+1.0
                 if ktos>=5:
                     result=0.0+result 
-            if xx==1:
+            elif xx==1:
                 if ktos==1:
                     result=result+3.0
                 if ktos>=5:
                     result=0.0+result 
 
+
+            #colour
             if color=='M':
                 if szgr=='1.01-1.09' or szgr=='2.01-2.09' or szgr=='1.50-1.69': 
                     if cut=='EX':
@@ -258,32 +260,32 @@ def page1():
                     result=df2['IF'][i]
                     ff=2
                     break
-            if clarity=='VVS1':
+            elif clarity=='VVS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['VVS1'][i]
                     ff=2
                     break        
-            if clarity=='VVS2':
+            elif clarity=='VVS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['VVS2'][i]
                     ff=2
                     break        
-            if clarity=='VS1':
+            elif clarity=='VS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['VS1'][i]
                     ff=2
                     break    
-            if clarity=='VS2':
+            elif clarity=='VS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['VS2'][i]
                     ff=2
                     break    
-            if clarity=='SI1':
+            elif clarity=='SI1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['SI1'][i]
                     ff=2
                     break    
-            if clarity=='SI2':
+            elif clarity=='SI2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['SI2'][i]
                     ff=2
@@ -373,7 +375,7 @@ def page1():
                 result=result-1.0	
             elif(xx==9):    
                 result=result-0.5
-
+    
         if cutcomments=='EX->EX2':
             if(xx==1):
                 result=result-2.0	
@@ -436,7 +438,7 @@ def page1():
             result=result-1
 
 
-    #extras- properly written
+    #extras- NOT properly written- change line 445
     df4=pd.read_csv('extras.csv')
     for i in range(len(df4)):
         if(shape=='RO'):
@@ -464,41 +466,41 @@ def page1():
                 if(df4['value'][i]==eyeclean):
                     if xx==1:
                         result=result+df4['1'][i] 
-                    if xx==2:
+                    elif xx==2:
                         result=result+df4['2'][i]    
-                    if xx==3:
+                    elif xx==3:
                         result=result+df4['3'][i]
-                    if xx==4:
+                    elif xx==4:
                         result=result+df4['4'][i]    
-                    if xx==5:
+                    elif xx==5:
                         result=result+df4['5'][i]
-                    if xx==6:
+                    elif xx==6:
                         result=result+df4['6'][i]
-                    if xx==7:
+                    elif xx==7:
                         result=result+df4['7'][i]
-                    if xx==8:
+                    elif xx==8:
                         result=result+df4['8'][i] 
-                    if xx==9:
+                    elif xx==9:
                         result=result+df4['9'][i]  
 
                 if(df4['value'][i]==tableclean):
                     if xx==1:
                         result=result+df4['1'][i] 
-                    if xx==2:
+                    elif xx==2:
                         result=result+df4['2'][i]    
-                    if xx==3:
+                    elif xx==3:
                         result=result+df4['3'][i]
-                    if xx==4:
+                    elif xx==4:
                         result=result+df4['4'][i]    
-                    if xx==5:
+                    elif xx==5:
                         result=result+df4['5'][i]
-                    if xx==6:
+                    elif xx==6:
                         result=result+df4['6'][i]
-                    if xx==7:
+                    elif xx==7:
                         result=result+df4['7'][i]
-                    if xx==8:
+                    elif xx==8:
                         result=result+df4['8'][i] 
-                    if xx==9:
+                    elif xx==9:
                         result=result+df4['9'][i]          
 
         if(shape!='RO'):
@@ -563,6 +565,375 @@ def page1():
                     if xx==9:
                         result=result+df4['9'][i]          
                 
+
+
+
+    #Inclusion Grading
+    df5=pd.read_csv('inc_grad.csv')
+        for i in range(len(df5)):
+            #table
+            if(df5['Location'][i]=='Table'):
+                if(df5['Shape'][i]==shape and (clarity==df5['CL1'][i] or clarity==df5['CL2'][i]) and df5['Inclusion'][i]==tableinc):
+                    if xx==1:
+                        result=result+df5['1'][i] 
+                    if xx==2:
+                        result=result+df5['2'][i]    
+                    if xx==3:
+                        result=result+df5['3'][i]
+                    if xx==4:
+                        result=result+df5['4'][i]    
+                    if xx==5:
+                        result=result+df5['5'][i]
+                    if xx==6:
+                        result=result+df5['6'][i]
+                    if xx==7:
+                        result=result+df5['7'][i]
+                    if xx==8:
+                        result=result+df5['8'][i] 
+                    if xx==9:
+                        result=result+df5['9'][i]
+                    break
+        for i in range(len(df5)):
+            #crown
+            if(df5['Location'][i]=='Crown'):
+                if(df5['Shape'][i]==shape and (clarity==df5['CL1'][i] or clarity==df5['CL2'][i]) and df5['Inclusion'][i]==crowninc):
+                    if xx==1:
+                        result=result+df5['1'][i] 
+                    if xx==2:
+                        result=result+df5['2'][i]    
+                    if xx==3:
+                        result=result+df5['3'][i]
+                    if xx==4:
+                        result=result+df5['4'][i]    
+                    if xx==5:
+                        result=result+df5['5'][i]
+                    if xx==6:
+                        result=result+df5['6'][i]
+                    if xx==7:
+                        result=result+df5['7'][i]
+                    if xx==8:
+                        result=result+df5['8'][i] 
+                    if xx==9:
+                        result=result+df5['9'][i]
+                    break        
+        for i in range(len(df5)):    
+            #girdle
+            if(df5['Location'][i]=='Girdle'):
+                if(df5['Shape'][i]==shape and (clarity==df5['CL1'][i] or clarity==df5['CL2'][i]) and df5['Inclusion'][i]==girdle_inc):
+                    if xx==1:
+                        result=result+df5['1'][i] 
+                    if xx==2:
+                        result=result+df5['2'][i]    
+                    if xx==3:
+                        result=result+df5['3'][i]
+                    if xx==4:
+                        result=result+df5['4'][i]    
+                    if xx==5:
+                        result=result+df5['5'][i]
+                    if xx==6:
+                        result=result+df5['6'][i]
+                    if xx==7:
+                        result=result+df5['7'][i]
+                    if xx==8:
+                        result=result+df5['8'][i] 
+                    if xx==9:
+                        result=result+df5['9'][i]
+                    break
+        for i in range(len(df5)):    
+            #pavilion
+            if(df5['Location'][i]=='Pavilion'):
+                if(df5['Shape'][i]==shape and (clarity==df5['CL1'][i] or clarity==df5['CL2'][i]) and df5['Inclusion'][i]==pavilioninc):
+                    if xx==1:
+                        result=result+df5['1'][i] 
+                    if xx==2:
+                        result=result+df5['2'][i]    
+                    if xx==3:
+                        result=result+df5['3'][i]
+                    if xx==4:
+                        result=result+df5['4'][i]    
+                    if xx==5:
+                        result=result+df5['5'][i]
+                    if xx==6:
+                        result=result+df5['6'][i]
+                    if xx==7:
+                        result=result+df5['7'][i]
+                    if xx==8:
+                        result=result+df5['8'][i] 
+                    if xx==9:
+                        result=result+df5['9'][i]
+                    break
+
+    #BLACK
+    df6=pd.read_csv('black.csv')
+        for i in range(len(df6)):
+            #table
+            if(df6['Location'][i]=='Table'):
+                if(df6['Shape'][i]==shape and shape=='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                        if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+
+                            if xx==1:
+                                result=result+df6['1'][i] 
+                            if xx==2:
+                                result=result+df6['2'][i]    
+                            if xx==3:
+                                result=result+df6['3'][i]
+                            if xx==4:
+                                result=result+df6['4'][i]    
+                            if xx==5:
+                                result=result+df6['5'][i]
+                            if xx==6:
+                                result=result+df6['6'][i]
+                            if xx==7:
+                                result=result+df6['7'][i]
+                            if xx==8:
+                                result=result+df6['8'][i] 
+                            if xx==9:
+                                result=result+df6['9'][i]
+                            break
+                        else:
+                            if xx==1:
+                                result=result+df6['1'][i]/2 
+                            if xx==2:
+                                result=result+df6['2'][i]/2     
+                            if xx==3:
+                                result=result+df6['3'][i]/2 
+                            if xx==4:
+                                result=result+df6['4'][i]/2  
+                            if xx==5:
+                                result=result+df6['5'][i]/2 
+                            if xx==6:
+                                result=result+df6['6'][i]/2 
+                            if xx==7:
+                                result=result+df6['7'][i]/2 
+                            if xx==8:
+                                result=result+df6['8'][i]/2  
+                            if xx==9:
+                                result=result+df6['9'][i]/2 
+                            break    
+                if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                        if xx==1:
+                        result=result+df6['1'][i] 
+                        if xx==2:
+                            result=result+df6['2'][i]    
+                        if xx==3:
+                            result=result+df6['3'][i]
+                        if xx==4:
+                            result=result+df6['4'][i]    
+                        if xx==5:
+                            result=result+df6['5'][i]
+                        if xx==6:
+                            result=result+df6['6'][i]
+                        if xx==7:
+                            result=result+df6['7'][i]
+                        if xx==8:
+                            result=result+df6['8'][i] 
+                        if xx==9:
+                            result=result+df6['9'][i]
+                        break
+            #table
+        for i in range(len(df6)):
+            if(df6['Location'][i]=='Crown'):
+                if(df6['Shape'][i]==shape and shape=='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                        if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+
+                            if xx==1:
+                                result=result+df6['1'][i] 
+                            if xx==2:
+                                result=result+df6['2'][i]    
+                            if xx==3:
+                                result=result+df6['3'][i]
+                            if xx==4:
+                                result=result+df6['4'][i]    
+                            if xx==5:
+                                result=result+df6['5'][i]
+                            if xx==6:
+                                result=result+df6['6'][i]
+                            if xx==7:
+                                result=result+df6['7'][i]
+                            if xx==8:
+                                result=result+df6['8'][i] 
+                            if xx==9:
+                                result=result+df6['9'][i]
+                            break
+                        else:
+                            if xx==1:
+                                result=result+df6['1'][i]/2 
+                            if xx==2:
+                                result=result+df6['2'][i]/2     
+                            if xx==3:
+                                result=result+df6['3'][i]/2 
+                            if xx==4:
+                                result=result+df6['4'][i]/2  
+                            if xx==5:
+                                result=result+df6['5'][i]/2 
+                            if xx==6:
+                                result=result+df6['6'][i]/2 
+                            if xx==7:
+                                result=result+df6['7'][i]/2 
+                            if xx==8:
+                                result=result+df6['8'][i]/2  
+                            if xx==9:
+                                result=result+df6['9'][i]/2 
+                            break    
+                if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                        if xx==1:
+                        result=result+df6['1'][i] 
+                        if xx==2:
+                            result=result+df6['2'][i]    
+                        if xx==3:
+                            result=result+df6['3'][i]
+                        if xx==4:
+                            result=result+df6['4'][i]    
+                        if xx==5:
+                            result=result+df6['5'][i]
+                        if xx==6:
+                            result=result+df6['6'][i]
+                        if xx==7:
+                            result=result+df6['7'][i]
+                        if xx==8:
+                            result=result+df6['8'][i] 
+                        if xx==9:
+                            result=result+df6['9'][i]
+                        break            
+        for i in range(len(df6)):    
+            if(df6['Location'][i]=='Girdle'):
+                if(df6['Shape'][i]==shape and shape=='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                        if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+
+                            if xx==1:
+                                result=result+df6['1'][i] 
+                            if xx==2:
+                                result=result+df6['2'][i]    
+                            if xx==3:
+                                result=result+df6['3'][i]
+                            if xx==4:
+                                result=result+df6['4'][i]    
+                            if xx==5:
+                                result=result+df6['5'][i]
+                            if xx==6:
+                                result=result+df6['6'][i]
+                            if xx==7:
+                                result=result+df6['7'][i]
+                            if xx==8:
+                                result=result+df6['8'][i] 
+                            if xx==9:
+                                result=result+df6['9'][i]
+                            break
+                        else:
+                            if xx==1:
+                                result=result+df6['1'][i]/2 
+                            if xx==2:
+                                result=result+df6['2'][i]/2     
+                            if xx==3:
+                                result=result+df6['3'][i]/2 
+                            if xx==4:
+                                result=result+df6['4'][i]/2  
+                            if xx==5:
+                                result=result+df6['5'][i]/2 
+                            if xx==6:
+                                result=result+df6['6'][i]/2 
+                            if xx==7:
+                                result=result+df6['7'][i]/2 
+                            if xx==8:
+                                result=result+df6['8'][i]/2  
+                            if xx==9:
+                                result=result+df6['9'][i]/2 
+                            break    
+                if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                        if xx==1:
+                        result=result+df6['1'][i] 
+                        if xx==2:
+                            result=result+df6['2'][i]    
+                        if xx==3:
+                            result=result+df6['3'][i]
+                        if xx==4:
+                            result=result+df6['4'][i]    
+                        if xx==5:
+                            result=result+df6['5'][i]
+                        if xx==6:
+                            result=result+df6['6'][i]
+                        if xx==7:
+                            result=result+df6['7'][i]
+                        if xx==8:
+                            result=result+df6['8'][i] 
+                        if xx==9:
+                            result=result+df6['9'][i]
+                        break
+        for i in range(len(df6)):   
+            if(df6['Location'][i]=='Pavilion'):
+                if(df6['Shape'][i]==shape and shape=='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                        if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+
+                            if xx==1:
+                                result=result+df6['1'][i] 
+                            if xx==2:
+                                result=result+df6['2'][i]    
+                            if xx==3:
+                                result=result+df6['3'][i]
+                            if xx==4:
+                                result=result+df6['4'][i]    
+                            if xx==5:
+                                result=result+df6['5'][i]
+                            if xx==6:
+                                result=result+df6['6'][i]
+                            if xx==7:
+                                result=result+df6['7'][i]
+                            if xx==8:
+                                result=result+df6['8'][i] 
+                            if xx==9:
+                                result=result+df6['9'][i]
+                            break
+                        else:
+                            if xx==1:
+                                result=result+df6['1'][i]/2 
+                            if xx==2:
+                                result=result+df6['2'][i]/2     
+                            if xx==3:
+                                result=result+df6['3'][i]/2 
+                            if xx==4:
+                                result=result+df6['4'][i]/2  
+                            if xx==5:
+                                result=result+df6['5'][i]/2 
+                            if xx==6:
+                                result=result+df6['6'][i]/2 
+                            if xx==7:
+                                result=result+df6['7'][i]/2 
+                            if xx==8:
+                                result=result+df6['8'][i]/2  
+                            if xx==9:
+                                result=result+df6['9'][i]/2 
+                            break    
+                if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
+                    if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]=symmetry and df6['polish'][i]=polish):
+                        if xx==1:
+                        result=result+df6['1'][i] 
+                        if xx==2:
+                            result=result+df6['2'][i]    
+                        if xx==3:
+                            result=result+df6['3'][i]
+                        if xx==4:
+                            result=result+df6['4'][i]    
+                        if xx==5:
+                            result=result+df6['5'][i]
+                        if xx==6:
+                            result=result+df6['6'][i]
+                        if xx==7:
+                            result=result+df6['7'][i]
+                        if xx==8:
+                            result=result+df6['8'][i] 
+                        if xx==9:
+                            result=result+df6['9'][i]
+                        break                       
+        
+                
+
 
     if ff==0:
         rap=0; 
