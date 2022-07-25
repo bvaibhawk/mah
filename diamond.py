@@ -669,7 +669,7 @@ def page1():
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
                     if fluo=='None' or fluo=='Medium' or fluo=='Faint':
 
                         if xx==1:
@@ -712,7 +712,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -736,7 +736,7 @@ def page1():
     for i in range(len(df6)):
         if(df6['Location'][i]=='Crown'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
                     if fluo=='None' or fluo=='Medium' or fluo=='Faint':
 
                         if xx==1:
@@ -779,7 +779,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -802,7 +802,7 @@ def page1():
     for i in range(len(df6)):    
         if(df6['Location'][i]=='Girdle'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
                     if fluo=='None' or fluo=='Medium' or fluo=='Faint':
 
                         if xx==1:
@@ -845,7 +845,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -868,7 +868,7 @@ def page1():
     for i in range(len(df6)):   
         if(df6['Location'][i]=='Pavilion'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and cut==df6['cut'][i]):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
                     if fluo=='None' or fluo=='Medium' or fluo=='Faint':
 
                         if xx==1:
@@ -911,7 +911,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(size>=df6['sizemin'][i] and size<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
