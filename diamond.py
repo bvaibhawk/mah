@@ -79,10 +79,10 @@ def page1():
     # fluo_dict = {"FNT":1,"MED":2,"NON":3,"SIG":4,"VST":5}
 
     with col1:
-        szgr= st.selectbox("SIZE RANGE*",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
+        shape = st.selectbox("SHAPE*",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
 
     with col2:
-        sizeprec = st.number_input("PRECISE SIZE")
+        szgr= st.selectbox("SIZE RANGE*",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col3:
         color = st.selectbox("COLOUR*",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
@@ -100,7 +100,8 @@ def page1():
         symmetry = st.selectbox("SYMMETRY*",options=['EX', 'GD', 'VG'])
 
     with col8:
-        cert = st.selectbox("CERT",options=['GIA', 'FACT', 'FM', 'IIDGR'])
+        fluo = st.selectbox("FLUO*",options=['Faint', 'Medium','None','Strong','Very Strong'])
+        
 
     with col9:
         rap = st.number_input("RAP*")
@@ -108,7 +109,7 @@ def page1():
     with col10:
         ktos = st.number_input("KTOS")
     with col11:
-        shape = st.selectbox("SHAPE*",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
+        sizeprec = st.number_input("PRECISE SIZE")
     with col12:
         td = st.number_input("TD")   
     with col13:
@@ -156,7 +157,7 @@ def page1():
     with col34:
         bgm = st.selectbox("BGM",options=['B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])   
     with col35:
-        fluo = st.selectbox("FLUO*",options=['Faint', 'Medium','None','Strong','Very Strong'])    
+        cert = st.selectbox("CERT",options=['GIA', 'FACT', 'FM', 'IIDGR'])    
     with col36:
         ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
     with col37:
