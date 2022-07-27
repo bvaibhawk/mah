@@ -340,10 +340,10 @@ def page1():
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape']=='RO')): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape'][i]=='RO')): 
                 result=result+df3['Discount'][i]
                 break
-            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape']=='FANCY')):
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
                 result=result+df3['Discount'][i]
                 break
     else:
