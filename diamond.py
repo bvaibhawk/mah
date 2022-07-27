@@ -670,8 +670,8 @@ def page1():
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
-                    if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==tableintensity):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
                             result=result+df6['1'][i] 
@@ -713,7 +713,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==tableintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -737,8 +737,8 @@ def page1():
     for i in range(len(df6)):
         if(df6['Location'][i]=='Crown'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
-                    if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and and df6['Intensity']==crownintensity):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
                             result=result+df6['1'][i] 
@@ -780,7 +780,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==crownintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -803,8 +803,8 @@ def page1():
     for i in range(len(df6)):    
         if(df6['Location'][i]=='Girdle'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
-                    if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==girdleintensity):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
                             result=result+df6['1'][i] 
@@ -846,7 +846,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==girdleintensity) :
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -869,8 +869,8 @@ def page1():
     for i in range(len(df6)):   
         if(df6['Location'][i]=='Pavilion'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i]):
-                    if fluo=='None' or fluo=='Medium' or fluo=='Faint':
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==pavilionintensity):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
                             result=result+df6['1'][i] 
@@ -912,7 +912,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==pavilionintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -933,7 +933,130 @@ def page1():
                         result=result+df6['9'][i]
                     break                       
         
-                
+    #sizeprem
+    #if ro or fancy
+    #if 1-3 or 3-7
+    #if if vvs f or not
+    if shape=='RO':
+        if sizeprec>=1.00 and sizeprec<=2.99:
+            if cut=='EX' and polish=='EX' and symmetry=='EX':
+                if color=='F' and (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+                    df7=pd.read_csv('roexsmF.csv'):
+                    for i in range(len(df7)):
+                        if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['IF VVS F'][i]/2
+                                else:
+                                    result=result+df7['IF VVS F'][i] 
+
+                else:
+                    df7=pd.read_csv('roexsm.csv')
+                    for i in range(len(df7)):
+                        if sizeprec>=df7['From'] and sizeprec<=df7['To']:
+                            if xx==1:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['1'][i]/2
+                                else:
+                                    result=result+df7['1'][i] 
+                            elif xx==2:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['2'][i]/2
+                                else:
+                                    result=result+df7['2'][i]   
+                            elif xx==3:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['3'][i]/2
+                                else:
+                                    result=result+df7['3'][i]
+                            elif xx==4:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['4'][i]/2
+                                else:
+                                    result=result+df7['4'][i]    
+                            elif xx==5:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['5'][i]/2
+                                else:
+                                    result=result+df7['5'][i]
+                            elif xx==6:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['6'][i]/2
+                                else:
+                                    result=result+df7['6'][i]
+                            elif xx==7:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['7'][i]/2
+                                else:
+                                    result=result+df7['7'][i]
+                            elif xx==8:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['8'][i]/2
+                                else:
+                                    result=result+df7['8'][i]
+                            elif xx==9:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['9'][i]/2
+                                else:
+                                    result=result+df7['9'][i]
+                            break   
+            else:
+                if color=='F' and (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+                    df7=pd.read_csv('rovgsmF.csv'):
+                    for i in range(len(df7)):
+                        if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['IF VVS F'][i]/2
+                                else:
+                                    result=result+df7['IF VVS F'][i] 
+
+                else:
+                    df7=pd.read_csv('rovgsm.csv')
+                    for i in range(len(df7)):
+                        if sizeprec>=df7['From'] and sizeprec<=df7['To']:
+                            if xx==1:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['1'][i]/2
+                                else:
+                                    result=result+df7['1'][i] 
+                            elif xx==2:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['2'][i]/2
+                                else:
+                                    result=result+df7['2'][i]   
+                            elif xx==3:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['3'][i]/2
+                                else:
+                                    result=result+df7['3'][i]
+                            elif xx==4:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['4'][i]/2
+                                else:
+                                    result=result+df7['4'][i]    
+                            elif xx==5:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['5'][i]/2
+                                else:
+                                    result=result+df7['5'][i]
+                            elif xx==6:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['6'][i]/2
+                                else:
+                                    result=result+df7['6'][i]
+                            elif xx==7:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['7'][i]/2
+                                else:
+                                    result=result+df7['7'][i]
+                            elif xx==8:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['8'][i]/2
+                                else:
+                                    result=result+df7['8'][i]
+                            elif xx==9:
+                                if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
+                                    result=result+df7['9'][i]/2
+                                else:
+                                    result=result+df7['9'][i]
+                            break                      
 
 
     if ff==0:
