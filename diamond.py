@@ -1099,7 +1099,7 @@ def page1():
                     else:
                         df7=pd.read_csv('roexbg.csv')
                         for i in range(len(df7)):
-                            if(sizeprec>=df7['From'] and sizeprec<=df7['To']):
+                            if(sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]):
                                 if xx==1:
                                     result=result+df7['1'][i] 
                                 if xx==2:
