@@ -127,7 +127,8 @@ def page1():
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=['0', '1', '2', '3','4'])  
     with col20:
-        tableintensity = st.selectbox("TABLE_INTENSITY",options=['0', '1', '2', '3','4'])
+        #st.selectbox("TABLE_INTENSITY",options=['0', '1', '2', '3','4'])
+        tableintensity = st.number_input("TABLE_INTENSITY")
     with col21:
        crownintensity= st.selectbox("CROWN_INTENSITY",options=['0', '1', '2', '3','4'])
     with col22:
@@ -673,7 +674,7 @@ def page1():
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & (tableintensity==df6['Intensity'].apply(str))):
+                if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & (tableintensity==df6['Intensity'])):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
