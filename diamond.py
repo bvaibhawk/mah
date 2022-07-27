@@ -79,36 +79,36 @@ def page1():
     # fluo_dict = {"FNT":1,"MED":2,"NON":3,"SIG":4,"VST":5}
 
     with col1:
-        szgr= st.selectbox("SIZE RANGE",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
+        szgr= st.selectbox("SIZE RANGE*",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col2:
         sizeprec = st.number_input("PRECISE SIZE")
 
     with col3:
-        color = st.selectbox("COLOUR",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
+        color = st.selectbox("COLOUR*",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
 
     with col4:
-        clarity = st.selectbox("CLARITY",options=['IF', 'VVS1', 'VVS2','VS1','VS2','S1','S2','I1'])
+        clarity = st.selectbox("CLARITY*",options=['IF', 'VVS1', 'VVS2','VS1','VS2','S1','S2','I1'])
 
     with col5:
-        cut = st.selectbox("CUT",options=['EX', 'GD', 'VG'])
+        cut = st.selectbox("CUT*",options=['EX', 'GD', 'VG'])
 
     with col6:
-        polish =st.selectbox("POLISH",options=['EX', 'GD', 'VG'])
+        polish =st.selectbox("POLISH*",options=['EX', 'GD', 'VG'])
 
     with col7:
-        symmetry = st.selectbox("SYMMETRY",options=['EX', 'GD', 'VG'])
+        symmetry = st.selectbox("SYMMETRY*",options=['EX', 'GD', 'VG'])
 
     with col8:
         cert = st.selectbox("CERT",options=['GIA', 'FACT', 'FM', 'IIDGR'])
 
     with col9:
-        rap = st.number_input("RAP")
+        rap = st.number_input("RAP*")
 
     with col10:
         ktos = st.number_input("KTOS")
     with col11:
-        shape = st.selectbox("SHAPE",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
+        shape = st.selectbox("SHAPE*",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
     with col12:
         td = st.number_input("TD")   
     with col13:
@@ -156,7 +156,7 @@ def page1():
     with col34:
         bgm = st.selectbox("BGM",options=['B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])   
     with col35:
-        fluo = st.selectbox("FLUO",options=['Faint', 'Medium','None','Strong','Very Strong'])    
+        fluo = st.selectbox("FLUO*",options=['Faint', 'Medium','None','Strong','Very Strong'])    
     with col36:
         ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
     with col37:
@@ -339,16 +339,16 @@ def page1():
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
             #next line giving eror
-            if (shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape']=='RO'): 
+            if (shape == 'RO') and (xx == df3['Section'][i]) and (bgm == df3['bgm'][i]) and (df3['Shape']=='RO'): 
                 result=result+df3['Discount'][i]
                 break
-            elif (shape!='RO')& (xx == df3['Section'][i]) &( bgm == df3['bgm'][i]) & (df3['Shape']=='FANCY'):
+            elif (shape!='RO') and (xx == df3['Section'][i]) and ( bgm == df3['bgm'][i]) and (df3['Shape']=='FANCY'):
                 result=result+df3['Discount'][i]
                 break
     else:
         df3=pd.read_csv('bgmroelse.csv')
         for i in range(len(df3)):
-            if (shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]): 
+            if (shape == 'RO') and (xx == df3['Section'][i]) and (bgm == df3['bgm'][i]): 
                 result=result+df3['Discount'][i]    
                 break            
     #add dossiers as well
