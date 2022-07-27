@@ -127,8 +127,7 @@ def page1():
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=['0', '1', '2', '3','4'])  
     with col20:
-        #st.selectbox("TABLE_INTENSITY",options=['0', '1', '2', '3','4'])
-        tableintensity = st.number_input("TABLE_INTENSITY")
+        tableintensity = st.selectbox("TABLE_INTENSITY",options=['0', '1', '2', '3','4'])
     with col21:
        crownintensity= st.selectbox("CROWN_INTENSITY",options=['0', '1', '2', '3','4'])
     with col22:
@@ -340,8 +339,8 @@ def page1():
     if ((cut=='EX' or cut=='VG') & (fluo=='None' or fluo=='Medium')) :
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
-            #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape']=='RO')): 
+            #next line giving eror & (bgm == df3['bgm'][i])
+            if ((shape == 'RO') & (xx == df3['Section'][i])  & (df3['Shape']=='RO')): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape']=='FANCY')):
@@ -674,7 +673,7 @@ def page1():
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & (tableintensity==float(df6['Intensity']))):
+                if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & (tableintensity==df6['Intensity'])):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
