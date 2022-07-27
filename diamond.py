@@ -339,11 +339,11 @@ def page1():
     if ((cut=='EX' or cut=='VG') & (fluo=='None' or fluo=='Medium')) :
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
-            #next line giving eror & (bgm == df3['bgm'][i]) & (xx == df3['Section'][i]) (shape == 'RO')   &
-            if ( (df3['Shape'][i]=='RO')): 
+            #next line giving eror
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape']=='RO')): 
                 result=result+df3['Discount'][i]
                 break
-            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape']=='FANCY')):
                 result=result+df3['Discount'][i]
                 break
     else:
@@ -673,7 +673,7 @@ def page1():
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & (tableintensity==df6['Intensity'])):
+                if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & ((tableintensity==df6['Intensity'][i])):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
@@ -740,7 +740,7 @@ def page1():
     for i in range(len(df6)):
         if(df6['Location'][i]=='Crown'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==crownintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity'][i]==crownintensity):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
@@ -806,7 +806,7 @@ def page1():
     for i in range(len(df6)):    
         if(df6['Location'][i]=='Girdle'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==girdleintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity'][i]==girdleintensity):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
@@ -872,7 +872,7 @@ def page1():
     for i in range(len(df6)):   
         if(df6['Location'][i]=='Pavilion'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==pavilionintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity'][i]==pavilionintensity):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
