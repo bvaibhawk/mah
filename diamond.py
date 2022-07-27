@@ -667,12 +667,13 @@ def page1():
                 break
 
     #BLACK
+    #  (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)
     df6=pd.read_csv('black.csv')
     for i in range(len(df6)):
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if((sizeprec>=df6['sizemin'][i]) & (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)):
+                if((sizeprec>=df6['sizemin'][i]) ):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
