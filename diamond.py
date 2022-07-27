@@ -737,7 +737,7 @@ def page1():
     for i in range(len(df6)):
         if(df6['Location'][i]=='Crown'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and and df6['Intensity']==crownintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==crownintensity):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
