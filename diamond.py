@@ -170,6 +170,7 @@ def page1():
 
     #result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
     df = pd.read_csv('Toamin.csv')
+    #remember to add the feature that if cut is ex then pol, symm can be anything, right now it is same as cut
     result = 0.00
     ff=0
     xx=0
@@ -1057,6 +1058,66 @@ def page1():
                                 else:
                                     result=result+df7['9'][i]
                             break                      
+        elif sizeprec>=3.00 and sizeprec<=6.99:
+            if(sizeprec>=3.50 and sizeprec<=3.749):
+                if(cut=='EX' and polish=='EX' and symmetry=='EX'):
+                    if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2') and color=='F':
+                        result=result+3.0
+                    else:
+                        result=result+3.0
+                else:
+                    if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2') and color=='F':
+                        result=result+1.0
+                    else:
+                        result=result+1.0
+            elif(sizeprec>=3.75 and sizeprec<=3.999):
+                if(cut=='EX' and polish=='EX' and symmetry=='EX'):
+                    result=result+4.0
+                else:
+                    result=result+2.0 
+            elif(sizeprec>=4.50 and sizeprec<=4.99):
+                if(cut=='EX' and polish=='EX' and symmetry=='EX'):
+                    result=result+3.0
+                else:
+                    result=result+1.0 
+            elif(sizeprec>=6.50 and sizeprec<=6.99):
+                if(cut=='EX' and polish=='EX' and symmetry=='EX'):
+                    result=result+3.0
+                else:
+                    result=result+2.0 
+            else:
+                if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                    if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2') and color=='F':
+                        if(sizeprec>=3.00 and sizeprec<=3.00):
+                            result=result-2.0
+                        elif(sizeprec>=4.00 and sizeprec<=4.00):
+                            result=result-2.0  
+                        elif(sizeprec>=5.00 and sizeprec<=5.00):
+                            result=result-1.0    
+                    else:
+                        df7=pd.read_csv('roexbg.csv')
+                        for i in range(len(df7)):
+                            if(sizeprec>=df7['From'] and sizeprec<=df7['To']):
+                                if xx==1:
+                                    result=result+df7['1'][i] 
+                                if xx==2:
+                                    result=result+df7['2'][i]    
+                                if xx==3:
+                                    result=result+df7['3'][i]
+                                if xx==4:
+                                    result=result+df7['4'][i]    
+                                if xx==5:
+                                    result=result+df7['5'][i]
+                                if xx==6:
+                                    result=result+df7['6'][i]
+                                if xx==7:
+                                    result=result+df7['7'][i]
+                                if xx==8:
+                                    result=result+df7['8'][i] 
+                                if xx==9:
+                                    result=result+df7['9'][i]
+                                break  
+        
 
 
     if ff==0:
