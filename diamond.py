@@ -672,7 +672,7 @@ def page1():
         #table
         if(df6['Location'][i]=='Table'):
             if(df6['Shape'][i]==shape and shape=='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity']==tableintensity):
+                if((sizeprec>=df6['sizemin'][i]) & (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)):
                     if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                         if xx==1:
