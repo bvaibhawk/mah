@@ -941,7 +941,7 @@ def page1():
         if sizeprec>=1.00 and sizeprec<=2.99:
             if cut=='EX' and polish=='EX' and symmetry=='EX':
                 if color=='F' and (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-                    df7=pd.read_csv('roexsmF.csv'):
+                    df7=pd.read_csv('roexsmF.csv')
                     for i in range(len(df7)):
                         if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
                                     result=result+df7['IF VVS F'][i]/2
@@ -1000,7 +1000,7 @@ def page1():
                             break   
             else:
                 if color=='F' and (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-                    df7=pd.read_csv('rovgsmF.csv'):
+                    df7=pd.read_csv('rovgsmF.csv')
                     for i in range(len(df7)):
                         if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
                                     result=result+df7['IF VVS F'][i]/2
