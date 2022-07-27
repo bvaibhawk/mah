@@ -111,19 +111,19 @@ def page1():
     with col11:
         sizeprec = st.number_input("PRECISE SIZE")
     with col12:
-        td = st.number_input("TD")   
+        #td = st.number_input("TD")   
     with col13:
-        tabl = st.number_input("TABL")
+        #tabl = st.number_input("TABL")
     with col14:
-        mindiam = st.number_input("MIN_DIAM")
+        #mindiam = st.number_input("MIN_DIAM")
     with col15:
-        maxdiam = st.number_input("MAX_DIAM")
+        #maxdiam = st.number_input("MAX_DIAM")
     with col16:
         diameter = st.number_input("DIAMETER")
     with col17:
-        ratio = st.number_input("RATIO")
+        #ratio = st.number_input("RATIO")
     with col18:
-        colshad = st.selectbox("COL_SHADE",options=['B1', 'B2', 'MT1', 'NN'])
+        #colshad = st.selectbox("COL_SHADE",options=['B1', 'B2', 'MT1', 'NN'])
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=['0', '1', '2', '3','4'])  
     with col20:
@@ -141,11 +141,11 @@ def page1():
     with col26:
         pavilioninc = st.selectbox("PAVILION_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col27:
-        girdleper = st.number_input("GIRDLE_PERCENTAGE")
+        tableclean = st.selectbox("TABLE_CLEAN",options=['100%','90%','No'])
     with col28:
-        girdlecondi = st.selectbox("GIRDLE_CONDITION",options=['Faceted', 'Polished'])
+        eyeclean = st.selectbox("EYE_CLEAN",options=['100%','90%','No'])
     with col29:
-        starlength = st.number_input("STAR_LENGTH")
+        ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
     with col30:
         cutcomments = st.selectbox("CUT_COMMENTS",options=['3EX->EX1','3EX->EX2','EX->EX1','EX->EX2','VG->VG1','VG->VG2','G->GD1','G->GD2','Fancy->Ideal','Fancy->Premium','Fancy->Very Good'])
     with col31:
@@ -159,11 +159,11 @@ def page1():
     with col35:
         cert = st.selectbox("CERT",options=['GIA', 'FACT', 'FM', 'IIDGR'])    
     with col36:
-        ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
+        starlength = st.number_input("STAR_LENGTH")
     with col37:
-        eyeclean = st.selectbox("EYE_CLEAN",options=['100%','90%','No'])    
+        girdlecondi = st.selectbox("GIRDLE_CONDITION",options=['Faceted', 'Polished'])    
     with col37:
-        tableclean = st.selectbox("TABLE_CLEAN",options=['100%','90%','No'])
+        girdleper = st.number_input("GIRDLE_PERCENTAGE")
 
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
