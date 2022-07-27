@@ -339,8 +339,8 @@ def page1():
     if ((cut=='EX' or cut=='VG') & (fluo=='None' or fluo=='Medium')) :
         df3=pd.read_csv('bgmvg.csv')
         for i in range(len(df3)):
-            #next line giving eror & (bgm == df3['bgm'][i]) & (xx == df3['Section'][i])
-            if ((shape == 'RO')   & (df3['Shape']=='RO')): 
+            #next line giving eror & (bgm == df3['bgm'][i]) & (xx == df3['Section'][i]) (shape == 'RO')   &
+            if ( (df3['Shape']=='RO')): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape']=='FANCY')):
