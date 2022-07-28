@@ -514,7 +514,7 @@ def page1():
     df4=pd.read_csv('extras.csv')
     for i in range(len(df4)):
         if(shape=='RO'):
-            if(df4['extras'][i]=='H&A' and df4['shape'][i]=='RO'):
+            if(df4['extras'][i]=='H&A' and df4['shape'][i]=='RO' ):
                 if(df4['value'][i]==ha):
                     if xx==1:
                         result=result+df4['1'][i] 
@@ -534,7 +534,7 @@ def page1():
                         result=result+df4['8'][i] 
                     if xx==9:
                         result=result+df4['9'][i]
-
+            if(df4['extras'][i]=='Eye Clean' and df4['shape'][i]=='RO' ):
                 if(df4['value'][i]==eyeclean):
                     if xx==1:
                         result=result+df4['1'][i] 
@@ -554,7 +554,7 @@ def page1():
                         result=result+df4['8'][i] 
                     elif xx==9:
                         result=result+df4['9'][i]  
-
+            if(df4['extras'][i]=='Table Clean' and df4['shape'][i]=='RO' ):
                 if(df4['value'][i]==tableclean):
                     if xx==1:
                         result=result+df4['1'][i] 
@@ -596,7 +596,7 @@ def page1():
                         result=result+df4['8'][i] 
                     if xx==9:
                         result=result+df4['9'][i]
-
+            if(df4['extras'][i]=='Eye Clean' and df4['shape'][i]=='FANCY' ):
                 if(df4['value'][i]==eyeclean):
                     if xx==1:
                         result=result+df4['1'][i] 
@@ -616,7 +616,7 @@ def page1():
                         result=result+df4['8'][i] 
                     if xx==9:
                         result=result+df4['9'][i]  
-
+            if(df4['extras'][i]=='Table Clean' and df4['shape'][i]=='FANCY' ):
                 if(df4['value'][i]==tableclean):
                     if xx==1:
                         result=result+df4['1'][i] 
