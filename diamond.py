@@ -72,7 +72,7 @@ def page1():
     col21, col22, col23, col24, col25 = st.columns(5)
     col26, col27, col28, col29, col30 = st.columns(5)
     col31, col32, col33, col34, col35 = st.columns(5)
-    col36, col37 = st.columns(2)
+    col36, col37,col38,col39 = st.columns(4)
 
     # color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     # clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
@@ -123,7 +123,7 @@ def page1():
     with col17:
         graining = st.selectbox("GRAINING",options=['0','Internal->None', 'Internal->GR1', 'Internal->GR2','Internal->GR3','Surface->None','Surface->SGR1','Surface->SGR2'])
     with col18:
-        #bgm = st.selectbox("BGM",options=[,'G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])
+        bgm = st.selectbox("BGM",options=['YES','NO'])
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=[0, 1, 2, 3,4])  
     with col20:
@@ -164,13 +164,13 @@ def page1():
         pavilionnatural = st.selectbox("PAVILION_NATURAL", options=['No','Idented','Natural','Big Natural'])    
     with col35:
         green = st.selectbox("GREEN", options=['No','GR1','GR2','GR3','GR4']) 
-    with col35:
+    with col36:
         grey = st.selectbox("GREY", options=['No','G1','G2','G3','G4']) 
-    with col35:
+    with col37:
         brown = st.selectbox("BROWN", options=['0','B1', 'B2','B3','B4']) 
-    with col35:
+    with col38:
         milky = st.selectbox("MILKY", options=['No','M1','M2','M3','M4']) 
-    with col35:
+    with col39:
         offcolor = st.selectbox("OFF_COLOR", options=['No','OC1','OC2'])     
 
 
