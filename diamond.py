@@ -199,7 +199,7 @@ def page1():
     for i in range(len(df)):
         #and polish == df['POL'][i] and symmetry == df['SYM'][i]
         if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
-            if(polish=='EX' and symmetry=='EX'):
+            if(cut=='EX' and polish=='EX' and symmetry=='EX'):
                 if(polish == df['POL'][i] and symmetry == df['SYM'][i]):
                     result=df['Discount'][i]
             else:
