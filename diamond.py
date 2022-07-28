@@ -88,7 +88,7 @@ def page1():
         color = st.selectbox("COLOUR*",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
 
     with col4:
-        clarity = st.selectbox("CLARITY*",options=['IF', 'VVS1', 'VVS2','VS1','VS2','S1','S2','I1'])
+        clarity = st.selectbox("CLARITY*",options=['IF', 'VVS1', 'VVS2','VS1','VS2','SI1','SI2','I1'])
 
     with col5:
         cut = st.selectbox("CUT*",options=['EX', 'GD', 'VG'])
