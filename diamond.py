@@ -125,13 +125,13 @@ def page1():
     with col18:
         bgm = st.selectbox("BGM",options=['0','B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])
     with col19:
-        pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=['0', '1', '2', '3','4'])  
+        pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=[0, 1, 2, 3,4])  
     with col20:
-        tableintensity = st.selectbox("TABLE_INTENSITY",options=['0', '1', '2', '3','4'])
+        tableintensity = st.selectbox("TABLE_INTENSITY",options=[0, 1, 2, 3,4])
     with col21:
-       crownintensity= st.selectbox("CROWN_INTENSITY",options=['0', '1', '2', '3','4'])
+       crownintensity= st.selectbox("CROWN_INTENSITY",options=[0, 1, 2, 3,4])
     with col22:
-        girdleintensity = st.selectbox("GIRDLE_INTENSITY",options=['0', '1', '2', '3','4'])
+        girdleintensity = st.selectbox("GIRDLE_INTENSITY",options=[0, 1, 2, 3,4])
     with col23:
         girdle_inc = st.selectbox("GIRDLE_INCLUSION",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col24:
