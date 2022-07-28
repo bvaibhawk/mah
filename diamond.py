@@ -197,8 +197,14 @@ def page1():
         if color=='J' or color=='K' or color=='L' or color=='M': 
             xx=9 
     for i in range(len(df)):
-        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and polish == df['POL'][i] and symmetry == df['SYM'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
-            result=df['Discount'][i]
+        #and polish == df['POL'][i] and symmetry == df['SYM'][i]
+        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i] : 
+            if(polish=='EX' and symmetry=='EX'):
+                if(polish == df['POL'][i] and symmetry == df['SYM'][i]):
+                    result=df['Discount'][i]
+            else:
+                if(polish != df['POL'][i] and symmetry != df['SYM'][i]):
+                    result=df['Discount'][i]
             ff=1
             break
     if ff==1:
