@@ -356,7 +356,7 @@ def page1():
         #BROWN
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (df3['Shape'][i]=='RO')): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( brown == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
