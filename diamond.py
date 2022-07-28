@@ -1804,11 +1804,11 @@ def page1():
                         if xx==9:
                             result=result+df9['9'][i]/2           
     elif(shape!='RO'):
-    df9=pd.read_csv("FinishingFancy.csv")
-    for i in range(len(df9)):
-        #HO
-        if(halfopen==df9['Place'][i] and df9['value'][i]=='HO' and cut==df9['Cut'][i] and polish==df9['Polish'][i] and symmetry==df9['Symmetry'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+        df9=pd.read_csv("FinishingFancy.csv")
+        for i in range(len(df9)):
+            #HO
+            if(halfopen==df9['Place'][i] and df9['value'][i]=='HO' and cut==df9['Cut'][i] and polish==df9['Polish'][i] and symmetry==df9['Symmetry'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -1828,7 +1828,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -1847,8 +1847,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2
-        if(smallopen==df9['Place'][i] and df9['value'][i]=='Small' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(smallopen==df9['Place'][i] and df9['value'][i]=='Small' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -1868,7 +1868,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -1887,8 +1887,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2
-        if(bigopen==df9['Place'][i] and df9['value'][i]=='Big' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(bigopen==df9['Place'][i] and df9['value'][i]=='Big' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -1908,7 +1908,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -1927,8 +1927,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2    
-        if(mediumopen==df9['Place'][i] and df9['value'][i]=='Medium' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(mediumopen==df9['Place'][i] and df9['value'][i]=='Medium' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -1948,7 +1948,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -1967,10 +1967,10 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2                                                  
-    for i in range(len(df9)):
-        #HO
-        if(identednatural==df9['Place'][i] and df9['value'][i]=='Indented Natural' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+        for i in range(len(df9)):
+            #HO
+            if(identednatural==df9['Place'][i] and df9['value'][i]=='Indented Natural' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -1990,7 +1990,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -2009,8 +2009,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2
-        if(naturalnatural==df9['Place'][i] and df9['value'][i]=='Natural' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(naturalnatural==df9['Place'][i] and df9['value'][i]=='Natural' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -2030,7 +2030,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -2049,8 +2049,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2
-        if(bignatural==df9['Place'][i] and df9['value'][i]=='Big Natural' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(bignatural==df9['Place'][i] and df9['value'][i]=='Big Natural' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -2070,7 +2070,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -2090,10 +2090,10 @@ def page1():
                     if xx==9:
                         result=result+df9['9'][i]/2           
 
-    for i in range(len(df9)):
-        #HO
-        if(extrafacet==df9['Place'][i] and df9['value'][i]=='Extra Facet') and cut==df9['Cut'][i]:
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+        for i in range(len(df9)):
+            #HO
+            if(extrafacet==df9['Place'][i] and df9['value'][i]=='Extra Facet') and cut==df9['Cut'][i]:
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -2113,7 +2113,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -2132,8 +2132,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2
-        if(cavity==df9['Place'][i] and df9['value'][i]=='Cavity' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(cavity==df9['Place'][i] and df9['value'][i]=='Cavity' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -2153,7 +2153,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
@@ -2172,8 +2172,8 @@ def page1():
                         result=result+df9['8'][i]/2
                     if xx==9:
                         result=result+df9['9'][i]/2
-        if(chip==df9['Place'][i] and df9['value'][i]=='Chip' and cut==df9['Cut'][i]):
-            if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+            if(chip==df9['Place'][i] and df9['value'][i]=='Chip' and cut==df9['Cut'][i]):
+                if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
                     if xx==1:
                         result=result+df9['1'][i] 
@@ -2193,7 +2193,7 @@ def page1():
                         result=result+df9['8'][i] 
                     if xx==9:
                         result=result+df9['9'][i]
-            else:
+                else:
                     if xx==1:
                         result=result+df9['1'][i]/2 
                     if xx==2:
