@@ -123,7 +123,7 @@ def page1():
     with col17:
         graining = st.selectbox("GRAINING",options=['0','Internal->None', 'Internal->GR1', 'Internal->GR2','Internal->GR3','Surface->None','Surface->SGR1','Surface->SGR2'])
     with col18:
-        bgm = st.selectbox("BGM",options=['0','B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])
+        #bgm = st.selectbox("BGM",options=[,'G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=[0, 1, 2, 3,4])  
     with col20:
@@ -163,7 +163,16 @@ def page1():
     with col34:
         pavilionnatural = st.selectbox("PAVILION_NATURAL", options=['No','Idented','Natural','Big Natural'])    
     with col35:
-        pavilionothers = st.selectbox("PAVILION_OTHERS", options=['No','Extra Facet','Cavity','Chip']) 
+        green = st.selectbox("GREEN", options=['No','GR1','GR2','GR3','GR4']) 
+    with col35:
+        grey = st.selectbox("GREY", options=['No','G1','G2','G3','G4']) 
+    with col35:
+        brown = st.selectbox("BROWN", options=['0','B1', 'B2','B3','B4']) 
+    with col35:
+        milky = st.selectbox("MILKY", options=['No','M1','M2','M3','M4']) 
+    with col35:
+        offcolor = st.selectbox("OFF_COLOR", options=['No','OC1','OC2'])     
+
 
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
@@ -342,22 +351,76 @@ def page1():
     #add dossiers
 
     #bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
-    if ((cut=='EX' or cut=='VG') & (fluo=='None' or fluo=='Medium')) :
+    if ((cut=='EX' or cut=='VG' & polish=='EX' or polish=='VG' & symmetry=='EX' or symmetry=='VG' ) & (fluo=='None' or fluo=='Medium')) :
         df3=pd.read_csv('bgmvg.csv')
+        #BROWN
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i]) & (df3['Shape'][i]=='RO')): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
                 result=result+df3['Discount'][i]
                 break
-            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( bgm == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( brown == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
                 result=result+df3['Discount'][i]
                 break
+
+        #GREY
+        for i in range(len(df3)):
+            #next line giving eror
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+                result=result+df3['Discount'][i]
+                break
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( grey == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+                result=result+df3['Discount'][i]
+                break   
+        #GREEN
+        for i in range(len(df3)):
+            #next line giving eror
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+                result=result+df3['Discount'][i]
+                break
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( green == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+                result=result+df3['Discount'][i]
+                break   
+        #MILKY
+        for i in range(len(df3)):
+            #next line giving eror
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+                result=result+df3['Discount'][i]
+                break
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( milky == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+                result=result+df3['Discount'][i]
+                break      
+        #OFFCOLOR
+        for i in range(len(df3)):
+            #next line giving eror
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+                result=result+df3['Discount'][i]
+                break
+            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+                result=result+df3['Discount'][i]
+                break               
     else:
         df3=pd.read_csv('bgmroelse.csv')
         for i in range(len(df3)):
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (bgm == df3['bgm'][i])): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i])): 
                 result=result+df3['Discount'][i]    
-                break            
+                break    
+        for i in range(len(df3)):
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i])): 
+                result=result+df3['Discount'][i]    
+                break   
+        for i in range(len(df3)):
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i])): 
+                result=result+df3['Discount'][i]    
+                break   
+        for i in range(len(df3)):
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i])): 
+                result=result+df3['Discount'][i]    
+                break 
+        for i in range(len(df3)):
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i])): 
+                result=result+df3['Discount'][i]    
+                break                  
     #add dossiers as well
 
 
