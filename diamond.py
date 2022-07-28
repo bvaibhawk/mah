@@ -72,7 +72,7 @@ def page1():
     col21, col22, col23, col24, col25 = st.columns(5)
     col26, col27, col28, col29, col30 = st.columns(5)
     col31, col32, col33, col34, col35 = st.columns(5)
-    #col36, col37 = st.columns(2)
+    col36, col37 = st.columns(2)
 
     # color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     # clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
@@ -117,13 +117,13 @@ def page1():
     with col14:
         ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
     with col15:
-        cutcomments = st.selectbox("CUT_COMMENTS",options=['3EX->EX1','3EX->EX2','EX->EX1','EX->EX2','VG->VG1','VG->VG2','G->GD1','G->GD2','Fancy->Ideal','Fancy->Premium','Fancy->Very Good'])
+        cutcomments = st.selectbox("CUT_COMMENTS",options=['0','3EX->EX1','3EX->EX2','EX->EX1','EX->EX2','VG->VG1','VG->VG2','G->GD1','G->GD2','Fancy->Ideal','Fancy->Premium','Fancy->Very Good'])
     with col16:
         diameter = st.number_input("DIAMETER")
     with col17:
-        graining = st.selectbox("GRAINING",options=['Internal->None', 'Internal->GR1', 'Internal->GR2','Internal->GR3','Surface->None','Surface->SGR1','Surface->SGR2'])
+        graining = st.selectbox("GRAINING",options=['0','Internal->None', 'Internal->GR1', 'Internal->GR2','Internal->GR3','Surface->None','Surface->SGR1','Surface->SGR2'])
     with col18:
-        bgm = st.selectbox("BGM",options=['B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])
+        bgm = st.selectbox("BGM",options=['0','B1', 'B2','B3','B4','G1','G2','G3','G4','GR1','GR2','GR3','GR4','M1','M2','M3','M4','OC1','OC2'])
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY",options=['0', '1', '2', '3','4'])  
     with col20:
@@ -133,37 +133,37 @@ def page1():
     with col22:
         girdleintensity = st.selectbox("GIRDLE_INTENSITY",options=['0', '1', '2', '3','4'])
     with col23:
-        girdle_inc = st.selectbox("GIRDLE_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+        girdle_inc = st.selectbox("GIRDLE_INCLUSION",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col24:
-        tableinc = st.selectbox("TABLE_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+        tableinc = st.selectbox("TABLE_INCLUSION",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col25:
-        crowninc= st.selectbox("CROWN_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])  
+        crowninc= st.selectbox("CROWN_INCLUSION",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])  
     with col26:
-        pavilioninc = st.selectbox("PAVILION_INCLUSION",options=['PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+        pavilioninc = st.selectbox("PAVILION_INCLUSION",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     with col27:
-        td = st.number_input("TD")
+        tableopen = st.selectbox("TABLE_OPEN", options=['No','HO','Small','Medium','Big'])
     with col28:
-        tabl = st.number_input("TABL")
+        tablenatural = st.selectbox("TABLE_NATURAL", options=['No','Idented','Natural','Big Natural'])
     with col29:
-        mindiam = st.number_input("MIN_DIAM")
+        tableothers = st.selectbox("TABLE_OTHERS", options=['No','Extra Facet','Cavity','Chip'])
     with col30:
-        maxdiam = st.number_input("MAX_DIAM")
+        crownopen = st.selectbox("CROWN_OPEN", options=['No','HO','Small','Medium','Big'])
     with col31:
-        cavity= st.selectbox("CAVITY",options=['CTC', 'CTG','CTP','NN'])    
+        crownnatural = st.selectbox("CROWN_NATURAL", options=['No','Idented','Natural','Big Natural'])    
     with col32:
-        ratio = st.number_input("RATIO")
+        girdleothers = st.selectbox("CROWN_OTHERS", options=['No','Extra Facet','Cavity','Chip'])
     with col33:
-        extras = st.selectbox("EXTRAS",options=['YES', 'NO'])
+        girdleopen = st.selectbox("GIRDLE_OPEN", options=['No','HO','Small','Medium','Big'])
     with col34:
-        colshad = st.selectbox("COL_SHADE",options=['B1', 'B2', 'MT1', 'NN'])   
+        girdlenatural = st.selectbox("GIRDLE_NATURAL", options=['No','Idented','Natural','Big Natural'])    
     with col35:
-        cert = st.selectbox("CERT",options=['GIA', 'FACT', 'FM', 'IIDGR'])    
-    # with col36:
-    #     starlength = st.number_input("STAR_LENGTH")
-    # with col37:
-    #     girdlecondi = st.selectbox("GIRDLE_CONDITION",options=['Faceted', 'Polished'])    
-    # with col37:
-    #     girdleper = st.number_input("GIRDLE_PERCENTAGE")
+        girdleothers = st.selectbox("GIRDLE_OTHERS", options=['No','Extra Facet','Cavity','Chip']) 
+    with col33:
+        pavilionopen = st.selectbox("PAVILION_OPEN", options=['No','HO','Small','Medium','Big'])
+    with col34:
+        pavilionnatural = st.selectbox("PAVILION_NATURAL", options=['No','Idented','Natural','Big Natural'])    
+    with col35:
+        pavilionothers = st.selectbox("PAVILION_OTHERS", options=['No','Extra Facet','Cavity','Chip']) 
 
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
@@ -507,7 +507,7 @@ def page1():
                         result=result+df4['9'][i]          
 
         if(shape!='RO'):
-            if(df4['extras[i]']=='H&A' and df4['shape'][i]=='Fancy'):
+            if(df4['extras'][i]=='H&A' and df4['shape'][i]=='Fancy'):
                 if(df4['value'][i]==ha):
                     if xx==1:
                         result=result+df4['1'][i] 
@@ -716,7 +716,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==tableintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity'][i]==tableintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -783,7 +783,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==crownintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity'][i]==crownintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -849,7 +849,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==girdleintensity) :
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity'][i]==girdleintensity) :
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -915,7 +915,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity']==pavilionintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity'][i]==pavilionintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
@@ -954,7 +954,7 @@ def page1():
                 else:
                     df7=pd.read_csv('roexsm.csv')
                     for i in range(len(df7)):
-                        if sizeprec>=df7['From'] and sizeprec<=df7['To']:
+                        if sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]:
                             if xx==1:
                                 if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
                                     result=result+df7['1'][i]/2
@@ -1013,7 +1013,7 @@ def page1():
                 else:
                     df7=pd.read_csv('rovgsm.csv')
                     for i in range(len(df7)):
-                        if sizeprec>=df7['From'] and sizeprec<=df7['To']:
+                        if sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]:
                             if xx==1:
                                 if(sizeprec>=1.20 and sizeprec<=2.99 and fluo=='Strong' or fluo=='Very Strong'):
                                     result=result+df7['1'][i]/2
@@ -1119,6 +1119,8 @@ def page1():
                                 if xx==9:
                                     result=result+df7['9'][i]
                                 break  
+
+    #Finishing
         
 
                                
