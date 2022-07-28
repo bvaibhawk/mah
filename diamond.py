@@ -72,7 +72,9 @@ def page1():
     col21, col22, col23, col24, col25 = st.columns(5)
     col26, col27, col28, col29, col30 = st.columns(5)
     col31, col32, col33, col34, col35 = st.columns(5)
-    col36, col37,col38,col39 = st.columns(4)
+    col36, col37,col38,col39,col40 = st.columns(5)
+    col41, col42,col43,col44,col45 = st.columns(5)
+    col46, col47,col48= st.columns(3)
 
     # color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     # clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
@@ -171,7 +173,26 @@ def page1():
     with col38:
         milky = st.selectbox("MILKY", options=['No','M1','M2','M3','M4']) 
     with col39:
-        offcolor = st.selectbox("OFF_COLOR", options=['No','OC1','OC2'])     
+        offcolor = st.selectbox("OFF_COLOR", options=['No','OC1','OC2']) 
+    with col40:
+        halfopen = st.selectbox("HALF_OPEN", options=['No','Table','Crown','Girdle','Pavilion']) 
+    with col41:
+        smallopen = st.selectbox("SMALL_OPEN", options=['No','Table','Crown','Girdle','Pavilion'])  
+    with col42:
+        bigopen = st.selectbox("BIG_OPEN", options=['No','Table','Crown','Girdle','Pavilion']) 
+    with col43:
+        identednatural = st.selectbox("Idented Natural", options=['No','Top','Bottom','Girdle'])      
+    with col44:
+        naturalnatural = st.selectbox("Natural", options=['No','Top','Bottom','Girdle']) 
+    with col45:
+        bignatural = st.selectbox("Big Natural", options=['No','Top','Bottom','Girdle'])  
+    with col46:
+        extrafacet = st.selectbox("EXTRA_FACET", options=['No','Top','Bottom','Girdle'])      
+    with col47:
+        chip = st.selectbox("CHIP", options=['No','Top','Bottom','Girdle']) 
+    with col48:
+        cavity = st.selectbox("CAVITY", options=['No','Top','Bottom','Girdle'])           
+
 
 
 
