@@ -366,7 +366,7 @@ def page1():
         #GREY
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( grey == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
@@ -375,7 +375,7 @@ def page1():
         #GREEN
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (df3['Shape'][i]=='RO')): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( green == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
@@ -384,7 +384,7 @@ def page1():
         #MILKY
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( milky == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
@@ -393,7 +393,7 @@ def page1():
         #OFFCOLOR
         for i in range(len(df3)):
             #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='RO') & ): 
+            if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ): 
                 result=result+df3['Discount'][i]
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
