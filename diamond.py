@@ -808,7 +808,7 @@ def page1():
                             result=result+df6['9'][i]/2 
                         break    
             if(df6['Shape'][i]=='Fancy' and shape!='RO'): 
-                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['symmetry'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity'][i]==tableintensity):
+                if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and df6['sym'][i]==symmetry and df6['polish'][i]==polish and df6['Intensity'][i]==tableintensity):
                     if xx==1:
                         result=result+df6['1'][i] 
                     if xx==2:
