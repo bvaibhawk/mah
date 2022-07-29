@@ -113,11 +113,11 @@ def page1():
     with col11:
         sizeprec = st.number_input("PRECISE SIZE")
     with col12:
-        tableclean = st.selectbox("TABLE_CLEAN",options=['100%','90%','No'])   
+        tableclean = st.selectbox("TABLE_CLEAN",options=['0','100%','90%','No'])   
     with col13:
-        eyeclean = st.selectbox("EYE_CLEAN",options=['100%','90%','No'])
+        eyeclean = st.selectbox("EYE_CLEAN",options=['0','100%','90%','No'])
     with col14:
-        ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
+        ha = st.selectbox("H&A",options=['0','H&A A+', '100%','90%','No'])
     with col15:
         cutcomments = st.selectbox("CUT_COMMENTS",options=['0','3EX->EX1','3EX->EX2','EX->EX1','EX->EX2','VG->VG1','VG->VG2','G->GD1','G->GD2','Fancy->Ideal','Fancy->Premium','Fancy->Very Good'])
     with col16:
