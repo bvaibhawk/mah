@@ -1804,7 +1804,7 @@ def page1():
                         if xx==9:
                             result=result+df9['9'][i]/2           
     elif(shape!='RO'):
-        df9=pd.read_csv("FinishingFancy.csv")
+        df9=pd.read_csv("Finishingfancy.csv")
         for i in range(len(df9)):
             #HO
             if(halfopen==df9['Place'][i] and df9['value'][i]=='HO' and cut==df9['Cut'][i] and polish==df9['Polish'][i] and symmetry==df9['Symmetry'][i]):
