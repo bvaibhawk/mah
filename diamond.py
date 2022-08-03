@@ -165,15 +165,15 @@ def page1():
     with col34:
         pavilionnatural = st.selectbox("PAVILION_NATURAL", options=['No','Idented','Natural','Big Natural'])    
     with col35:
-        green = st.selectbox("GREEN", options=['No','GR1','GR2','GR3','GR4']) 
+        green = st.selectbox("GREEN", options=['No','G1','G2','G3','G4']) 
     with col36:
-        grey = st.selectbox("GREY", options=['No','G1','G2','G3','G4']) 
+        grey = st.selectbox("GREY", options=['No','MT1','MT2','MT3']) 
     with col37:
-        brown = st.selectbox("BROWN", options=['0','B1', 'B2','B3','B4']) 
+        brown = st.selectbox("BROWN", options=['0','B1', 'B2','B3']) 
     with col38:
-        milky = st.selectbox("MILKY", options=['No','M1','M2','M3','M4']) 
+        milky = st.selectbox("MILKY", options=['No','M1+','M1','M2','M3']) 
     with col39:
-        offcolor = st.selectbox("OFF_COLOR", options=['No','OC1','OC2']) 
+        offcolor = st.selectbox("OFF_COLOR_needless", options=['No','OC1','OC2']) 
     with col40:
         halfopen = st.selectbox("HALF_OPEN", options=['No','Table','Crown','Girdle','Pavilion']) 
     with col41:
