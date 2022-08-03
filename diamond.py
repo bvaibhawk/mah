@@ -113,19 +113,19 @@ def page1():
     with col11:
         sizeprec = st.number_input("PRECISE SIZE")
     with col12:
-        tableclean = st.selectbox("TABLE_CLEAN",options=['100%','90%','No'])   
+        tableclean = st.selectbox("TABLE_CLEAN",options=['Yes','No'])   
     with col13:
-        eyeclean = st.selectbox("EYE_CLEAN",options=['100%','90%','No'])
+        eyeclean = st.selectbox("EYE_CLEAN",options=['Yes','No'])
     with col14:
-        ha = st.selectbox("H&A",options=['H&A A+', '100%','90%','No'])
+        ha = st.selectbox("H&A",options=['Yes','No'])
     with col15:
         cutcomments = st.selectbox("CUT_COMMENTS",options=['0','3EX->EX1','3EX->EX2','EX->EX1','EX->EX2','VG->VG1','VG->VG2','G->GD1','G->GD2','Fancy->Ideal','Fancy->Premium','Fancy->Very Good'])
     with col16:
         diameter = st.number_input("DIAMETER")
     with col17:
-        graining = st.selectbox("GRAINING",options=['0','Internal->None', 'Internal->GR1', 'Internal->GR2','Internal->GR3','Surface->None','Surface->SGR1','Surface->SGR2'])
+        internalgraining = st.selectbox("INTERNAL_GRAINING",options=['0','NN', 'IGR1', 'IGR2','IGR3'])
     with col18:
-        bgm = st.selectbox("BGM",options=['YES','NO'])
+        surfacegraining = st.selectbox("SURFACE_GRAINING",options=['0','NN','SGR1','SGR2','SGR3'])
     with col19:
         pavilionintensity = st.selectbox("PAVILION_INTENSITY_needless",options=[0, 1, 2, 3,4])  
     with col20:
