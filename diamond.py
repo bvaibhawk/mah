@@ -74,7 +74,7 @@ def page1():
     col31, col32, col33, col34, col35 = st.columns(5)
     col36, col37,col38,col39,col40 = st.columns(5)
     col41, col42,col43,col44,col45 = st.columns(5)
-    col46, col47,col48,col49= st.columns(4)
+    col46, col47,col48,col49,col50= st.columns(5)
 
     # color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     # clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
@@ -195,7 +195,7 @@ def page1():
     with col49:
         cavity = st.selectbox("CAVITY", options=['No','Top','Bottom','Girdle'])           
 
-
+    #TO DO- WRITE FINISHING, PUT OPTIONS ACCORDINGLY, BGMROELSE
 
 
     #test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
@@ -629,133 +629,183 @@ def page1():
 
 
 
+    if ha=='Yes':
+        if shape=='RO':
+            if xx==1:
+                result=result+1
+            if xx==2:
+                result=result+1  
+            if xx==3:
+                result=result+0.5
+            if xx==4:
+                result=result+1   
+            if xx==5:
+                result=result+1
+            if xx==6:
+                result=result+0.5
+            if xx==7:
+                result=result+1
+            if xx==8:
+                result=result+1 
+            if xx==9:
+                result=result+0
+    if eyeclean=='Yes':
+        if shape=='RO':
+            if xx==7:
+                result=result+1.5
+            if xx==8:
+                result=result+1.5
+            if xx==9:
+                result=result+1
+        else:
+            if xx==7:
+                result=result+1.5
+            if xx==8:
+                result=result+1.5
+            if xx==9 or xx==5 or xx==6:
+                result=result+0.5 
+    if tableclean=='Yes':
+        if shape=='RO':
+            if xx==4 or xx==5 or xx==6:
+                result=result+0.5
+            if xx==8 or xx==7:
+                result=result+2.0
+            if xx==9:
+                result=result+1
+        else:
+            if xx==4 or xx==5:
+                result=result+1.0
+            if xx==8 or xx==7:
+                result=result+2.0
+            if xx==9:
+                result=result+1             
 
-    #extras- NOT properly written- change line 445
-    df4=pd.read_csv('extras.csv')
-    for i in range(len(df4)):
-        if(shape=='RO'):
-            if(df4['extras'][i]=='H&A' and df4['shape'][i]=='RO' ):
-                if(df4['value'][i]==ha):
-                    if xx==1:
-                        result=result+df4['1'][i] 
-                    if xx==2:
-                        result=result+df4['2'][i]    
-                    if xx==3:
-                        result=result+df4['3'][i]
-                    if xx==4:
-                        result=result+df4['4'][i]    
-                    if xx==5:
-                        result=result+df4['5'][i]
-                    if xx==6:
-                        result=result+df4['6'][i]
-                    if xx==7:
-                        result=result+df4['7'][i]
-                    if xx==8:
-                        result=result+df4['8'][i] 
-                    if xx==9:
-                        result=result+df4['9'][i]
-            if(df4['extras'][i]=='Eye Clean' and df4['shape'][i]=='RO' ):
-                if(df4['value'][i]==eyeclean):
-                    if xx==1:
-                        result=result+df4['1'][i] 
-                    elif xx==2:
-                        result=result+df4['2'][i]    
-                    elif xx==3:
-                        result=result+df4['3'][i]
-                    elif xx==4:
-                        result=result+df4['4'][i]    
-                    elif xx==5:
-                        result=result+df4['5'][i]
-                    elif xx==6:
-                        result=result+df4['6'][i]
-                    elif xx==7:
-                        result=result+df4['7'][i]
-                    elif xx==8:
-                        result=result+df4['8'][i] 
-                    elif xx==9:
-                        result=result+df4['9'][i]  
-            if(df4['extras'][i]=='Table Clean' and df4['shape'][i]=='RO' ):
-                if(df4['value'][i]==tableclean):
-                    if xx==1:
-                        result=result+df4['1'][i] 
-                    elif xx==2:
-                        result=result+df4['2'][i]    
-                    elif xx==3:
-                        result=result+df4['3'][i]
-                    elif xx==4:
-                        result=result+df4['4'][i]    
-                    elif xx==5:
-                        result=result+df4['5'][i]
-                    elif xx==6:
-                        result=result+df4['6'][i]
-                    elif xx==7:
-                        result=result+df4['7'][i]
-                    elif xx==8:
-                        result=result+df4['8'][i] 
-                    elif xx==9:
-                        result=result+df4['9'][i]          
+    # #extras- NOT properly written- change line 445
+    # df4=pd.read_csv('extras.csv')
+    # for i in range(len(df4)):
+    #     if(shape=='RO'):
+    #         if(df4['extras'][i]=='H&A' and df4['shape'][i]=='RO' ):
+    #             if(df4['value'][i]==ha):
+                    # if xx==1:
+                    #     result=result+df4['1'][i] 
+                    # if xx==2:
+                    #     result=result+df4['2'][i]    
+                    # if xx==3:
+                    #     result=result+df4['3'][i]
+                    # if xx==4:
+                    #     result=result+df4['4'][i]    
+                    # if xx==5:
+                    #     result=result+df4['5'][i]
+                    # if xx==6:
+                    #     result=result+df4['6'][i]
+                    # if xx==7:
+                    #     result=result+df4['7'][i]
+                    # if xx==8:
+                    #     result=result+df4['8'][i] 
+                    # if xx==9:
+    #                     result=result+df4['9'][i]
+    #         if(df4['extras'][i]=='Eye Clean' and df4['shape'][i]=='RO' ):
+    #             if(df4['value'][i]==eyeclean):
+    #                 if xx==1:
+    #                     result=result+df4['1'][i] 
+    #                 elif xx==2:
+    #                     result=result+df4['2'][i]    
+    #                 elif xx==3:
+    #                     result=result+df4['3'][i]
+    #                 elif xx==4:
+    #                     result=result+df4['4'][i]    
+    #                 elif xx==5:
+    #                     result=result+df4['5'][i]
+    #                 elif xx==6:
+    #                     result=result+df4['6'][i]
+    #                 elif xx==7:
+    #                     result=result+df4['7'][i]
+    #                 elif xx==8:
+    #                     result=result+df4['8'][i] 
+    #                 elif xx==9:
+    #                     result=result+df4['9'][i]  
+    #         if(df4['extras'][i]=='Table Clean' and df4['shape'][i]=='RO' ):
+    #             if(df4['value'][i]==tableclean):
+    #                 if xx==1:
+    #                     result=result+df4['1'][i] 
+    #                 elif xx==2:
+    #                     result=result+df4['2'][i]    
+    #                 elif xx==3:
+    #                     result=result+df4['3'][i]
+    #                 elif xx==4:
+    #                     result=result+df4['4'][i]    
+    #                 elif xx==5:
+    #                     result=result+df4['5'][i]
+    #                 elif xx==6:
+    #                     result=result+df4['6'][i]
+    #                 elif xx==7:
+    #                     result=result+df4['7'][i]
+    #                 elif xx==8:
+    #                     result=result+df4['8'][i] 
+    #                 elif xx==9:
+    #                     result=result+df4['9'][i]          
 
-        if(shape!='RO'):
-            if(df4['extras'][i]=='H&A' and df4['shape'][i]=='Fancy'):
-                if(df4['value'][i]==ha):
-                    if xx==1:
-                        result=result+df4['1'][i] 
-                    if xx==2:
-                        result=result+df4['2'][i]    
-                    if xx==3:
-                        result=result+df4['3'][i]
-                    if xx==4:
-                        result=result+df4['4'][i]    
-                    if xx==5:
-                        result=result+df4['5'][i]
-                    if xx==6:
-                        result=result+df4['6'][i]
-                    if xx==7:
-                        result=result+df4['7'][i]
-                    if xx==8:
-                        result=result+df4['8'][i] 
-                    if xx==9:
-                        result=result+df4['9'][i]
-            if(df4['extras'][i]=='Eye Clean' and df4['shape'][i]=='FANCY' ):
-                if(df4['value'][i]==eyeclean):
-                    if xx==1:
-                        result=result+df4['1'][i] 
-                    if xx==2:
-                        result=result+df4['2'][i]    
-                    if xx==3:
-                        result=result+df4['3'][i]
-                    if xx==4:
-                        result=result+df4['4'][i]    
-                    if xx==5:
-                        result=result+df4['5'][i]
-                    if xx==6:
-                        result=result+df4['6'][i]
-                    if xx==7:
-                        result=result+df4['7'][i]
-                    if xx==8:
-                        result=result+df4['8'][i] 
-                    if xx==9:
-                        result=result+df4['9'][i]  
-            if(df4['extras'][i]=='Table Clean' and df4['shape'][i]=='FANCY' ):
-                if(df4['value'][i]==tableclean):
-                    if xx==1:
-                        result=result+df4['1'][i] 
-                    if xx==2:
-                        result=result+df4['2'][i]    
-                    if xx==3:
-                        result=result+df4['3'][i]
-                    if xx==4:
-                        result=result+df4['4'][i]    
-                    if xx==5:
-                        result=result+df4['5'][i]
-                    if xx==6:
-                        result=result+df4['6'][i]
-                    if xx==7:
-                        result=result+df4['7'][i]
-                    if xx==8:
-                        result=result+df4['8'][i] 
-                    if xx==9:
-                        result=result+df4['9'][i]          
+    #     if(shape!='RO'):
+    #         if(df4['extras'][i]=='H&A' and df4['shape'][i]=='Fancy'):
+    #             if(df4['value'][i]==ha):
+    #                 if xx==1:
+    #                     result=result+df4['1'][i] 
+    #                 if xx==2:
+    #                     result=result+df4['2'][i]    
+    #                 if xx==3:
+    #                     result=result+df4['3'][i]
+    #                 if xx==4:
+    #                     result=result+df4['4'][i]    
+    #                 if xx==5:
+    #                     result=result+df4['5'][i]
+    #                 if xx==6:
+    #                     result=result+df4['6'][i]
+    #                 if xx==7:
+    #                     result=result+df4['7'][i]
+    #                 if xx==8:
+    #                     result=result+df4['8'][i] 
+    #                 if xx==9:
+    #                     result=result+df4['9'][i]
+    #         if(df4['extras'][i]=='Eye Clean' and df4['shape'][i]=='FANCY' ):
+    #             if(df4['value'][i]==eyeclean):
+    #                 if xx==1:
+    #                     result=result+df4['1'][i] 
+    #                 if xx==2:
+    #                     result=result+df4['2'][i]    
+    #                 if xx==3:
+    #                     result=result+df4['3'][i]
+    #                 if xx==4:
+    #                     result=result+df4['4'][i]    
+    #                 if xx==5:
+    #                     result=result+df4['5'][i]
+    #                 if xx==6:
+    #                     result=result+df4['6'][i]
+    #                 if xx==7:
+    #                     result=result+df4['7'][i]
+    #                 if xx==8:
+    #                     result=result+df4['8'][i] 
+    #                 if xx==9:
+    #                     result=result+df4['9'][i]  
+    #         if(df4['extras'][i]=='Table Clean' and df4['shape'][i]=='FANCY' ):
+    #             if(df4['value'][i]==tableclean):
+    #                 if xx==1:
+    #                     result=result+df4['1'][i] 
+    #                 if xx==2:
+    #                     result=result+df4['2'][i]    
+    #                 if xx==3:
+    #                     result=result+df4['3'][i]
+    #                 if xx==4:
+    #                     result=result+df4['4'][i]    
+    #                 if xx==5:
+    #                     result=result+df4['5'][i]
+    #                 if xx==6:
+    #                     result=result+df4['6'][i]
+    #                 if xx==7:
+    #                     result=result+df4['7'][i]
+    #                 if xx==8:
+    #                     result=result+df4['8'][i] 
+    #                 if xx==9:
+    #                     result=result+df4['9'][i]          
                 
 
 
@@ -1310,6 +1360,7 @@ def page1():
                                 break  
 
     #Finishing
+
     #open
     # df9=pd.read_csv('Finishing.csv')
     # for i in range(len(df9)):
