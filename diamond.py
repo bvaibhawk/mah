@@ -84,7 +84,7 @@ def page1():
         shape = st.selectbox("SHAPE*",options=['RO', 'CS','EM','HT','MAO','PR','PRINCESS','OV']) 
 
     with col2:
-        szgr= st.selectbox("SIZE RANGE*",options=['1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09','0.50-0.599','0.60-0.699','0.70-0.799','0.70-0.799','0.80-0.899','0.90-0.979','0.98-0.999','1.00-1.099','1.10-1.199','1.20-1.299','1.30-1.399','1.40-1.499','1.50-1.599','1.60-1.699','1.70-1.799','1.80-1.899','1.90-1.999','2.00-2.099','2.10-2.199','2.20-2.499','2.50-2.699','2.70-2.799','2.80-2.999','3.01-3.09','4.01-4.09','5.01-5.09'])
+        szgr= st.selectbox("SIZE RANGE*",options=['0.30-0.34','0.35-0.39','0.40-0.44','0.45-0.49','0.50-0.59','0.60-0.69','0.70-0.74','0.75-0.79','0.80-0.89','0.90-0.94','0.95-0.99','1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09','0.50-0.599','0.60-0.699','0.70-0.799','0.70-0.799','0.80-0.899','0.90-0.979','0.98-0.999','1.00-1.099','1.10-1.199','1.20-1.299','1.30-1.399','1.40-1.499','1.50-1.599','1.60-1.699','1.70-1.799','1.80-1.899','1.90-1.999','2.00-2.099','2.10-2.199','2.20-2.499','2.50-2.699','2.70-2.799','2.80-2.999','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col3:
         color = st.selectbox("COLOUR*",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
@@ -234,11 +234,16 @@ def page1():
             if(cut=='EX' and polish=='EX' and symmetry=='EX'):
                 if(polish == df['POL'][i] and symmetry == df['SYM'][i]):
                     result=df['Discount'][i]
+                    ff=1
             else:
-                if(polish != df['POL'][i] and symmetry != df['SYM'][i]):
+                if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
+                    result=result
+                elif(cut==df['CUT'][i]):
                     result=df['Discount'][i]
-            ff=1
-            break
+                    ff=1
+
+            
+            
     if ff==1:
         result=result*100 
         
@@ -330,6 +335,59 @@ def page1():
                     result=df2['SI2'][i]
                     ff=2
                     break    
+        if ff==0:
+            df=pd.read_csv('Dossbase.csv')
+            for i in range(len(df)):
+                if(df['Clarity'][i]==clarity and szgr==df['Size'][i] and df['Fluo'][i]==fluo):
+                    if cut=='EX' and polish=='EX' and symmetry=='EX':
+                        if df['Cut']=='EX' and df['Polish']=='EX' and df['Symmetry']=='EX':
+                            if color=='D':
+                                result=result+df['D'][i]
+                            elif color=='E':
+                                result=result+df['E'][i]  
+                            elif color=='F':
+                                result=result+df['F'][i]
+                            elif color=='G':
+                                result=result+df['G'][i]
+                            elif color=='H':
+                                result=result+df['H'][i]
+                            elif color=='I':
+                                result=result+df['I'][i]
+                            elif color=='J':
+                                result=result+df['J'][i] 
+                            elif color=='L':
+                                result=result+df['L'][i]
+                            elif color=='M':
+                                result=result+df['M'][i]
+                            elif color=='K':
+                                result=result+df['K'][i] 
+                            break                                  
+                    else:
+                        if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
+                            result=result
+                        elif(cut==df['CUT'][i]):
+                            if color=='D':
+                                result=result+df['D'][i]
+                            elif color=='E':
+                                result=result+df['E'][i]  
+                            elif color=='F':
+                                result=result+df['F'][i]
+                            elif color=='G':
+                                result=result+df['G'][i]
+                            elif color=='H':
+                                result=result+df['H'][i]
+                            elif color=='I':
+                                result=result+df['I'][i]
+                            elif color=='J':
+                                result=result+df['J'][i] 
+                            elif color=='L':
+                                result=result+df['L'][i]
+                            elif color=='M':
+                                result=result+df['M'][i]
+                            elif color=='K':
+                                result=result+df['K'][i] 
+                            break       
+
 
 
     #DIAMETER                
@@ -370,8 +428,97 @@ def page1():
                     if diameter<=6.2:
                         result=result-0.0
                     elif diameter>=6.3:
-                        result=result+1.0                                
-    #add dossiers
+                        result=result+1.0  
+        if cut=='EX' and polish=='EX' and symmetry=='EX' and (fluo=='None' or fluo=='Faint'):
+            if sizeprec>=0.35 and sizeprec<=0.399 and diameter>4.5:
+                if color=='D':
+                    if clarity=='IF':
+                        result=result+9
+                    elif clarity=='VVS1':
+                        result=result+14
+                    elif clarity=='VVS2':
+                        result=result+21
+                if color=='E':
+                    if clarity=='IF':
+                        result=result+7
+                    elif clarity=='VVS1':
+                        result=result+8
+                    elif clarity=='VVS2':
+                        result=result+2
+                if color=='F':
+                    if clarity=='IF':
+                        result=result+7
+                    elif clarity=='VVS1':
+                        result=result+7
+                    elif clarity=='VVS2':
+                        result=result+2   
+            if sizeprec>=0.60 and sizeprec<=0.649 and diameter>5.4:
+                if color=='D':
+                    if clarity=='IF':
+                        result=result+6
+                    elif clarity=='VVS1':
+                        result=result+9
+                    elif clarity=='VVS2':
+                        result=result+9
+                if color=='E':
+                    if clarity=='IF':
+                        result=result+7
+                    elif clarity=='VVS1':
+                        result=result+5
+                    elif clarity=='VVS2':
+                        result=result+1
+                if color=='F':
+                    if clarity=='IF':
+                        result=result+6
+                    elif clarity=='VVS1':
+                        result=result+6
+                    elif clarity=='VVS2':
+                        result=result+1                  
+            if sizeprec>=0.80 and sizeprec<=0.849 and diameter>6.0:
+                if color=='D':
+                    if clarity=='IF':
+                        result=result+16
+                    elif clarity=='VVS1':
+                        result=result+10
+                    elif clarity=='VVS2':
+                        result=result+11
+                if color=='E':
+                    if clarity=='IF':
+                        result=result+5
+                    elif clarity=='VVS1':
+                        result=result+4
+                    elif clarity=='VVS2':
+                        result=result+13
+                if color=='F':
+                    if clarity=='IF':
+                        result=result+9
+                    elif clarity=='VVS1':
+                        result=result+9
+                    elif clarity=='VVS2':
+                        result=result+13
+            if sizeprec>=0.95 and sizeprec<=0.999 and diameter>6.3:
+                if color=='D':
+                    if clarity=='IF':
+                        result=result+5
+                    elif clarity=='VVS1':
+                        result=result+6
+                    elif clarity=='VVS2':
+                        result=result+7
+                if color=='E':
+                    if clarity=='IF':
+                        result=result+6
+                    elif clarity=='VVS1':
+                        result=result+5
+                    elif clarity=='VVS2':
+                        result=result+5
+                if color=='F':
+                    if clarity=='IF':
+                        result=result+6
+                    elif clarity=='VVS1':
+                        result=result+6
+                    elif clarity=='VVS2':
+                        result=result+5                  
+
 
     #bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
     if ((cut=='EX' or cut=='VG' & polish=='EX' or polish=='VG' & symmetry=='EX' or symmetry=='VG' ) & (fluo=='None' or fluo=='Medium')) :
@@ -444,7 +591,7 @@ def page1():
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i])): 
                 result=result+df3['Discount'][i]    
                 break                  
-    #add dossiers as well
+    #add dossiers as well-irrelevant I guess now
 
 
     #Cut
