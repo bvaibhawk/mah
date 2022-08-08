@@ -343,24 +343,34 @@ def page1():
                         if df['Cut'][i]=='EX' and df['Polish'][i]=='EX' and df['Symmetry'][i]=='EX':
                             if color=='D':
                                 result=result+df['D'][i]
+                                ff=1
                             elif color=='E':
                                 result=result+df['E'][i]  
+                                ff=1
                             elif color=='F':
                                 result=result+df['F'][i]
+                                ff=1
                             elif color=='G':
                                 result=result+df['G'][i]
+                                ff=1
                             elif color=='H':
                                 result=result+df['H'][i]
+                                ff=1
                             elif color=='I':
                                 result=result+df['I'][i]
+                                ff=1
                             elif color=='J':
                                 result=result+df['J'][i] 
+                                ff=1
                             elif color=='L':
                                 result=result+df['L'][i]
+                                ff=1
                             elif color=='M':
                                 result=result+df['M'][i]
+                                ff=1
                             elif color=='K':
                                 result=result+df['K'][i] 
+                                ff=1
                             break                                  
                     else:
                         if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
@@ -368,24 +378,34 @@ def page1():
                         elif(cut==df['CUT'][i]):
                             if color=='D':
                                 result=result+df['D'][i]
+                                ff=1
                             elif color=='E':
                                 result=result+df['E'][i]  
+                                ff=1
                             elif color=='F':
                                 result=result+df['F'][i]
+                                ff=1
                             elif color=='G':
                                 result=result+df['G'][i]
+                                ff=1
                             elif color=='H':
                                 result=result+df['H'][i]
+                                ff=1
                             elif color=='I':
                                 result=result+df['I'][i]
+                                ff=1
                             elif color=='J':
                                 result=result+df['J'][i] 
+                                ff=1
                             elif color=='L':
                                 result=result+df['L'][i]
+                                ff=1
                             elif color=='M':
                                 result=result+df['M'][i]
+                                ff=1
                             elif color=='K':
                                 result=result+df['K'][i] 
+                                ff=1
                             break       
 
 
