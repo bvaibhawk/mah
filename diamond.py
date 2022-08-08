@@ -127,44 +127,62 @@ def page1():
         internalgraining = st.selectbox("INTERNAL_GRAINING",options=['0','NN', 'IGR1', 'IGR2','IGR3'])
     with col18:
         surfacegraining = st.selectbox("SURFACE_GRAINING",options=['0','NN','SGR1','SGR2','SGR3'])
-    with col19:
-        pavilionintensity = st.selectbox("PAVILION_INTENSITY_needless",options=[0, 1, 2, 3,4])  
+    # with col19:
+    #     pavilionintensity = st.selectbox("PAVILION_INTENSITY_needless",options=[0, 1, 2, 3,4])  
     with col20:
         tableintensity = st.selectbox("TABLE_INTENSITY",options=['NN', 'BT1+','BT1', 'BT2','BT3'])
     with col21:
        crownintensity= st.selectbox("CROWN_INTENSITY",options=['NN', 'BC1+', 'BC1','BC2','BC3'])
     with col22:
-        girdleintensity = st.selectbox("GIRDLE_INTENSITY_needless",options=[0, 1, 2, 3,4])
+        topef = st.selectbox("Top_Extra_Facet",options=['0', 'EFT'])
     with col23:
-        girdle_inc = st.selectbox("GIRDLE_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+        topcavity = st.selectbox("Top_cavity",options=['0','CTT']) 
     with col24:
-        tableinc = st.selectbox("TABLE_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+        topchip = st.selectbox("Top_Chip",options=['0','CHT']) 
     with col25:
-        crowninc= st.selectbox("CROWN_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])  
+        crownef = st.selectbox("Crown_Extra_Facet",options=['0', 'EFC'])
     with col26:
-        pavilioninc = st.selectbox("PAVILION_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+        crowncavity = st.selectbox("Crown_cavity",options=['0','CTC']) 
     with col27:
-        tableopen = st.selectbox("TABLE_OPEN", options=['No','EX-Open-HO-Table','EX-Open-Small-Table','EX-Open-Medium-Table','EX-Open-Big-Table','VG-Open-HO-Table','VG-Open-Small-Table','VG-Open-Medium-Table','VG-Open-Big-Table','G-Open-HO-Table','G-Open-Small-Table','G-Open-Medium-Table','G-Open-Big-Table'])
+        crownchip = st.selectbox("Crown_Chip",options=['0','CHC']) 
     with col28:
-        topnatural = st.selectbox("TOP_NATURAL", options=['No','EX-Natural-Indented Natural-Top','EX-Natural-Natural-Top','EX-Natural-Big Natural-Top','VG-Natural-Indented Natural-Top','VG-Natural-Natural-Top','','','',''])
+        girdleef = st.selectbox("Girdle_Extra_Facet",options=['0', 'EFG'])
     with col29:
-        topeothers = st.selectbox("TOP_OTHERS", options=['No','Extra Facet','Cavity','Chip'])
+        girdlecavity = st.selectbox("Girdle_cavity",options=['0','CTG']) 
     with col30:
-        crownopen = st.selectbox("CROWN_OPEN", options=['No','HO','Small','Medium','Big'])
+        girdlechip = st.selectbox("Girdle_Chip",options=['0','CHG']) 
     with col31:
-        crownnatural = st.selectbox("CROWN_NATURAL", options=['No','Idented','Natural','Big Natural'])    
+        pavilionef = st.selectbox("Pavilion_Extra_Facet",options=['0', 'EFP'])
     with col32:
-        girdleothers = st.selectbox("CROWN_OTHERS", options=['No','Extra Facet','Cavity','Chip'])
+        pavilioncavity = st.selectbox("Pavilion_cavity",options=['0','CTP']) 
     with col33:
-        girdleopen = st.selectbox("GIRDLE_OPEN", options=['No','HO','Small','Medium','Big'])
-    with col34:
-        girdlenatural = st.selectbox("GIRDLE_NATURAL", options=['No','Idented','Natural','Big Natural'])    
-    with col35:
-        girdleothers = st.selectbox("GIRDLE_OTHERS", options=['No','Extra Facet','Cavity','Chip']) 
-    with col33:
-        pavilionopen = st.selectbox("PAVILION_OPEN", options=['No','HO','Small','Medium','Big'])
-    with col34:
-        pavilionnatural = st.selectbox("PAVILION_NATURAL", options=['No','Idented','Natural','Big Natural'])    
+        pavilionchip = st.selectbox("Pavilion_Chip",options=['0','CHP'])         
+    # with col25:
+    #     crowninc= st.selectbox("CROWN_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])  
+    # with col26:
+    #     pavilioninc = st.selectbox("PAVILION_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
+    # with col27:
+    #     tableopen = st.selectbox("TABLE_OPEN", options=['No','EX-Open-HO-Table','EX-Open-Small-Table','EX-Open-Medium-Table','EX-Open-Big-Table','VG-Open-HO-Table','VG-Open-Small-Table','VG-Open-Medium-Table','VG-Open-Big-Table','G-Open-HO-Table','G-Open-Small-Table','G-Open-Medium-Table','G-Open-Big-Table'])
+    # with col28:
+    #     topnatural = st.selectbox("TOP_NATURAL", options=['No','EX-Natural-Indented Natural-Top','EX-Natural-Natural-Top','EX-Natural-Big Natural-Top','VG-Natural-Indented Natural-Top','VG-Natural-Natural-Top','','','',''])
+    # with col29:
+    #     topeothers = st.selectbox("TOP_OTHERS", options=['No','Extra Facet','Cavity','Chip'])
+    # with col30:
+    #     crownopen = st.selectbox("CROWN_OPEN", options=['No','HO','Small','Medium','Big'])
+    # with col31:
+    #     crownnatural = st.selectbox("CROWN_NATURAL", options=['No','Idented','Natural','Big Natural'])    
+    # with col32:
+    #     girdleothers = st.selectbox("CROWN_OTHERS", options=['No','Extra Facet','Cavity','Chip'])
+    # with col33:
+    #     girdleopen = st.selectbox("GIRDLE_OPEN", options=['No','HO','Small','Medium','Big'])
+    # with col34:
+    #     girdlenatural = st.selectbox("GIRDLE_NATURAL", options=['No','Idented','Natural','Big Natural'])    
+    # with col35:
+    #     girdleothers = st.selectbox("GIRDLE_OTHERS", options=['No','Extra Facet','Cavity','Chip']) 
+    # with col33:
+    #     pavilionopen = st.selectbox("PAVILION_OPEN", options=['No','HO','Small','Medium','Big'])
+    # with col34:
+    #     pavilionnatural = st.selectbox("PAVILION_NATURAL", options=['No','Idented','Natural','Big Natural'])    
     with col35:
         green = st.selectbox("GREEN", options=['No','G1','G2','G3','G4']) 
     with col36:
@@ -173,24 +191,24 @@ def page1():
         brown = st.selectbox("BROWN", options=['0','B1', 'B2','B3']) 
     with col38:
         milky = st.selectbox("MILKY", options=['No','M1+','M1','M2','M3']) 
-    with col39:
-        offcolor = st.selectbox("OFF_COLOR_needless", options=['No','OC1','OC2']) 
+    # with col39:
+    #     offcolor = st.selectbox("OFF_COLOR_needless", options=['No','OC1','OC2']) 
     with col40:
-        halfopen = st.selectbox("HALF_OPEN", options=['No','Table','Crown','Girdle','Pavilion']) 
+        tableopen = st.selectbox("TABLE_OPEN", options=['No','OHT','OT1','OT2','OT3']) 
     with col41:
-        smallopen = st.selectbox("SMALL_OPEN", options=['No','Table','Crown','Girdle','Pavilion'])  
+        crownopen = st.selectbox("CROWN_OPEN", options=['No','OHC','OC1','OC2','OC3'])  
     with col42:
-        bigopen = st.selectbox("BIG_OPEN", options=['No','Table','Crown','Girdle','Pavilion']) 
+        girdleopen = st.selectbox("BIG_OPEN", options=['No','OHG','OG1','OG2','OG3']) 
     with col43:
-        mediumopen = st.selectbox("MEDIUM_OPEN", options=['No','Table','Crown','Girdle','Pavilion'])     
+        pavilionopen = st.selectbox("PAVILION_OPEN", options=['No','OHP','OP1','OP2','OP3'])     
     with col44:
-        identednatural = st.selectbox("Idented Natural", options=['No','Top','Bottom','Girdle'])      
+        topnatural = st.selectbox("Top_Natural", options=['No','INT','NC1','NC2','NC3'])      
     with col45:
-        naturalnatural = st.selectbox("Natural", options=['No','Top','Bottom','Girdle']) 
+        crownnatural = st.selectbox("Crown_Natural", options=['No','INC']) 
     with col46:
-        bignatural = st.selectbox("Big Natural", options=['No','Top','Bottom','Girdle'])  
+        girdlenatural = st.selectbox("Girdle_Natural", options=['No','ING'])  
     with col47:
-        extrafacet = st.selectbox("EXTRA_FACET", options=['No','Top','Bottom','Girdle'])      
+        pavilionnatural = st.selectbox("Pavilion_Natural", options=['No','INP','NP1','NP2','NP3'])       
     with col48:
         chip = st.selectbox("CHIP", options=['No','Top','Bottom','Girdle']) 
     with col49:
@@ -250,7 +268,9 @@ def page1():
                 elif(cut==df['CUT'][i]):
                     result=df['Discount'][i]
                     ff=1
-
+    if sizeprec>=1.0 and sizeprec<=2.99:
+        if cut=='EX' and (polish!='EX' or symmetry!='EX'):
+            for i in 
             
             
     if ff==1:
