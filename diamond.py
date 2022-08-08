@@ -193,7 +193,15 @@ def page1():
     with col48:
         chip = st.selectbox("CHIP", options=['No','Top','Bottom','Girdle']) 
     with col49:
-        cavity = st.selectbox("CAVITY", options=['No','Top','Bottom','Girdle'])           
+        cavity = st.selectbox("CAVITY", options=['No','Top','Bottom','Girdle'])         
+    with col50:
+        upgrade1 = st.selectbox("Upgrade_Color", options=['0','0.5 Color','1 Color','1.5 Color','2 Color','2.5 Color']) 
+    with col51:
+        upgrade2 = st.selectbox("Upgrade_Clarity", options=['0','0.5 Clarity','1 Clarity','1.5 Clarity','2 Clarity','2.5 Clarity']) 
+    with col52:
+        downgrade1 = st.selectbox("Downgrade_Color", options=['0','0.5 Color','1 Color','1.5 Color','2 Color','2.5 Color']) 
+    with col53:
+        downgrade2 = st.selectbox("Downgrade_Clarity", options=['0','0.5 Clarity','1 Clarity','1.5 Clarity','2 Clarity','2.5 Clarity'])               
 
     #TO DO- WRITE FINISHING, PUT OPTIONS ACCORDINGLY, BGMROELSE
 
@@ -2509,27 +2517,192 @@ def page1():
     #                 if xx==9:
     #                     result=result+df9['9'][i]
     #             else:
-    #                 if xx==1:
-    #                     result=result+df9['1'][i]/2 
-    #                 if xx==2:
-    #                     result=result+df9['2'][i]/2    
-    #                 if xx==3:
-    #                     result=result+df9['3'][i]/2
-    #                 if xx==4:
-    #                     result=result+df9['4'][i]/2    
-    #                 if xx==5:
-    #                     result=result+df9['5'][i]/2
-    #                 if xx==6:
-    #                     result=result+df9['6'][i]/2
-    #                 if xx==7:
-    #                     result=result+df9['7'][i]/2
-    #                 if xx==8:
-    #                     result=result+df9['8'][i]/2
-    #                 if xx==9:
-    #                     result=result+df9['9'][i]/2           
+                    # if xx==1:
+                    #     result=result+df9['1'][i]/2 
+                    # if xx==2:
+                    #     result=result+df9['2'][i]/2    
+                    # if xx==3:
+                    #     result=result+df9['3'][i]/2
+                    # if xx==4:
+                    #     result=result+df9['4'][i]/2    
+                    # if xx==5:
+                    #     result=result+df9['5'][i]/2
+                    # if xx==6:
+                    #     result=result+df9['6'][i]/2
+                    # if xx==7:
+                    #     result=result+df9['7'][i]/2
+                    # if xx==8:
+                    #     result=result+df9['8'][i]/2
+                    # if xx==9:
+                    #     result=result+df9['9'][i]/2           
 
 
 
+
+
+    #Internal Grading
+    df30=pd.read_csv('InternalGrading.csv')
+    for i in range(len(df30)):
+        if(shape=='RO' and shape==df30['Shape'][i] and upgrade1==df30['what'][i]):
+            if df30['Grade'][i]=='Upgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
+        if(shape=='RO' and shape==df30['Shape'][i] and downgrade1==df30['what'][i]):
+            if df30['Grade'][i]=='Downgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
+        if(shape!='RO' and 'Fancy'==df30['Shape'][i] and upgrade1==df30['what'][i]):
+            if df30['Grade'][i]=='Upgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
+        if(shape!='RO' and 'Famcy'==df30['Shape'][i] and downgrade1==df30['what'][i]):
+            if df30['Grade'][i]=='Downgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]            
+        if(shape=='RO' and shape==df30['Shape'][i] and upgrade2==df30['what'][i]):
+            if df30['Grade'][i]=='Upgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
+        if(shape=='RO' and shape==df30['Shape'][i] and downgrade2==df30['what'][i]):
+            if df30['Grade'][i]=='Downgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
+        if(shape!='RO' and 'Fancy'==df30['Shape'][i] and upgrade2==df30['what'][i]):
+            if df30['Grade'][i]=='Upgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
+        if(shape!='RO' and 'Famcy'==df30['Shape'][i] and downgrade2==df30['what'][i]):
+            if df30['Grade'][i]=='Downgrade':
+                if xx==1:
+                    result=result+df30['1'][i]
+                if xx==2:
+                    result=result+df30['2'][i]    
+                if xx==3:
+                    result=result+df30['3'][i]
+                if xx==4:
+                    result=result+df30['4'][i]    
+                if xx==5:
+                    result=result+df30['5'][i]
+                if xx==6:
+                    result=result+df30['6'][i]
+                if xx==7:
+                    result=result+df30['7'][i]
+                if xx==8:
+                    result=result+df30['8'][i]
+                if xx==9:
+                    result=result+df30['9'][i]
 
     if ff==0:
         rap=0; 
