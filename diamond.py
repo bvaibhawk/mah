@@ -276,17 +276,17 @@ def page1():
         
                
         if shape=='RO':
-            if sizeprec>=1.00 and sizeprec<=1.499:
+            if sizeprec>=1.00 and sizeprec<=1.499 and cut=='EX':
                 if color=='D':
                     result=result+3
                 else:
                     result=result+2
-            if sizeprec>=1.50 and sizeprec<=1.999:
+            if sizeprec>=1.50 and sizeprec<=1.999 and cut=='EX':
                 if color=='D':
                     result=result+2
                 else:
                     result=result+1       
-            if sizeprec>=2.00 and sizeprec<=2.999:
+            if sizeprec>=2.00 and sizeprec<=2.999 and cut=='EX':
                 if color=='D':
                     result=result+2
                 else:
