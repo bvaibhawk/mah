@@ -88,7 +88,7 @@ def page1():
         szgr= st.selectbox("SIZE RANGE*",options=['0.30-0.34','0.35-0.39','0.40-0.44','0.45-0.49','0.50-0.59','0.60-0.69','0.70-0.74','0.75-0.79','0.80-0.89','0.90-0.94','0.95-0.99','1.01-1.09','1.50-1.69','2.01-2.09','3.01-3.09','4.01-4.09','5.01-5.09','0.50-0.599','0.60-0.699','0.70-0.799','0.70-0.799','0.80-0.899','0.90-0.979','0.98-0.999','1.00-1.099','1.10-1.199','1.20-1.299','1.30-1.399','1.40-1.499','1.50-1.599','1.60-1.699','1.70-1.799','1.80-1.899','1.90-1.999','2.00-2.099','2.10-2.199','2.20-2.499','2.50-2.699','2.70-2.799','2.80-2.999','3.01-3.09','4.01-4.09','5.01-5.09'])
 
     with col3:
-        color = st.selectbox("COLOUR*",options=['D', 'E', 'F','G','H','I','J','K','L','M'])
+        color = st.selectbox("COLOUR*",options=['D', 'E', 'F','G','H','I','J','K','L','M','N'])
 
     with col4:
         clarity = st.selectbox("CLARITY*",options=['IF', 'VVS1', 'VVS2','VS1','VS2','SI1','SI2','I1'])
@@ -374,8 +374,10 @@ def page1():
                             elif color=='L':
                                 result=result+df['L'][i]
                                 ff=1
-                            elif color=='M':
+                            elif color=='M' or color=='N':
                                 result=result+df['M'][i]
+                                color='M'
+                                result=result-7
                                 ff=1
                             elif color=='K':
                                 result=result+df['K'][i] 
@@ -1534,7 +1536,30 @@ def page1():
                                 if xx==9:
                                     result=result+df7['9'][i]
                                 break  
-
+        elif sizeprec>=0.59 and sizeprec<=0.599:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG') and (fluo=='Medium' or fluo=='None' or fluo=='Faint'):
+                result=result+1  
+        elif sizeprec>=0.78 and sizeprec<=0.789:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+1 
+        elif sizeprec>=0.79 and sizeprec<=0.799:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+2 
+        elif sizeprec>=0.87 and sizeprec<=0.879:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+1  
+        elif sizeprec>=0.88 and sizeprec<=0.889:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+2
+        elif sizeprec>=0.89 and sizeprec<=0.899:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+3
+        elif sizeprec>=0.98 and sizeprec<=0.989:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+1  
+        elif sizeprec>=0.99 and sizeprec<=0.999:
+            if(cut=='EX' or cut=='VG') and (polish=='EX' or polish=='VG') and (symmetry=='EX' or symmetry=='VG'):
+                result=result+2                                                                               
     #Finishing
 
     #open
@@ -2667,43 +2692,43 @@ def page1():
         if(shape!='RO' and 'Fancy'==df30['Shape'][i] and upgrade2==df30['what'][i]):
             if df30['Grade'][i]=='Upgrade':
                 if xx==1:
-                    result=result+df30['1'][i]
+                    result=result+100*df30['1'][i]
                 if xx==2:
-                    result=result+df30['2'][i]    
+                    result=result+100*df30['2'][i]    
                 if xx==3:
-                    result=result+df30['3'][i]
+                    result=result+100*df30['3'][i]
                 if xx==4:
-                    result=result+df30['4'][i]    
+                    result=result+100*df30['4'][i]    
                 if xx==5:
-                    result=result+df30['5'][i]
+                    result=result+100*df30['5'][i]
                 if xx==6:
-                    result=result+df30['6'][i]
+                    result=result+100*df30['6'][i]
                 if xx==7:
-                    result=result+df30['7'][i]
+                    result=result+100*df30['7'][i]
                 if xx==8:
-                    result=result+df30['8'][i]
+                    result=result+100*df30['8'][i]
                 if xx==9:
-                    result=result+df30['9'][i]
+                    result=result+100*df30['9'][i]
         if(shape!='RO' and 'Famcy'==df30['Shape'][i] and downgrade2==df30['what'][i]):
             if df30['Grade'][i]=='Downgrade':
                 if xx==1:
-                    result=result+df30['1'][i]
+                    result=result+100*df30['1'][i]
                 if xx==2:
-                    result=result+df30['2'][i]    
+                    result=result+100*df30['2'][i]    
                 if xx==3:
-                    result=result+df30['3'][i]
+                    result=result+100*df30['3'][i]
                 if xx==4:
-                    result=result+df30['4'][i]    
+                    result=result+100*df30['4'][i]    
                 if xx==5:
-                    result=result+df30['5'][i]
+                    result=result+100*df30['5'][i]
                 if xx==6:
-                    result=result+df30['6'][i]
+                    result=result+100*df30['6'][i]
                 if xx==7:
-                    result=result+df30['7'][i]
+                    result=result+100*df30['7'][i]
                 if xx==8:
-                    result=result+df30['8'][i]
+                    result=result+100*df30['8'][i]
                 if xx==9:
-                    result=result+df30['9'][i]
+                    result=result+100*df30['9'][i]
 
     if ff==0:
         rap=0; 
