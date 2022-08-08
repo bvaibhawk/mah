@@ -191,8 +191,8 @@ def page1():
         brown = st.selectbox("BROWN", options=['0','B1', 'B2','B3']) 
     with col38:
         milky = st.selectbox("MILKY", options=['No','M1+','M1','M2','M3']) 
-    # with col39:
-    #     offcolor = st.selectbox("OFF_COLOR_needless", options=['No','OC1','OC2']) 
+    with col39:
+        days = st.number_input("Days") 
     with col40:
         tableopen = st.selectbox("TABLE_OPEN", options=['No','OHT','OT1','OT2','OT3']) 
     with col41:
