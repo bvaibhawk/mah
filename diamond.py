@@ -269,10 +269,13 @@ def page1():
                     result=df['Discount'][i]
                     ff=1
 
-            
+    temp=result
+
             
     if ff==1:
+        
         result=result*100 
+        temp=result
         
                
         if shape=='RO':
@@ -377,7 +380,8 @@ def page1():
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
                     result=df2['SI2'][i]
                     ff=2
-                    break    
+                    break  
+            temp=result      
         if ff==0:
             df=pd.read_csv('Dossbase.csv')
             for i in range(len(df)):
@@ -452,7 +456,7 @@ def page1():
                                 result=result+df['K'][i] 
                                 ff=1
                             break       
-
+            temp=result                
 
 
     #DIAMETER                
@@ -4333,7 +4337,13 @@ def page1():
             result=result-1.0   
     if ff==0:
         rap=0; 
-
+    if temp>=-40:
+        if temp-result>20:
+            result=temp-20
+    else:
+        if temp-result>15:
+            result=temp-15  
+                   
     #result=rap*((100+result)/100)
 
 
