@@ -127,8 +127,8 @@ def page1():
         internalgraining = st.selectbox("INTERNAL_GRAINING",options=['0','NN', 'IGR1', 'IGR2','IGR3'])
     with col18:
         surfacegraining = st.selectbox("SURFACE_GRAINING",options=['0','NN','SGR1','SGR2','SGR3'])
-    # with col19:
-    #     pavilionintensity = st.selectbox("PAVILION_INTENSITY_needless",options=[0, 1, 2, 3,4])  
+    with col19:
+        flawless = st.selectbox("Flawless",options=['Yes(select IF color)','No'])  
     with col20:
         tableintensity = st.selectbox("TABLE_INTENSITY",options=['NN', 'BT1+','BT1', 'BT2','BT3'])
     with col21:
@@ -157,8 +157,8 @@ def page1():
         pavilioncavity = st.selectbox("Pavilion_cavity",options=['0','CTP']) 
     with col33:
         pavilionchip = st.selectbox("Pavilion_Chip",options=['0','CHP'])         
-    # with col25:
-    #     crowninc= st.selectbox("CROWN_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])  
+    with col34:
+        depth = st.number_input("Depth")
     # with col26:
     #     pavilioninc = st.selectbox("PAVILION_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None']) 
     # with col27:
@@ -276,6 +276,22 @@ def page1():
         
                
         if shape=='RO':
+            if sizeprec>=1.00 and sizeprec<=1.499:
+                if color=='D':
+                    result=result+3
+                else:
+                    result=result+2
+            if sizeprec>=1.50 and sizeprec<=1.999:
+                if color=='D':
+                    result=result+2
+                else:
+                    result=result+1       
+            if sizeprec>=2.00 and sizeprec<=2.999:
+                if color=='D':
+                    result=result+2
+                else:
+                    result=result+1          
+
             if xx==1:
                 if ktos==1:
                     result=result+1.0
@@ -4310,7 +4326,11 @@ def page1():
                     result=result+100*df30['8'][i]
                 if xx==9:
                     result=result+100*df30['9'][i]
-
+    if (sizeprec>=0.30 and sizeprec<=0.99):
+        if cut=='EX' and depth>=63 and (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2') and (color=='D' or color=='E' or color=='F'):
+            result=result-1.0
+        if cut=='VG' and depth>=64.8 and (clarity=='IF' or clarity=='VVS1' or clarity=='VVS2') and (color!='J' or color!='K' or color!='L' or color!='I'):
+            result=result-1.0   
     if ff==0:
         rap=0; 
 
