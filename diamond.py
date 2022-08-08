@@ -268,9 +268,7 @@ def page1():
                 elif(cut==df['CUT'][i]):
                     result=df['Discount'][i]
                     ff=1
-    if sizeprec>=1.0 and sizeprec<=2.99:
-        if cut=='EX' and (polish!='EX' or symmetry!='EX'):
-            for i in 
+
             
             
     if ff==1:
@@ -2542,48 +2540,1611 @@ def page1():
     #                 if xx==9:
     #                     result=result+df9['9'][i]/2
     #         if(chip==df9['Place'][i] and df9['value'][i]=='Chip' and cut==df9['Cut'][i]):
-    #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                # if fluo!='None' and fluo!='Medium' and fluo!='Faint':
 
-    #                 if xx==1:
-    #                     result=result+df9['1'][i] 
-    #                 if xx==2:
-    #                     result=result+df9['2'][i]    
-    #                 if xx==3:
-    #                     result=result+df9['3'][i]
-    #                 if xx==4:
-    #                     result=result+df9['4'][i]    
-    #                 if xx==5:
-    #                     result=result+df9['5'][i]
-    #                 if xx==6:
-    #                     result=result+df9['6'][i]
-    #                 if xx==7:
-    #                     result=result+df9['7'][i]
-    #                 if xx==8:
-    #                     result=result+df9['8'][i] 
-    #                 if xx==9:
-    #                     result=result+df9['9'][i]
-    #             else:
-                    # if xx==1:
-                    #     result=result+df9['1'][i]/2 
-                    # if xx==2:
-                    #     result=result+df9['2'][i]/2    
-                    # if xx==3:
-                    #     result=result+df9['3'][i]/2
-                    # if xx==4:
-                    #     result=result+df9['4'][i]/2    
-                    # if xx==5:
-                    #     result=result+df9['5'][i]/2
-                    # if xx==6:
-                    #     result=result+df9['6'][i]/2
-                    # if xx==7:
-                    #     result=result+df9['7'][i]/2
-                    # if xx==8:
-                    #     result=result+df9['8'][i]/2
-                    # if xx==9:
-                    #     result=result+df9['9'][i]/2           
-
-
-
+                #     if xx==1:
+                #         result=result+df9['1'][i] 
+                #     if xx==2:
+                #         result=result+df9['2'][i]    
+                #     if xx==3:
+                #         result=result+df9['3'][i]
+                #     if xx==4:
+                #         result=result+df9['4'][i]    
+                #     if xx==5:
+                #         result=result+df9['5'][i]
+                #     if xx==6:
+                #         result=result+df9['6'][i]
+                #     if xx==7:
+                #         result=result+df9['7'][i]
+                #     if xx==8:
+                #         result=result+df9['8'][i] 
+                #     if xx==9:
+                #         result=result+df9['9'][i]
+                # else:
+                #     if xx==1:
+                #         result=result+df9['1'][i]/2 
+                #     if xx==2:
+                #         result=result+df9['2'][i]/2    
+                #     if xx==3:
+                #         result=result+df9['3'][i]/2
+                #     if xx==4:
+                #         result=result+df9['4'][i]/2    
+                #     if xx==5:
+                #         result=result+df9['5'][i]/2
+                #     if xx==6:
+                #         result=result+df9['6'][i]/2
+                #     if xx==7:
+                #         result=result+df9['7'][i]/2
+                #     if xx==8:
+                #         result=result+df9['8'][i]/2
+                #     if xx==9:
+                #         result=result+df9['9'][i]/2           
+    if sizeprec>=1.0:
+        df31=pd.read_csv('FinishingRoOpen.csv')
+        if(shape=='RO'):
+            for i in range(len(df31)):
+                if (tableopen==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2  
+                if (girdleopen==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                
+                if (crownopen==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2
+                if (pavilionopen==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2   
+                if (topnatural==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crownnatural==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdlenatural==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilionnatural==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2 
+                if (topef==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crownef==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdleef==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilionef==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2             
+                if (topcavity==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crowncavity==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdlecavity==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilioncavity==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2 
+                if (topchip==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crownchip==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdlechip==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilionchip==df31['open'][i] and cut==df31['Cut'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2 
+        else:
+            for i in range(len(df31)):
+                if (tableopen==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2  
+                if (girdleopen==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                
+                if (crownopen==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2
+                if (pavilionopen==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2   
+                if (topnatural==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crownnatural==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdlenatural==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilionnatural==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2 
+                if (topef==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crownef==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdleef==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilionef==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2             
+                if (topcavity==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crowncavity==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdlecavity==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilioncavity==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2 
+                if (topchip==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2                     
+                if (crownchip==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (girdlechip==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2     
+                if (pavilionchip==df31['open'][i] and polish==df31['Polish'][i] and symmetry==df31['Symmetry'][i]):
+                    if fluo!='None' and fluo!='Medium' and fluo!='Faint':
+                        if xx==1:
+                            result=result+df31['1'][i] 
+                        if xx==2:
+                            result=result+df31['2'][i]    
+                        if xx==3:
+                            result=result+df31['3'][i]
+                        if xx==4:
+                            result=result+df31['4'][i]    
+                        if xx==5:
+                            result=result+df31['5'][i]
+                        if xx==6:
+                            result=result+df31['6'][i]
+                        if xx==7:
+                            result=result+df31['7'][i]
+                        if xx==8:
+                            result=result+df31['8'][i] 
+                        if xx==9:
+                            result=result+df31['9'][i]
+                    else:
+                        if xx==1:
+                            result=result+df31['1'][i]/2 
+                        if xx==2:
+                            result=result+df31['2'][i]/2    
+                        if xx==3:
+                            result=result+df31['3'][i]/2
+                        if xx==4:
+                            result=result+df31['4'][i]/2    
+                        if xx==5:
+                            result=result+df31['5'][i]/2
+                        if xx==6:
+                            result=result+df31['6'][i]/2
+                        if xx==7:
+                            result=result+df31['7'][i]/2
+                        if xx==8:
+                            result=result+df31['8'][i]/2
+                        if xx==9:
+                            result=result+df31['9'][i]/2 
 
 
     #Internal Grading
