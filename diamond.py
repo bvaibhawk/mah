@@ -340,7 +340,7 @@ def page1():
             for i in range(len(df)):
                 if(df['Clarity'][i]==clarity and szgr==df['Size'][i] and df['Fluo'][i]==fluo):
                     if cut=='EX' and polish=='EX' and symmetry=='EX':
-                        if df['Cut']=='EX' and df['Polish']=='EX' and df['Symmetry']=='EX':
+                        if df['Cut'][i]=='EX' and df['Polish'][i]=='EX' and df['Symmetry'][i]=='EX':
                             if color=='D':
                                 result=result+df['D'][i]
                             elif color=='E':
@@ -658,7 +658,7 @@ def page1():
                 result=result+1.0
 
 
-    #Graining- add vg+ condition and the extra comment
+    #Graining- add vg+ condition and the extra comment-done
     # if internalgraining=='IGR2':
     #     if xx==1 or xx==2:
     #         result=result-1.5
