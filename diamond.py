@@ -2367,7 +2367,7 @@ def page1():
     if ff==0:
         rap=0; 
 
-    result=rap*((100+result)/100)
+    #result=rap*((100+result)/100)
 
 
 
