@@ -609,14 +609,14 @@ def page1():
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( milky == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
                 result=result+df3['Discount'][i]
                 break      
-        #OFFCOLOR
-        for i in range(len(df3)):
-            #next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ): 
-                result=result+df3['Discount'][i]
-                break
-            elif ((shape!='RO') & (xx == df3['Section'][i]) & ( offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
-                result=result+df3['Discount'][i]
+        # #OFFCOLOR
+        # for i in range(len(df3)):
+        #     #next line giving eror
+        #     if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ): 
+        #         result=result+df3['Discount'][i]
+        #         break
+        #     elif ((shape!='RO') & (xx == df3['Section'][i]) & ( offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+        #         result=result+df3['Discount'][i]
                 break               
     else:
         df3=pd.read_csv('bgmroelse.csv')
@@ -636,10 +636,10 @@ def page1():
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i])): 
                 result=result+df3['Discount'][i]    
                 break 
-        for i in range(len(df3)):
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i])): 
-                result=result+df3['Discount'][i]    
-                break                  
+        # for i in range(len(df3)):
+        #     if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i])): 
+        #         result=result+df3['Discount'][i]    
+        #         break                  
     #add dossiers as well-irrelevant I guess now
 
 
