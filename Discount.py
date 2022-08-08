@@ -172,8 +172,10 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             elif color == 'L':
                                 result = result + df['L'][i]
                                 ff = 1
-                            elif color == 'M':
+                            elif color == 'M' or color == 'N':
                                 result = result + df['M'][i]
+                                color = 'M'
+                                result = result - 7
                                 ff = 1
                             elif color == 'K':
                                 result = result + df['K'][i]
@@ -1359,8 +1361,39 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                 if xx == 9:
                                     result = result + df7['9'][i]
                                 break
-
-                                # Finishing
+        elif sizeprec >= 0.59 and sizeprec <= 0.599:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint'):
+                result = result + 1
+        elif sizeprec >= 0.78 and sizeprec <= 0.789:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 1
+        elif sizeprec >= 0.79 and sizeprec <= 0.799:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 2
+        elif sizeprec >= 0.87 and sizeprec <= 0.879:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 1
+        elif sizeprec >= 0.88 and sizeprec <= 0.889:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 2
+        elif sizeprec >= 0.89 and sizeprec <= 0.899:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 3
+        elif sizeprec >= 0.98 and sizeprec <= 0.989:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 1
+        elif sizeprec >= 0.99 and sizeprec <= 0.999:
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                    symmetry == 'EX' or symmetry == 'VG'):
+                result = result + 2
+                # Finishing
 
     # open
     # df9=pd.read_csv('Finishing.csv')
@@ -2368,166 +2401,164 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         if (shape == 'RO' and shape == df30['Shape'][i] and upgrade1 == df30['what'][i]):
             if df30['Grade'][i] == 'Upgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape == 'RO' and shape == df30['Shape'][i] and downgrade1 == df30['what'][i]):
             if df30['Grade'][i] == 'Downgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape != 'RO' and 'Fancy' == df30['Shape'][i] and upgrade1 == df30['what'][i]):
             if df30['Grade'][i] == 'Upgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape != 'RO' and 'Famcy' == df30['Shape'][i] and downgrade1 == df30['what'][i]):
             if df30['Grade'][i] == 'Downgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape == 'RO' and shape == df30['Shape'][i] and upgrade2 == df30['what'][i]):
             if df30['Grade'][i] == 'Upgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape == 'RO' and shape == df30['Shape'][i] and downgrade2 == df30['what'][i]):
             if df30['Grade'][i] == 'Downgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape != 'RO' and 'Fancy' == df30['Shape'][i] and upgrade2 == df30['what'][i]):
             if df30['Grade'][i] == 'Upgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
         if (shape != 'RO' and 'Famcy' == df30['Shape'][i] and downgrade2 == df30['what'][i]):
             if df30['Grade'][i] == 'Downgrade':
                 if xx == 1:
-                    result = result + df30['1'][i]
+                    result = result + 100 * df30['1'][i]
                 if xx == 2:
-                    result = result + df30['2'][i]
+                    result = result + 100 * df30['2'][i]
                 if xx == 3:
-                    result = result + df30['3'][i]
+                    result = result + 100 * df30['3'][i]
                 if xx == 4:
-                    result = result + df30['4'][i]
+                    result = result + 100 * df30['4'][i]
                 if xx == 5:
-                    result = result + df30['5'][i]
+                    result = result + 100 * df30['5'][i]
                 if xx == 6:
-                    result = result + df30['6'][i]
+                    result = result + 100 * df30['6'][i]
                 if xx == 7:
-                    result = result + df30['7'][i]
+                    result = result + 100 * df30['7'][i]
                 if xx == 8:
-                    result = result + df30['8'][i]
+                    result = result + 100 * df30['8'][i]
                 if xx == 9:
-                    result = result + df30['9'][i]
+                    result = result + 100 * df30['9'][i]
 
     if ff == 0:
         rap = 0;
-
-        # result=rap*((100+result)/100)
     return result
