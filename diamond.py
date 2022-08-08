@@ -75,6 +75,7 @@ def page1():
     col36, col37,col38,col39,col40 = st.columns(5)
     col41, col42,col43,col44,col45 = st.columns(5)
     col46, col47,col48,col49,col50= st.columns(5)
+    col51, col52,col53,col54,col55 = st.columns(5)
 
     # color_dict = {"D":10,"E":9,"F":8,"G":7,"H":6,"I":5,"J":4,"K":3,"L":2,"M":1}
     # clarity_dict = {"IF":8,"VVS1":7,"VVS2":6,"VS1":5,"VS2":4,"SI1":3,"SI2":2,"I1":1}
