@@ -7,6 +7,8 @@ import cv2
 from datetime import date, datetime
 
 from Discount import calcDiscount
+from FetchRap import fetchrap
+from singlediscount import page2
 
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
                    menu_items=None)
@@ -280,7 +282,7 @@ def page1():
     #             unsafe_allow_html=True)
     #         print(dictCsv)
     #         # st.download_button('Download CSV', pd.DataFrame(dictCsv, index=[0]).to_csv(index=False),
-    #         #                    mime='text/csv', file_name='sampleinput.csv')
+    #         #                    mime='text/csv', file_name='sampleinput2.csv')
     #     else:
     #         st.error("Please input proper values")
     format = '%b %d %Y %H:%M:%S'
@@ -302,6 +304,8 @@ def page1():
         if update_button is not None:
             newRapPrice = pd.read_csv(updated_file)
             newRapPrice.to_csv('rap_price.csv')
+            last_updated.loc[len(last_updated['update_date'])] = [now.strftime(format)]
+            last_updated.to_csv('lastupdated.csv', index=False)
             with col5:
                 st.write('Price updated')
 
@@ -309,6 +313,7 @@ def page1():
     if uploaded_file is not None:
         diamondData = pd.read_csv(uploaded_file)
         diamondData = diamondData.assign(DISCOUNT='NAN')
+        diamondData = diamondData.assign(DISCOUNTED_RAP='NAN')
         for i in range(len(diamondData)):
             try:
                 shape = diamondData['SHAPE'][i]
@@ -329,54 +334,56 @@ def page1():
                 diameter = diamondData['DIAMETER'][i]
                 internalgraining = diamondData['INTERNAL_GRAINING'][i]
                 surfacegraining = diamondData['SURFACE_GRAINING'][i]
-                pavilionintensity = diamondData['PAVILION_INTENSITY_needless'][i]
+                flawless = diamondData['Flawless'][i]
                 tableintensity = diamondData['TABLE_INTENSITY'][i]
                 crownintensity = diamondData['CROWN_INTENSITY'][i]
-                girdleintensity = diamondData['GIRDLE_INTENSITY_needless'][i]
-                girdle_inc = diamondData['GIRDLE_INCLUSION_needless'][i]
-                tableinc = diamondData['TABLE_INCLUSION_needless'][i]
-                crowninc = diamondData['CROWN_INCLUSION_needless'][i]
-                pavilioninc = diamondData['PAVILION_INCLUSION_needless'][i]
-                tableopen = diamondData['TABLE_OPEN'][i]
-                tablenatural = diamondData['TABLE_NATURAL'][i]
-                tableothers = diamondData['TABLE_OTHERS'][i]
-                crownopen = diamondData['CROWN_OPEN'][i]
-                crownnatural = diamondData['CROWN_NATURAL'][i]
-                crownothers = diamondData['CROWN_OTHERS'][i]
-                girdleopen = diamondData['GIRDLE_OPEN'][i]
-                girdlenatural = diamondData['GIRDLE_NATURAL'][i]
-                girdleothers = diamondData['GIRDLE_OTHERS'][i]
-                pavilionopen = diamondData['PAVILION_OPEN'][i]
-                pavilionnatural = diamondData['PAVILION_NATURAL'][i]
+                topef = diamondData['Top_Extra_Facet'][i]
+                topcavity = diamondData['Top_cavity'][i]
+                topchip = diamondData['Top_Chip'][i]
+                crownef = diamondData['Crown_Extra_Facet'][i]
+                crowncavity = diamondData['Crown_cavity'][i]
+                crownchip = diamondData['Crown_Chip'][i]
+                girdleef = diamondData['Girdle_Extra_Facet'][i]
+                girdlecavity = diamondData['Girdle_cavity'][i]
+                girdlechip = diamondData['Girdle_Chip'][i]
+                pavilionef = diamondData['Pavilion_Extra_Facet'][i]
+                pavilioncavity = diamondData['Pavilion_cavity'][i]
+                pavilionchip = diamondData['Pavilion_Chip'][i]
+                depth = diamondData['Depth'][i]
                 green = diamondData['GREEN'][i]
                 grey = diamondData['GREY'][i]
                 brown = diamondData['BROWN'][i]
                 milky = diamondData['MILKY'][i]
-                offcolor = diamondData['OFF_COLOR_needless'][i]
-                halfopen = diamondData['HALF_OPEN'][i]
-                smallopen = diamondData['SMALL_OPEN'][i]
-                bigopen = diamondData['BIG_OPEN'][i]
-                mediumopen = diamondData['MEDIUM_OPEN'][i]
-                identednatural = diamondData['Idented Natural'][i]
-                naturalnatural = diamondData['Natural'][i]
-                bignatural = diamondData['Big Natural'][i]
-                extrafacet = diamondData['EXTRA_FACET'][i]
+                tableopen = diamondData['TABLE_OPEN'][i]
+                crownopen = diamondData['CROWN_OPEN'][i]
+                girdleopen = diamondData['BIG_OPEN'][i]
+                pavilionopen = diamondData['PAVILION_OPEN'][i]
+                topnatural = diamondData['Top_Natural'][i]
+                crownnatural = diamondData['Crown_Natural'][i]
+                girdlenatural = diamondData['Girdle_Natural'][i]
+                pavilionnatural = diamondData['Pavilion_Natural'][i]
                 chip = diamondData['CHIP'][i]
                 cavity = diamondData['CAVITY'][i]
                 upgrade1 = diamondData['Upgrade_Color'][i]
                 upgrade2 = diamondData['Upgrade_Clarity'][i]
                 downgrade1 = diamondData['Downgrade_Color'][i]
                 downgrade2 = diamondData['Downgrade_Clarity'][i]
+                rap = fetchrap(shape, szgr, color, clarity)
+                diamondData['RAP'][i] = rap
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
-                                      tableclean, eyeclean, ha, cutcomments, diameter, internalgraining,
-                                      surfacegraining, pavilionintensity, tableintensity, crownintensity, girdleintensity,
-                                      girdle_inc, tableinc, crowninc, pavilioninc, tableopen, tablenatural, tableothers,
-                                      crownopen, crownnatural, girdleothers, girdleopen, girdlenatural, pavilionopen
-                                      , pavilionnatural, green, grey, brown, milky, offcolor, halfopen, smallopen,
-                                      bigopen, mediumopen, identednatural, naturalnatural, bignatural,
-                                      extrafacet, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2)
+                                      tableclean,
+                                      eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
+                                      tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity,
+                                      crownchip,
+                                      girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip,
+                                      depth, green,
+                                      grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural,
+                                      crownnatural,
+                                      girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
+                                      downgrade2)
                 print(result)
                 diamondData['DISCOUNT'][i] = result
+                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except Exception as e:
                 print('Something went wrong', e)
         st.write(diamondData)
@@ -385,7 +392,8 @@ def page1():
 
 
 page_names = {
-    "Newest sheet": page1
+    'Single calculate': page2,
+    "Bulk upload": page1
 
 }
 
