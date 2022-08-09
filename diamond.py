@@ -4344,7 +4344,7 @@ def page1():
         if temp-result>15:
             result=temp-15  
                    
-    result=rap*((100+result)/100)
+    #result=rap*((100+result)/100)
 
 
 
@@ -4357,7 +4357,7 @@ def page1():
     
     if st.button("Calculate Final Price"):
         if int(rap)!=0:
-            st.markdown(f"<big><b>Discounted Price:</b> </big><font color='green' size=6>{(result)} </font>",unsafe_allow_html=True)
+            st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",unsafe_allow_html=True)
         else:
             st.error("Please input proper values")
     
