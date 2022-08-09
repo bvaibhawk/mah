@@ -198,7 +198,7 @@ def page1():
     with col41:
         crownopen = st.selectbox("CROWN_OPEN", options=['No','OHC','OC1','OC2','OC3'])  
     with col42:
-        girdleopen = st.selectbox("BIG_OPEN", options=['No','OHG','OG1','OG2','OG3']) 
+        girdleopen = st.selectbox("GIRDLE_OPEN", options=['No','OHG','OG1','OG2','OG3']) 
     with col43:
         pavilionopen = st.selectbox("PAVILION_OPEN", options=['No','OHP','OP1','OP2','OP3'])     
     with col44:
@@ -2625,11 +2625,11 @@ def page1():
                             result=result+df31['9'][i]
                     else:
                         if xx==1:
-                            result=result+df31['1'][i]/2 
+                            result=result+(df31['1'][i]/2) 
                         if xx==2:
-                            result=result+df31['2'][i]/2    
+                            result=result+(df31['2'][i]/2)    
                         if xx==3:
-                            result=result+df31['3'][i]/2
+                            result=result+(df31['3'][i]/2)
                         if xx==4:
                             result=result+df31['4'][i]/2    
                         if xx==5:
@@ -4344,7 +4344,7 @@ def page1():
         if temp-result>15:
             result=temp-15  
                    
-    #result=rap*((100+result)/100)
+    result=rap*((100+result)/100)
 
 
 
