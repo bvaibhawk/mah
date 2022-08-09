@@ -424,7 +424,7 @@ def page1():
                     else:
                         # if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
                         #     continue
-                        if(cut==df['Cut'][i] df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
+                        if(cut==df['Cut'][i] and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
                             if color=='D':
                                 result=result+df['D'][i]
                                 ff=1
