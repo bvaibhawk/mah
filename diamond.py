@@ -1,6 +1,7 @@
 import time
 
 import streamlit as st
+import logging
 import dill as pickle
 import pandas as pd
 import cv2
@@ -385,7 +386,7 @@ def page1():
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except Exception as e:
-                print('Something went wrong', e)
+                logging.error('Something went wrong', e)
         st.write(diamondData)
         st.download_button('Download CSV', diamondData.to_csv(index=False),
                            mime='text/csv', file_name='discountOutput.csv')
