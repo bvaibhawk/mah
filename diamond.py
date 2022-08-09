@@ -347,37 +347,37 @@ def page1():
         
         for i in range(len(df2)):
             if clarity=='IF':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i] : 
                     result=df2['IF'][i]
                     ff=2
                     break
             elif clarity=='VVS1':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i]  and szgr == df2['Size'][i] : 
                     result=df2['VVS1'][i]
                     ff=2
                     break        
             elif clarity=='VVS2':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i]  and szgr == df2['Size'][i] : 
                     result=df2['VVS2'][i]
                     ff=2
                     break        
             elif clarity=='VS1':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i] : 
                     result=df2['VS1'][i]
                     ff=2
                     break    
             elif clarity=='VS2':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i]  and szgr == df2['Size'][i] : 
                     result=df2['VS2'][i]
                     ff=2
                     break    
             elif clarity=='SI1':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i] : 
                     result=df2['SI1'][i]
                     ff=2
                     break    
             elif clarity=='SI2':
-                if shape == df2['Shape'][i] and color == df2['EX'][i] and cut == 'EX' and szgr == df2['Size'][i] : 
+                if shape == df2['Shape'][i] and color == df2['EX'][i]  and szgr == df2['Size'][i] : 
                     result=df2['SI2'][i]
                     ff=2
                     break  
