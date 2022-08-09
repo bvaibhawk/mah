@@ -4392,11 +4392,11 @@ def page1():
 
                 st.text("\n")
 
-            #     if st.button("Calculate Final Price"):
-            #         if int(rap)!=0:
-            #             st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",unsafe_allow_html=True)
-            #         else:
-            #             st.error("Please input proper values")
+                if st.button("Calculate Final Price"):
+                    if int(rap)!=0:
+                        st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",unsafe_allow_html=True)
+                    else:
+                        st.error("Please input proper values")
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except Exception as e:
