@@ -304,11 +304,18 @@ def page1():
             update_button = st.button('Update rapnet pricing')
         if update_button is not None:
             newRapPrice = pd.read_csv(updated_file)
-            newRapPrice.to_csv('rap_price.csv')
-            last_updated.loc[len(last_updated['update_date'])] = [now.strftime(format)]
-            last_updated.to_csv('lastupdated.csv', index=False)
-            with col5:
-                st.write('Price updated')
+            rap_columns = ['SHAPE', 'CLARITY', 'COLOUR', 'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP']
+            col_check = (x for x in rap_columns if x not in newRapPrice.keys())
+            if  len(list(col_check)) == 0:
+                newRapPrice.to_csv('rap_price.csv')
+                last_updated.loc[len(last_updated['update_date'])] = [now.strftime(format)]
+                last_updated.to_csv('lastupdated.csv', index=False)
+                # with col5:
+                #     st.write('Price updated')
+            else:
+                with col5:
+                    st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
+                         "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
 
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
     if uploaded_file is not None:
