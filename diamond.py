@@ -265,6 +265,7 @@ def page1():
                 downgrade1 = diamondData['Downgrade_Color'][i]
                 downgrade2 = diamondData['Downgrade_Clarity'][i]   
                 days=diamondData['Days'][i]        
+                rap=diamondData['Rap'][i]            
                 #result = (-1*(1-((model.predict(test_df)[0])/rap)))*100
                 df = pd.read_csv('Toamin.csv')
                 #remember to add the feature that if cut is ex then pol, symm can be anything, right now it is same as cut
