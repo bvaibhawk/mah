@@ -132,7 +132,7 @@ def page1():
     with col20:
         tableintensity = st.selectbox("TABLE_INTENSITY",options=['NN', 'BT1+','BT1', 'BT2','BT3'])
     with col21:
-       crownintensity= st.selectbox("CROWN_INTENSITY",options=['NN', 'BC1+', 'BC1','BC2','BC3'])
+        crownintensity= st.selectbox("CROWN_INTENSITY",options=['NN', 'BC1+', 'BC1','BC2','BC3'])
     with col22:
         topef = st.selectbox("Top_Extra_Facet",options=['0', 'EFT'])
     with col23:
@@ -423,7 +423,7 @@ def page1():
                             break                                  
                     else:
                         if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
-                            result=result
+                            continue
                         elif(cut==df['CUT'][i]):
                             if color=='D':
                                 result=result+df['D'][i]
@@ -590,7 +590,7 @@ def page1():
 
 
     #bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
-    if ((cut=='EX' or cut=='VG' & polish=='EX' or polish=='VG' & symmetry=='EX' or symmetry=='VG' ) & (fluo=='None' or fluo=='Medium')) :
+    if (((cut=='EX' or cut=='VG') & (polish=='EX' or polish=='VG') & (symmetry=='EX' or symmetry=='VG') ) & (fluo=='None' or fluo=='Medium')) :
         df3=pd.read_csv('bgmvg.csv')
         #BROWN
         for i in range(len(df3)):
