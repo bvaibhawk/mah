@@ -194,8 +194,8 @@ def page2():
         crownopen = st.selectbox("CROWN_OPEN", options=['No', 'OHC', 'OC1', 'OC2', 'OC3'])
         dictCsv['CROWN_OPEN'] = crownopen
     with col42:
-        girdleopen = st.selectbox("BIG_OPEN", options=['No', 'OHG', 'OG1', 'OG2', 'OG3'])
-        dictCsv['BIG_OPEN'] = girdleopen
+        girdleopen = st.selectbox("GIRDLE_OPEN", options=['No', 'OHG', 'OG1', 'OG2', 'OG3'])
+        dictCsv['GIRDLE_OPEN'] = girdleopen
     with col43:
         pavilionopen = st.selectbox("PAVILION_OPEN", options=['No', 'OHP', 'OP1', 'OP2', 'OP3'])
         dictCsv['PAVILION_OPEN'] = pavilionopen

@@ -392,19 +392,19 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         for i in range(len(df3)):
             #next line giving eror
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (df3['Shape'][i]=='RO')): 
-                result=result+df3['Discount'][i]
+                result=result+float(df3['Discount'][i])
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( green == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
-                result=result+df3['Discount'][i]
+                result=result+float(df3['Discount'][i])
                 break   
         #MILKY
         for i in range(len(df3)):
             #next line giving eror
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ): 
-                result=result+df3['Discount'][i]
+                result=result+float(df3['Discount'][i])
                 break
             elif ((shape!='RO') & (xx == df3['Section'][i]) & ( milky == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
-                result=result+df3['Discount'][i]
+                result=result+float(df3['Discount'][i])
                 break      
         # #OFFCOLOR
         # for i in range(len(df3)):
