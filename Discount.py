@@ -7,6 +7,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
              girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days):
 # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
+    df = pd.read_csv('Toamin.csv')
     result = 0.00
     ff=0
     xx=0
