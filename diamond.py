@@ -364,7 +364,7 @@ def page1():
                 milky = diamondData['MILKY'][i]
                 tableopen = diamondData['TABLE_OPEN'][i]
                 crownopen = diamondData['CROWN_OPEN'][i]
-                girdleopen = diamondData['GIRDLE_OPEN'][i]
+                girdleopen = diamondData.get(i, 'No')
                 pavilionopen = diamondData['PAVILION_OPEN'][i]
                 topnatural = diamondData['Top_Natural'][i]
                 crownnatural = diamondData['Crown_Natural'][i]
