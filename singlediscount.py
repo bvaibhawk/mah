@@ -7,7 +7,7 @@ from Discount import calcDiscount
 
 
 def page2():
-    with open('diamond.pkl', 'rb') as handle:
+    with open1('diamond.pkl', 'rb') as handle:
         model = pickle.load(handle)
 
     col1, col2, col3, col4, col5 = st.columns(5)
@@ -271,7 +271,7 @@ def page2():
                           cr_angle,
                           cr_height, pv_angle, pv_depth, girdle_percentage,
                           girdle_from, girdle_to, girdle_condition,
-                          star_length, lower_half, open, natural,
+                          star_length, lower_half, open1, natural,
                           intended_natural, extra_facet, graining, rap_value
                           )
 
