@@ -364,12 +364,13 @@ def page1():
                 milky = diamondData['MILKY'][i]
                 tableopen = diamondData['TABLE_OPEN'][i]
                 crownopen = diamondData['CROWN_OPEN'][i]
-                girdleopen = diamondData['BIG_OPEN'][i]
+                girdleopen = diamondData['GIRDLE_OPEN'][i]
                 pavilionopen = diamondData['PAVILION_OPEN'][i]
                 topnatural = diamondData['Top_Natural'][i]
                 crownnatural = diamondData['Crown_Natural'][i]
                 girdlenatural = diamondData['Girdle_Natural'][i]
                 pavilionnatural = diamondData['Pavilion_Natural'][i]
+                days = diamondData['Days'][i]
                 chip = diamondData['CHIP'][i]
                 cavity = diamondData['CAVITY'][i]
                 upgrade1 = diamondData['Upgrade_Color'][i]
@@ -388,7 +389,7 @@ def page1():
                                       grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural,
                                       crownnatural,
                                       girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
-                                      downgrade2)
+                                      downgrade2, days)
                 print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
