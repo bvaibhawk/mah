@@ -184,8 +184,9 @@ def page2():
     with col38:
         milky = st.selectbox("MILKY", options=['No', 'M1+', 'M1', 'M2', 'M3'])
         dictCsv['MILKY'] = milky
-        # with col39:
-    #     offcolor = st.selectbox("OFF_COLOR_needless", options=['No','OC1','OC2'])
+    with col39:
+        days = st.number_input("Days")
+        dictCsv['Days'] = days
     with col40:
         tableopen = st.selectbox("TABLE_OPEN", options=['No', 'OHT', 'OT1', 'OT2', 'OT3'])
         dictCsv['TABLE_OPEN'] = tableopen
@@ -240,7 +241,7 @@ def page2():
                           tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
                           girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip, depth, green,
                           grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural, crownnatural,
-                          girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2)
+                          girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days)
 
 
 
