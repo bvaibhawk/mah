@@ -167,7 +167,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         if ff == 0:
             df = pd.read_csv('Dossbase.csv')
             for i in range(len(df)):
-                if (df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo):
+                if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
                     if cut == 'EX' and polish == 'EX' and symmetry == 'EX':
                         if df['Cut'][i] == 'EX' and df['Polish'][i] == 'EX' and df['Symmetry'][i] == 'EX':
                             if color == 'D':

@@ -1,4 +1,5 @@
 import math
+import numpy as np
 import time
 
 import streamlit as st
@@ -338,8 +339,9 @@ def page1():
     if uploaded_file is not None:
         diamondData = pd.read_csv(uploaded_file)
         diamondData.columns = diamondData.columns.str.strip()
-        # for i in diamondData.keys():
-        #     diamondData[i] = diamondData[i].astype(str).str.strip()
+        for i in diamondData.keys():
+            if diamondData[i].dtype == object:
+                diamondData[i] = diamondData[i].str.strip()
         diamondData = diamondData.assign(DISCOUNT='')
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
         for i in range(len(diamondData)):
