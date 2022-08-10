@@ -1,3 +1,4 @@
+import math
 import time
 
 import streamlit as st
@@ -7,8 +8,8 @@ import pandas as pd
 import cv2
 from datetime import date, datetime
 
-from Discount import calcDiscount
-from FetchRap import fetchrap
+from Discount import calcDiscount, get_cut_comments
+from FetchRap import fetchrap, fetch_size
 from singlediscount import page2
 
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
@@ -64,6 +65,21 @@ logo = cv2.cvtColor(logo, cv2.COLOR_BGR2RGB)
 logo = cv2.resize(logo, (300, 100))
 st.image(logo)
 st.text("\n")
+
+
+class ColumnError(Exception):
+    message = ''
+    def __int__(self, column):
+        self.message = column + ' is missing in the uploaded CSV file. ' \
+                                'Please upload the CSV file in correct format'
+
+
+def column_default_validation(diamondData, col, i, defaultValue=None):
+    if col in diamondData.keys():
+        return diamondData[col][i]
+    if defaultValue is None:
+        raise ColumnError(col)
+    return float(defaultValue) if defaultValue == 0 else defaultValue
 
 
 def page1():
@@ -321,64 +337,109 @@ def page1():
     result = 0.0
     if uploaded_file is not None:
         diamondData = pd.read_csv(uploaded_file)
-        diamondData = diamondData.assign(DISCOUNT='NAN')
-        diamondData = diamondData.assign(DISCOUNTED_RAP='NAN')
+        diamondData.columns = diamondData.columns.str.strip()
+        # for i in diamondData.keys():
+        #     diamondData[i] = diamondData[i].astype(str).str.strip()
+        diamondData = diamondData.assign(DISCOUNT='')
+        diamondData = diamondData.assign(DISCOUNTED_RAP='')
         for i in range(len(diamondData)):
             try:
-                shape = diamondData['SHAPE'][i]
-                szgr = diamondData['SIZE RANGE'][i]
-                color = diamondData['COLOUR'][i]
-                clarity = diamondData['CLARITY'][i]
-                cut = diamondData['CUT'][i]
-                polish = diamondData['POLISH'][i]
-                symmetry = diamondData['SYMMETRY'][i]
-                fluo = diamondData['FLUO'][i]
-                rap = diamondData['RAP'][i]
-                ktos = diamondData['KTOS'][i]
-                sizeprec = diamondData['PRECISE SIZE'][i]
-                tableclean = diamondData['TABLE_CLEAN'][i]
-                eyeclean = diamondData['EYE_CLEAN'][i]
-                ha = diamondData['H&A'][i]
+                shape = column_default_validation(diamondData, 'SHAPE', i, 'RO')  # updated with client stock sheet
+                szgr = '0.30-0.34'  # column_default_validation(diamondData, 'SIZE RANGE', i, '0.30-0.34')
+                color = column_default_validation(diamondData, 'COLOR', i, 'D')  # updated with client stock sheet
+                clarity = column_default_validation(diamondData, 'CLARITY', i, 'IF')  # updated with client stock sheet
+                cut = column_default_validation(diamondData, 'CUT', i, 'EX')
+                polish = column_default_validation(diamondData, 'POL', i, 'EX')
+                symmetry = column_default_validation(diamondData, 'SY', i, 'EX')
+                fluo = column_default_validation(diamondData, 'FLUO', i, 'Faint')
+                rap = column_default_validation(diamondData, 'RAP', i, 0)
+                ktos = column_default_validation(diamondData, 'KEY_TO_SYMBOL', i, 0)
+                sizeprec = column_default_validation(diamondData, 'WEIGHT', i, 0)
+                tableclean = column_default_validation(diamondData, 'TABLE_CLEAN', i, 'Yes')
+                eyeclean = column_default_validation(diamondData, 'EYE_CLEAN', i, 'Yes')
+                ha = column_default_validation(diamondData, 'HA', i, 'Yes')
+                cutcomments = column_default_validation(diamondData, 'CUT_COMMENTS', i, '0')
+                diameter = column_default_validation(diamondData, 'DIAMETER', i, 0)
+                internalgraining = column_default_validation(diamondData, 'INTERNAL_GRAINING', i, '0')
+                surfacegraining = column_default_validation(diamondData, 'SURFACE_GRAINING', i, '0')
+                flawless = column_default_validation(diamondData, 'Flawless', i, 'Yes(select IF color)')
+                tableintensity = column_default_validation(diamondData, 'TABLE_INTENSITY', i, 'NN')
+                crownintensity = column_default_validation(diamondData, 'CROWN_INTENSITY', i, 'NN')
+                topef = column_default_validation(diamondData, 'Top_Extra_Facet', i, '0')
+                topcavity = column_default_validation(diamondData, 'Top_cavity', i, '0')
+                topchip = column_default_validation(diamondData, 'Top_Chip', i, '0')
+                crownef = column_default_validation(diamondData, 'Crown_Extra_Facet', i, '0')
+                crowncavity = column_default_validation(diamondData, 'Crown_cavity', i, '0')
+                crownchip = column_default_validation(diamondData, 'Crown_Chip', i, '0')
+                girdleef = column_default_validation(diamondData, 'Girdle_Extra_Facet', i, '0')
+                girdlecavity = column_default_validation(diamondData, 'Girdle_cavity', i, '0')
+                girdlechip = column_default_validation(diamondData, 'Girdle_Chip', i, '0')
+                pavilionef = column_default_validation(diamondData, 'Pavilion_Extra_Facet', i, '0')
+                pavilioncavity = column_default_validation(diamondData, 'Pavilion_cavity', i, '0')
+                pavilionchip = column_default_validation(diamondData, 'Pavilion_Chip', i, '0')
+                depth = column_default_validation(diamondData, 'TD', i, 0)
+                green = column_default_validation(diamondData, 'GREEN', i, 'No')
+                grey = column_default_validation(diamondData, 'GREY', i, 'No')
+                brown = column_default_validation(diamondData, 'BROWN', i, '0')
+                milky = column_default_validation(diamondData, 'MILKY', i, 'No')
+                tableopen = column_default_validation(diamondData, 'TABLE_OPEN', i, 'No')
+                crownopen = column_default_validation(diamondData, 'CROWN_OPEN', i, 'No')
+                girdleopen = column_default_validation(diamondData, 'GIRDLE_OPEN', i, 'No')
+                pavilionopen = column_default_validation(diamondData, 'PAVILION_OPEN', i, 'No')
+                topnatural = column_default_validation(diamondData, 'Top_Natural', i, 'No')
+                crownnatural = column_default_validation(diamondData, 'Crown_Natural', i, 'No')
+                girdlenatural = column_default_validation(diamondData, 'Girdle_Natural', i, 'No')
+                pavilionnatural = column_default_validation(diamondData, 'Pavilion_Natural', i, 'No')
+                days = column_default_validation(diamondData, 'REF_DAYS', i, 0)
+                chip = column_default_validation(diamondData, 'CHIP', i, 'No')
+                cavity = column_default_validation(diamondData, 'CAVITY', i, 'No')
+                upgrade1 = column_default_validation(diamondData, 'Upgrade_Color', i, '0')
+                upgrade2 = column_default_validation(diamondData, 'Upgrade_Clarity', i, '0')
+                downgrade1 = column_default_validation(diamondData, 'Downgrade_Color', i, '0')
+                downgrade2 = column_default_validation(diamondData, 'Downgrade_Clarity', i, '0')
+
+                # new variables added here 10-08-2022
+                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
+                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
+                tabl = column_default_validation(diamondData, 'TABL', i)
+                height = column_default_validation(diamondData, 'HEIGHT', i)
+                ratio = column_default_validation(diamondData, 'RATIO', i)
+                col_shade = column_default_validation(diamondData, 'COL_SHADE', i)
+                cr_angle = column_default_validation(diamondData, 'CR_ANGLE', i)
+                cr_height = column_default_validation(diamondData, 'CR_HEIGHT', i)
+                pv_angle = column_default_validation(diamondData, 'PV_ANGLE', i)
+                pv_depth = column_default_validation(diamondData, 'PV_DEPTH', i)
+                girdle_percentage = column_default_validation(diamondData, 'GIRDLE_PERCENTAGE', i)
+                girdle_from = column_default_validation(diamondData, 'GIRDLE_FROM', i)
+                girdle_to = column_default_validation(diamondData, 'GIRDLE_TO', i)
+                girdle_condition = column_default_validation(diamondData, 'GIRDLE_CONDITION', i)
+                star_length = column_default_validation(diamondData, 'STAR_LENGTH', i)
+                lower_half = column_default_validation(diamondData, 'LOWER_HALF', i)
+                open = column_default_validation(diamondData, 'OPEN', i)
+                natural = column_default_validation(diamondData, 'NATURAL', i)
+                intended_natural = column_default_validation(diamondData, 'INTENDED_NATURAL', i)
+                extra_facet = column_default_validation(diamondData, 'EXTRA_FACET', i)
+                graining = column_default_validation(diamondData, 'GRAINING', i)
+                cavity = column_default_validation(diamondData, 'CAVITY', i)
+                chip = column_default_validation(diamondData, 'CHIP', i)
+                rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
+                # new variables added here 10-08-2022
+
+                # Function calls to determine ktos, size range, cutcomments and rap_value ##################
+                diamondData['CUT_COMMENTS'][i] = get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade,
+                                                                  cr_angle,
+                                                                  cr_height, pv_angle, pv_depth, girdle_percentage,
+                                                                  girdle_from, girdle_to, girdle_condition,
+                                                                  star_length, lower_half, open, natural,
+                                                                  intended_natural, extra_facet, graining, rap_value)
                 cutcomments = diamondData['CUT_COMMENTS'][i]
-                diameter = diamondData['DIAMETER'][i]
-                internalgraining = diamondData['INTERNAL_GRAINING'][i]
-                surfacegraining = diamondData['SURFACE_GRAINING'][i]
-                flawless = diamondData['Flawless'][i]
-                tableintensity = diamondData['TABLE_INTENSITY'][i]
-                crownintensity = diamondData['CROWN_INTENSITY'][i]
-                topef = diamondData['Top_Extra_Facet'][i]
-                topcavity = diamondData['Top_cavity'][i]
-                topchip = diamondData['Top_Chip'][i]
-                crownef = diamondData['Crown_Extra_Facet'][i]
-                crowncavity = diamondData['Crown_cavity'][i]
-                crownchip = diamondData['Crown_Chip'][i]
-                girdleef = diamondData['Girdle_Extra_Facet'][i]
-                girdlecavity = diamondData['Girdle_cavity'][i]
-                girdlechip = diamondData['Girdle_Chip'][i]
-                pavilionef = diamondData['Pavilion_Extra_Facet'][i]
-                pavilioncavity = diamondData['Pavilion_cavity'][i]
-                pavilionchip = diamondData['Pavilion_Chip'][i]
-                depth = diamondData['Depth'][i]
-                green = diamondData['GREEN'][i]
-                grey = diamondData['GREY'][i]
-                brown = diamondData['BROWN'][i]
-                milky = diamondData['MILKY'][i]
-                tableopen = diamondData['TABLE_OPEN'][i]
-                crownopen = diamondData['CROWN_OPEN'][i]
-                girdleopen = diamondData['GIRDLE_OPEN'][i]
-                pavilionopen = diamondData['PAVILION_OPEN'][i]
-                topnatural = diamondData['Top_Natural'][i]
-                crownnatural = diamondData['Crown_Natural'][i]
-                girdlenatural = diamondData['Girdle_Natural'][i]
-                pavilionnatural = diamondData['Pavilion_Natural'][i]
-                days = diamondData['Days'][i]
-                chip = diamondData['CHIP'][i]
-                cavity = diamondData['CAVITY'][i]
-                upgrade1 = diamondData['Upgrade_Color'][i]
-                upgrade2 = diamondData['Upgrade_Clarity'][i]
-                downgrade1 = diamondData['Downgrade_Color'][i]
-                downgrade2 = diamondData['Downgrade_Clarity'][i]
+                ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
+                szgr = fetch_size(shape, sizeprec)
                 rap = fetchrap(shape, szgr, color, clarity)
+                rap_value = rap * sizeprec
+                diamondData['RAP_VALUE'][i] = rap_value
+                # Function calls to determine ktos, size range, cutcomments and rap_price ##################
+
                 diamondData['RAP'][i] = rap
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
@@ -390,12 +451,21 @@ def page1():
                                       grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural,
                                       crownnatural,
                                       girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
-                                      downgrade2, days)
+                                      downgrade2, days,
+                                      min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle, cr_height, pv_angle,
+                                      pv_depth,
+                                      girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
+                                      lower_half,
+                                      open, natural, intended_natural, extra_facet, graining, rap_value)
                 print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
+            except ColumnError as c:
+                st.write(c.message)
+                break
             except Exception as e:
-                logging.error('Something went wrong', e)
+                logging.error('Something went wrong' + str(e))
+
         st.write(diamondData)
         st.download_button('Download CSV', diamondData.to_csv(index=False),
                            mime='text/csv', file_name='discountOutput.csv')

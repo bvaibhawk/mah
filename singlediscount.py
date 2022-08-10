@@ -45,7 +45,7 @@ def page2():
 
     with col3:
         color = st.selectbox("COLOUR*", options=['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N'])
-        dictCsv['COLOUR'] = color
+        dictCsv['COLOR'] = color
 
     with col4:
         clarity = st.selectbox("CLARITY*", options=['IF', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1', 'SI2', 'I1'])
@@ -57,11 +57,11 @@ def page2():
 
     with col6:
         polish = st.selectbox("POLISH*", options=['EX', 'GD', 'VG'])
-        dictCsv['POLISH'] = polish
+        dictCsv['POL'] = polish
 
     with col7:
         symmetry = st.selectbox("SYMMETRY*", options=['EX', 'GD', 'VG'])
-        dictCsv['SYMMETRY'] = symmetry
+        dictCsv['SY'] = symmetry
 
     with col8:
         fluo = st.selectbox("FLUO*", options=['Faint', 'Medium', 'None', 'Strong', 'Very Strong'])
@@ -73,10 +73,10 @@ def page2():
 
     with col10:
         ktos = st.number_input("KTOS")
-        dictCsv['KTOS'] = ktos
+        dictCsv['KEY_TO_SYMBOL'] = ktos
     with col11:
         sizeprec = st.number_input("PRECISE SIZE")
-        dictCsv['PRECISE SIZE'] = sizeprec
+        dictCsv['WEIGHT'] = sizeprec
     with col12:
         tableclean = st.selectbox("TABLE_CLEAN", options=['Yes', 'No'])
         dictCsv['TABLE_CLEAN'] = tableclean
@@ -85,7 +85,7 @@ def page2():
         dictCsv['EYE_CLEAN'] = eyeclean
     with col14:
         ha = st.selectbox("H&A", options=['Yes', 'No'])
-        dictCsv['H&A'] = ha
+        dictCsv['HA'] = ha
     with col15:
         cutcomments = st.selectbox("CUT_COMMENTS",
                                    options=['0', '3EX->EX1', '3EX->EX2', 'EX->EX1', 'EX->EX2', 'VG->VG1', 'VG->VG2',
@@ -105,10 +105,10 @@ def page2():
         dictCsv['Flawless'] = flawless
     with col20:
         tableintensity = st.selectbox("TABLE_INTENSITY", options=['NN', 'BT1+', 'BT1', 'BT2', 'BT3'])
-        dictCsv['TABLE_INTENSITY'] = tableintensity
+        dictCsv['TABLE_BLACK'] = tableintensity
     with col21:
         crownintensity = st.selectbox("CROWN_INTENSITY", options=['NN', 'BC1+', 'BC1', 'BC2', 'BC3'])
-        dictCsv['CROWN_INTENSITY'] = crownintensity
+        dictCsv['SIDE_BLACK'] = crownintensity
     with col22:
         topef = st.selectbox("Top_Extra_Facet", options=['0', 'EFT'])
         dictCsv['Top_Extra_Facet'] = topef
@@ -147,7 +147,7 @@ def page2():
         dictCsv['Pavilion_Chip'] = pavilionchip
     with col34:
         depth = st.number_input("Depth")
-        dictCsv['Depth'] = depth
+        dictCsv['TD '] = depth
     # with col26:
     #     pavilioninc = st.selectbox("PAVILION_INCLUSION_needless",options=['0','PP1', 'PP2', 'F1', 'F2','F3','F4','TW1','TW2','TW3','N1','N2','N3','N4','C1','C2','C3','CO1','CO2','CO3','CL1','CL2','CL3','None'])
     # with col27:
@@ -186,7 +186,7 @@ def page2():
         dictCsv['MILKY'] = milky
     with col39:
         days = st.number_input("Days")
-        dictCsv['Days'] = days
+        dictCsv['REF_DAYS'] = days
     with col40:
         tableopen = st.selectbox("TABLE_OPEN", options=['No', 'OHT', 'OT1', 'OT2', 'OT3'])
         dictCsv['TABLE_OPEN'] = tableopen
