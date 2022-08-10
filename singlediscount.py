@@ -7,7 +7,7 @@ from Discount import calcDiscount
 
 
 def page2():
-    with open1('diamond.pkl', 'rb') as handle:
+    with open('diamond.pkl', 'rb') as handle:
         model = pickle.load(handle)
 
     col1, col2, col3, col4, col5 = st.columns(5)
