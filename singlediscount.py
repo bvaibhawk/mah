@@ -236,12 +236,44 @@ def page2():
 
         # TO DO- WRITE FINISHING, PUT OPTIONS ACCORDINGLY, BGMROELSE
 
+        min_diam = ''
+        max_diam = ''
+        tabl = ''
+        height = ''
+        ratio = ''
+        col_shade = ''
+        cr_angle = ''
+        cr_height = ''
+        pv_angle = ''
+        pv_depth = ''
+        girdle_percentage = ''
+        girdle_from = ''
+        girdle_to = ''
+        girdle_condition = ''
+        star_length = ''
+        lower_half = ''
+        open1 = ''
+        natural = ''
+        intended_natural = ''
+        extra_facet = ''
+        graining = ''
+        cavity = ''
+        chip = ''
+        rap_value = ''
+
     result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
                           eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                           tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
                           girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip, depth, green,
                           grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural, crownnatural,
-                          girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days)
+                          girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days,
+                          min_diam, max_diam, tabl, height, ratio, col_shade,
+                          cr_angle,
+                          cr_height, pv_angle, pv_depth, girdle_percentage,
+                          girdle_from, girdle_to, girdle_condition,
+                          star_length, lower_half, open, natural,
+                          intended_natural, extra_facet, graining, rap_value
+                          )
 
 
 

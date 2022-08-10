@@ -415,7 +415,7 @@ def page1():
                 girdle_condition = column_default_validation(diamondData, 'GIRDLE_CONDITION', i)
                 star_length = column_default_validation(diamondData, 'STAR_LENGTH', i)
                 lower_half = column_default_validation(diamondData, 'LOWER_HALF', i)
-                open = column_default_validation(diamondData, 'OPEN', i)
+                open1 = column_default_validation(diamondData, 'OPEN', i)
                 natural = column_default_validation(diamondData, 'NATURAL', i)
                 intended_natural = column_default_validation(diamondData, 'INTENDED_NATURAL', i)
                 extra_facet = column_default_validation(diamondData, 'EXTRA_FACET', i)
@@ -430,7 +430,7 @@ def page1():
                                                                   cr_angle,
                                                                   cr_height, pv_angle, pv_depth, girdle_percentage,
                                                                   girdle_from, girdle_to, girdle_condition,
-                                                                  star_length, lower_half, open, natural,
+                                                                  star_length, lower_half, open1, natural,
                                                                   intended_natural, extra_facet, graining, rap_value)
                 cutcomments = diamondData['CUT_COMMENTS'][i]
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
@@ -456,7 +456,7 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                      open, natural, intended_natural, extra_facet, graining, rap_value)
+                                      open1, natural, intended_natural, extra_facet, graining, rap_value)
                 print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
