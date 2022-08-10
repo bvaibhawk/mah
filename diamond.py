@@ -306,7 +306,7 @@ def page1():
             newRapPrice = pd.read_csv(updated_file)
             rap_columns = ['SHAPE', 'CLARITY', 'COLOUR', 'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP']
             col_check = (x for x in rap_columns if x not in newRapPrice.keys())
-            if  len(list(col_check)) == 0:
+            if len(list(col_check)) == 0:
                 newRapPrice.to_csv('rap_price.csv')
                 last_updated.loc[len(last_updated['update_date'])] = [now.strftime(format)]
                 last_updated.to_csv('lastupdated.csv', index=False)
@@ -315,9 +315,10 @@ def page1():
             else:
                 with col5:
                     st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
-                         "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
+                             "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
 
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
+    result = 0.0
     if uploaded_file is not None:
         diamondData = pd.read_csv(uploaded_file)
         diamondData = diamondData.assign(DISCOUNT='NAN')
@@ -364,7 +365,7 @@ def page1():
                 milky = diamondData['MILKY'][i]
                 tableopen = diamondData['TABLE_OPEN'][i]
                 crownopen = diamondData['CROWN_OPEN'][i]
-                girdleopen = diamondData.get(i, 'No')
+                girdleopen = diamondData['GIRDLE_OPEN'][i]
                 pavilionopen = diamondData['PAVILION_OPEN'][i]
                 topnatural = diamondData['Top_Natural'][i]
                 crownnatural = diamondData['Crown_Natural'][i]
