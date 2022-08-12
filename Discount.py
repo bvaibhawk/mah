@@ -248,39 +248,39 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
             temp = result
             tempos=0
             if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=0.3 and sizeprec<=2.99:
-            for i in range(len(df)):
-                if (df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo and df['Cut'][i]=='GD' and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
-                    if color == 'D':
-                        tempos = df['D'][i]
-                        ff = 1
-                    elif color == 'E':
-                        tempos = df['E'][i]
-                        ff = 1
-                    elif color == 'F':
-                        tempos =  df['F'][i]
-                        ff = 1
-                    elif color == 'G':
-                        tempos =  df['G'][i]
-                        ff = 1
-                    elif color == 'H':
-                        tempos =  df['H'][i]
-                        ff = 1
-                    elif color == 'I':
-                        result = result + df['I'][i]
-                        ff = 1
-                    elif color == 'J':
-                        tempos =  df['J'][i]
-                        ff = 1
-                    elif color == 'L':
-                        tempos =  df['L'][i]
-                        ff = 1
-                    elif color == 'M':
-                        tempos =  df['M'][i]
-                        ff = 1
-                    elif color == 'K':
-                        tempos =  df['K'][i]
-                        ff = 1
-            result=result+max(-1*abs(result-tempos),-5)                    
+              for i in range(len(df)):
+                  if (df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo and df['Cut'][i]=='GD' and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
+                      if color == 'D':
+                          tempos = df['D'][i]
+                          ff = 1
+                      elif color == 'E':
+                          tempos = df['E'][i]
+                          ff = 1
+                      elif color == 'F':
+                          tempos =  df['F'][i]
+                          ff = 1
+                      elif color == 'G':
+                          tempos =  df['G'][i]
+                          ff = 1
+                      elif color == 'H':
+                          tempos =  df['H'][i]
+                          ff = 1
+                      elif color == 'I':
+                          result = result + df['I'][i]
+                          ff = 1
+                      elif color == 'J':
+                          tempos =  df['J'][i]
+                          ff = 1
+                      elif color == 'L':
+                          tempos =  df['L'][i]
+                          ff = 1
+                      elif color == 'M':
+                          tempos =  df['M'][i]
+                          ff = 1
+                      elif color == 'K':
+                          tempos =  df['K'][i]
+                          ff = 1
+              result=result+max(-1*abs(result-tempos),-5)                    
 
             # DIAMETER
     if (shape == 'RO'):
