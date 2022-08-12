@@ -54,6 +54,12 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 elif (cut == df['CUT'][i]):
                     result = df['Discount'][i]
                     ff = 1
+    if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1:
+        for i in range(len(df)):
+            if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+                tempo=df['Discount'][i]
+                result=result+max(-1*abs(result-tempo),-7)
+                break                
 
     temp = result
 
