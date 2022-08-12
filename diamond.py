@@ -476,6 +476,12 @@ def page1():
                 else:
                    diameter=min_diam
                 diamondData['RAP'][i] = rap
+                if graining=='IGR1' or graining=='IGR2' or graining=='IGR3':
+                  internalgrainig=graining
+                  surfacegraining='0'
+                else:
+                  internalgrainig='0'
+                  surfacegraining=graining
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
