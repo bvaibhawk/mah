@@ -466,7 +466,15 @@ def page1():
                 rap_value = rap * sizeprec
                 diamondData['RAP_VALUE'][i] = rap_value
                 # Function calls to determine ktos, size range, cutcomments and rap_price ##################
-                
+                if(sizeprec>=1):
+                   if(max_diam<=6.2)
+                    diameter=max_diam
+                   elif(min_diam>=6.3) 
+                    diameter=min_diam
+                   else 
+                    diameter=6.25         
+                else:
+                   diameter=min_diam
                 diamondData['RAP'][i] = rap
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
