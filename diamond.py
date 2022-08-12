@@ -427,7 +427,7 @@ def page1():
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
                 if(shape=='ROUND' or shape=='RD') 
-                  shape='RO
+                  shape='RO'
                 elif(shape=='CUSHION') 
                   shape='CS'
                 elif(shape=='EMRALD') 
