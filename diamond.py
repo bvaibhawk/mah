@@ -426,19 +426,19 @@ def page1():
                 chip = column_default_validation(diamondData, 'CHIP', i)
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
-                if(shape=='ROUND' or shape=='RD') 
+                if(shape=='ROUND' or shape=='RD'): 
                   shape='RO'
-                elif(shape=='CUSHION') 
+                elif(shape=='CUSHION'): 
                   shape='CS'
-                elif(shape=='EMRALD') 
+                elif(shape=='EMRALD'): 
                   shape='EM'
-                elif(shape=='MARQUISE' or shape=='MQ') 
+                elif(shape=='MARQUISE' or shape=='MQ'): 
                   shape='MAO'
-                elif(shape=='PEAR') 
+                elif(shape=='PEAR'): 
                   shape='PR'
-                elif(shape=='PRN') 
+                elif(shape=='PRN'): 
                   shape='PRINCESS'
-                elif(shape=='OVAL') 
+                elif(shape=='OVAL'): 
                   shape='OV'  
                    
                 if fluo=='FNT':
