@@ -333,7 +333,7 @@ def page1():
                 with col5:
                     st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
                              "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
-
+    
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
     result = 0.0
     if uploaded_file is not None:
@@ -426,7 +426,31 @@ def page1():
                 chip = column_default_validation(diamondData, 'CHIP', i)
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
-
+                if(shape=='ROUND' or shape=='RD) 
+                  shape='RO
+                elif(shape=='CUSHION') 
+                  shape='CS'
+                elif(shape=='EMRALD') 
+                  shape='EM'
+                elif(shape=='MARQUISE' or shape=='MQ') 
+                  shape='MAO'
+                elif(shape=='PEAR') 
+                  shape='PR'
+                elif(shape=='PRN') 
+                  shape='PRINCESS'
+                elif(shape=='OVAL') 
+                  shape='OV'  
+                   
+                if fluo=='FNT':
+                   fluo='Faint'
+                elif fluo=='MED':
+                   fluo='Medium'
+                elif fluo=='NON':
+                   fluo='None'   
+                elif fluo=='STG':
+                   fluo='Strong'
+                elif fluo=='VST':
+                   fluo='Very Strong'   
                 # Function calls to determine ktos, size range, cutcomments and rap_value ##################
                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade,
                                                                   cr_angle,
@@ -434,6 +458,7 @@ def page1():
                                                                   girdle_from, girdle_to, girdle_condition,
                                                                   star_length, lower_half, open1, natural,
                                                                   intended_natural, extra_facet, graining, rap_value)
+                  
                 cutcomments = diamondData['CUT_COMMENTS'][i]
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
@@ -441,7 +466,7 @@ def page1():
                 rap_value = rap * sizeprec
                 diamondData['RAP_VALUE'][i] = rap_value
                 # Function calls to determine ktos, size range, cutcomments and rap_price ##################
-
+                
                 diamondData['RAP'][i] = rap
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
