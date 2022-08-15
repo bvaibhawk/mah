@@ -69,17 +69,15 @@ st.text("\n")
 
 
 class ColumnError(Exception):
-    message = ''
-    def __int__(self, column):
-        self.message = column + ' is missing in the uploaded CSV file. ' \
-                                'Please upload the CSV file in correct format'
+    pass
 
 
 def column_default_validation(diamondData, col, i, defaultValue=None):
     if col in diamondData.keys():
         return diamondData[col][i]
     if defaultValue is None:
-        raise ColumnError(col)
+        raise ColumnError(col + ' is missing in the uploaded CSV file. ' \
+                                'Please upload the CSV file in correct format')
     return float(defaultValue) if defaultValue == 0 else defaultValue
 
 
@@ -336,6 +334,7 @@ def page1():
     
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
     result = 0.0
+    exception_flag = False
     if uploaded_file is not None:
         diamondData = pd.read_csv(uploaded_file)
         diamondData.columns = diamondData.columns.str.strip()
@@ -346,7 +345,7 @@ def page1():
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
         for i in range(len(diamondData)):
             try:
-                shape = column_default_validation(diamondData, 'SHAPE', i, 'RO')  # updated with client stock sheet
+                shape = column_default_validation(diamondData, 'SHAPE', i)  # updated with client stock sheet
                 szgr = '0.30-0.34'  # column_default_validation(diamondData, 'SIZE RANGE', i, '0.30-0.34')
                 color = column_default_validation(diamondData, 'COLOR', i, 'D')  # updated with client stock sheet
                 clarity = column_default_validation(diamondData, 'CLARITY', i, 'IF')  # updated with client stock sheet
@@ -502,13 +501,16 @@ def page1():
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except ColumnError as c:
-                st.write(c.message)
+                logging.error('Something went wrong, ' + str(c))
+                st.write(str(c))
+                exception_flag = True
                 break
-            except Exception as e:
+            except BaseException as e:
                 logging.error('Something went wrong' + str(e))
 
-        st.write(diamondData)
-        st.download_button('Download CSV', diamondData.to_csv(index=False),
+        if not exception_flag:
+            st.write(diamondData)
+            st.download_button('Download CSV', diamondData.to_csv(index=False),
                            mime='text/csv', file_name='discountOutput.csv')
 
 
