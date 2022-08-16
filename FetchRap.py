@@ -5,6 +5,8 @@ from pandasql import sqldf
 def fetchrap(shape, szgr, color, clarity):
     if shape == 'RO':
         shape = 'BR'
+    elif shape == 'PR':
+        shape = 'PS'
     pysqldf = lambda q: sqldf(q, globals())
     rapsheet = pd.read_csv('rap_price.csv')
     szlist = list(map(str, szgr.strip().split('-')))
