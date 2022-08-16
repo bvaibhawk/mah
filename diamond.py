@@ -3,6 +3,7 @@ import numpy as np
 import time
 
 import streamlit as st
+import traceback
 import logging
 import dill as pickle
 import pandas as pd
@@ -12,6 +13,9 @@ from datetime import date, datetime
 from Discount import calcDiscount, get_cut_comments
 from FetchRap import fetchrap, fetch_size
 from singlediscount import page2
+
+import warnings
+warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
                    menu_items=None)
@@ -378,7 +382,7 @@ def page1():
                 pavilionef = column_default_validation(diamondData, 'Pavilion_Extra_Facet', i, '0')
                 pavilioncavity = column_default_validation(diamondData, 'Pavilion_cavity', i, '0')
                 pavilionchip = column_default_validation(diamondData, 'Pavilion_Chip', i, '0')
-                depth = column_default_validation(diamondData, 'TD', i, 0)
+                depth = float(column_default_validation(diamondData, 'TD', i, 0))
                 green = column_default_validation(diamondData, 'GREEN', i, 'No')
                 grey = column_default_validation(diamondData, 'GREY', i, 'No')
                 brown = column_default_validation(diamondData, 'BROWN', i, '0')
@@ -429,7 +433,7 @@ def page1():
                   shape='RO'
                 elif(shape=='CUSHION'): 
                   shape='CS'
-                elif(shape=='EMRALD'): 
+                elif(shape=='EMERALD'):
                   shape='EM'
                 elif(shape=='MARQUISE' or shape=='MQ'): 
                   shape='MAO'
@@ -507,8 +511,10 @@ def page1():
                 break
             except BaseException as e:
                 logging.error('Something went wrong' + str(e))
+                logging.error(traceback.format_exc())
 
         if not exception_flag:
+            diamondData = diamondData.astype(str)
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
                            mime='text/csv', file_name='discountOutput.csv')

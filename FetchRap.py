@@ -38,7 +38,7 @@ def fetch_size(shape, sizeprec):
     else:
         size_range_fn = pd.read_csv('size_range_fancy.csv')
         for i in size_range_fn['FANCY']:
-            szlist = list(map(str, i.strip().split('-')))
+            szlist = list(map(float, i.strip().strip("'").split('-')))
             szmin = szlist[0]
             szmax = szlist[1]
             if szmin <= sizeprec <= szmax:
