@@ -406,8 +406,8 @@ def page1():
                 downgrade2 = column_default_validation(diamondData, 'Downgrade_Clarity', i, '0')
 
                 # new variables added here 10-08-2022
-                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
-                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
+                min_diam = float(column_default_validation(diamondData, 'MIN_DIAM', i))
+                max_diam = float(column_default_validation(diamondData, 'MAX_DIAM', i))
                 tabl = column_default_validation(diamondData, 'TABL', i)
                 height = column_default_validation(diamondData, 'HEIGHT', i)
                 ratio = column_default_validation(diamondData, 'RATIO', i)
@@ -512,7 +512,7 @@ def page1():
                 exception_flag = True
                 break
             except BaseException as e:
-                logging.error('Something went wrong' + str(e))
+                logging.error('Something went wrong with record number ' + str(i + 1) + ' ' + str(e))
                 logging.error(traceback.format_exc())
             records_processed.text(str(i) + ' out of ' + str(len(diamondData) - 1) + ' records processed')
             progress.progress(float(i) / (len(diamondData) - 1))
