@@ -347,6 +347,8 @@ def page1():
                 diamondData[i] = diamondData[i].str.strip()
         diamondData = diamondData.assign(DISCOUNT='')
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
+        records_processed = st.empty()
+        progress = st.progress(0)
         for i in range(len(diamondData)):
             try:
                 shape = column_default_validation(diamondData, 'SHAPE', i)  # updated with client stock sheet
@@ -501,7 +503,7 @@ def page1():
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
                                       open1, natural, intended_natural, extra_facet, graining, rap_value)
-                print(result)
+                # print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except ColumnError as c:
@@ -512,6 +514,9 @@ def page1():
             except BaseException as e:
                 logging.error('Something went wrong' + str(e))
                 logging.error(traceback.format_exc())
+            records_processed.text(str(i) + ' out of ' + str(len(diamondData) - 1) + ' records processed')
+            progress.progress(float(i) / (len(diamondData) - 1))
+
 
         if not exception_flag:
             diamondData = diamondData.astype(str)
