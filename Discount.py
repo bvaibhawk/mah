@@ -577,100 +577,102 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                                                             shape != 'RO' and (
                                                                             polish == 'VG' or polish == 'EX') and (
                                                                                     symmetry == 'VG' or symmetry == 'EX'))):
-        if (surfacegraining == '0' or internalgraining == '0' or surfacegraining == 'NN' or internalgraining == 'NN'):
-            df21 = pd.read_csv('graining.csv')
-            for i in range(len(df21)):
-                if surfacegraining == df21['Graining'][i]:
-                    if xx == 1:
-                        result = result + df21['1'][i]
-                    if xx == 2:
-                        result = result + df21['2'][i]
-                    if xx == 3:
-                        result = result + df21['3'][i]
-                    if xx == 4:
-                        result = result + df21['4'][i]
-                    if xx == 5:
-                        result = result + df21['5'][i]
-                    if xx == 6:
-                        result = result + df21['6'][i]
-                    if xx == 7:
-                        result = result + df21['7'][i]
-                    if xx == 8:
-                        result = result + df21['8'][i]
-                    if xx == 9:
-                        result = result + df21['9'][i]
-                    break
-            for i in range(len(df21)):
-                if internalgraining == df21['Graining'][i]:
-                    if xx == 1:
-                        result = result + df21['1'][i]
-                    if xx == 2:
-                        result = result + df21['2'][i]
-                    if xx == 3:
-                        result = result + df21['3'][i]
-                    if xx == 4:
-                        result = result + df21['4'][i]
-                    if xx == 5:
-                        result = result + df21['5'][i]
-                    if xx == 6:
-                        result = result + df21['6'][i]
-                    if xx == 7:
-                        result = result + df21['7'][i]
-                    if xx == 8:
-                        result = result + df21['8'][i]
-                    if xx == 9:
-                        result = result + df21['9'][i]
-                    break
-        else:
-            df21 = pd.read_csv('graining.csv')
-            result1 = 0
-            result2 = 0
-            for i in range(len(df21)):
-                if surfacegraining == df21['Graining'][i]:
-                    if xx == 1:
-                        result1 = result1 + df21['1'][i]
-                    if xx == 2:
-                        result1 = result1 + df21['2'][i]
-                    if xx == 3:
-                        result1 = result1 + df21['3'][i]
-                    if xx == 4:
-                        result1 = result1 + df21['4'][i]
-                    if xx == 5:
-                        result1 = result1 + df21['5'][i]
-                    if xx == 6:
-                        result1 = result1 + df21['6'][i]
-                    if xx == 7:
-                        result1 = result1 + df21['7'][i]
-                    if xx == 8:
-                        result1 = result1 + df21['8'][i]
-                    if xx == 9:
-                        result1 = result1 + df21['9'][i]
-                    break
-            for i in range(len(df21)):
-                if internalgraining == df21['Graining'][i]:
-                    if xx == 1:
-                        result2 = result2 + df21['1'][i]
-                    if xx == 2:
-                        result2 = result2 + df21['2'][i]
-                    if xx == 3:
-                        result2 = result2 + df21['3'][i]
-                    if xx == 4:
-                        result2 = result2 + df21['4'][i]
-                    if xx == 5:
-                        result2 = result2 + df21['5'][i]
-                    if xx == 6:
-                        result2 = result2 + df21['6'][i]
-                    if xx == 7:
-                        result2 = result2 + df21['7'][i]
-                    if xx == 8:
-                        result2 = result2 + df21['8'][i]
-                    if xx == 9:
-                        result2 = result2 + df21['9'][i]
-                    break
-            if (result1 >= result2):
-                result = result + result1
-            else:
-                result = result + result2
+        #if (surfacegraining == '0' or internalgraining == '0' or surfacegraining == 'NN' or internalgraining == 'NN'):
+#             df21 = pd.read_csv('graining.csv')
+#             result1 = 0
+#             result2 = 0
+#             for i in range(len(df21)):
+#                 if surfacegraining == df21['Graining'][i]:
+#                     if xx == 1:
+#                         result1 = result1 + df21['1'][i]
+#                     if xx == 2:
+#                         result1 = result1 + df21['2'][i]
+#                     if xx == 3:
+#                         result1 = result1 + df21['3'][i]
+#                     if xx == 4:
+#                         result1 = result1 + df21['4'][i]
+#                     if xx == 5:
+#                         result = result + df21['5'][i]
+#                     if xx == 6:
+#                         result = result + df21['6'][i]
+#                     if xx == 7:
+#                         result = result + df21['7'][i]
+#                     if xx == 8:
+#                         result = result + df21['8'][i]
+#                     if xx == 9:
+#                         result = result + df21['9'][i]
+#                     break
+#             for i in range(len(df21)):
+#                 if internalgraining == df21['Graining'][i]:
+#                     if xx == 1:
+#                         result = result + df21['1'][i]
+#                     if xx == 2:
+#                         result = result + df21['2'][i]
+#                     if xx == 3:
+#                         result = result + df21['3'][i]
+#                     if xx == 4:
+#                         result = result + df21['4'][i]
+#                     if xx == 5:
+#                         result = result + df21['5'][i]
+#                     if xx == 6:
+#                         result = result + df21['6'][i]
+#                     if xx == 7:
+#                         result = result + df21['7'][i]
+#                     if xx == 8:
+#                         result = result + df21['8'][i]
+#                     if xx == 9:
+#                         result = result + df21['9'][i]
+#                     break
+#         else:
+          df21 = pd.read_csv('graining.csv')
+          result1 = 0
+          result2 = 0
+          for i in range(len(df21)):
+              if surfacegraining == df21['Graining'][i]:
+                  if xx == 1:
+                      result1 = result1 + df21['1'][i]
+                  if xx == 2:
+                      result1 = result1 + df21['2'][i]
+                  if xx == 3:
+                      result1 = result1 + df21['3'][i]
+                  if xx == 4:
+                      result1 = result1 + df21['4'][i]
+                  if xx == 5:
+                      result1 = result1 + df21['5'][i]
+                  if xx == 6:
+                      result1 = result1 + df21['6'][i]
+                  if xx == 7:
+                      result1 = result1 + df21['7'][i]
+                  if xx == 8:
+                      result1 = result1 + df21['8'][i]
+                  if xx == 9:
+                      result1 = result1 + df21['9'][i]
+                  break
+          for i in range(len(df21)):
+              if internalgraining == df21['Graining'][i]:
+                  if xx == 1:
+                      result2 = result2 + df21['1'][i]
+                  if xx == 2:
+                      result2 = result2 + df21['2'][i]
+                  if xx == 3:
+                      result2 = result2 + df21['3'][i]
+                  if xx == 4:
+                      result2 = result2 + df21['4'][i]
+                  if xx == 5:
+                      result2 = result2 + df21['5'][i]
+                  if xx == 6:
+                      result2 = result2 + df21['6'][i]
+                  if xx == 7:
+                      result2 = result2 + df21['7'][i]
+                  if xx == 8:
+                      result2 = result2 + df21['8'][i]
+                  if xx == 9:
+                      result2 = result2 + df21['9'][i]
+                  break
+          if (result1 <= result2):
+              result = result + result1
+          else:
+              result = result + result2
 
     if ha == 'Yes':
         if shape == 'RO':
