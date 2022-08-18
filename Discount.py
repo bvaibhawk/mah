@@ -12,7 +12,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                  girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                  lower_half,
                  open1, natural, intended_natural, extra_facet, graining, rap_value, base, gdd,ktosd,colourd,diameterd,colshaded,milkyd,cutcommentsd,
-                 grainingd,had,eyecleand,tablecleand,blackd,sideblackd,sizepremd,
+                 grainingd,had,eyecleand,tablecleand,blackd,sideblackd,sizepremd,identedtopnatural,identedcrownnatural,cavityd,chipd,depthd,capped
                  ):
     # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
@@ -3139,6 +3139,166 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                         if xx == 9:
                             result = result + df31['9'][i] / 2
             naturald=result-tempnat
+            temppp=result
+            for i in range(len(df31)):
+                if (identedtopnatural == df31['open'][i] and cut == df31['Cut'][i]):
+                    
+                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+                        if xx == 1:
+                            result = result + df31['1'][i]
+                        if xx == 2:
+                            result = result + df31['2'][i]
+                        if xx == 3:
+                            result = result + df31['3'][i]
+                        if xx == 4:
+                            result = result + df31['4'][i]
+                        if xx == 5:
+                            result = result + df31['5'][i]
+                        if xx == 6:
+                            result = result + df31['6'][i]
+                        if xx == 7:
+                            result = result + df31['7'][i]
+                        if xx == 8:
+                            result = result + df31['8'][i]
+                        if xx == 9:
+                            result = result + df31['9'][i]
+                    else:
+                        if xx == 1:
+                            result = result + df31['1'][i] / 2
+                        if xx == 2:
+                            result = result + df31['2'][i] / 2
+                        if xx == 3:
+                            result = result + df31['3'][i] / 2
+                        if xx == 4:
+                            result = result + df31['4'][i] / 2
+                        if xx == 5:
+                            result = result + df31['5'][i] / 2
+                        if xx == 6:
+                            result = result + df31['6'][i] / 2
+                        if xx == 7:
+                            result = result + df31['7'][i] / 2
+                        if xx == 8:
+                            result = result + df31['8'][i] / 2
+                        if xx == 9:
+                            result = result + df31['9'][i] / 2
+                if (identedcrownnatural == df31['open'][i] and cut == df31['Cut'][i]):
+                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+                        if xx == 1:
+                            result = result + df31['1'][i]
+                        if xx == 2:
+                            result = result + df31['2'][i]
+                        if xx == 3:
+                            result = result + df31['3'][i]
+                        if xx == 4:
+                            result = result + df31['4'][i]
+                        if xx == 5:
+                            result = result + df31['5'][i]
+                        if xx == 6:
+                            result = result + df31['6'][i]
+                        if xx == 7:
+                            result = result + df31['7'][i]
+                        if xx == 8:
+                            result = result + df31['8'][i]
+                        if xx == 9:
+                            result = result + df31['9'][i]
+                    else:
+                        if xx == 1:
+                            result = result + df31['1'][i] / 2
+                        if xx == 2:
+                            result = result + df31['2'][i] / 2
+                        if xx == 3:
+                            result = result + df31['3'][i] / 2
+                        if xx == 4:
+                            result = result + df31['4'][i] / 2
+                        if xx == 5:
+                            result = result + df31['5'][i] / 2
+                        if xx == 6:
+                            result = result + df31['6'][i] / 2
+                        if xx == 7:
+                            result = result + df31['7'][i] / 2
+                        if xx == 8:
+                            result = result + df31['8'][i] / 2
+                        if xx == 9:
+                            result = result + df31['9'][i] / 2
+                if (identedgirdlenatural == df31['open'][i] and cut == df31['Cut'][i]):
+                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+                        if xx == 1:
+                            result = result + df31['1'][i]
+                        if xx == 2:
+                            result = result + df31['2'][i]
+                        if xx == 3:
+                            result = result + df31['3'][i]
+                        if xx == 4:
+                            result = result + df31['4'][i]
+                        if xx == 5:
+                            result = result + df31['5'][i]
+                        if xx == 6:
+                            result = result + df31['6'][i]
+                        if xx == 7:
+                            result = result + df31['7'][i]
+                        if xx == 8:
+                            result = result + df31['8'][i]
+                        if xx == 9:
+                            result = result + df31['9'][i]
+                    else:
+                        if xx == 1:
+                            result = result + df31['1'][i] / 2
+                        if xx == 2:
+                            result = result + df31['2'][i] / 2
+                        if xx == 3:
+                            result = result + df31['3'][i] / 2
+                        if xx == 4:
+                            result = result + df31['4'][i] / 2
+                        if xx == 5:
+                            result = result + df31['5'][i] / 2
+                        if xx == 6:
+                            result = result + df31['6'][i] / 2
+                        if xx == 7:
+                            result = result + df31['7'][i] / 2
+                        if xx == 8:
+                            result = result + df31['8'][i] / 2
+                        if xx == 9:
+                            result = result + df31['9'][i] / 2
+                if (identedpavilionnatural == df31['open'][i] and cut == df31['Cut'][i]):
+                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+                        if xx == 1:
+                            result = result + df31['1'][i]
+                        if xx == 2:
+                            result = result + df31['2'][i]
+                        if xx == 3:
+                            result = result + df31['3'][i]
+                        if xx == 4:
+                            result = result + df31['4'][i]
+                        if xx == 5:
+                            result = result + df31['5'][i]
+                        if xx == 6:
+                            result = result + df31['6'][i]
+                        if xx == 7:
+                            result = result + df31['7'][i]
+                        if xx == 8:
+                            result = result + df31['8'][i]
+                        if xx == 9:
+                            result = result + df31['9'][i]
+                    else:
+                        if xx == 1:
+                            result = result + df31['1'][i] / 2
+                        if xx == 2:
+                            result = result + df31['2'][i] / 2
+                        if xx == 3:
+                            result = result + df31['3'][i] / 2
+                        if xx == 4:
+                            result = result + df31['4'][i] / 2
+                        if xx == 5:
+                            result = result + df31['5'][i] / 2
+                        if xx == 6:
+                            result = result + df31['6'][i] / 2
+                        if xx == 7:
+                            result = result + df31['7'][i] / 2
+                        if xx == 8:
+                            result = result + df31['8'][i] / 2
+                        if xx == 9:
+                            result = result + df31['9'][i] / 2
+            identednaturald=result-temp
             temppp=result
             for i in range(len(df31)):
                 if (topef == df31['open'][i] and cut == df31['Cut'][i]):
