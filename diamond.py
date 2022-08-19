@@ -487,22 +487,41 @@ def page1():
                 else:
                   internalgrainig='0'
                   surfacegraining=graining
-                result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
-                                      tableclean,
-                                      eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
-                                      tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity,
-                                      crownchip,
-                                      girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip,
-                                      depth, green,
-                                      grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural,
-                                      crownnatural,
-                                      girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
-                                      downgrade2, days,
-                                      min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle, cr_height, pv_angle,
-                                      pv_depth,
-                                      girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
-                                      lower_half,
-                                      open1, natural, intended_natural, extra_facet, graining, rap_value)
+                diamondData['BaseD']=0
+                diamondData['GDD']=0
+                diamondData['KtosD']=0
+                diamondData['colourd']=0
+                diamondData['diameterd']=0
+                diamondData['colshaded']=0
+                diamondData['KtosD']=0
+                diamondData['milkyd']=0
+                diamondData['grainingd']=0
+                diamondData['had']=0
+                diamondData['eyecleand']=0
+                diamondData['tablecleand']=0
+                diamondData['blackd']=0
+                diamondData['sideblackd']=0
+                diamondData['sizepremd']=0
+                diamondData['identedtopnatural']=0
+                diamondData['cavityd']=0
+                diamondData['chipd']=0
+                diamondData['depthd']=0
+                diamondData['capped']=0
+#                 diamondData['identedcrownnatural']=0
+#                 diamondData['identedcrownnatural']=0
+                
+                result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
+                         eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
+                         tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
+                         girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip, depth, green,
+                         grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural, crownnatural,
+                         girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days,
+                         min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle, cr_height, pv_angle,
+                         pv_depth,
+                         girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
+                         lower_half,
+                         open1, natural, intended_natural, extra_facet, graining, rap_value, diamondData['BaseD'],  diamondData['GDD'], diamondData['KtosD'], diamondData['colourd'], diamondData['diameterd'], diamondData['colshaded'], diamondData['KtosD'], diamondData['milkyd'], diamondData['grainingd'],  diamondData['had'],diamondData['eyecleand'],diamondData['tablecleand'],diamondData['blackd']=0, diamondData['sideblackd'],diamondData['sizepremd'], diamondData['identedtopnatural'],diamondData['cavityd'],diamondData['chipd'],diamondData['depthd'],diamondData['capped']
+                 )
                 # print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
