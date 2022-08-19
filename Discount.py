@@ -1714,7 +1714,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         elif sizeprec >= 0.78 and sizeprec <= 0.789:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
-                    sizepremd=1
+                sizepremd=1
                 result = result + 1
         elif sizeprec >= 0.79 and sizeprec <= 0.799:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
