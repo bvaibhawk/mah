@@ -15,6 +15,7 @@ from FetchRap import fetchrap, fetch_size
 from singlediscount import page2
 
 import warnings
+
 warnings.filterwarnings("ignore")
 
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
@@ -335,7 +336,7 @@ def page1():
                 with col5:
                     st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
                              "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
-    
+
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
     result = 0.0
     exception_flag = False
@@ -347,6 +348,27 @@ def page1():
                 diamondData[i] = diamondData[i].str.strip()
         diamondData = diamondData.assign(DISCOUNT='')
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
+        diamondData['BaseD'] = 0
+        diamondData['GDD'] = 0
+        diamondData['KtosD'] = 0
+        diamondData['colourd'] = 0
+        diamondData['diameterd'] = 0
+        diamondData['colshaded'] = 0
+        diamondData['KtosD'] = 0
+        diamondData['milkyd'] = 0
+        diamondData['grainingd'] = 0
+        diamondData['had'] = 0
+        diamondData['eyecleand'] = 0
+        diamondData['tablecleand'] = 0
+        diamondData['blackd'] = 0
+        diamondData['sideblackd'] = 0
+        diamondData['sizepremd'] = 0
+        diamondData['identedtopnatural'] = 0
+        diamondData['cavityd'] = 0
+        diamondData['chipd'] = 0
+        diamondData['depthd'] = 0
+        diamondData['capped'] = 0
+        diamondData['identedcrownnatural'] = 0
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -431,39 +453,39 @@ def page1():
                 chip = column_default_validation(diamondData, 'CHIP', i)
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
-                if(shape=='ROUND' or shape=='RD'): 
-                  shape='RO'
-                elif(shape=='CUSHION'): 
-                  shape='CS'
-                elif(shape=='EMERALD'):
-                  shape='EM'
-                elif(shape=='MARQUISE' or shape=='MQ'): 
-                  shape='MAO'
-                elif(shape=='PEAR'): 
-                  shape='PR'
-                elif(shape=='PRN'): 
-                  shape='PRINCESS'
-                elif(shape=='OVAL'): 
-                  shape='OV'  
-                   
-                if fluo=='FNT':
-                   fluo='Faint'
-                elif fluo=='MED':
-                   fluo='Medium'
-                elif fluo=='NON':
-                   fluo='None'   
-                elif fluo=='STG':
-                   fluo='Strong'
-                elif fluo=='VST':
-                   fluo='Very Strong'   
-                # Function calls to determine ktos, size range, cutcomments and rap_value ##################
+                if (shape == 'ROUND' or shape == 'RD'):
+                    shape = 'RO'
+                elif (shape == 'CUSHION'):
+                    shape = 'CS'
+                elif (shape == 'EMERALD'):
+                    shape = 'EM'
+                elif (shape == 'MARQUISE' or shape == 'MQ'):
+                    shape = 'MAO'
+                elif (shape == 'PEAR'):
+                    shape = 'PR'
+                elif (shape == 'PRN'):
+                    shape = 'PRINCESS'
+                elif (shape == 'OVAL'):
+                    shape = 'OV'
+
+                if fluo == 'FNT':
+                    fluo = 'Faint'
+                elif fluo == 'MED':
+                    fluo = 'Medium'
+                elif fluo == 'NON':
+                    fluo = 'None'
+                elif fluo == 'STG':
+                    fluo = 'Strong'
+                elif fluo == 'VST':
+                    fluo = 'Very Strong'
+                    # Function calls to determine ktos, size range, cutcomments and rap_value ##################
                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade,
                                                                   cr_angle,
                                                                   cr_height, pv_angle, pv_depth, girdle_percentage,
                                                                   girdle_from, girdle_to, girdle_condition,
                                                                   star_length, lower_half, open1, natural,
                                                                   intended_natural, extra_facet, graining, rap_value)
-                  
+
                 cutcomments = diamondData['CUT_COMMENTS'][i]
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
@@ -471,57 +493,48 @@ def page1():
                 rap_value = rap * sizeprec
                 diamondData['RAP_VALUE'][i] = rap_value
                 # Function calls to determine ktos, size range, cutcomments and rap_price ##################
-                if(sizeprec>=1):
-                   if(max_diam<=6.2):
-                    diameter=max_diam
-                   elif(min_diam>=6.3): 
-                    diameter=min_diam
-                   else: 
-                    diameter=6.25         
+                if (sizeprec >= 1):
+                    if (max_diam <= 6.2):
+                        diameter = max_diam
+                    elif (min_diam >= 6.3):
+                        diameter = min_diam
+                    else:
+                        diameter = 6.25
                 else:
-                   diameter=min_diam
+                    diameter = min_diam
                 diamondData['RAP'][i] = rap
-                if graining=='IGR1' or graining=='IGR2' or graining=='IGR3':
-                  internalgrainig=graining
-                  surfacegraining='0'
+                if graining == 'IGR1' or graining == 'IGR2' or graining == 'IGR3':
+                    internalgrainig = graining
+                    surfacegraining = '0'
                 else:
-                  internalgrainig='0'
-                  surfacegraining=graining
-                diamondData['BaseD']=0
-                diamondData['GDD']=0
-                diamondData['KtosD']=0
-                diamondData['colourd']=0
-                diamondData['diameterd']=0
-                diamondData['colshaded']=0
-                diamondData['KtosD']=0
-                diamondData['milkyd']=0
-                diamondData['grainingd']=0
-                diamondData['had']=0
-                diamondData['eyecleand']=0
-                diamondData['tablecleand']=0
-                diamondData['blackd']=0
-                diamondData['sideblackd']=0
-                diamondData['sizepremd']=0
-                diamondData['identedtopnatural']=0
-                diamondData['cavityd']=0
-                diamondData['chipd']=0
-                diamondData['depthd']=0
-                diamondData['capped']=0
-#                 diamondData['identedcrownnatural']=0
-#                 diamondData['identedcrownnatural']=0
-                
-                result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
-                         eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
-                         tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
-                         girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip, depth, green,
-                         grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural, crownnatural,
-                         girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days,
-                         min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle, cr_height, pv_angle,
-                         pv_depth,
-                         girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
-                         lower_half,
-                         open1, natural, intended_natural, extra_facet, graining, rap_value, diamondData['BaseD'],  diamondData['GDD'], diamondData['KtosD'], diamondData['colourd'], diamondData['diameterd'], diamondData['colshaded'], diamondData['KtosD'], diamondData['milkyd'], diamondData['grainingd'],  diamondData['had'],diamondData['eyecleand'],diamondData['tablecleand'],diamondData['blackd'], diamondData['sideblackd'],diamondData['sizepremd'], diamondData['identedtopnatural'],diamondData['cavityd'],diamondData['chipd'],diamondData['depthd'],diamondData['capped']
-                 )
+                    internalgrainig = '0'
+                    surfacegraining = graining
+
+                result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
+                                      tableclean,
+                                      eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
+                                      tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity,
+                                      crownchip,
+                                      girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip,
+                                      depth, green,
+                                      grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural,
+                                      crownnatural,
+                                      girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
+                                      downgrade2, days,
+                                      min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle, cr_height, pv_angle,
+                                      pv_depth,
+                                      girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
+                                      lower_half,
+                                      open1, natural, intended_natural, extra_facet, graining, rap_value,
+                                      diamondData['BaseD'], diamondData['GDD'], diamondData['KtosD'],
+                                      diamondData['colourd'], diamondData['diameterd'], diamondData['colshaded'],
+                                      diamondData['milkyd'], diamondData['KtosD'], diamondData['grainingd'],
+                                      diamondData['had'], diamondData['eyecleand'], diamondData['tablecleand'],
+                                      diamondData['blackd'], diamondData['sideblackd'], diamondData['sizepremd'],
+                                      diamondData['identedtopnatural'], diamondData['identedcrownnatural'],
+                                      diamondData['cavityd'], diamondData['chipd'], diamondData['depthd'],
+                                      diamondData['capped']
+                                      )
                 # print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
@@ -533,20 +546,19 @@ def page1():
             except BaseException as e:
                 logging.error('Something went wrong with record number ' + str(i + 1) + ' ' + str(e))
                 logging.error(traceback.format_exc())
-            records_processed.text(str(i) + ' out of ' + str(len(diamondData) - 1) + ' records processed')
-            progress.progress(float(i) / (len(diamondData) - 1))
-
+            records_processed.text(str(i + 1) + ' out of ' + str(len(diamondData)) + ' records processed')
+            progress.progress(float(i + 1) / (len(diamondData)))
 
         if not exception_flag:
             diamondData = diamondData.astype(str)
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
-                           mime='text/csv', file_name='discountOutput.csv')
+                               mime='text/csv', file_name='discountOutput.csv')
 
 
 page_names = {
-    'Single calculate': page2,
-    "Bulk upload": page1
+    "Bulk upload": page1,
+    'Single calculate': page2
 
 }
 
