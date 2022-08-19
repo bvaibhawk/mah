@@ -520,7 +520,7 @@ def page1():
                          pv_depth,
                          girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                          lower_half,
-                         open1, natural, intended_natural, extra_facet, graining, rap_value, diamondData['BaseD'],  diamondData['GDD'], diamondData['KtosD'], diamondData['colourd'], diamondData['diameterd'], diamondData['colshaded'], diamondData['KtosD'], diamondData['milkyd'], diamondData['grainingd'],  diamondData['had'],diamondData['eyecleand'],diamondData['tablecleand'],diamondData['blackd']=0, diamondData['sideblackd'],diamondData['sizepremd'], diamondData['identedtopnatural'],diamondData['cavityd'],diamondData['chipd'],diamondData['depthd'],diamondData['capped']
+                         open1, natural, intended_natural, extra_facet, graining, rap_value, diamondData['BaseD'],  diamondData['GDD'], diamondData['KtosD'], diamondData['colourd'], diamondData['diameterd'], diamondData['colshaded'], diamondData['KtosD'], diamondData['milkyd'], diamondData['grainingd'],  diamondData['had'],diamondData['eyecleand'],diamondData['tablecleand'],diamondData['blackd'], diamondData['sideblackd'],diamondData['sizepremd'], diamondData['identedtopnatural'],diamondData['cavityd'],diamondData['chipd'],diamondData['depthd'],diamondData['capped']
                  )
                 # print(result)
                 diamondData['DISCOUNT'][i] = result
