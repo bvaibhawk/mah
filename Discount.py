@@ -1,6 +1,4 @@
 import pandas as pd
-
-
 def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
                  eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                  tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
@@ -42,7 +40,8 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
             xx = 9
     for i in range(len(df)):
         # and polish == df['POL'][i] and symmetry == df['SYM'][i]
-        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][
+            i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
             if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                 if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
                     result = df['Discount'][i]
@@ -54,149 +53,111 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     result = df['Discount'][i]
                     ff = 1
     temp = result
-    base=temp
     if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
         for i in range(len(df)):
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                 tempo=df['Discount'][i]
                 result=result+max(-1*abs(result-tempo),-7)
-                gdd=max(-1*abs(result-tempo),-7)
                 break                
-
     
-
     if ff == 1:
-
         result = result * 100
         temp = result
-
         if shape == 'RO':
             if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
                 if color == 'D':
-                    ktosd=3
                     result = result + 3
                 else:
-                    ktosd=2
                     result = result + 2
             if sizeprec >= 1.50 and sizeprec <= 1.999 and cut == 'EX':
                 if color == 'D':
-                    ktosd=2
                     result = result + 2
                 else:
-                    ktosd=1
                     result = result + 1
             if sizeprec >= 2.00 and sizeprec <= 2.999 and cut == 'EX':
                 if color == 'D':
-                    ktosd=2
                     result = result + 2
                 else:
-                    ktosd=1
                     result = result + 1
-
             if xx == 1:
                 if ktos == 1:
-                    ktosd=1
                     result = result + 1.0
                 elif ktos >= 5:
-                    ktosd=-1
                     result = -1.0 + result
             elif xx == 2:
                 if ktos == 1:
-                    ktosd=1
                     result = result + 1.0
                 elif ktos >= 5:
-                    ktosd=-1
                     result = -1.0 + result
             elif xx == 3:
                 if ktos == 1:
-                    ktosd=1
                     result = result + 1.0
                 elif ktos >= 5:
-                    ktosd=-1
                     result = -1.0 + result
             elif xx == 4:
                 if ktos == 1:
-                    ktosd=1.5
                     result = result + 1.5
                 elif ktos >= 5:
-                    ktosd=-1
                     result = -1.0 + result
             elif xx == 5:
                 if ktos == 1:
-                    ktosd=1.5
                     result = result + 1.5
                 if ktos >= 5:
-                    ktosd=-1
                     result = -1.0 + result
             elif xx == 6:
                 if ktos == 1:
-                    ktosd=1
                     result = result + 1.0
                 if ktos >= 5:
-                    ktosd=0.0
                     result = 0.0 + result
             elif xx == 1:
                 if ktos == 1:
-                    ktosd=3
                     result = result + 3.0
                 if ktos >= 5:
-                    ktosd=0
                     result = 0.0 + result
-
                     # colour
             if color == 'M':
                 if szgr == '1.01-1.09' or szgr == '2.01-2.09' or szgr == '1.50-1.69':
                     if cut == 'EX':
-                        colourd=-7
                         result = -7 + result
-
             # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
             #     if cut=='VG':
     else:
         df2 = pd.read_csv('toaminfancy.csv')
         result = 0.00
-
         for i in range(len(df2)):
             if clarity == 'IF':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['IF'][i]
-                    base= df2['IF'][i]
                     ff = 2
                     break
             elif clarity == 'VVS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['VVS1'][i]
-                    base= df2['VVS1'][i]
                     ff = 2
                     break
             elif clarity == 'VVS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['VVS2'][i]
-                    base=df2['VVS2'][i]
                     ff = 2
                     break
             elif clarity == 'VS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['VS1'][i]
-                    base=result
                     ff = 2
                     break
             elif clarity == 'VS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['VS2'][i]
-                    base=result
                     ff = 2
                     break
             elif clarity == 'SI1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['SI1'][i]
-                    base=result
                     ff = 2
                     break
             elif clarity == 'SI2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = df2['SI2'][i]
-                    base=result
                     ff = 2
                     break
             temp = result
@@ -208,46 +169,35 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                         if df['Cut'][i] == 'EX' and df['Polish'][i] == 'EX' and df['Symmetry'][i] == 'EX':
                             if color == 'D':
                                 result = result + df['D'][i]
-                                base=result
                                 ff = 1
                             elif color == 'E':
                                 result = result + df['E'][i]
-                                base=result
                                 ff = 1
                             elif color == 'F':
                                 result = result + df['F'][i]
-                                base=result
                                 ff = 1
                             elif color == 'G':
                                 result = result + df['G'][i]
-                                base=result
                                 ff = 1
                             elif color == 'H':
                                 result = result + df['H'][i]
-                                base=result
                                 ff = 1
                             elif color == 'I':
                                 result = result + df['I'][i]
-                                base=result
                                 ff = 1
                             elif color == 'J':
                                 result = result + df['J'][i]
-                                base=result
                                 ff = 1
                             elif color == 'L':
                                 result = result + df['L'][i]
-                                base=result
                                 ff = 1
                             elif color == 'M' or color == 'N':
                                 result = result + df['M'][i]
-                                base=result
                                 color = 'M'
                                 result = result - 7
-                                
                                 ff = 1
                             elif color == 'K':
                                 result = result + df['K'][i]
-                                base=result
                                 ff = 1
                             break
                     else:
@@ -256,43 +206,33 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                         if (cut == df['Cut'][i] and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
                             if color == 'D':
                                 result = result + df['D'][i]
-                                base=result
                                 ff = 1
                             elif color == 'E':
                                 result = result + df['E'][i]
-                                base=result
                                 ff = 1
                             elif color == 'F':
                                 result = result + df['F'][i]
-                                base=result
                                 ff = 1
                             elif color == 'G':
                                 result = result + df['G'][i]
-                                base=result
                                 ff = 1
                             elif color == 'H':
                                 result = result + df['H'][i]
-                                base=result
                                 ff = 1
                             elif color == 'I':
                                 result = result + df['I'][i]
-                                base=result
                                 ff = 1
                             elif color == 'J':
                                 result = result + df['J'][i]
-                                base=result
                                 ff = 1
                             elif color == 'L':
                                 result = result + df['L'][i]
-                                base=result
                                 ff = 1
                             elif color == 'M':
                                 result = result + df['M'][i]
-                                base=result
                                 ff = 1
                             elif color == 'K':
                                 result = result + df['K'][i]
-                                base=result
                                 ff = 1
                             break
             temp = result
@@ -330,9 +270,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
-              result=result+max(-1*abs(result-tempos),-5)    
-              gdd=max(-1*abs(result-tempos),-5)                 
-
+              result=result+max(-1*abs(result-tempos),-5)                    
             # DIAMETER
     if (shape == 'RO'):
         if sizeprec >= 1.0 and sizeprec <= 1.49:
@@ -340,135 +278,97 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 if (xx == 1):
                     if diameter <= 6.2:
                         result = result - 0.5
-                        diameterd=-0.5
                     elif diameter >= 6.3:
                         result = result + 1.5
-                        diameterd=1.5
                 elif (xx == 2):
                     if diameter <= 6.2:
                         result = result - 0.5
-                        diameterd=-0.5
                     elif diameter >= 6.3:
                         result = result + 1.5
-                        diameterd=1.5
                 elif (xx == 3 or xx == 4):
                     if diameter <= 6.2:
                         result = result - 0.5
-                        diameterd=-0.5
                     elif diameter >= 6.3:
-                        diameterd=1.5
                         result = result + 1.5
                 elif (xx == 5):
                     if diameter <= 6.2:
-                        diameterd=-0.1
                         result = result - 0.1
                     elif diameter >= 6.3:
-                        diameterd=1.5
                         result = result + 1.5
                 elif (xx == 6):
                     if diameter <= 6.2:
-                        diameterd=-0.5
                         result = result - 0.5
                     elif diameter >= 6.3:
-                        diameterd=1.5
                         result = result + 1.5
                 elif (xx == 7):
                     if diameter <= 6.2:
-                        diameterd=0
                         result = result - 0.0
                     elif diameter >= 6.3:
-                        diameterd=0
                         result = result + 1.0
                 elif (xx == 8):
                     if diameter <= 6.2:
-                        diameterd=0
                         result = result - 0.0
                     elif diameter >= 6.3:
-                        diameterd=1
                         result = result + 1.0
         if cut == 'EX' and polish == 'EX' and symmetry == 'EX' and (fluo == 'None' or fluo == 'Faint'):
             if sizeprec >= 0.35 and sizeprec <= 0.399 and diameter > 4.5:
                 if color == 'D':
                     if clarity == 'IF':
-                        diameterd=9
                         result = result + 9
                     elif clarity == 'VVS1':
                         result = result + 14
-                        diameterd=14
                     elif clarity == 'VVS2':
-                        diameterd=21
                         result = result + 21
                 if color == 'E':
                     if clarity == 'IF':
-                        diameterd=7
                         result = result + 7
                     elif clarity == 'VVS1':
-                        diameterd=8
                         result = result + 8
                     elif clarity == 'VVS2':
-                        diameterd=2
                         result = result + 2
                 if color == 'F':
                     if clarity == 'IF':
-                        diameterd=7
                         result = result + 7
                     elif clarity == 'VVS1':
-                        diameterd=7
                         result = result + 7
                     elif clarity == 'VVS2':
-                        diameterd=2
                         result = result + 2
             if sizeprec >= 0.60 and sizeprec <= 0.649 and diameter > 5.4:
                 if color == 'D':
                     if clarity == 'IF':
-                        diameterd=6
                         result = result + 6
                     elif clarity == 'VVS1':
                         result = result + 9
-                        diameterd=9
                     elif clarity == 'VVS2':
                         result = result + 9
-                        diameterd=9
                 if color == 'E':
                     if clarity == 'IF':
-                        diameterd=7
                         result = result + 7
                     elif clarity == 'VVS1':
-                        diameterd=5
                         result = result + 5
                     elif clarity == 'VVS2':
-                        diameterd=1
                         result = result + 1
                 if color == 'F':
                     if clarity == 'IF':
-                        diameterd=6
                         result = result + 6
                     elif clarity == 'VVS1':
                         result = result + 6
-                        diameterd=6
                     elif clarity == 'VVS2':
-                        diameterd=1
                         result = result + 1
             if sizeprec >= 0.80 and sizeprec <= 0.849 and diameter > 6.0:
                 if color == 'D':
                     if clarity == 'IF':
-                        diameterd=16
                         result = result + 16
                     elif clarity == 'VVS1':
-                        diameterd=10
                         result = result + 10
                     elif clarity == 'VVS2':
-                        diameterd=11
                         result = result + 11
                 if color == 'E':
                     if clarity == 'IF':
-                        diameterd=5
                         result = result + 5
                     elif clarity == 'VVS1':
-                        diameterd=4
                         result = result + 4
                     elif clarity == 'VVS2':
-                        diameterd=13
                         result = result + 13
                 if color == 'F':
                     if clarity == 'IF':
@@ -480,35 +380,25 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
             if sizeprec >= 0.95 and sizeprec <= 0.999 and diameter > 6.3:
                 if color == 'D':
                     if clarity == 'IF':
-                        diameterd=5
                         result = result + 5
                     elif clarity == 'VVS1':
-                        diameterd=6
                         result = result + 6
                     elif clarity == 'VVS2':
-                        diameterd=7
                         result = result + 7
                 if color == 'E':
                     if clarity == 'IF':
-                        diameterd=6
                         result = result + 6
                     elif clarity == 'VVS1':
-                        diameterd=5
                         result = result + 5
                     elif clarity == 'VVS2':
-                        diameterd=5
                         result = result + 5
                 if color == 'F':
                     if clarity == 'IF':
                         result = result + 6
-                        diameterd=6
                     elif clarity == 'VVS1':
                         result = result + 6
-                        diameterd=6
                     elif clarity == 'VVS2':
                         result = result + 5
-                        diameterd=5
-
                         # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
     if (((cut == 'EX' or cut == 'VG') & (polish == 'EX' or polish == 'VG') & (symmetry == 'EX' or symmetry == 'VG')) & (
             fluo == 'None' or fluo == 'Medium')):
@@ -518,48 +408,39 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
             # next line giving eror
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
             elif ((shape != 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
-
         # GREY
         for i in range(len(df3)):
             # next line giving eror
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
             elif ((shape != 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i] == 'FANCY')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
                 # GREEN
         for i in range(len(df3)):
             # next line giving eror
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
                 result = result + float(df3['Discount'][i])
-                colshaded=df3['Discount'][i]
                 break
             elif ((shape != 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + float(df3['Discount'][i])
-                colshaded=df3['Discount'][i]
                 break
                 # MILKY
         for i in range(len(df3)):
             # next line giving eror
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
                 result = result + float(df3['Discount'][i])
-                milkyd=float(df3['Discount'][i])
                 break
             elif ((shape != 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + float(df3['Discount'][i])
-                milkyd=float(df3['Discount'][i])
                 break
                 # #OFFCOLOR
                 # for i in range(len(df3)):
@@ -575,29 +456,24 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         for i in range(len(df3)):
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
             if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                milkyd=df3['Discount'][i]
                 break
                 # for i in range(len(df3)):
         #     if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i])):
         #         result=result+df3['Discount'][i]
         #         break
     # add dossiers as well-irrelevant I guess now
-
     # Cut
     if ((fluo == 'MED') and (cutcomments == 'VG->VG2' or cutcomments == 'G->GD2')) or shape != 'RO':
         result = result
@@ -605,89 +481,60 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         if cutcomments == '3EX->EX2':
             if (xx == 1):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 2):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 3):
                 result = result - 1.0
-                cutcommentsd=-1
             elif (xx == 4):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 5):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 6):
                 result = result - 1.0
-                cutcommentsd=-1
             elif (xx == 7):
                 result = result - 1.0
-                cutcommentsd=-1
             elif (xx == 8):
                 result = result - 1.0
-                cutcommentsd=-1
             elif (xx == 9):
                 result = result - 0.5
-                cutcommentsd=-0.5
-
         if cutcomments == 'EX->EX2':
             if (xx == 1):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 2):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 3):
                 result = result - 1.0
-                cutcommentsd=-1
             elif (xx == 4):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 5):
                 result = result - 2.0
-                cutcommentsd=-2
             elif (xx == 6):
                 result = result - 1.0
-                cutcommentsd=-1
             elif (xx == 7):
                 result = result - 1.5
-                cutcommentsd=-1.5
             elif (xx == 8):
                 result = result - 1.5
-                cutcommentsd=-1.5
             elif (xx == 9):
                 result = result - 0.5
-                cutcommentsd=-0.5
         if cutcomments == 'VG->VG1':
             if (xx == 1):
                 result = result + 2.0
-                cutcommentsd=2
             elif (xx == 2):
                 result = result + 2.0
-                cutcommentsd=2
             elif (xx == 3):
                 result = result + 2.0
-                cutcommentsd=2
             elif (xx == 4):
                 result = result + 2.0
-                cutcommentsd=2
             elif (xx == 5):
                 result = result + 2.0
-                cutcommentsd=2
             elif (xx == 6):
                 result = result + 1.5
-                cutcommentsd=1.5
             elif (xx == 7):
                 result = result + 1.5
-                cutcommentsd=1.5
             elif (xx == 8):
                 result = result + 1.0
-                cutcommentsd=1
             elif (xx == 9):
                 result = result + 1.0
-                cutcommentsd=1
-
     # Graining- add vg+ condition and the extra comment-done
     # if internalgraining=='IGR2':
     #     if xx==1 or xx==2:
@@ -714,6 +561,100 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                                                             shape != 'RO' and (
                                                                             polish == 'VG' or polish == 'EX') and (
                                                                                     symmetry == 'VG' or symmetry == 'EX'))):
+        if (surfacegraining == '0' or internalgraining == '0' or surfacegraining == 'NN' or internalgraining == 'NN'):
+            df21 = pd.read_csv('graining.csv')
+            for i in range(len(df21)):
+                if surfacegraining == df21['Graining'][i]:
+                    if xx == 1:
+                        result = result + df21['1'][i]
+                    if xx == 2:
+                        result = result + df21['2'][i]
+                    if xx == 3:
+                        result = result + df21['3'][i]
+                    if xx == 4:
+                        result = result + df21['4'][i]
+                    if xx == 5:
+                        result = result + df21['5'][i]
+                    if xx == 6:
+                        result = result + df21['6'][i]
+                    if xx == 7:
+                        result = result + df21['7'][i]
+                    if xx == 8:
+                        result = result + df21['8'][i]
+                    if xx == 9:
+                        result = result + df21['9'][i]
+                    break
+            for i in range(len(df21)):
+                if internalgraining == df21['Graining'][i]:
+                    if xx == 1:
+                        result = result + df21['1'][i]
+                    if xx == 2:
+                        result = result + df21['2'][i]
+                    if xx == 3:
+                        result = result + df21['3'][i]
+                    if xx == 4:
+                        result = result + df21['4'][i]
+                    if xx == 5:
+                        result = result + df21['5'][i]
+                    if xx == 6:
+                        result = result + df21['6'][i]
+                    if xx == 7:
+                        result = result + df21['7'][i]
+                    if xx == 8:
+                        result = result + df21['8'][i]
+                    if xx == 9:
+                        result = result + df21['9'][i]
+                    break
+        else:
+            df21 = pd.read_csv('graining.csv')
+            result1 = 0
+            result2 = 0
+            for i in range(len(df21)):
+                if surfacegraining == df21['Graining'][i]:
+                    if xx == 1:
+                        result1 = result1 + df21['1'][i]
+                    if xx == 2:
+                        result1 = result1 + df21['2'][i]
+                    if xx == 3:
+                        result1 = result1 + df21['3'][i]
+                    if xx == 4:
+                        result1 = result1 + df21['4'][i]
+                    if xx == 5:
+                        result1 = result1 + df21['5'][i]
+                    if xx == 6:
+                        result1 = result1 + df21['6'][i]
+                    if xx == 7:
+                        result1 = result1 + df21['7'][i]
+                    if xx == 8:
+                        result1 = result1 + df21['8'][i]
+                    if xx == 9:
+                        result1 = result1 + df21['9'][i]
+                    break
+            for i in range(len(df21)):
+                if internalgraining == df21['Graining'][i]:
+                    if xx == 1:
+                        result2 = result2 + df21['1'][i]
+                    if xx == 2:
+                        result2 = result2 + df21['2'][i]
+                    if xx == 3:
+                        result2 = result2 + df21['3'][i]
+                    if xx == 4:
+                        result2 = result2 + df21['4'][i]
+                    if xx == 5:
+                        result2 = result2 + df21['5'][i]
+                    if xx == 6:
+                        result2 = result2 + df21['6'][i]
+                    if xx == 7:
+                        result2 = result2 + df21['7'][i]
+                    if xx == 8:
+                        result2 = result2 + df21['8'][i]
+                    if xx == 9:
+                        result2 = result2 + df21['9'][i]
+                    break
+            if (result1 >= result2):
+                result = result + result1
+            else:
+                result = result + result2
         #if (surfacegraining == '0' or internalgraining == '0' or surfacegraining == 'NN' or internalgraining == 'NN'):
 #             df21 = pd.read_csv('graining.csv')
 #             result1 = 0
@@ -768,7 +709,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
               if surfacegraining == df21['Graining'][i]:
                   if xx == 1:
                       result1 = result1 + df21['1'][i]
-                      
                   if xx == 2:
                       result1 = result1 + df21['2'][i]
                   if xx == 3:
@@ -808,85 +748,60 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                       result2 = result2 + df21['9'][i]
                   break
           if (result1 <= result2):
-        
               result = result + result1
-              grainingd=result1
           else:
               result = result + result2
-              grainingd=result2
 
     if ha == 'Yes':
         if shape == 'RO':
             if xx == 1:
                 result = result + 1
-                had=1
             if xx == 2:
                 result = result + 1
-                had=1
             if xx == 3:
                 result = result + 0.5
-                had=0.5
             if xx == 4:
                 result = result + 1
-                had=1
             if xx == 5:
                 result = result + 1
-                had=1
             if xx == 6:
                 result = result + 0.5
-                had=0.5
             if xx == 7:
                 result = result + 1
-                had=1
             if xx == 8:
                 result = result + 1
-                had=1
             if xx == 9:
                 result = result + 0
-                had=0
     if eyeclean == 'Yes':
         if shape == 'RO':
             if xx == 7:
                 result = result + 1.5
-                eyecleand=1.5
             if xx == 8:
                 result = result + 1.5
-                eyecleand=1.5
             if xx == 9:
                 result = result + 1
-                eyecleand=1
         else:
             if xx == 7:
                 result = result + 1.5
-                eyecleand=1.5
             if xx == 8:
                 result = result + 1.5
-                eyecleand=1.5
             if xx == 9 or xx == 5 or xx == 6:
-                eyecleand=0.5
                 result = result + 0.5
     if tableclean == 'Yes':
         if shape == 'RO':
             if xx == 4 or xx == 5 or xx == 6:
-                tablecleand=0.5
                 result = result + 0.5
             if xx == 8 or xx == 7:
-                tablecleand=2.0
                 result = result + 2.0
             if xx == 9:
-                tablecleand=1
                 result = result + 1
         else:
             if xx == 4 or xx == 5:
-                tablecleand=1
                 result = result + 1.0
             if xx == 8 or xx == 7:
-                tablecleand=2
                 result = result + 2.0
             if xx == 9:
-                tablecleand=1
                 result = result + 1
-
                 # #extras- NOT properly written- change line 445
     # df4=pd.read_csv('extras.csv')
     # for i in range(len(df4)):
@@ -951,7 +866,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df4['8'][i]
     #                 elif xx==9:
     #                     result=result+df4['9'][i]
-
     #     if(shape!='RO'):
     #         if(df4['extras'][i]=='H&A' and df4['shape'][i]=='Fancy'):
     #             if(df4['value'][i]==ha):
@@ -1013,7 +927,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df4['8'][i]
     #                 if xx==9:
     #                     result=result+df4['9'][i]
-
     # Inclusion Grading
     # df5=pd.read_csv('inc_grad.csv')
     # for i in range(len(df5)):
@@ -1108,7 +1021,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #             if xx==9:
     #                 result=result+df5['9'][i]
     #             break
-
     # BLACK
     #  (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)
     df6 = pd.read_csv('black.csv')
@@ -1119,93 +1031,65 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 if ((sizeprec >= df6['sizemin'][i]) & (cut == df6['cut'][i]) & (sizeprec <= df6['sizemax'][i]) & (
                         tableintensity == df6['Intensity'][i])):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-
                         if xx == 1:
-                            blackd=df6['1'][i]
                             result = result + df6['1'][i]
                         if xx == 2:
-                            blackd=df6['2'][i]
                             result = result + df6['2'][i]
                         if xx == 3:
-                            blackd=df6['3'][i]
                             result = result + df6['3'][i]
                         if xx == 4:
-                            blackd=df6['4'][i]
                             result = result + df6['4'][i]
                         if xx == 5:
-                            blackd=df6['5'][i]
                             result = result + df6['5'][i]
                         if xx == 6:
-                            blackd=df6['6'][i]
                             result = result + df6['6'][i]
                         if xx == 7:
-                            blackd=df6['7'][i]
                             result = result + df6['7'][i]
                         if xx == 8:
-                            blackd=df6['8'][i]
                             result = result + df6['8'][i]
                         if xx == 9:
-                            blackd=df6['9'][i]
                             result = result + df6['9'][i]
                         break
                     else:
                         if xx == 1:
                             result = result + df6['1'][i] / 2
-                            blackd=df6['1'][i]/2
                         if xx == 2:
                             result = result + df6['2'][i] / 2
-                            blackd=df6['2'][i]/2
                         if xx == 3:
-                            blackd=df6['3'][i]/2
                             result = result + df6['3'][i] / 2
                         if xx == 4:
-                            blackd=df6['4'][i]/2
                             result = result + df6['4'][i] / 2
                         if xx == 5:
-                            blackd=df6['5'][i]/2
                             result = result + df6['5'][i] / 2
                         if xx == 6:
-                            blackd=df6['6'][i]/2
                             result = result + df6['6'][i] / 2
                         if xx == 7:
-                            blackd=df6['7'][i]/2
                             result = result + df6['7'][i] / 2
                         if xx == 8:
-                            blackd=df6['8'][i]/2
                             result = result + df6['8'][i] / 2
                         if xx == 9:
-                            blackd=df6['9'][i]/2
                             result = result + df6['9'][i] / 2
                         break
             if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
                 if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
                     i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
                     if xx == 1:
-                        blackd=df6['1'][i]
                         result = result + df6['1'][i]
                     if xx == 2:
-                        blackd=df6['2'][i]
                         result = result + df6['2'][i]
                     if xx == 3:
-                        blackd=df6['3'][i]
                         result = result + df6['3'][i]
                     if xx == 4:
-                        blackd=df6['4'][i]
                         result = result + df6['4'][i]
                     if xx == 5:
-                        blackd=df6['5'][i]
                         result = result + df6['5'][i]
                     if xx == 6:
-                        blackd=df6['6'][i]
                         result = result + df6['6'][i]
                     if xx == 7:
-                        blackd=df6['7'][i]
                         result = result + df6['7'][i]
                     if xx == 8:
-                        blackd=df6['8'][i]
                         result = result + df6['8'][i]
                     if xx == 9:
-                        blackd=df6['9'][i]
                         result = result + df6['9'][i]
                     break
         # table
@@ -1215,232 +1099,201 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
                         df6['Intensity'][i] == crownintensity):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-
                         if xx == 1:
                             result = result + df6['1'][i]
-                            sideblackd=df6['1'][i]
                         if xx == 2:
                             result = result + df6['2'][i]
-                            sideblackd=df6['2'][i]
                         if xx == 3:
                             result = result + df6['3'][i]
-                            sideblackd=df6['3'][i]
                         if xx == 4:
-                            sideblackd=df6['4'][i]
                             result = result + df6['4'][i]
                         if xx == 5:
-                            sideblackd=df6['5'][i]
                             result = result + df6['5'][i]
                         if xx == 6:
-                            sideblackd=df6['6'][i]
                             result = result + df6['6'][i]
                         if xx == 7:
-                            sideblackd=df6['7'][i]
                             result = result + df6['7'][i]
                         if xx == 8:
-                            sideblackd=df6['8'][i]
                             result = result + df6['8'][i]
                         if xx == 9:
-                            sideblackd=df6['9'][i]
                             result = result + df6['9'][i]
                         break
                     else:
                         if xx == 1:
-                            sideblackd=df6['1'][i]/2
                             result = result + df6['1'][i] / 2
                         if xx == 2:
-                            sideblackd=df6['2'][i]/2
                             result = result + df6['2'][i] / 2
                         if xx == 3:
-                            sideblackd=df6['3'][i]/2
                             result = result + df6['3'][i] / 2
                         if xx == 4:
-                            sideblackd=df6['4'][i]/2
                             result = result + df6['4'][i] / 2
                         if xx == 5:
-                            sideblackd=df6['5'][i]/2
                             result = result + df6['5'][i] / 2
                         if xx == 6:
-                            sideblackd=df6['6'][i]/2
                             result = result + df6['6'][i] / 2
                         if xx == 7:
-                            sideblackd=df6['7'][i]/2
                             result = result + df6['7'][i] / 2
                         if xx == 8:
-                            sideblackd=df6['8'][i]/2
                             result = result + df6['8'][i] / 2
                         if xx == 9:
-                            sideblackd=df6['9'][i]/2
                             result = result + df6['9'][i] / 2
                         break
             if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
                 if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
                     i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == crownintensity):
                     if xx == 1:
-                        sideblackd=df6['1'][i]
                         result = result + df6['1'][i]
                     if xx == 2:
-                        sideblackd=df6['2'][i]
                         result = result + df6['2'][i]
                     if xx == 3:
-                        sideblackd=df6['3'][i]
                         result = result + df6['3'][i]
                     if xx == 4:
-                        sideblackd=df6['4'][i]
                         result = result + df6['4'][i]
                     if xx == 5:
-                        sideblackd=df6['5'][i]
                         result = result + df6['5'][i]
                     if xx == 6:
-                        sideblackd=df6['6'][i]
                         result = result + df6['6'][i]
                     if xx == 7:
-                        sideblackd=df6['7'][i]
                         result = result + df6['7'][i]
                     if xx == 8:
-                        sideblackd=df6['8'][i]
                         result = result + df6['8'][i]
                     if xx == 9:
-                        sideblackd=df6['9'][i]
                         result = result + df6['9'][i]
                     break
-    # for i in range(len(df6)):
-    #     if (df6['Location'][i] == 'Girdle'):
-    #         if (df6['Shape'][i] == shape and shape == 'RO'):
-    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
-    #                     df6['Intensity'][i] == girdleintensity):
-    #                 if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-
-    #                     if xx == 1:
-    #                         result = result + df6['1'][i]
-    #                     if xx == 2:
-    #                         result = result + df6['2'][i]
-    #                     if xx == 3:
-    #                         result = result + df6['3'][i]
-    #                     if xx == 4:
-    #                         result = result + df6['4'][i]
-    #                     if xx == 5:
-    #                         result = result + df6['5'][i]
-    #                     if xx == 6:
-    #                         result = result + df6['6'][i]
-    #                     if xx == 7:
-    #                         result = result + df6['7'][i]
-    #                     if xx == 8:
-    #                         result = result + df6['8'][i]
-    #                     if xx == 9:
-    #                         result = result + df6['9'][i]
-    #                     break
-    #                 else:
-    #                     if xx == 1:
-    #                         result = result + df6['1'][i] / 2
-    #                     if xx == 2:
-    #                         result = result + df6['2'][i] / 2
-    #                     if xx == 3:
-    #                         result = result + df6['3'][i] / 2
-    #                     if xx == 4:
-    #                         result = result + df6['4'][i] / 2
-    #                     if xx == 5:
-    #                         result = result + df6['5'][i] / 2
-    #                     if xx == 6:
-    #                         result = result + df6['6'][i] / 2
-    #                     if xx == 7:
-    #                         result = result + df6['7'][i] / 2
-    #                     if xx == 8:
-    #                         result = result + df6['8'][i] / 2
-    #                     if xx == 9:
-    #                         result = result + df6['9'][i] / 2
-    #                     break
-    #         if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
-    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
-    #                 i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == girdleintensity):
-    #                 if xx == 1:
-    #                     result = result + df6['1'][i]
-    #                 if xx == 2:
-    #                     result = result + df6['2'][i]
-    #                 if xx == 3:
-    #                     result = result + df6['3'][i]
-    #                 if xx == 4:
-    #                     result = result + df6['4'][i]
-    #                 if xx == 5:
-    #                     result = result + df6['5'][i]
-    #                 if xx == 6:
-    #                     result = result + df6['6'][i]
-    #                 if xx == 7:
-    #                     result = result + df6['7'][i]
-    #                 if xx == 8:
-    #                     result = result + df6['8'][i]
-    #                 if xx == 9:
-    #                     result = result + df6['9'][i]
-    #                 break
-    # for i in range(len(df6)):
-    #     if (df6['Location'][i] == 'Pavilion'):
-    #         if (df6['Shape'][i] == shape and shape == 'RO'):
-    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
-    #                     df6['Intensity'][i] == pavilionintensity):
-    #                 if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-
-    #                     if xx == 1:
-    #                         result = result + df6['1'][i]
-    #                     if xx == 2:
-    #                         result = result + df6['2'][i]
-    #                     if xx == 3:
-    #                         result = result + df6['3'][i]
-    #                     if xx == 4:
-    #                         result = result + df6['4'][i]
-    #                     if xx == 5:
-    #                         result = result + df6['5'][i]
-    #                     if xx == 6:
-    #                         result = result + df6['6'][i]
-    #                     if xx == 7:
-    #                         result = result + df6['7'][i]
-    #                     if xx == 8:
-    #                         result = result + df6['8'][i]
-    #                     if xx == 9:
-    #                         result = result + df6['9'][i]
-    #                     break
-    #                 else:
-    #                     if xx == 1:
-    #                         result = result + df6['1'][i] / 2
-    #                     if xx == 2:
-    #                         result = result + df6['2'][i] / 2
-    #                     if xx == 3:
-    #                         result = result + df6['3'][i] / 2
-    #                     if xx == 4:
-    #                         result = result + df6['4'][i] / 2
-    #                     if xx == 5:
-    #                         result = result + df6['5'][i] / 2
-    #                     if xx == 6:
-    #                         result = result + df6['6'][i] / 2
-    #                     if xx == 7:
-    #                         result = result + df6['7'][i] / 2
-    #                     if xx == 8:
-    #                         result = result + df6['8'][i] / 2
-    #                     if xx == 9:
-    #                         result = result + df6['9'][i] / 2
-    #                     break
-    #         if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
-    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
-    #                 i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == pavilionintensity):
-    #                 if xx == 1:
-    #                     result = result + df6['1'][i]
-    #                 if xx == 2:
-    #                     result = result + df6['2'][i]
-    #                 if xx == 3:
-    #                     result = result + df6['3'][i]
-    #                 if xx == 4:
-    #                     result = result + df6['4'][i]
-    #                 if xx == 5:
-    #                     result = result + df6['5'][i]
-    #                 if xx == 6:
-    #                     result = result + df6['6'][i]
-    #                 if xx == 7:
-    #                     result = result + df6['7'][i]
-    #                 if xx == 8:
-    #                     result = result + df6['8'][i]
-    #                 if xx == 9:
-    #                     result = result + df6['9'][i]
-    #                 break
-
+    for i in range(len(df6)):
+        if (df6['Location'][i] == 'Girdle'):
+            if (df6['Shape'][i] == shape and shape == 'RO'):
+                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
+                        df6['Intensity'][i] == girdleintensity):
+                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+                        if xx == 1:
+                            result = result + df6['1'][i]
+                        if xx == 2:
+                            result = result + df6['2'][i]
+                        if xx == 3:
+                            result = result + df6['3'][i]
+                        if xx == 4:
+                            result = result + df6['4'][i]
+                        if xx == 5:
+                            result = result + df6['5'][i]
+                        if xx == 6:
+                            result = result + df6['6'][i]
+                        if xx == 7:
+                            result = result + df6['7'][i]
+                        if xx == 8:
+                            result = result + df6['8'][i]
+                        if xx == 9:
+                            result = result + df6['9'][i]
+                        break
+                    else:
+                        if xx == 1:
+                            result = result + df6['1'][i] / 2
+                        if xx == 2:
+                            result = result + df6['2'][i] / 2
+                        if xx == 3:
+                            result = result + df6['3'][i] / 2
+                        if xx == 4:
+                            result = result + df6['4'][i] / 2
+                        if xx == 5:
+                            result = result + df6['5'][i] / 2
+                        if xx == 6:
+                            result = result + df6['6'][i] / 2
+                        if xx == 7:
+                            result = result + df6['7'][i] / 2
+                        if xx == 8:
+                            result = result + df6['8'][i] / 2
+                        if xx == 9:
+                            result = result + df6['9'][i] / 2
+                        break
+            if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
+                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
+                    i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == girdleintensity):
+                    if xx == 1:
+                        result = result + df6['1'][i]
+                    if xx == 2:
+                        result = result + df6['2'][i]
+                    if xx == 3:
+                        result = result + df6['3'][i]
+                    if xx == 4:
+                        result = result + df6['4'][i]
+                    if xx == 5:
+                        result = result + df6['5'][i]
+                    if xx == 6:
+                        result = result + df6['6'][i]
+                    if xx == 7:
+                        result = result + df6['7'][i]
+                    if xx == 8:
+                        result = result + df6['8'][i]
+                    if xx == 9:
+                        result = result + df6['9'][i]
+                    break
+    for i in range(len(df6)):
+        if (df6['Location'][i] == 'Pavilion'):
+            if (df6['Shape'][i] == shape and shape == 'RO'):
+                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
+                        df6['Intensity'][i] == pavilionintensity):
+                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+                        if xx == 1:
+                            result = result + df6['1'][i]
+                        if xx == 2:
+                            result = result + df6['2'][i]
+                        if xx == 3:
+                            result = result + df6['3'][i]
+                        if xx == 4:
+                            result = result + df6['4'][i]
+                        if xx == 5:
+                            result = result + df6['5'][i]
+                        if xx == 6:
+                            result = result + df6['6'][i]
+                        if xx == 7:
+                            result = result + df6['7'][i]
+                        if xx == 8:
+                            result = result + df6['8'][i]
+                        if xx == 9:
+                            result = result + df6['9'][i]
+                        break
+                    else:
+                        if xx == 1:
+                            result = result + df6['1'][i] / 2
+                        if xx == 2:
+                            result = result + df6['2'][i] / 2
+                        if xx == 3:
+                            result = result + df6['3'][i] / 2
+                        if xx == 4:
+                            result = result + df6['4'][i] / 2
+                        if xx == 5:
+                            result = result + df6['5'][i] / 2
+                        if xx == 6:
+                            result = result + df6['6'][i] / 2
+                        if xx == 7:
+                            result = result + df6['7'][i] / 2
+                        if xx == 8:
+                            result = result + df6['8'][i] / 2
+                        if xx == 9:
+                            result = result + df6['9'][i] / 2
+                        break
+            if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
+                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
+                    i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == pavilionintensity):
+                    if xx == 1:
+                        result = result + df6['1'][i]
+                    if xx == 2:
+                        result = result + df6['2'][i]
+                    if xx == 3:
+                        result = result + df6['3'][i]
+                    if xx == 4:
+                        result = result + df6['4'][i]
+                    if xx == 5:
+                        result = result + df6['5'][i]
+                    if xx == 6:
+                        result = result + df6['6'][i]
+                    if xx == 7:
+                        result = result + df6['7'][i]
+                    if xx == 8:
+                        result = result + df6['8'][i]
+                    if xx == 9:
+                        result = result + df6['9'][i]
+                    break
                     # sizeprem
     # if ro or fancy
     # if 1-3 or 3-7
@@ -1453,11 +1306,8 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     for i in range(len(df7)):
                         if (sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                             result = result + df7['IF VVS F'][i] / 2
-                            sizepremd= df7['IF VVS F'][i] / 2
                         else:
                             result = result + df7['IF VVS F'][i]
-                            sizepremd= df7['IF VVS F'][i]
-
                 else:
                     df7 = pd.read_csv('roexsm.csv')
                     for i in range(len(df7)):
@@ -1466,74 +1316,56 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['1'][i] / 2
-                                    sizepremd= df7['1'][i]/2
                                 else:
                                     result = result + df7['1'][i]
-                                    sizepremd= df7['1'][i]
                             elif xx == 2:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['2'][i] / 2
-                                    sizepremd= df7['2'][i]
                                 else:
                                     result = result + df7['2'][i]
-                                    sizepremd= df7['2'][i]/2
                             elif xx == 3:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['3'][i] / 2
-                                    sizepremd= df7['3'][i]/2
                                 else:
                                     result = result + df7['3'][i]
-                                    sizepremd= df7['3'][i]
                             elif xx == 4:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['4'][i] / 2
-                                    sizepremd= df7['4'][i]/2
                                 else:
                                     result = result + df7['4'][i]
-                                    sizepremd= df7['4'][i]
                             elif xx == 5:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['5'][i] / 2
-                                    sizepremd= df7['5'][i]/2
                                 else:
                                     result = result + df7['5'][i]
-                                    sizepremd= df7['5'][i]
                             elif xx == 6:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['6'][i] / 2
-                                    sizepremd= df7['6'][i]/2
                                 else:
                                     result = result + df7['6'][i]
-                                    sizepremd= df7['6'][i]
                             elif xx == 7:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['7'][i] / 2
-                                    sizepremd= df7['7'][i]/2
                                 else:
                                     result = result + df7['7'][i]
-                                    sizepremd= df7['7'][i]
                             elif xx == 8:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['8'][i] / 2
-                                    sizepremd= df7['8'][i]/2
                                 else:
                                     result = result + df7['8'][i]
-                                    sizepremd= df7['8'][i]
                             elif xx == 9:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['9'][i] / 2
-                                    sizepremd= df7['9'][i]/2
                                 else:
                                     result = result + df7['9'][i]
-                                    sizepremd= df7['9'][i]
                             break
             else:
                 if color == 'F' and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
@@ -1541,11 +1373,8 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     for i in range(len(df7)):
                         if (sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                             result = result + df7['IF VVS F'][i] / 2
-                            sizepremd= df7['IF VVS F'][i] / 2
                         else:
-                            sizepremd= df7['IF VVS F'][i]
                             result = result + df7['IF VVS F'][i]
-
                 else:
                     df7 = pd.read_csv('rovgsm.csv')
                     for i in range(len(df7)):
@@ -1554,111 +1383,83 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['1'][i] / 2
-                                    sizepremd= df7['1'][i] / 2
                                 else:
                                     result = result + df7['1'][i]
-                                    sizepremd= df7['1'][i]
                             elif xx == 2:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['2'][i] / 2
-                                    sizepremd= df7['2'][i] / 2
                                 else:
                                     result = result + df7['2'][i]
-                                    sizepremd=  df7['2'][i]
                             elif xx == 3:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['3'][i] / 2
-                                    sizepremd= df7['3'][i] / 2
                                 else:
                                     result = result + df7['3'][i]
-                                    sizepremd= df7['3'][i]
                             elif xx == 4:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['4'][i] / 2
-                                    sizepremd=  df7['4'][i] / 2
                                 else:
                                     result = result + df7['4'][i]
-                                    sizepremd=  df7['4'][i]
                             elif xx == 5:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['5'][i] / 2
-                                    sizepremd= df7['5'][i] / 2
                                 else:
                                     result = result + df7['5'][i]
-                                    sizepremd= df7['5'][i]
                             elif xx == 6:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['6'][i] / 2
-                                    sizepremd= df7['6'][i] / 2
                                 else:
                                     result = result + df7['6'][i]
-                                    sizepremd= df7['6'][i]
                             elif xx == 7:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['7'][i] / 2
-                                    sizepremd= df7['7'][i] / 2
                                 else:
                                     result = result + df7['7'][i]
-                                    sizepremd= df7['7'][i]
                             elif xx == 8:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['8'][i] / 2
-                                    sizepremd=  df7['8'][i] / 2
                                 else:
                                     result = result + df7['8'][i]
-                                    sizepremd= df7['8'][i]
                             elif xx == 9:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and fluo == 'Strong' or fluo == 'Very Strong'):
                                     result = result + df7['9'][i] / 2
-                                    sizepremd= df7['9'][i] / 2
                                 else:
                                     result = result + df7['9'][i]
-                                    sizepremd=  df7['9'][i]
                             break
         elif sizeprec >= 3.00 and sizeprec <= 6.99:
             if (sizeprec >= 3.50 and sizeprec <= 3.749):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         result = result + 3.0
-                        sizepremd= 3
                     else:
                         result = result + 3.0
-                        sizepremd= 3
                 else:
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         result = result + 1.0
-                        sizepremd= 1
                     else:
-                        sizepremd= 1
                         result = result + 1.0
             elif (sizeprec >= 3.75 and sizeprec <= 3.999):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     result = result + 4.0
-                    sizepremd= 4
                 else:
-                    sizepremd= 2
                     result = result + 2.0
             elif (sizeprec >= 4.50 and sizeprec <= 4.99):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     result = result + 3.0
-                    sizepremd= 3
                 else:
-                    sizepremd= 1
                     result = result + 1.0
             elif (sizeprec >= 6.50 and sizeprec <= 6.99):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     result = result + 3.0
-                    sizepremd= 3
                 else:
-                    sizepremd= 2
                     result = result + 2.0
             else:
                 if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
@@ -1666,87 +1467,66 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         if (sizeprec >= 3.00 and sizeprec <= 3.00):
                             result = result - 2.0
-                            sizepremd= -2
                         elif (sizeprec >= 4.00 and sizeprec <= 4.00):
                             result = result - 2.0
-                            sizepremd= -2
                         elif (sizeprec >= 5.00 and sizeprec <= 5.00):
                             result = result - 1.0
-                            sizepremd= -1
                     else:
                         df7 = pd.read_csv('roexbg.csv')
                         for i in range(len(df7)):
                             if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
                                 if xx == 1:
-                                    sizepremd= df7['1'][i]
                                     result = result + df7['1'][i]
                                 if xx == 2:
-                                    sizepremd= df7['2'][i]
                                     result = result + df7['2'][i]
                                 if xx == 3:
-                                    sizepremd= df7['3'][i]
                                     result = result + df7['3'][i]
                                 if xx == 4:
-                                    sizepremd= df7['4'][i]
                                     result = result + df7['4'][i]
                                 if xx == 5:
-                                    sizepremd=  df7['5'][i]
                                     result = result + df7['5'][i]
                                 if xx == 6:
-                                    sizepremd= df7['6'][i]
                                     result = result + df7['6'][i]
                                 if xx == 7:
-                                    sizepremd=  df7['7'][i]
                                     result = result + df7['7'][i]
                                 if xx == 8:
-                                    sizepremd= df7['8'][i]
                                     result = result + df7['8'][i]
                                 if xx == 9:
-                                    sizepremd= df7['9'][i]
                                     result = result + df7['9'][i]
                                 break
         elif sizeprec >= 0.59 and sizeprec <= 0.599:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint'):
                 result = result + 1
-                sizepremd=1
         elif sizeprec >= 0.78 and sizeprec <= 0.789:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
-                sizepremd=1
                 result = result + 1
         elif sizeprec >= 0.79 and sizeprec <= 0.799:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 2
-                sizepremd=2
         elif sizeprec >= 0.87 and sizeprec <= 0.879:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 1
-                sizepremd=1
         elif sizeprec >= 0.88 and sizeprec <= 0.889:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 2
-                sizepremd=2
         elif sizeprec >= 0.89 and sizeprec <= 0.899:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 3
-                sizepremd=3
         elif sizeprec >= 0.98 and sizeprec <= 0.989:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 1
-                sizepremd=1
         elif sizeprec >= 0.99 and sizeprec <= 0.999:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 2
-                sizepremd=2
                 # Finishing
-
     # open
     # df9=pd.read_csv('Finishing.csv')
     # for i in range(len(df9)):
@@ -1755,7 +1535,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         if(df6['Shape'][i]==shape and shape=='RO'):
     #             if((sizeprec>=df6['sizemin'][i]) & (cut==df6['cut'][i]) & (sizeprec<=df6['sizemax'][i]) & (tableintensity==df6['Intensity'][i])):
     #                 if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df6['1'][i]
     #                     if xx==2:
@@ -1822,7 +1601,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         if(df6['Shape'][i]==shape and shape=='RO'):
     #             if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity'][i]==crownintensity):
     #                 if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df6['1'][i]
     #                     if xx==2:
@@ -1888,7 +1666,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         if(df6['Shape'][i]==shape and shape=='RO'):
     #             if(sizeprec>=df6['sizemin'][i] and sizeprec<=df6['sizemax'][i] and cut==df6['cut'][i] and df6['Intensity'][i]==girdleintensity):
     # if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #     if xx==1:
     #         result=result+df6['1'][i]
     #     if xx==2:
@@ -1934,7 +1711,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         #HO
     #         if(halfopen==df9['Place'][i] and df9['value'][i]=='HO' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -1974,7 +1750,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(smallopen==df9['Place'][i] and df9['value'][i]=='Small' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2014,7 +1789,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(bigopen==df9['Place'][i] and df9['value'][i]=='Big' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2054,7 +1828,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(mediumopen==df9['Place'][i] and df9['value'][i]=='Medium' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2096,7 +1869,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         #HO
     #         if(identednatural==df9['Place'][i] and df9['value'][i]=='Indented Natural' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2136,7 +1908,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(naturalnatural==df9['Place'][i] and df9['value'][i]=='Natural' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2176,7 +1947,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(bignatural==df9['Place'][i] and df9['value'][i]=='Big Natural' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2214,12 +1984,10 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['8'][i]/2
     #                     if xx==9:
     #                         result=result+df9['9'][i]/2
-
     #     for i in range(len(df9)):
     #         #HO
     #         if(extrafacet==df9['Place'][i] and df9['value'][i]=='Extra Facet') and cut==df9['Cut'][i]:
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2259,7 +2027,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(cavity==df9['Place'][i] and df9['value'][i]=='Cavity' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2299,7 +2066,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                         result=result+df9['9'][i]/2
     #         if(chip==df9['Place'][i] and df9['value'][i]=='Chip' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                     if xx==1:
     #                         result=result+df9['1'][i]
     #                     if xx==2:
@@ -2343,7 +2109,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         #HO
     #         if(halfopen==df9['Place'][i] and df9['value'][i]=='HO' and cut==df9['Cut'][i] and polish==df9['Polish'][i] and symmetry==df9['Symmetry'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2383,7 +2148,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(smallopen==df9['Place'][i] and df9['value'][i]=='Small' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2423,7 +2187,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(bigopen==df9['Place'][i] and df9['value'][i]=='Big' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2463,7 +2226,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(mediumopen==df9['Place'][i] and df9['value'][i]=='Medium' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2505,7 +2267,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #         #HO
     #         if(identednatural==df9['Place'][i] and df9['value'][i]=='Indented Natural' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2545,7 +2306,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(naturalnatural==df9['Place'][i] and df9['value'][i]=='Natural' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2585,7 +2345,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(bignatural==df9['Place'][i] and df9['value'][i]=='Big Natural' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2623,12 +2382,10 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['8'][i]/2
     #                 if xx==9:
     #                     result=result+df9['9'][i]/2
-
     #     for i in range(len(df9)):
     #         #HO
     #         if(extrafacet==df9['Place'][i] and df9['value'][i]=='Extra Facet') and cut==df9['Cut'][i]:
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2668,7 +2425,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(cavity==df9['Place'][i] and df9['value'][i]=='Cavity' and cut==df9['Cut'][i]):
     #             if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #                 if xx==1:
     #                     result=result+df9['1'][i]
     #                 if xx==2:
@@ -2708,7 +2464,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     #                     result=result+df9['9'][i]/2
     #         if(chip==df9['Place'][i] and df9['value'][i]=='Chip' and cut==df9['Cut'][i]):
     # if fluo!='None' and fluo!='Medium' and fluo!='Faint':
-
     #     if xx==1:
     #         result=result+df9['1'][i]
     #     if xx==2:
@@ -2753,235 +2508,160 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 if (tableopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend=df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend=df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend=df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=(df31['1'][i] / 2)
                             result = result + (df31['1'][i] / 2)
                         if xx == 2:
-                            opend=(df31['2'][i] / 2)
                             result = result + (df31['2'][i] / 2)
                         if xx == 3:
-                            opend=(df31['3'][i] / 2)
                             result = result + (df31['3'][i] / 2)
                         if xx == 4:
-                            opend=df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend=df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend=df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
                 if (girdleopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend=result + df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend=df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend=df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=df31['1'][i] / 2
                             result = result + df31['1'][i] / 2
                         if xx == 2:
-                            opend=df31['2'][i] / 2
                             result = result + df31['2'][i] / 2
                         if xx == 3:
-                            opend= df31['3'][i] / 2
                             result = result + df31['3'][i] / 2
                         if xx == 4:
-                            opend=df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend= df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend=df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
                 if (crownopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend= df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend= df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend= df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=df31['1'][i] / 2
                             result = result + df31['1'][i] / 2
                         if xx == 2:
-                            opend=df31['2'][i] / 2
                             result = result + df31['2'][i] / 2
                         if xx == 3:
-                            opend=df31['3'][i] / 2
                             result = result + df31['3'][i] / 2
                         if xx == 4:
-                            opend=df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend=df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend= df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
                 if (pavilionopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend=df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend=df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend=df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=df31['1'][i] / 2
                             result = result + df31['1'][i] / 2
                         if xx == 2:
-                            opend=df31['2'][i] / 2
                             result = result + df31['2'][i] / 2
                         if xx == 3:
-                            opend=df31['3'][i] / 2
                             result = result + df31['3'][i] / 2
                         if xx == 4:
-                            opend=df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend=df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend= df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
-            tempnat=result
-            for i in range(len(df31)):
                 if (topnatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
                             result = result + df31['1'][i]
@@ -3137,169 +2817,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            naturald=result-tempnat
-            temppp=result
-            for i in range(len(df31)):
-                if (identedtopnatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    
-                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-                        if xx == 1:
-                            result = result + df31['1'][i]
-                        if xx == 2:
-                            result = result + df31['2'][i]
-                        if xx == 3:
-                            result = result + df31['3'][i]
-                        if xx == 4:
-                            result = result + df31['4'][i]
-                        if xx == 5:
-                            result = result + df31['5'][i]
-                        if xx == 6:
-                            result = result + df31['6'][i]
-                        if xx == 7:
-                            result = result + df31['7'][i]
-                        if xx == 8:
-                            result = result + df31['8'][i]
-                        if xx == 9:
-                            result = result + df31['9'][i]
-                    else:
-                        if xx == 1:
-                            result = result + df31['1'][i] / 2
-                        if xx == 2:
-                            result = result + df31['2'][i] / 2
-                        if xx == 3:
-                            result = result + df31['3'][i] / 2
-                        if xx == 4:
-                            result = result + df31['4'][i] / 2
-                        if xx == 5:
-                            result = result + df31['5'][i] / 2
-                        if xx == 6:
-                            result = result + df31['6'][i] / 2
-                        if xx == 7:
-                            result = result + df31['7'][i] / 2
-                        if xx == 8:
-                            result = result + df31['8'][i] / 2
-                        if xx == 9:
-                            result = result + df31['9'][i] / 2
-                if (identedcrownnatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-                        if xx == 1:
-                            result = result + df31['1'][i]
-                        if xx == 2:
-                            result = result + df31['2'][i]
-                        if xx == 3:
-                            result = result + df31['3'][i]
-                        if xx == 4:
-                            result = result + df31['4'][i]
-                        if xx == 5:
-                            result = result + df31['5'][i]
-                        if xx == 6:
-                            result = result + df31['6'][i]
-                        if xx == 7:
-                            result = result + df31['7'][i]
-                        if xx == 8:
-                            result = result + df31['8'][i]
-                        if xx == 9:
-                            result = result + df31['9'][i]
-                    else:
-                        if xx == 1:
-                            result = result + df31['1'][i] / 2
-                        if xx == 2:
-                            result = result + df31['2'][i] / 2
-                        if xx == 3:
-                            result = result + df31['3'][i] / 2
-                        if xx == 4:
-                            result = result + df31['4'][i] / 2
-                        if xx == 5:
-                            result = result + df31['5'][i] / 2
-                        if xx == 6:
-                            result = result + df31['6'][i] / 2
-                        if xx == 7:
-                            result = result + df31['7'][i] / 2
-                        if xx == 8:
-                            result = result + df31['8'][i] / 2
-                        if xx == 9:
-                            result = result + df31['9'][i] / 2
-                if (identedgirdlenatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-                        if xx == 1:
-                            result = result + df31['1'][i]
-                        if xx == 2:
-                            result = result + df31['2'][i]
-                        if xx == 3:
-                            result = result + df31['3'][i]
-                        if xx == 4:
-                            result = result + df31['4'][i]
-                        if xx == 5:
-                            result = result + df31['5'][i]
-                        if xx == 6:
-                            result = result + df31['6'][i]
-                        if xx == 7:
-                            result = result + df31['7'][i]
-                        if xx == 8:
-                            result = result + df31['8'][i]
-                        if xx == 9:
-                            result = result + df31['9'][i]
-                    else:
-                        if xx == 1:
-                            result = result + df31['1'][i] / 2
-                        if xx == 2:
-                            result = result + df31['2'][i] / 2
-                        if xx == 3:
-                            result = result + df31['3'][i] / 2
-                        if xx == 4:
-                            result = result + df31['4'][i] / 2
-                        if xx == 5:
-                            result = result + df31['5'][i] / 2
-                        if xx == 6:
-                            result = result + df31['6'][i] / 2
-                        if xx == 7:
-                            result = result + df31['7'][i] / 2
-                        if xx == 8:
-                            result = result + df31['8'][i] / 2
-                        if xx == 9:
-                            result = result + df31['9'][i] / 2
-                if (identedpavilionnatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
-                        if xx == 1:
-                            result = result + df31['1'][i]
-                        if xx == 2:
-                            result = result + df31['2'][i]
-                        if xx == 3:
-                            result = result + df31['3'][i]
-                        if xx == 4:
-                            result = result + df31['4'][i]
-                        if xx == 5:
-                            result = result + df31['5'][i]
-                        if xx == 6:
-                            result = result + df31['6'][i]
-                        if xx == 7:
-                            result = result + df31['7'][i]
-                        if xx == 8:
-                            result = result + df31['8'][i]
-                        if xx == 9:
-                            result = result + df31['9'][i]
-                    else:
-                        if xx == 1:
-                            result = result + df31['1'][i] / 2
-                        if xx == 2:
-                            result = result + df31['2'][i] / 2
-                        if xx == 3:
-                            result = result + df31['3'][i] / 2
-                        if xx == 4:
-                            result = result + df31['4'][i] / 2
-                        if xx == 5:
-                            result = result + df31['5'][i] / 2
-                        if xx == 6:
-                            result = result + df31['6'][i] / 2
-                        if xx == 7:
-                            result = result + df31['7'][i] / 2
-                        if xx == 8:
-                            result = result + df31['8'][i] / 2
-                        if xx == 9:
-                            result = result + df31['9'][i] / 2
-            identednaturald=result-temp
-            temppp=result
-            for i in range(len(df31)):
                 if (topef == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -3456,9 +2973,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            efd=result-temppp
-            temppp=result
-            for i in range(len(df31)):
                 if (topcavity == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -3615,9 +3129,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            cavityd=result-temppp
-            temppp=result
-            for i in range(len(df31)):
                 if (topchip == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -3774,11 +3285,8 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            chipd=result-temppp            
         else:
-            temppp=result
             for i in range(len(df31)):
-                
                 if (tableopen == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -3936,9 +3444,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            opend=result-temppp
-            temppp=result
-            for i in range(len(df31)):
                 if (topnatural == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -4098,9 +3603,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            naturald=result-temppp
-            temppp=result
-            for i in range(len(df31)):
                 if (topef == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -4257,9 +3759,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            efd=result-temppp
-            temppp=result
-            for i in range(len(df31)):
                 if (topcavity == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -4418,9 +3917,6 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            cavityd=result-temppp
-            temppp=result
-            for i in range(len(df31)):
                 if (topchip == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -4578,16 +4074,13 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            chipd=result-temppp
-            
-                            # Internal Grading I dont think this is present in the stockfile
+                            # Internal Grading
     df30 = pd.read_csv('InternalGrading.csv')
     for i in range(len(df30)):
         if (shape == 'RO' and shape == df30['Shape'][i] and upgrade1 == df30['what'][i]):
             if df30['Grade'][i] == 'Upgrade':
                 if xx == 1:
                     result = result + 100 * df30['1'][i]
-
                 if xx == 2:
                     result = result + 100 * df30['2'][i]
                 if xx == 3:
@@ -4644,7 +4137,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     result = result + 100 * df30['8'][i]
                 if xx == 9:
                     result = result + 100 * df30['9'][i]
-        if (shape != 'RO' and 'Fancy' == df30['Shape'][i] and downgrade1 == df30['what'][i]):
+        if (shape != 'RO' and 'Famcy' == df30['Shape'][i] and downgrade1 == df30['what'][i]):
             if df30['Grade'][i] == 'Downgrade':
                 if xx == 1:
                     result = result + 100 * df30['1'][i]
@@ -4724,7 +4217,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     result = result + 100 * df30['8'][i]
                 if xx == 9:
                     result = result + 100 * df30['9'][i]
-        if (shape != 'RO' and 'Fancy' == df30['Shape'][i] and downgrade2 == df30['what'][i]):
+        if (shape != 'RO' and 'Famcy' == df30['Shape'][i] and downgrade2 == df30['what'][i]):
             if df30['Grade'][i] == 'Downgrade':
                 if xx == 1:
                     result = result + 100 * df30['1'][i]
@@ -4748,25 +4241,18 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         if cut == 'EX' and depth >= 63 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
                 color == 'D' or color == 'E' or color == 'F'):
             result = result - 1.0
-            depthd=-1
         if cut == 'VG' and depth >= 64.8 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
                 color != 'J' or color != 'K' or color != 'L' or color != 'I'):
             result = result - 1.0
-            depthd=-1
     if ff == 0:
         rap = 0;
     if temp >= -40:
         if temp - result > 20:
             result = temp - 20
-            capped='Y20'
     else:
         if temp - result > 15:
             result = temp - 15
-            capped='Y15'
-
     return result
-
-
 def get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle,
                      cr_height, pv_angle, pv_depth, girdle_percentage, girdle_from, girdle_to, girdle_condition,
                      star_length, lower_half, open, natural, intended_natural, extra_facet, graining, rap_value):
