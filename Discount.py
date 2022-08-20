@@ -67,7 +67,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
           for i in range(len(df)):
               if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                   tempo=df['Discount'][i]
-                  result=result+max(round(-1*abs(result-tempo)/2),-7)
+                  result=result+max(-1*(round(abs(result-tempo)/2)),-7)
                   break  
         gdd=result-temp #gdd
         if shape == 'RO':
@@ -280,7 +280,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
-              result=result+max(round(-1*abs(result-tempos)/2),-5) 
+              result=result+max(-1*(round(abs(result-tempos)/2)),-5) 
               gdd=max(-1*abs(result-tempos),-5)
             # DIAMETER
     if (shape == 'RO'):
