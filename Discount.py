@@ -59,7 +59,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         for i in range(len(df)):
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                 tempo=df['Discount'][i]
-                result=result+(float)max(-1*abs(result-tempo),-7)
+                result=result+max(-1*abs(result-tempo),-7)
                 gdd=max(-1*abs(result-tempo),-7)
                 break                
 
@@ -242,7 +242,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                 result = result +(float) df['M'][i]
                                 base=result
                                 color = 'M'
-                                result = result - 7
+                                result = result -(float)7
                                 
                                 ff = 1
                             elif color == 'K':
@@ -330,7 +330,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
-              result=result+(float)max(-1*abs(result-tempos),-5)    
+              result=result+max(-1*abs(result-tempos),-5)    
               gdd=max(-1*abs(result-tempos),-5)                 
 
             # DIAMETER
@@ -339,21 +339,21 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
             if cut == 'VG':
                 if (xx == 1):
                     if diameter <= 6.2:
-                        result = result - 0.5
+                        result = result -(float)0.5
                         diameterd=-0.5
                     elif diameter >= 6.3:
                         result = result +(float) 1.5
                         diameterd=1.5
                 elif (xx == 2):
                     if diameter <= 6.2:
-                        result = result - 0.5
+                        result = result -(float)0.5
                         diameterd=-0.5
                     elif diameter >= 6.3:
                         result = result +(float) 1.5
                         diameterd=1.5
                 elif (xx == 3 or xx == 4):
                     if diameter <= 6.2:
-                        result = result - 0.5
+                        result = result -(float)0.5
                         diameterd=-0.5
                     elif diameter >= 6.3:
                         diameterd=1.5
@@ -361,28 +361,28 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 elif (xx == 5):
                     if diameter <= 6.2:
                         diameterd=-0.1
-                        result = result - 0.1
+                        result = result -(float)0.1
                     elif diameter >= 6.3:
                         diameterd=1.5
                         result = result +(float) 1.5
                 elif (xx == 6):
                     if diameter <= 6.2:
                         diameterd=-0.5
-                        result = result - 0.5
+                        result = result -(float)0.5
                     elif diameter >= 6.3:
                         diameterd=1.5
                         result = result +(float) 1.5
                 elif (xx == 7):
                     if diameter <= 6.2:
                         diameterd=0
-                        result = result - 0.0
+                        result = result -(float)0.0
                     elif diameter >= 6.3:
                         diameterd=0
                         result = result +(float) 1.0
                 elif (xx == 8):
                     if diameter <= 6.2:
                         diameterd=0
-                        result = result - 0.0
+                        result = result -(float)0.0
                     elif diameter >= 6.3:
                         diameterd=1
                         result = result +(float) 1.0
@@ -509,7 +509,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                         result = result +(float) 5
                         diameterd=5
 
-                        # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
+                        # bgm-(float)Note-(float)need to ask whether it is one exculsive table or multiple table combined-(float)currently considered one exclusive table
     if (((cut == 'EX' or cut == 'VG') & (polish == 'EX' or polish == 'VG') & (symmetry == 'EX' or symmetry == 'VG')) & (
             fluo == 'None' or fluo == 'Medium')):
         df3 = pd.read_csv('bgmvg.csv')
@@ -604,60 +604,60 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     else:
         if cutcomments == '3EX->EX2':
             if (xx == 1):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 2):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 3):
-                result = result - 1.0
+                result = result -(float)1.0
                 cutcommentsd=-1
             elif (xx == 4):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 5):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 6):
-                result = result - 1.0
+                result = result -(float)1.0
                 cutcommentsd=-1
             elif (xx == 7):
-                result = result - 1.0
+                result = result -(float)1.0
                 cutcommentsd=-1
             elif (xx == 8):
-                result = result - 1.0
+                result = result -(float)1.0
                 cutcommentsd=-1
             elif (xx == 9):
-                result = result - 0.5
+                result = result -(float)0.5
                 cutcommentsd=-0.5
 
         if cutcomments == 'EX->EX2':
             if (xx == 1):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 2):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 3):
-                result = result - 1.0
+                result = result -(float)1.0
                 cutcommentsd=-1
             elif (xx == 4):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 5):
-                result = result - 2.0
+                result = result -(float)2.0
                 cutcommentsd=-2
             elif (xx == 6):
-                result = result - 1.0
+                result = result -(float)1.0
                 cutcommentsd=-1
             elif (xx == 7):
-                result = result - 1.5
+                result = result -(float)1.5
                 cutcommentsd=-1.5
             elif (xx == 8):
-                result = result - 1.5
+                result = result -(float)1.5
                 cutcommentsd=-1.5
             elif (xx == 9):
-                result = result - 0.5
+                result = result -(float)0.5
                 cutcommentsd=-0.5
         if cutcomments == 'VG->VG1':
             if (xx == 1):
@@ -688,7 +688,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 result = result +(float) 1.0
                 cutcommentsd=1
 
-    # Graining- add vg+(float) condition and the extra comment-done
+    # Graining-(float)add vg+(float) condition and the extra comment-done
     # if internalgraining=='IGR2':
     #     if xx==1 or xx==2:
     #         result=result-1.5
@@ -887,7 +887,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                 tablecleand=1
                 result = result +(float) 1
 
-                # #extras- NOT properly written- change line 445
+                # #extras-(float)NOT properly written-(float)change line 445
     # df4=pd.read_csv('extras.csv')
     # for i in range(len(df4)):
     #     if(shape=='RO'):
@@ -1665,13 +1665,13 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                         symmetry == 'EX' or symmetry == 'VG'):
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         if (sizeprec >= 3.00 and sizeprec <= 3.00):
-                            result = result - 2.0
+                            result = result -(float)2.0
                             sizepremd= -2
                         elif (sizeprec >= 4.00 and sizeprec <= 4.00):
-                            result = result - 2.0
+                            result = result -(float)2.0
                             sizepremd= -2
                         elif (sizeprec >= 5.00 and sizeprec <= 5.00):
-                            result = result - 1.0
+                            result = result -(float)1.0
                             sizepremd= -1
                     else:
                         df7 = pd.read_csv('roexbg.csv')
@@ -4747,21 +4747,21 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     if (sizeprec >= 0.30 and sizeprec <= 0.99):
         if cut == 'EX' and depth >= 63 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
                 color == 'D' or color == 'E' or color == 'F'):
-            result = result - 1.0
+            result = result -(float)1.0
             depthd=-1
         if cut == 'VG' and depth >= 64.8 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
                 color != 'J' or color != 'K' or color != 'L' or color != 'I'):
-            result = result - 1.0
+            result = result -(float)1.0
             depthd=-1
     if ff == 0:
         rap = 0;
     if temp >= -40:
-        if temp - result > 20:
-            result = temp - 20
+        if temp -(float)result > 20:
+            result = temp -(float)20
             capped='Y20'
     else:
-        if temp - result > 15:
-            result = temp - 15
+        if temp -(float)result > 15:
+            result = temp -(float)15
             capped='Y15'
 
     return result
