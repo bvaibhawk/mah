@@ -13,6 +13,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                  ):
     # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
+    
     df = pd.read_csv('Toamin.csv')
     result = 0.00
     ff = 0
@@ -53,16 +54,19 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     result = df['Discount'][i]
                     ff = 1
     temp = result
-    if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
-        for i in range(len(df)):
-            if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
-                tempo=df['Discount'][i]
-                result=result+max(-1*abs(result-tempo),-7)
-                break                
+    
+   
     
     if ff == 1:
         result = result * 100
         temp = result
+        if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
+          for i in range(len(df)):
+              if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+                  tempo=df['Discount'][i]
+                  result=result+max(-1*abs(result-tempo),-7)
+                  break  
+        gdd=result-temp #gdd
         if shape == 'RO':
             if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
                 if color == 'D':
@@ -121,6 +125,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                         result = -7 + result
             # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
             #     if cut=='VG':
+            
     else:
         df2 = pd.read_csv('toaminfancy.csv')
         result = 0.00
@@ -4252,7 +4257,9 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     else:
         if temp - result > 15:
             result = temp - 15
-    return result
+            
+    ans[]={result,base}
+    return ans
 def get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle,
                      cr_height, pv_angle, pv_depth, girdle_percentage, girdle_from, girdle_to, girdle_condition,
                      star_length, lower_half, open, natural, intended_natural, extra_facet, graining, rap_value):
