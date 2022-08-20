@@ -363,12 +363,12 @@ def page1():
         diamondData['blackd'] = 0
         diamondData['sideblackd'] = 0
         diamondData['sizepremd'] = 0
-        diamondData['identedtopnatural'] = 0
+        diamondData['identedtopnatural'] = 'NN'
         diamondData['cavityd'] = 0
         diamondData['chipd'] = 0
         diamondData['depthd'] = 0
         diamondData['capped'] = 0
-        diamondData['identedcrownnatural'] = 0
+        diamondData['identedcrownnatural'] = 'NN'
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -528,7 +528,7 @@ def page1():
                                       open1, natural, intended_natural, extra_facet, graining, rap_value,
                                       diamondData['BaseD'], diamondData['GDD'], diamondData['KtosD'],
                                       diamondData['colourd'], diamondData['diameterd'], diamondData['colshaded'],
-                                      diamondData['milkyd'], diamondData['KtosD'], diamondData['grainingd'],
+                                      diamondData['milkyd'], diamondData['cutcommentsd'], diamondData['grainingd'],
                                       diamondData['had'], diamondData['eyecleand'], diamondData['tablecleand'],
                                       diamondData['blackd'], diamondData['sideblackd'], diamondData['sizepremd'],
                                       diamondData['identedtopnatural'], diamondData['identedcrownnatural'],
