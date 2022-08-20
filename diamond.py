@@ -489,7 +489,8 @@ def page1():
                                       lower_half,
                                       open1, natural, intended_natural, extra_facet, graining, rap_value)
                 # print(result)
-                diamondData['DISCOUNT'][i] = result
+                diamondData['DISCOUNT'][i] = result[0]
+                diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
