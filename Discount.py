@@ -281,7 +281,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                           tempos =  df['K'][i]
                           ff = 1
               result=result+max(-1*(round(abs(result-tempos)/2)),-5) 
-              gdd=max(-1*abs(result-tempos),-5)
+              gdd=max(-1*(round(abs(result-tempos)/2)),-5) 
             # DIAMETER
     if (shape == 'RO'):
         if sizeprec >= 1.0 and sizeprec <= 1.49:
