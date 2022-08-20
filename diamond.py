@@ -356,6 +356,7 @@ def page1():
         diamondData['colshaded'] = 0
         diamondData['KtosD'] = 0
         diamondData['milkyd'] = 0
+        diamondData['cutcommentsd'] = 0
         diamondData['grainingd'] = 0
         diamondData['had'] = 0
         diamondData['eyecleand'] = 0
