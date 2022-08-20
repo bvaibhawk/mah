@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import time
-
 import streamlit as st
 import traceback
 import logging
@@ -9,25 +8,19 @@ import dill as pickle
 import pandas as pd
 import cv2
 from datetime import date, datetime
-
 from Discount import calcDiscount, get_cut_comments
 from FetchRap import fetchrap, fetch_size
 from singlediscount import page2
-
 import warnings
-
 warnings.filterwarnings("ignore")
-
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
                    menu_items=None)
-
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 footer = """<style>
 a:link , a:visited{
 color: #006DCC;
@@ -35,21 +28,18 @@ background-color: transparent;
 text-decoration: underline;
 font-weight: bold;
 }
-
 a:link , a:unvisited{
 color: #006DCC;
 background-color: transparent;
 text-decoration: underline;
 font-weight: bold;
 }
-
 a:hover,  a:active {
 color: #2E8BC0;
 background-color: transparent;
 text-decoration: underline;
 font-weight: bold;
 }
-
 .footer {
 position: fixed;
 left: 0;
@@ -65,18 +55,13 @@ text-align: center;
 <p>Powered by <a href = 'https://www.ripik.ai' target='_blank'>Ripik.ai</a></p>
 </div>
 """
-
 logo = cv2.imread("logo.png")
 logo = cv2.cvtColor(logo, cv2.COLOR_BGR2RGB)
 logo = cv2.resize(logo, (300, 100))
 st.image(logo)
 st.text("\n")
-
-
 class ColumnError(Exception):
     pass
-
-
 def column_default_validation(diamondData, col, i, defaultValue=None):
     if col in diamondData.keys():
         return diamondData[col][i]
@@ -84,8 +69,6 @@ def column_default_validation(diamondData, col, i, defaultValue=None):
         raise ColumnError(col + ' is missing in the uploaded CSV file. ' \
                                 'Please upload the CSV file in correct format')
     return float(defaultValue) if defaultValue == 0 else defaultValue
-
-
 def page1():
     # with open('diamond.pkl', 'rb') as handle:
     #     model = pickle.load(handle)
@@ -294,7 +277,6 @@ def page1():
     #                       crownnatural, girdleothers, girdleopen, girdlenatural, pavilionopen
     #                       , pavilionnatural, green, grey, brown, milky, offcolor, halfopen, smallopen, bigopen,
     #                       mediumopen, identednatural, naturalnatural, bignatural, extrafacet, chip, cavity)
-
     # st.text("\n")
     # if st.button("Calculate Final Price"):
     #     if int(rap) != 0:
@@ -336,7 +318,7 @@ def page1():
                 with col5:
                     st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
                              "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
-
+    
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
     result = 0.0
     exception_flag = False
@@ -348,28 +330,6 @@ def page1():
                 diamondData[i] = diamondData[i].str.strip()
         diamondData = diamondData.assign(DISCOUNT='')
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
-        diamondData['BaseD'] = 0
-        diamondData['GDD'] = 0
-        diamondData['KtosD'] = 0
-        diamondData['colourd'] = 0
-        diamondData['diameterd'] = 0
-        diamondData['colshaded'] = 0
-        diamondData['KtosD'] = 0
-        diamondData['milkyd'] = 0
-        diamondData['cutcommentsd'] = 0
-        diamondData['grainingd'] = 0
-        diamondData['had'] = 0
-        diamondData['eyecleand'] = 0
-        diamondData['tablecleand'] = 0
-        diamondData['blackd'] = 0
-        diamondData['sideblackd'] = 0
-        diamondData['sizepremd'] = 0
-        diamondData['identedtopnatural'] = 'NN'
-        diamondData['cavityd'] = 0
-        diamondData['chipd'] = 0
-        diamondData['depthd'] = 0
-        diamondData['capped'] = 0
-        diamondData['identedcrownnatural'] = 'NN'
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -429,6 +389,8 @@ def page1():
                 downgrade2 = column_default_validation(diamondData, 'Downgrade_Clarity', i, '0')
 
                 # new variables added here 10-08-2022
+                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
+                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
                 min_diam = float(column_default_validation(diamondData, 'MIN_DIAM', i))
                 max_diam = float(column_default_validation(diamondData, 'MAX_DIAM', i))
                 tabl = column_default_validation(diamondData, 'TABL', i)
@@ -454,39 +416,39 @@ def page1():
                 chip = column_default_validation(diamondData, 'CHIP', i)
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
-                if (shape == 'ROUND' or shape == 'RD'):
-                    shape = 'RO'
-                elif (shape == 'CUSHION'):
-                    shape = 'CS'
-                elif (shape == 'EMERALD'):
-                    shape = 'EM'
-                elif (shape == 'MARQUISE' or shape == 'MQ'):
-                    shape = 'MAO'
-                elif (shape == 'PEAR'):
-                    shape = 'PR'
-                elif (shape == 'PRN'):
-                    shape = 'PRINCESS'
-                elif (shape == 'OVAL'):
-                    shape = 'OV'
-
-                if fluo == 'FNT':
-                    fluo = 'Faint'
-                elif fluo == 'MED':
-                    fluo = 'Medium'
-                elif fluo == 'NON':
-                    fluo = 'None'
-                elif fluo == 'STG':
-                    fluo = 'Strong'
-                elif fluo == 'VST':
-                    fluo = 'Very Strong'
-                    # Function calls to determine ktos, size range, cutcomments and rap_value ##################
+                if(shape=='ROUND' or shape=='RD'): 
+                  shape='RO'
+                elif(shape=='CUSHION'): 
+                  shape='CS'
+                elif(shape=='EMERALD'):
+                  shape='EM'
+                elif(shape=='MARQUISE' or shape=='MQ'): 
+                  shape='MAO'
+                elif(shape=='PEAR'): 
+                  shape='PR'
+                elif(shape=='PRN'): 
+                  shape='PRINCESS'
+                elif(shape=='OVAL'): 
+                  shape='OV'  
+                   
+                if fluo=='FNT':
+                   fluo='Faint'
+                elif fluo=='MED':
+                   fluo='Medium'
+                elif fluo=='NON':
+                   fluo='None'   
+                elif fluo=='STG':
+                   fluo='Strong'
+                elif fluo=='VST':
+                   fluo='Very Strong'   
+                # Function calls to determine ktos, size range, cutcomments and rap_value ##################
                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade,
                                                                   cr_angle,
                                                                   cr_height, pv_angle, pv_depth, girdle_percentage,
                                                                   girdle_from, girdle_to, girdle_condition,
                                                                   star_length, lower_half, open1, natural,
                                                                   intended_natural, extra_facet, graining, rap_value)
-
+                  
                 cutcomments = diamondData['CUT_COMMENTS'][i]
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
@@ -494,23 +456,22 @@ def page1():
                 rap_value = rap * sizeprec
                 diamondData['RAP_VALUE'][i] = rap_value
                 # Function calls to determine ktos, size range, cutcomments and rap_price ##################
-                if (sizeprec >= 1):
-                    if (max_diam <= 6.2):
-                        diameter = max_diam
-                    elif (min_diam >= 6.3):
-                        diameter = min_diam
-                    else:
-                        diameter = 6.25
+                if(sizeprec>=1):
+                   if(max_diam<=6.2):
+                    diameter=max_diam
+                   elif(min_diam>=6.3): 
+                    diameter=min_diam
+                   else: 
+                    diameter=6.25         
                 else:
-                    diameter = min_diam
+                   diameter=min_diam
                 diamondData['RAP'][i] = rap
-                if graining == 'IGR1' or graining == 'IGR2' or graining == 'IGR3':
-                    internalgrainig = graining
-                    surfacegraining = '0'
+                if graining=='IGR1' or graining=='IGR2' or graining=='IGR3':
+                  internalgrainig=graining
+                  surfacegraining='0'
                 else:
-                    internalgrainig = '0'
-                    surfacegraining = graining
-
+                  internalgrainig='0'
+                  surfacegraining=graining
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
@@ -526,9 +487,7 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                      open1, natural, intended_natural, extra_facet, graining, rap_value
-             
-                                      )
+                                      open1, natural, intended_natural, extra_facet, graining, rap_value)
                 # print(result)
                 diamondData['DISCOUNT'][i] = result
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
@@ -538,26 +497,21 @@ def page1():
                 exception_flag = True
                 break
             except BaseException as e:
+                logging.error('Something went wrong' + str(e))
                 logging.error('Something went wrong with record number ' + str(i + 1) + ' ' + str(e))
                 logging.error(traceback.format_exc())
-            records_processed.text(str(i + 1) + ' out of ' + str(len(diamondData)) + ' records processed')
-            progress.progress(float(i + 1) / (len(diamondData)))
-
+            records_processed.text(str(i) + ' out of ' + str(len(diamondData) - 1) + ' records processed')
+            progress.progress(float(i) / (len(diamondData) - 1))
         if not exception_flag:
             diamondData = diamondData.astype(str)
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
-                               mime='text/csv', file_name='discountOutput.csv')
-
-
+                           mime='text/csv', file_name='discountOutput.csv')
 page_names = {
-    "Bulk upload": page1,
-    'Single calculate': page2
-
+    'Single calculate': page2,
+    "Bulk upload": page1
 }
-
 st.sidebar.markdown("<h1>Discount Calculator</h1>", unsafe_allow_html=True)
 selected_page = st.sidebar.selectbox("Select Calculator", page_names.keys())
 page_names[selected_page]()
-
 st.markdown(footer, unsafe_allow_html=True)
