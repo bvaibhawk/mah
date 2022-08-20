@@ -16,6 +16,8 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     
     df = pd.read_csv('Toamin.csv')
     result = 0.00
+    based=0.0
+    gdd=0.0
     ff = 0
     xx = 0
     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
@@ -60,6 +62,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     if ff == 1:
         result = result * 100
         temp = result
+        based=result
         if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
           for i in range(len(df)):
               if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
@@ -166,6 +169,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                     ff = 2
                     break
             temp = result
+            based=result
         if ff == 0:
             df = pd.read_csv('Dossbase.csv')
             for i in range(len(df)):
@@ -241,6 +245,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                                 ff = 1
                             break
             temp = result
+            based=result
             tempos=0
             if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=0.3 and sizeprec<=2.99:
               for i in range(len(df)):
@@ -275,7 +280,8 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
-              result=result+max(-1*abs(result-tempos),-5)                    
+              result=result+max(-1*abs(result-tempos),-5) 
+              gdd=max(-1*abs(result-tempos),-5)
             # DIAMETER
     if (shape == 'RO'):
         if sizeprec >= 1.0 and sizeprec <= 1.49:
@@ -4258,7 +4264,9 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
         if temp - result > 15:
             result = temp - 15
             
-    ans=[result,base]
+    ans=[]
+    ans.append(result)
+    ans.append(base)
     return ans
 def get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle,
                      cr_height, pv_angle, pv_depth, girdle_percentage, girdle_from, girdle_to, girdle_condition,
