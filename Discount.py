@@ -11,8 +11,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
                  pv_depth,
                  girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                  lower_half,
-                 open1, natural, intended_natural, extra_facet, graining, rap_value, base, gdd,ktosd,colourd,diameterd,colshaded,milkyd,cutcommentsd,
-                 grainingd,had,eyecleand,tablecleand,blackd,sideblackd,sizepremd,identedtopnatural,identedcrownnatural,cavityd,chipd,depthd,capped
+                 open1, natural, intended_natural, extra_facet, graining, rap_value
                  ):
     # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
