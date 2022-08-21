@@ -493,7 +493,7 @@ def page1():
                 f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",
                 unsafe_allow_html=True)
                 diamondData['DISCOUNT'][i] = result[0]
-                diamondData['BaseD'][i] = result[1]
+                #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result) / 100)
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
