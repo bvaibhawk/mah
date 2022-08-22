@@ -4808,7 +4808,7 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     return result
   
   
-def get_cut_comments(cert, shape, cut, min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle,td,cr_height, pv_angle, pv_depth, girdle_percentage, girdle_from, girdle_to, girdle_condition,star_length, lower_half, open, natural, intended_natural, extra_facet, graining, rap_value):
+def get_cut_comments(cert, shape, cut, tabl, height, ratio, cr_angle,td,pv_angle, pv_depth, girdle_percentage,star_length, lower_half):
     if cert=='GIA' and shape=='RO':
         if(cut=='EX' and tabl>=56 and tabl<=59 and cr_angle>=34 and cr_angle<=35.5 and pv_angle>=40.6 and pv_angle<=41.2 and girdle_percentage>=2.5 and girdle_percentage<=3.5 and ratio>=0 and ratio<=0.5 and star_length>=50 and star_length<=55 and lower_half>=75 and lower_half<=80 and td>=59.5 and td<=62.7):
             cutcomments='EX->EX1'
