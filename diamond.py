@@ -8,7 +8,8 @@ import dill as pickle
 import pandas as pd
 import cv2
 from datetime import date, datetime
-from Discount import calcDiscount, get_cut_comments
+# from Discount import calcDiscount, get_cut_comments
+from Discount import calcDiscount
 from FetchRap import fetchrap, fetch_size
 from singlediscount import page2
 import warnings
