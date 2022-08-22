@@ -4811,15 +4811,15 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
 def get_cut_comments(cert, shape, cut, tabl, height, ratio, cr_angle,td,pv_angle, pv_depth, girdle_percentage,star_length, lower_half):
     if cert=='GIA' and shape=='RO':
         if(cut=='EX' and tabl>=56 and tabl<=59 and cr_angle>=34 and cr_angle<=35.5 and pv_angle>=40.6 and pv_angle<=41.2 and girdle_percentage>=2.5 and girdle_percentage<=3.5 and ratio>=0 and ratio<=0.5 and star_length>=50 and star_length<=55 and lower_half>=75 and lower_half<=80 and td>=59.5 and td<=62.7):
-            cutcomments='EX->EX1'
+            cutcc='EX->EX1'
         elif(cut=='EX' and tabl>=56 and tabl<=61 and cr_angle>=33 and cr_angle<=36 and pv_angle>=40.6 and pv_angle<=41.2 and girdle_percentage>=2.0 and girdle_percentage<=4 and ratio>=0 and ratio<=0.9 and star_length>=50 and star_length<=55 and lower_half>=75 and lower_half<=80 and td>=59.0 and td<=63.2):
-            cutcomments='EX->EX2'    
+            cutcc='EX->EX2'    
         elif(cut=='VG' and tabl>=55 and tabl<=60 and cr_angle>=32.5 and cr_angle<=37.5 and pv_angle>=40.4 and pv_angle<=41.6 and girdle_percentage>=2.5 and girdle_percentage<=4.7 and ratio>=0 and ratio<=0.9 and star_length>=45 and star_length<=55 and lower_half>=70 and lower_half<=80 and td>=58.5 and td<=64):
-            cutcomments='VG->VG1'     
+            cutcc='VG->VG1'     
         elif(cut=='VG' and tabl>=54 and tabl<=62 and cr_angle>=32 and cr_angle<=38 and pv_angle>=40.2 and pv_angle<=42.2 and girdle_percentage>=2 and girdle_percentage<=5.5 and ratio>=0 and ratio<=1.2 and star_length>=45 and star_length<=55 and lower_half>=70 and lower_half<=80 and td>=58 and td<=64.7):
-            cutcomments='VG->VG2'    
+            cutcc='VG->VG2'    
         elif(cut=='GD' and tabl>=53 and tabl<=62 and cr_angle>=31 and cr_angle<=38.7 and pv_angle>=39.8 and pv_angle<=42.6 and girdle_percentage>=2 and girdle_percentage<=6.5 and ratio>=0 and ratio<=1.6 and star_length>=45 and star_length<=55 and lower_half>=70 and lower_half<=80 and td>=57.5 and td<=66.2):
-            cutcomments='G->GD1'
-    return cutcomments
+            cutcc='G->GD1'
+    return cutcc
 
 
