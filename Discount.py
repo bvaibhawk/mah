@@ -84,8 +84,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             for i in range(len(df)):
                 if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                     tempo=float(df['Discount'][i])
-                    result=result+max(-1*(round(abs(result-tempo)/2)),-7)
-                    gdd=max(-1*(round(abs(result-tempo)/2)),-7)
+                    result=result+max(-1*(round(abs(result-tempo)/2),2),-7)
+                    gdd=max(-1*(round(abs(result-tempo)/2),2),-7)
                     break                
 
 
@@ -355,8 +355,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
-              result=result+max(-1*(round(abs(result-tempos)/2)),-5)    
-              gdd=max(-1*(round(abs(result-tempos)/2)),-5)                
+              result=result+max(-1*(round(abs(result-tempos)/2),2),-5)    
+              gdd=max(-1*(round(abs(result-tempos)/2),2),-5)                
 
             # DIAMETER
     if (shape == 'RO'):
