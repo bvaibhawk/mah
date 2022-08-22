@@ -481,7 +481,7 @@ def page1():
 #                                                                   star_length, lower_half)
                 print(i)
                 st.markdown(
-                f"<big><b>i4 /b> </big><font color='green' size=6>{(i)} </font>",
+                f"<big><b>i4 </b> </big><font color='green' size=6>{(i)} </font>",
                 unsafe_allow_html=True)  
                 cutcomments ='NN'
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
@@ -528,7 +528,7 @@ def page1():
                                         intended_natural, graining, rap_value)
                 print(i)
                 st.markdown(
-                f"<big><b>i6 /b> </big><font color='green' size=6>{(i)} </font>",
+                f"<big><b>i6 </b> </big><font color='green' size=6>{(i)} </font>",
                 unsafe_allow_html=True)
                 diamondData['DISCOUNT'][i] = result[0]
                 diamondData['BaseD'][i] = result[1]
@@ -551,7 +551,7 @@ def page1():
                 diamondData['CavityD'][i] = result[18]
                 diamondData['ChipD'][i] = result[19]
                 #diamondData['BaseD'][i] = result[1]
-                #diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
+                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
                 st.write(str(c))
