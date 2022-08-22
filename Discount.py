@@ -37,6 +37,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     cavityd=0.0
     chipd=0.0
     capped='NO'
+    MNcolorD=0.0
     result = 0.00
     ff = 0
     xx = 0
@@ -268,6 +269,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                 base=result
                                 color = 'M'
                                 result = result - 7
+                                MNcolorD=-7
                                 
                                 ff = 1
                             elif color == 'K':
