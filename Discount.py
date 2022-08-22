@@ -41,6 +41,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ff = 0
     xx = 0
     identedcrownnatural='0'
+    identedgirdlenatural='0'
     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
         if color == 'D' or color == 'E' or color == 'F':
             xx = 1
