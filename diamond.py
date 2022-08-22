@@ -351,7 +351,9 @@ def page1():
         diamondData = diamondData.assign(CavityD='')
         diamondData = diamondData.assign(ChipD='')
         diamondData = diamondData.assign(MNcolorD='')
-        
+
+        diamondData = diamondData.assign(Individual_sum='')
+
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -391,7 +393,11 @@ def page1():
                 pavilionef = column_default_validation(diamondData, 'Pavilion_Extra_Facet', i, '0')
                 pavilioncavity = column_default_validation(diamondData, 'Pavilion_cavity', i, '0')
                 pavilionchip = column_default_validation(diamondData, 'Pavilion_Chip', i, '0')
-                depth = float(column_default_validation(diamondData, 'TD', i, 0))
+                depth = column_default_validation(diamondData, 'TD', i, 0)
+                if depth == '-':
+                    depth = 0.0
+                else:
+                    depth = float(depth)
                 green = column_default_validation(diamondData, 'GREEN', i, 'No')
                 grey = column_default_validation(diamondData, 'GREY', i, 'No')
                 brown = column_default_validation(diamondData, 'BROWN', i, '0')
@@ -415,8 +421,16 @@ def page1():
                 # new variables added here 10-08-2022
                 min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
                 max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
-                min_diam = float(column_default_validation(diamondData, 'MIN_DIAM', i))
-                max_diam = float(column_default_validation(diamondData, 'MAX_DIAM', i))
+                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
+                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
+                if min_diam == '-':
+                    min_diam = 0.0
+                else:
+                    min_diam = float(min_diam)
+                if max_diam == '-':
+                    max_diam = 0.0
+                else:
+                    max_diam = float(max_diam)
                 tabl = column_default_validation(diamondData, 'TABL', i)
                 height = column_default_validation(diamondData, 'HEIGHT', i)
                 ratio = column_default_validation(diamondData, 'RATIO', i)
@@ -545,6 +559,11 @@ def page1():
                 diamondData['CavityD'][i] = result[18]
                 diamondData['ChipD'][i] = result[19]
                 diamondData['MNcolorD'][i] = result[20]
+                final_sum = 0
+                for j in range(1, 21):
+                    final_sum += result[j]
+                diamondData['Individual_sum'][i] = final_sum
+                #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
                 
             except ColumnError as c:
