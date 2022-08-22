@@ -466,7 +466,7 @@ def page1():
                    diamondData['FLUO'][i] = fluo
                 if fluo=='MED':
                    fluo='Medium'
-                    diamondData['FLUO'][i] = fluo
+                   diamondData['FLUO'][i] = fluo
                 if fluo=='NON':
                    fluo='None'   
                    diamondData['FLUO'][i] = fluo 
