@@ -497,7 +497,7 @@ def page1():
                 diamondData['DiameterD'][i] = result[3]
        
                 #diamondData['BaseD'][i] = result[1]
-                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
+                #diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
                 st.write(str(c))
