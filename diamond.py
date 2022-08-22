@@ -334,6 +334,7 @@ def page1():
         progress = st.progress(0)
         for i in range(len(diamondData)):
             try:
+                cert= column_default_validation(diamondData, 'CERT', i)
                 shape = column_default_validation(diamondData, 'SHAPE', i)  # updated with client stock sheet
                 szgr = '0.30-0.34'  # column_default_validation(diamondData, 'SIZE RANGE', i, '0.30-0.34')
                 color = column_default_validation(diamondData, 'COLOR', i, 'D')  # updated with client stock sheet
@@ -442,12 +443,10 @@ def page1():
                 elif fluo=='VST':
                    fluo='Very Strong'   
                 # Function calls to determine ktos, size range, cutcomments and rap_value ##################
-                diamondData['CUT_COMMENTS'][i] = get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade,
+                diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
                                                                   cr_angle,depth,
                                                                   cr_height, pv_angle, pv_depth, girdle_percentage,
-                                                                  girdle_from, girdle_to, girdle_condition,
-                                                                  star_length, lower_half, open1, natural,
-                                                                  intended_natural, extra_facet, graining, rap_value)
+                                                                  star_length, lower_half)
                   
                 cutcomments = diamondData['CUT_COMMENTS'][i]
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
@@ -472,7 +471,7 @@ def page1():
                 else:
                   internalgrainig='0'
                   surfacegraining=graining
-                result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
+                result = calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                                       tableintensity, crownintensity, topef, cavity, chip, extra_facet, crowncavity,
