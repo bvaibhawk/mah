@@ -333,6 +333,24 @@ def page1():
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
         diamondData = diamondData.assign(BaseD='')
         diamondData = diamondData.assign(GDD='')
+        diamondData = diamondData.assign(DiameterD='')
+        diamondData = diamondData.assign(ColshadeD='')
+        diamondData = diamondData.assign(MilkyD='')
+        diamondData = diamondData.assign(cutcommentsD='')
+        diamondData = diamondData.assign(GrainingD='')
+        diamondData = diamondData.assign(haD='')
+        diamondData = diamondData.assign(EyeCleanD='')
+        diamondData = diamondData.assign(TableCleanD='')
+        diamondData = diamondData.assign(BlackD='')
+        diamondData = diamondData.assign(SideBlackD='')
+        diamondData = diamondData.assign(SizePrems='')
+        diamondData = diamondData.assign(OpenD='')
+        diamondData = diamondData.assign(NaturalD='')
+        diamondData = diamondData.assign(IdentedNaturalD='')
+        diamondData = diamondData.assign(Extra_FacetD='')
+        diamondData = diamondData.assign(CavityD='')
+        diamondData = diamondData.assign(ChipD='')
+
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -497,7 +515,22 @@ def page1():
                 diamondData['BaseD'][i] = result[1]
                 diamondData['GDD'][i] = result[2]
                 diamondData['DiameterD'][i] = result[3]
-       
+                diamondData['ColshadeD'][i] = result[4]
+                diamondData['MilkyD'][i] = result[5]
+                diamondData['cutcommentsD'][i] = result[6]
+                diamondData['GrainingD'][i] = result[7]
+                diamondData['haD'][i] = result[8]
+                diamondData['EyeCleanD'][i] = result[9]
+                diamondData['TableCleanD'][i] = result[10]
+                diamondData['BlackD'][i] = result[11]
+                diamondData['SideBlackD'][i] = result[12]
+                diamondData['SizePrems'][i] = result[13]
+                diamondData['OpenD'][i] = result[14]
+                diamondData['NaturalD'][i] = result[15]
+                diamondData['IdentedNaturalD'][i] = result[16]
+                diamondData['Extra_FacetD'][i] = result[17]
+                diamondData['CavityD'][i] = result[18]
+                diamondData['ChipD'][i] = result[19]
                 #diamondData['BaseD'][i] = result[1]
                 #diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
             except ColumnError as c:
