@@ -331,6 +331,8 @@ def page1():
                 diamondData[i] = diamondData[i].str.strip()
         diamondData = diamondData.assign(DISCOUNT='')
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
+        diamondData = diamondData.assign(BaseD='')
+        diamondData = diamondData.assign(GDD='')
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
