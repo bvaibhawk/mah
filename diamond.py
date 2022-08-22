@@ -479,6 +479,7 @@ def page1():
 #                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
 #                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
 #                                                                   star_length, lower_half)
+                
                 print(i)
                 st.markdown(
                 f"<big><b>i4 </b> </big><font color='green' size=6>{(i)} </font>",
@@ -552,6 +553,11 @@ def page1():
                 diamondData['ChipD'][i] = result[19]
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
+                rownum=i
+                print(rownum)
+                st.markdown(
+                f"<big><b>rownum </b> </big><font color='green' size=6>{(rownum+1)} </font>",
+                unsafe_allow_html=True)
                 print(i)
                 st.markdown(
                 f"<big><b>i7 </b> </big><font color='green' size=6>{(i)} </font>",
