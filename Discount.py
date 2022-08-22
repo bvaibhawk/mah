@@ -105,7 +105,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     result = result + 2
                 else:
                     ktosd=1
-                    result = result + 1
+                    result = float(result) +  float(1)
             if sizeprec >= 2.00 and sizeprec <= 2.999 and cut == 'EX':
                 if color == 'D':
                     ktosd=2
