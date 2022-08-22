@@ -61,7 +61,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             xx = 8
         if color == 'J' or color == 'K' or color == 'L' or color == 'M':
             xx = 9
-    if(shape=='RO and sizeprec>=1.0)        
+    if(shape=='RO' and sizeprec>=1.0)        
         for i in range(len(df)):
             # and polish == df['POL'][i] and symmetry == df['SYM'][i]
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
