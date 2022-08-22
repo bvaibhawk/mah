@@ -350,7 +350,8 @@ def page1():
         diamondData = diamondData.assign(Extra_FacetD='')
         diamondData = diamondData.assign(CavityD='')
         diamondData = diamondData.assign(ChipD='')
-
+        diamondData = diamondData.assign(MNColorD='')
+        
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -543,7 +544,7 @@ def page1():
                 diamondData['Extra_FacetD'][i] = result[17]
                 diamondData['CavityD'][i] = result[18]
                 diamondData['ChipD'][i] = result[19]
-                #diamondData['BaseD'][i] = result[1]
+                diamondData['MNcolorD'][i] = result[20]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
                 
             except ColumnError as c:
