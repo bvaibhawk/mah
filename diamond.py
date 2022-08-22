@@ -443,11 +443,11 @@ def page1():
                 elif fluo=='VST':
                    fluo='Very Strong'   
                 # Function calls to determine ktos, size range, cutcomments and rap_value ##################
-                diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
-                                                                  cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
-                                                                  star_length, lower_half)
+#                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
+#                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
+#                                                                   star_length, lower_half)
                   
-                cutcomments = diamondData['CUT_COMMENTS'][i]
+                cutcomments 'NN'
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
                 rap = fetchrap(shape, szgr, color, clarity)
