@@ -487,7 +487,7 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                       natural, intended_natural, extra_facet, graining, rap_value)
+                                        intended_natural, graining, rap_value)
                 print(result)
                 st.markdown(
                 f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",
