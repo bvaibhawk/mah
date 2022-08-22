@@ -442,29 +442,40 @@ def page1():
 
                 if(shape=='ROUND' or shape=='RD'): 
                   shape='RO'
-                elif(shape=='CUSHION'): 
+                  diamondData['SHAPE'][i] = shape
+                if(shape=='CUSHION'): 
                   shape='CS'
-                elif(shape=='EMERALD'):
+                  diamondData['SHAPE'][i] = shape
+                if(shape=='EMERALD'):
                   shape='EM'
-                elif(shape=='MARQUISE' or shape=='MQ'): 
+                  diamondData['SHAPE'][i] = shape
+                if(shape=='MARQUISE' or shape=='MQ'): 
                   shape='MAO'
-                elif(shape=='PEAR'): 
+                  diamondData['SHAPE'][i] = shape
+                if(shape=='PEAR'): 
                   shape='PR'
-                elif(shape=='PRN'): 
+                  diamondData['SHAPE'][i] = shape
+                if(shape=='PRN'): 
                   shape='PRINCESS'
-                elif(shape=='OVAL'): 
+                  diamondData['SHAPE'][i] = shape
+                if(shape=='OVAL'): 
                   shape='OV'  
-                   
+                  diamondData['SHAPE'][i] = shape 
                 if fluo=='FNT':
                    fluo='Faint'
-                elif fluo=='MED':
+                   diamondData['FLUO'][i] = fluo
+                if fluo=='MED':
                    fluo='Medium'
-                elif fluo=='NON':
+                    diamondData['FLUO'][i] = fluo
+                if fluo=='NON':
                    fluo='None'   
-                elif fluo=='STG':
+                   diamondData['FLUO'][i] = fluo 
+                if fluo=='STG':
                    fluo='Strong'
-                elif fluo=='VST':
-                   fluo='Very Strong'   
+                   diamondData['FLUO'][i] = fluo 
+                if fluo=='VST':
+                   fluo='Very Strong'
+                   diamondData['FLUO'][i] = fluo 
                 # Function calls to determine ktos, size range, cutcomments and rap_value ##################
 #                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
 #                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
