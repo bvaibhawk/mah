@@ -354,6 +354,10 @@ def page1():
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
+            print(i)
+            st.markdown(
+            f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(i)} </font>",
+            unsafe_allow_html=True)
             try:
                 cert= column_default_validation(diamondData, 'CERT', i)
                 shape = column_default_validation(diamondData, 'SHAPE', i)  # updated with client stock sheet
