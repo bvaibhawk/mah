@@ -86,7 +86,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     
 
-    if ff == 1:
+    if ff == 1 or sizeprec>=1.0:
 
         result = result * 100
         temp = result
@@ -221,7 +221,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     ff = 2
                     break
             temp = result
-        if ff == 0:
+        if ff == 0 or (sizeprec<1.0 and shape=='RO'):
             df = pd.read_csv('Dossbase.csv')
             for i in range(len(df)):
                 if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
