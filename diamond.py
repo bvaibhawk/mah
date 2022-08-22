@@ -447,7 +447,7 @@ def page1():
 #                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
 #                                                                   star_length, lower_half)
                   
-                cutcomments 'NN'
+                cutcomments ='NN'
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
                 rap = fetchrap(shape, szgr, color, clarity)
