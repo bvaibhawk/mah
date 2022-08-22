@@ -84,8 +84,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             for i in range(len(df)):
                 if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                     tempo=float(df['Discount'][i])
-                    result=result+max(-1*(round(abs(result-tempo)/2,2)),-7)
-                    gdd=max(-1*(round(abs(result-tempo)/2,2)),-7)
+                    result=result+max(-1*(round(abs(result-tempo)/2)),-7)
+                    gdd=max(-1*(round(abs(result-tempo)/2)),-7)
                     break                
 
 
@@ -355,8 +355,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
-              result=result+max(-1*(round(abs(result-tempos)/2,2)),-5)    
-              gdd=max(-1*(round(abs(result-tempos)/2,2)),-5)                
+              result=result+max(-1*(round(abs(result-tempos)/2)),-5)    
+              gdd=max(-1*(round(abs(result-tempos)/2)),-5)                
 
             # DIAMETER
     if (shape == 'RO'):
@@ -498,10 +498,13 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if color == 'F':
                     if clarity == 'IF':
                         result = result + 9
+                        diameterd=9
                     elif clarity == 'VVS1':
                         result = result + 9
+                        diameterd=9
                     elif clarity == 'VVS2':
                         result = result + 13
+                        diameterd=13
             if sizeprec >= 0.95 and sizeprec <= 0.999 and diameter > 6.3:
                 if color == 'D':
                     if clarity == 'IF':
@@ -4825,5 +4828,6 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 #         elif(cut=='GD' and tabl>=53 and tabl<=62 and cr_angle>=31 and cr_angle<=38.7 and pv_angle>=39.8 and pv_angle<=42.6 and girdle_percentage>=2 and girdle_percentage<=6.5 and ratio>=0 and ratio<=1.6 and star_length>=45 and star_length<=55 and lower_half>=70 and lower_half<=80 and td>=57.5 and td<=66.2):
 #             cutcc='G->GD1'
 #     return cutcc
+
 
 
