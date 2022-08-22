@@ -356,9 +356,13 @@ def page1():
         for i in range(len(diamondData)):
             print(i)
             st.markdown(
-            f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(i)} </font>",
+            f"<big><b>i1 :</b> </big><font color='green' size=6>{(i)} </font>",
             unsafe_allow_html=True)
             try:
+                print(i)
+                st.markdown(
+                f"<big><b>i2:</b> </big><font color='green' size=6>{(i)} </font>",
+                unsafe_allow_html=True)
                 cert= column_default_validation(diamondData, 'CERT', i)
                 shape = column_default_validation(diamondData, 'SHAPE', i)  # updated with client stock sheet
                 szgr = '0.30-0.34'  # column_default_validation(diamondData, 'SIZE RANGE', i, '0.30-0.34')
@@ -442,6 +446,10 @@ def page1():
                 chip = column_default_validation(diamondData, 'CHIP', i)
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
+                print(i)
+                st.markdown(
+                f"<big><b>i3:</b> </big><font color='green' size=6>{(i)} </font>",
+                unsafe_allow_html=True)
                 if(shape=='ROUND' or shape=='RD'): 
                   shape='RO'
                 elif(shape=='CUSHION'): 
@@ -471,7 +479,10 @@ def page1():
 #                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
 #                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
 #                                                                   star_length, lower_half)
-                  
+                print(i)
+                st.markdown(
+                f"<big><b>i4 /b> </big><font color='green' size=6>{(i)} </font>",
+                unsafe_allow_html=True)  
                 cutcomments ='NN'
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
@@ -495,6 +506,10 @@ def page1():
                 else:
                   internalgrainig='0'
                   surfacegraining=graining
+                print(i)
+                st.markdown(
+                f"<big><b>i5 </b> </big><font color='green' size=6>{(i)} </font>",
+                unsafe_allow_html=True)  
                 result = calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
@@ -513,7 +528,7 @@ def page1():
                                         intended_natural, graining, rap_value)
                 print(i)
                 st.markdown(
-                f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(i)} </font>",
+                f"<big><b>i6 /b> </big><font color='green' size=6>{(i)} </font>",
                 unsafe_allow_html=True)
                 diamondData['DISCOUNT'][i] = result[0]
                 diamondData['BaseD'][i] = result[1]
