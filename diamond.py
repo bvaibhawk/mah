@@ -554,7 +554,7 @@ def page1():
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
                 print(i)
                 st.markdown(
-                f"<big><b>i6 </b> </big><font color='green' size=6>{(i)} </font>",
+                f"<big><b>i7 </b> </big><font color='green' size=6>{(i)} </font>",
                 unsafe_allow_html=True)
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
