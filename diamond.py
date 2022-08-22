@@ -475,11 +475,11 @@ def page1():
                 result = calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
-                                      tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity,
+                                      tableintensity, crownintensity, topef, cavity, chip, extra_facet, crowncavity,
                                       crownchip,
                                       girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip,
                                       depth, green,
-                                      grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural,
+                                      grey, brown, milky, open1, crownopen, girdleopen, pavilionopen, natural,
                                       crownnatural,
                                       girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
                                       downgrade2, days,
@@ -487,7 +487,7 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                      open1, natural, intended_natural, extra_facet, graining, rap_value)
+                                       natural, intended_natural, extra_facet, graining, rap_value)
                 print(result)
                 st.markdown(
                 f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",
