@@ -350,7 +350,7 @@ def page1():
         diamondData = diamondData.assign(Extra_FacetD='')
         diamondData = diamondData.assign(CavityD='')
         diamondData = diamondData.assign(ChipD='')
-        diamondData = diamondData.assign(MNColorD='')
+        diamondData = diamondData.assign(MNcolorD='')
         
         records_processed = st.empty()
         progress = st.progress(0)
