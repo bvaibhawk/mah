@@ -353,7 +353,7 @@ def page1():
         diamondData = diamondData.assign(MNcolorD='')
 
         diamondData = diamondData.assign(Individual_sum='')
-
+        diamondData = diamondData.assign(diff='')
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -563,6 +563,7 @@ def page1():
                 for j in range(1, 21):
                     final_sum += result[j]
                 diamondData['Individual_sum'][i] = final_sum
+                diamondData['diff'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
                 
