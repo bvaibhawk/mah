@@ -4806,6 +4806,22 @@ def calcDiscount(shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, 
     ans.append(chipd)
     ans.append(capped)
     return result
-
+  
+  
+  def get_cut_comments(min_diam, max_diam, tabl, height, ratio, col_shade, cr_angle,
+                     cr_height, pv_angle, pv_depth, girdle_percentage, girdle_from, girdle_to, girdle_condition,
+                     star_length, lower_half, open, natural, intended_natural, extra_facet, graining, rap_value):
+    if cert=='GIA' and shape=='RO':
+        if(cut=='EX' and table>=56 and table<=59 and crown_angle>=34 and crown_angle<=35.5 and pavilion_angle>=40.6 and pavilion_angle<=41.2 and girdle>=2.5 and girdle<=3.5 and variation>=0 and variation<=0.5 and stars>=50 and stars<=55 and pav_halves>=75 and pav_halves<=80 and td>=59.5 and td<=62.7):
+            cutcomments='EX->EX1'
+        elif(cut=='EX' and table>=56 and table<=61 and crown_angle>=33 and crown_angle<=36 and pavilion_angle>=40.6 and pavilion_angle<=41.2 and girdle>=2.0 and girdle<=4 and variation>=0 and variation<=0.9 and stars>=50 and stars<=55 and pav_halves>=75 and pav_halves<=80 and td>=59.0 and td<=63.2):
+            cutcomments='EX->EX2'    
+        elif(cut=='VG' and table>=55 and table<=60 and crown_angle>=32.5 and crown_angle<=37.5 and pavilion_angle>=40.4 and pavilion_angle<=41.6 and girdle>=2.5 and girdle<=4.7 and variation>=0 and variation<=0.9 and stars>=45 and stars<=55 and pav_halves>=70 and pav_halves<=80 and td>=58.5 and td<=64):
+            cutcomments='VG->VG1'     
+        elif(cut=='VG' and table>=54 and table<=62 and crown_angle>=32 and crown_angle<=38 and pavilion_angle>=40.2 and pavilion_angle<=42.2 and girdle>=2 and girdle<=5.5 and variation>=0 and variation<=1.2 and stars>=45 and stars<=55 and pav_halves>=70 and pav_halves<=80 and td>=58 and td<=64.7):
+            cutcomments='VG->VG2'    
+        elif(cut=='GD' and table>=53 and table<=62 and crown_angle>=31 and crown_angle<=38.7 and pavilion_angle>=39.8 and pavilion_angle<=42.6 and girdle>=2 and girdle<=6.5 and variation>=0 and variation<=1.6 and stars>=45 and stars<=55 and pav_halves>=70 and pav_halves<=80 and td>=57.5 and td<=66.2):
+            cutcomments='G->GD1'
+    return cutcomments
 
 
