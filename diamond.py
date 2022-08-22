@@ -444,8 +444,7 @@ def page1():
                    fluo='Very Strong'   
                 # Function calls to determine ktos, size range, cutcomments and rap_value ##################
                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
-                                                                  cr_angle,depth,
-                                                                  cr_height, pv_angle, pv_depth, girdle_percentage,
+                                                                  cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
                                                                   star_length, lower_half)
                   
                 cutcomments = diamondData['CUT_COMMENTS'][i]
