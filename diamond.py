@@ -507,9 +507,9 @@ def page1():
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
                                         intended_natural, graining, rap_value)
-                print(result)
+                print(i)
                 st.markdown(
-                f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(result)} </font>",
+                f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(i)} </font>",
                 unsafe_allow_html=True)
                 diamondData['DISCOUNT'][i] = result[0]
                 diamondData['BaseD'][i] = result[1]
