@@ -61,119 +61,120 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             xx = 8
         if color == 'J' or color == 'K' or color == 'L' or color == 'M':
             xx = 9
-    for i in range(len(df)):
-        # and polish == df['POL'][i] and symmetry == df['SYM'][i]
-        if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
-            if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-                if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
-                    result = df['Discount'][i]
-                    ff = 1
-            else:
-                if (cut == df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
-                    result = result
-                elif (cut == df['CUT'][i]):
-                    result = df['Discount'][i]
-                    ff = 1
-    temp = result
-    base=temp
-    if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
+    if(shape=='RO and sizeprec>=1.0)        
         for i in range(len(df)):
-            if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
-                tempo=df['Discount'][i]
-                result=result+max(-1*(round(abs(result-tempo)/2)),-7)
-                gdd=max(-1*(round(abs(result-tempo)/2)),-7)
-                break                
-
-    
-
-    if ff == 1 or sizeprec>=1.0:
-
-        result = result * 100
+            # and polish == df['POL'][i] and symmetry == df['SYM'][i]
+            if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+                if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+                    if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
+                        result = df['Discount'][i]
+                        ff = 1
+                else:
+                    if (cut == df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
+                        result = result
+                    elif (cut == df['CUT'][i]):
+                        result = df['Discount'][i]
+                        ff = 1
         temp = result
+        base=temp
+        if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
+            for i in range(len(df)):
+                if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+                    tempo=df['Discount'][i]
+                    result=result+max(-1*(round(abs(result-tempo)/2)),-7)
+                    gdd=max(-1*(round(abs(result-tempo)/2)),-7)
+                    break                
 
-        if shape == 'RO':
-            if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
-                if color == 'D':
-                    ktosd=3
-                    result = result + 3
-                else:
-                    ktosd=2
-                    result = result + 2
-            if sizeprec >= 1.50 and sizeprec <= 1.999 and cut == 'EX':
-                if color == 'D':
-                    ktosd=2
-                    result = result + 2
-                else:
-                    ktosd=1
-                    result = float(result) +  float(1)
-            if sizeprec >= 2.00 and sizeprec <= 2.999 and cut == 'EX':
-                if color == 'D':
-                    ktosd=2
-                    result = result + 2
-                else:
-                    ktosd=1
-                    result = result + 1
 
-            if xx == 1:
-                if ktos == 1:
-                    ktosd=1
-                    result = result + 1.0
-                elif ktos >= 5:
-                    ktosd=-1
-                    result = -1.0 + result
-            elif xx == 2:
-                if ktos == 1:
-                    ktosd=1
-                    result = result + 1.0
-                elif ktos >= 5:
-                    ktosd=-1
-                    result = -1.0 + result
-            elif xx == 3:
-                if ktos == 1:
-                    ktosd=1
-                    result = result + 1.0
-                elif ktos >= 5:
-                    ktosd=-1
-                    result = -1.0 + result
-            elif xx == 4:
-                if ktos == 1:
-                    ktosd=1.5
-                    result = result + 1.5
-                elif ktos >= 5:
-                    ktosd=-1
-                    result = -1.0 + result
-            elif xx == 5:
-                if ktos == 1:
-                    ktosd=1.5
-                    result = result + 1.5
-                if ktos >= 5:
-                    ktosd=-1
-                    result = -1.0 + result
-            elif xx == 6:
-                if ktos == 1:
-                    ktosd=1
-                    result = result + 1.0
-                if ktos >= 5:
-                    ktosd=0.0
-                    result = 0.0 + result
-            elif xx == 1:
-                if ktos == 1:
-                    ktosd=3
-                    result = result + 3.0
-                if ktos >= 5:
-                    ktosd=0
-                    result = 0.0 + result
 
-                    # colour
-            if color == 'M':
-                if szgr == '1.01-1.09' or szgr == '2.01-2.09' or szgr == '1.50-1.69':
-                    if cut == 'EX':
-                        colourd=-7
-                        result = -7 + result
+        if ff == 1 or sizeprec>=1.0:
 
-            # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
-            #     if cut=='VG':
-    else:
+            result = result * 100
+            temp = result
+
+            if shape == 'RO':
+                if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
+                    if color == 'D':
+                        ktosd=3
+                        result = result + 3
+                    else:
+                        ktosd=2
+                        result = result + 2
+                if sizeprec >= 1.50 and sizeprec <= 1.999 and cut == 'EX':
+                    if color == 'D':
+                        ktosd=2
+                        result = result + 2
+                    else:
+                        ktosd=1
+                        result = float(result) +  float(1)
+                if sizeprec >= 2.00 and sizeprec <= 2.999 and cut == 'EX':
+                    if color == 'D':
+                        ktosd=2
+                        result = result + 2
+                    else:
+                        ktosd=1
+                        result = result + 1
+
+                if xx == 1:
+                    if ktos == 1:
+                        ktosd=1
+                        result = result + 1.0
+                    elif ktos >= 5:
+                        ktosd=-1
+                        result = -1.0 + result
+                elif xx == 2:
+                    if ktos == 1:
+                        ktosd=1
+                        result = result + 1.0
+                    elif ktos >= 5:
+                        ktosd=-1
+                        result = -1.0 + result
+                elif xx == 3:
+                    if ktos == 1:
+                        ktosd=1
+                        result = result + 1.0
+                    elif ktos >= 5:
+                        ktosd=-1
+                        result = -1.0 + result
+                elif xx == 4:
+                    if ktos == 1:
+                        ktosd=1.5
+                        result = result + 1.5
+                    elif ktos >= 5:
+                        ktosd=-1
+                        result = -1.0 + result
+                elif xx == 5:
+                    if ktos == 1:
+                        ktosd=1.5
+                        result = result + 1.5
+                    if ktos >= 5:
+                        ktosd=-1
+                        result = -1.0 + result
+                elif xx == 6:
+                    if ktos == 1:
+                        ktosd=1
+                        result = result + 1.0
+                    if ktos >= 5:
+                        ktosd=0.0
+                        result = 0.0 + result
+                elif xx == 1:
+                    if ktos == 1:
+                        ktosd=3
+                        result = result + 3.0
+                    if ktos >= 5:
+                        ktosd=0
+                        result = 0.0 + result
+
+                        # colour
+                if color == 'M':
+                    if szgr == '1.01-1.09' or szgr == '2.01-2.09' or szgr == '1.50-1.69':
+                        if cut == 'EX':
+                            colourd=-7
+                            result = -7 + result
+
+                # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
+                #     if cut=='VG':
+    elif(shape!='RO):
         df2 = pd.read_csv('toaminfancy.csv')
         result = 0.00
 
@@ -221,7 +222,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     ff = 2
                     break
             temp = result
-        if ff == 0 or (sizeprec<1.0 and shape=='RO'):
+    if ff == 0 or (sizeprec<1.0 and shape=='RO'):
             df = pd.read_csv('Dossbase.csv')
             for i in range(len(df)):
                 if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
