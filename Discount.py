@@ -67,20 +67,20 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
-                        result = df['Discount'][i]
+                        result = float(df['Discount'][i])
                         ff = 1
                 else:
                     if (cut == df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
                         result = result
                     elif (cut == df['CUT'][i]):
-                        result = df['Discount'][i]
+                        result = float(df['Discount'][i])
                         ff = 1
         temp = result
         base=temp
         if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
             for i in range(len(df)):
                 if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
-                    tempo=df['Discount'][i]
+                    tempo=float(df['Discount'][i])
                     result=result+max(-1*(round(abs(result-tempo)/2)),-7)
                     gdd=max(-1*(round(abs(result-tempo)/2)),-7)
                     break                
