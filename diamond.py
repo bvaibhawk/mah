@@ -351,6 +351,9 @@ def page1():
         diamondData = diamondData.assign(CavityD='')
         diamondData = diamondData.assign(ChipD='')
         diamondData = diamondData.assign(MNcolorD='')
+        diamondData = diamondData.assign(DepthD='')
+        diamondData = diamondData.assign(KtosD='')
+        diamondData = diamondData.assign(Cap='')
 
         diamondData = diamondData.assign(Individual_sum='')
         diamondData = diamondData.assign(diff='')
@@ -576,14 +579,17 @@ def page1():
                 diamondData['CavityD'][i] = result[18]
                 diamondData['ChipD'][i] = result[19]
                 diamondData['MNcolorD'][i] = result[20]
+                diamondData['DepthD'][i] = result[21]
+                diamondData['KtosD'][i] = result[22]
+                diamondData['Cap'][i] = result[23]
                 final_sum = 0
-                for j in range(1, 21):
+                for j in range(1, 23):
                     final_sum += result[j]
                 diamondData['Individual_sum'][i] = final_sum
                 diamondData['diff'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
-                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
-                
+                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)     
+                           
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
                 st.write(str(c))
