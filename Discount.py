@@ -540,17 +540,17 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                         diameterd=5
 
                         # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
-    if ((sizeprec>=1.0) & ((cut == 'EX' or cut == 'VG') & (polish == 'EX' or polish == 'VG') & (symmetry == 'EX' or symmetry == 'VG')) & (
+    if ((sizeprec>=1.0) and ((cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (symmetry == 'EX' or symmetry == 'VG')) and (
             fluo == 'None' or fluo == 'Medium')):
         df3 = pd.read_csv('bgmvg.csv')
         # BROWN
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
-            elif ((shape != 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i]) & (
+            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
@@ -559,22 +559,22 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         # GREY
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
-            elif ((shape != 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i]) & (df3['Shape'][i] == 'FANCY')):
+            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (df3['Shape'][i] == 'FANCY')):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
                 # GREEN
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
                 result = result + float(df3['Discount'][i])
                 colshaded=df3['Discount'][i]
                 break
-            elif ((shape != 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i]) & (
+            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + float(df3['Discount'][i])
                 colshaded=df3['Discount'][i]
@@ -582,11 +582,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 # MILKY
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
                 result = result + float(df3['Discount'][i])
                 milkyd=float(df3['Discount'][i])
                 break
-            elif ((shape != 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i]) & (
+            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + float(df3['Discount'][i])
                 milkyd=float(df3['Discount'][i])
@@ -594,36 +594,36 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 # #OFFCOLOR
                 # for i in range(len(df3)):
                 #     #next line giving eror
-                #     if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='RO') ):
+                #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i]) and (df3['Shape'][i]=='RO') ):
                 #         result=result+ df3['Discount'][i]
                 #         break
-                #     elif ((shape!='RO') & (xx == df3['Section'][i]) & ( offcolor == df3['bgm'][i]) & (df3['Shape'][i]=='FANCY')):
+                #     elif ((shape!='RO') and (xx == df3['Section'][i]) and ( offcolor == df3['bgm'][i]) and (df3['Shape'][i]=='FANCY')):
                 #         result=result+ df3['Discount'][i]
                 break
     else:
         df3 = pd.read_csv('bgmroelse.csv')
         for i in range(len(df3)):
-            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i])):
+            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i])):
+            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i])):
+            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i])):
+            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 milkyd=df3['Discount'][i]
                 break
                 # for i in range(len(df3)):
-        #     if ((shape == 'RO') & (xx == df3['Section'][i]) & (offcolor == df3['bgm'][i])):
+        #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i])):
         #         result=result+ df3['Discount'][i]
         #         break
     # add dossiers as well-irrelevant I guess now
