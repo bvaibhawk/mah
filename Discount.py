@@ -845,7 +845,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
               result = result + result2
               grainingd=result2
 
-    if ha == 'Yes':
+    if ha == 'Y':
         if shape == 'RO':
             if xx == 1:
                 result = result + 1
@@ -874,7 +874,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             if xx == 9:
                 result = result + 0
                 had=0
-    if eyeclean == 'Yes':
+    if eyeclean == 'Y':
         if shape == 'RO':
             if xx == 7:
                 result = result + 1.5
@@ -895,7 +895,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             if xx == 9 or xx == 5 or xx == 6:
                 eyecleand=0.5
                 result = result + 0.5
-    if tableclean == 'Yes':
+    if tableclean == 'Y':
         if shape == 'RO':
             if xx == 4 or xx == 5 or xx == 6:
                 tablecleand=0.5
@@ -4814,8 +4814,6 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(efd)
     ans.append(cavityd)
     ans.append(chipd)
-    ans.append(MNcolorD)
-    
     return ans
   
   
