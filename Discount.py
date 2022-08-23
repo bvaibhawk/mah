@@ -36,6 +36,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     efd=0.0
     cavityd=0.0
     chipd=0.0
+    depthd=0.0
     capped='NO'
     MNcolorD=0.0
     result = 0.00
@@ -87,9 +88,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             for i in range(len(df)):
                 if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                     tempo=float(df['Discount'][i])*100
-                    
-                    result=result+max(-1*(round(abs(result-tempo)/2)),-7)
                     gdd=max(-1*(round(abs(result-tempo)/2)),-7)
+                    result=result+max(-1*(round(abs(result-tempo)/2)),-7)
+                    
                     break                
 
 
@@ -99,28 +100,28 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             # result = result * 100
             temp = result
 
-            if shape == 'RO':
-                if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
-                    if color == 'D':
-                        ktosd=3
-                        result = result + 3
-                    else:
-                        ktosd=2
-                        result = result + 2
-                if sizeprec >= 1.50 and sizeprec <= 1.999 and cut == 'EX':
-                    if color == 'D':
-                        ktosd=2
-                        result = result + 2
-                    else:
-                        ktosd=1
-                        result = float(result) +  float(1)
-                if sizeprec >= 2.00 and sizeprec <= 2.999 and cut == 'EX':
-                    if color == 'D':
-                        ktosd=2
-                        result = result + 2
-                    else:
-                        ktosd=1
-                        result = result + 1
+            if shape == 'RO' and sizeprec>=1.0 and sizeprec<3.0:
+                # if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
+                #     if color == 'D':
+                #         ktosd=3
+                #         result = result + 3
+                #     else:
+                #         ktosd=2
+                #         result = result + 2
+                # if sizeprec >= 1.50 and sizeprec <= 1.999 and cut == 'EX':
+                #     if color == 'D':
+                #         ktosd=2
+                #         result = result + 2
+                #     else:
+                #         ktosd=1
+                #         result = float(result) +  float(1)
+                # if sizeprec >= 2.00 and sizeprec <= 2.999 and cut == 'EX':
+                #     if color == 'D':
+                #         ktosd=2
+                #         result = result + 2
+                #     else:
+                #         ktosd=1
+                #         result = result + 1
 
                 if xx == 1:
                     if ktos == 1:
@@ -173,7 +174,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                         result = 0.0 + result
 
                         # colour
-                if color == 'M':
+                if color == 'N': #todo: ask shraddha M or N
                     if szgr == '1.01-1.09' or szgr == '2.01-2.09' or szgr == '1.50-1.69':
                         if cut == 'EX':
                             colourd=-7
@@ -188,44 +189,44 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         for i in range(len(df2)):
             if clarity == 'IF':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['IF'][i]
-                    base= df2['IF'][i]
+                    result = float(df2['IF'][i])
+                    base= float(df2['IF'][i])
                     ff = 2
                     break
             elif clarity == 'VVS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['VVS1'][i]
-                    base= df2['VVS1'][i]
+                    result = float(df2['VVS1'][i])
+                    base= float(df2['VVS1'][i])
                     ff = 2
                     break
             elif clarity == 'VVS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['VVS2'][i]
-                    base=df2['VVS2'][i]
+                    result = float(df2['VVS2'][i])
+                    base=float(df2['VVS2'][i])
                     ff = 2
                     break
             elif clarity == 'VS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['VS1'][i]
-                    base=result
+                    result = float(df2['VS1'][i])
+                    base=float(result)
                     ff = 2
                     break
             elif clarity == 'VS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['VS2'][i]
-                    base=result
+                    result = float(df2['VS2'][i])
+                    base=float(result)
                     ff = 2
                     break
             elif clarity == 'SI1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['SI1'][i]
-                    base=result
+                    result = float(df2['SI1'][i])
+                    base=float(result)
                     ff = 2
                     break
             elif clarity == 'SI2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
-                    result = df2['SI2'][i]
-                    base=result
+                    result = float(df2['SI2'][i])
+                    base=float(result)
                     ff = 2
                     break
             temp = result
@@ -236,39 +237,39 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     if cut == 'EX' and polish == 'EX' and symmetry == 'EX':
                         if df['Cut'][i] == 'EX' and df['Polish'][i] == 'EX' and df['Symmetry'][i] == 'EX':
                             if color == 'D':
-                                result = result + df['D'][i]
+                                result = result + float(df['D'][i])
                                 base=result
                                 ff = 1
                             elif color == 'E':
-                                result = result + df['E'][i]
+                                result = result + float(df['E'][i])
                                 base=result
                                 ff = 1
                             elif color == 'F':
-                                result = result + df['F'][i]
+                                result = result + float(df['F'][i])
                                 base=result
                                 ff = 1
                             elif color == 'G':
-                                result = result + df['G'][i]
+                                result = result + float(df['G'][i])
                                 base=result
                                 ff = 1
                             elif color == 'H':
-                                result = result + df['H'][i]
+                                result = result + float(df['H'][i])
                                 base=result
                                 ff = 1
                             elif color == 'I':
-                                result = result + df['I'][i]
+                                result = result + float(df['I'][i])
                                 base=result
                                 ff = 1
                             elif color == 'J':
-                                result = result + df['J'][i]
+                                result = result + float(df['J'][i])
                                 base=result
                                 ff = 1
                             elif color == 'L':
-                                result = result + df['L'][i]
+                                result = result + float(df['L'][i])
                                 base=result
                                 ff = 1
                             elif color == 'M' or color == 'N':
-                                result = result + df['M'][i]
+                                result = result + float(df['M'][i])
                                 base=result
                                 color = 'M'
                                 result = result - 7
@@ -276,7 +277,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                 
                                 ff = 1
                             elif color == 'K':
-                                result = result + df['K'][i]
+                                result = result + float(df['K'][i])
                                 base=result
                                 ff = 1
                             break
@@ -360,8 +361,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                       elif color == 'K':
                           tempos =  df['K'][i]
                           ff = 1
+              gdd=max(-1*(round(abs(result-tempos)/2)),-5)
               result=result+max(-1*(round(abs(result-tempos)/2)),-5)    
-              gdd=max(-1*(round(abs(result-tempos)/2)),-5)                
+                              
 
             # DIAMETER
     if (shape == 'RO'):
@@ -636,17 +638,17 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         if (clarity=='VS1' or clarity=='VS2'):
             if milky=='M1':
                 result=result-7
-                milky=-7
+                milkyd=-7
             if milky=='M2-':
                 result=result-13
-                milky=-13   
+                milkyd=-13   
         if (clarity=='SI1' or clarity=='SI2'):
             if milky=='M1':
                 result=result-11
-                milky=-11
-            if milky=='M2-':
+                milkyd=-11
+            if milky=='M2-':    
                 result=result-16
-                milky=-16
+                milkyd=-16
 
                     
 
@@ -3355,7 +3357,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            identednaturald=result-temp
+            identednaturald=result-temppp
             temppp=result
             for i in range(len(df31)):
                 if (topef == df31['open'][i] and cut == df31['Cut'][i]):
@@ -4843,6 +4845,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(cavityd)
     ans.append(chipd)
     ans.append(MNcolorD)
+    ans.append(depthd)
+    ans.append(ktosd)
+    ans.append(capped)
     return ans
   
   
