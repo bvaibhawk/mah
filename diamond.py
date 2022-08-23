@@ -520,7 +520,8 @@ def page1():
                 else:
                   internalgrainig='0'
                   surfacegraining=graining
-                st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
+                variables=[]
+                variables=[cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                                       tableintensity, crownintensity, topef, cavity, chip, extra_facet, crowncavity,
@@ -535,7 +536,8 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                        intended_natural, graining, rap_value)} </font>",unsafe_allow_html=True)
+                                        intended_natural, graining, rap_value]
+                st.markdown(f"<big><b>Discount(in Percentage wrt RAP):</b> </big><font color='green' size=6>{(variables)} </font>",unsafe_allow_html=True)
                 result = calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
