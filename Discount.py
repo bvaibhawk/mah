@@ -1504,7 +1504,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if color == 'F' and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
                     df7 = pd.read_csv('roexsmF.csv')
                     for i in range(len(df7)):
-                        if(sizeprec>=df7['From'] and sizeprec<=df7['To']):
+                        if(sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]):
                             if (sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
                                 result = result + df7['IF VVS F'][i] / 2
                                 sizepremd= df7['IF VVS F'][i] / 2
@@ -1593,7 +1593,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if color == 'F' and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
                     df7 = pd.read_csv('rovgsmF.csv')
                     for i in range(len(df7)):
-                        if(sizeprec>=df7['From'] and sizeprec<=df7['To']):
+                        if(sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]):
                             if (sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
                                 result = result + df7['IF VVS F'][i] / 2
                                 sizepremd= df7['IF VVS F'][i] / 2
