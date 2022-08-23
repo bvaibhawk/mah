@@ -4814,6 +4814,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(efd)
     ans.append(cavityd)
     ans.append(chipd)
+    ans.append(MNcolorD)
     return ans
   
   
