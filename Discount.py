@@ -540,7 +540,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                         diameterd=5
 
                         # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
-    if (((cut == 'EX' or cut == 'VG') & (polish == 'EX' or polish == 'VG') & (symmetry == 'EX' or symmetry == 'VG')) & (
+    if ((sizeprec>=1.0) & ((cut == 'EX' or cut == 'VG') & (polish == 'EX' or polish == 'VG') & (symmetry == 'EX' or symmetry == 'VG')) & (
             fluo == 'None' or fluo == 'Medium')):
         df3 = pd.read_csv('bgmvg.csv')
         # BROWN
@@ -603,22 +603,22 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     else:
         df3 = pd.read_csv('bgmroelse.csv')
         for i in range(len(df3)):
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i])):
+            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (brown == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i])):
+            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (green == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i])):
+            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (grey == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 colshaded=df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if ((shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i])):
+            if (sizeprec>=1.0 & (shape == 'RO') & (xx == df3['Section'][i]) & (milky == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
                 milkyd=df3['Discount'][i]
                 break
@@ -627,7 +627,29 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #         result=result+ df3['Discount'][i]
         #         break
     # add dossiers as well-irrelevant I guess now
+    if(shape=='RO' and sizeprec<1.0):
+    
+        #milky
+        if (clarity=='VS1' or clarity=='VS2'):
+            if milky=='M1':
+                result=result-7
+                milky=-7
+            if milky=='M2-':
+                result=result-13
+                milky=-13   
+        if (clarity=='SI1' or clarity=='SI2'):
+            if milky=='M1':
+                result=result-11
+                milky=-11
+            if milky=='M2-':
+                result=result-16
+                milky=-16
 
+                    
+
+            
+        
+    
     # Cut
     if ((fluo == 'MED') and (cutcomments == 'VG->VG2' or cutcomments == 'G->GD2')) or shape != 'RO':
         result = result
