@@ -82,11 +82,12 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                         ff = 1
         temp = result
         base=temp*100
+        result=result*100
         if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
             for i in range(len(df)):
                 if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                     tempo=float(df['Discount'][i])*100
-                    result=result*100
+                    
                     result=result+max(-1*(round(abs(result-tempo)/2)),-7)
                     gdd=max(-1*(round(abs(result-tempo)/2)),-7)
                     break                
