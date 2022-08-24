@@ -321,9 +321,13 @@ def page1():
                              "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
     
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
+
     result = 0.0
     exception_flag = False
     if uploaded_file is not None:
+        start_process = st.button("Start Processing")
+        if not start_process:
+            return
         diamondData = pd.read_csv(uploaded_file)
         diamondData.columns = diamondData.columns.str.strip()
         for i in diamondData.keys():
