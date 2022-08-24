@@ -634,23 +634,282 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     # add dossiers as well-irrelevant I guess now
     if(shape=='RO' and sizeprec<1.0):
     
-        #milky
+        #milky- written as per pricing module file
         if (clarity=='VS1' or clarity=='VS2'):
             if milky=='M1':
                 result=result-7
                 milkyd=-7
-            if milky=='M2-':
+            if milky=='M2-' or milky=='M2' or milky=='M3':
                 result=result-13
-                milkyd=-13   
+                milkyd=-13
+            # if milky=='M1+':
+            #     result=result-4
+            #     milky=-4       
         if (clarity=='SI1' or clarity=='SI2'):
             if milky=='M1':
                 result=result-11
                 milkyd=-11
-            if milky=='M2-':    
+            if milky=='M2-' or milky=='M2' or milky=='M3':    
                 result=result-16
                 milkyd=-16
+        if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-3
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-8
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-13
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-3
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-13
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-3
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-13
+                    result=result+colshaded 
+            elif(color=='G' or color=='H' or color=='I'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-5
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-9
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-14
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-9
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-14
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-9
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-14
+                    result=result+colshaded
+            elif(color=='J' or color=='K' or color=='L' or color=='M'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-5
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-9
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-14
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-9
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-14
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-9
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-14
+                    result=result+colshaded
 
-                    
+        elif(clarity=='VS1' or clarity=='VS2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-4
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-8
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-13
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-4
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-13
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-4
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-13
+                    result=result+colshaded 
+            elif(color=='G' or color=='H' or color=='I'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-5
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-8
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-13
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-5
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-13
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-13
+                    result=result+colshaded
+            elif(color=='J' or color=='K' or color=='L' or color=='M'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-5
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-8
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-13
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-13
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-13
+                    result=result+colshaded
+        elif(clarity=='SI1' or clarity=='SI2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-3
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-7
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-12
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-3
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-7
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-12
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-3
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-7
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-12
+                    result=result+colshaded 
+            elif(color=='G' or color=='H' or color=='I'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-5
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-8
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-13
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-5
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-13
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-8
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-13
+                    result=result+colshaded
+            elif(color=='J' or color=='K' or color=='L' or color=='M'):
+                if(green=='B1' or brown=='B1' or grey=='B1'):
+                    colshaded=-5
+                    result=result+colshaded
+                elif(green=='B2' or brown=='B2' or grey=='B2'):
+                    colshaded=-9
+                    result=result+colshaded
+                elif(green=='B3' or brown=='B3' or grey=='B3'):
+                    colshaded=-14
+                    result=result+colshaded        
+                elif(green=='G1' or brown=='G1' or grey=='G1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='G2' or brown=='G2' or grey=='G2'):
+                    colshaded=-9
+                    result=result+colshaded   
+                elif(green=='G3' or brown=='G3' or grey=='G3'):
+                    colshaded=-14
+                    result=result+colshaded 
+                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
+                    colshaded=-5
+                    result=result+colshaded  
+                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
+                    colshaded=-9
+                    result=result+colshaded   
+                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
+                    colshaded=-14
+                    result=result+colshaded
+
+
 
             
         
@@ -1168,12 +1427,136 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     # BLACK
     #  (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)
+    if(sizeprec<1.0):
+        dossblack=0.0
+        if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if (tableintensity=='BT1+'):
+                    dossblack=-1
+                elif (tableintensity=='BT1'):
+                    dossblack=-2
+                elif (tableintensity=='BT2'):
+                    dossblack=-3
+                elif (tableintensity=='BT1'):
+                    dossblack=-4
+            else:
+                if (tableintensity=='BT1+'):
+                    dossblack=-1
+                elif (tableintensity=='BT1'):
+                    dossblack=-2
+                elif (tableintensity=='BT2'):
+                    dossblack=-3
+                elif (tableintensity=='BT1'):
+                    dossblack=-4
+        elif(clarity=='VS1' or clarity=='VS2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if (tableintensity=='BT1+'):
+                    dossblack=0
+                elif (tableintensity=='BT1'):
+                    dossblack=-2
+                elif (tableintensity=='BT2'):
+                    dossblack=-3
+                elif (tableintensity=='BT1'):
+                    dossblack=-4
+            else:
+                if (tableintensity=='BT1+'):
+                    dossblack=0
+                elif (tableintensity=='BT1'):
+                    dossblack=-2
+                elif (tableintensity=='BT2'):
+                    dossblack=-3
+                elif (tableintensity=='BT1'):
+                    dossblack=-4
+        elif(clarity=='SI1' or clarity=='SI2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if (tableintensity=='BT1+'):
+                    dossblack=0
+                elif (tableintensity=='BT1'):
+                    dossblack=-1
+                elif (tableintensity=='BT2'):
+                    dossblack=-2
+                elif (tableintensity=='BT1'):
+                    dossblack=-4
+            else:
+                if (tableintensity=='BT1+'):
+                    dossblack=0
+                elif (tableintensity=='BT1'):
+                    dossblack=-1
+                elif (tableintensity=='BT2'):
+                    dossblack=-2
+                elif (tableintensity=='BT1'):
+                    dossblack=-4  
+        sidedossblack=0.0
+        if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if (crownintensity=='BC1+'):
+                    sidedossblack=0
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-1
+                elif (crownintensity=='BC2'):
+                    sidedossblack=-3
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-4
+            else:
+                if (crownintensity=='BC1+'):
+                    sidedossblack=0
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-1
+                elif (crownintensity=='BC2'):
+                    sidedossblack=-2
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-3
+        elif(clarity=='VS1' or clarity=='VS2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if (crownintensity=='BC1+'):
+                    sidedossblack=0
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-1
+                elif (crownintensity=='BC2'):
+                    sidedossblack=-3
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-4
+            else:
+                if (crownintensity=='BC1+'):
+                    sidedossblack=0
+                elif (crownintensity=='BC1'):
+                    sideossblack=0
+                elif (crownintensity=='BC2'):
+                    sidedossblack=-2
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-3
+        elif(clarity=='SI1' or clarity=='SI2'):
+            if(color=='D' or color=='E' or color=='F'):
+                if (crownintensity=='BC1+'):
+                    sidedossblack=0
+                elif (crownintensity=='BC1'):
+                    sidedossblack=0
+                elif (crownintensity=='BC2'):
+                    sidedossblack=-1
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-3
+            else:
+                if (crownintensity=='BC1+'):
+                    sidedossblack=0
+                elif (crownintensity=='BC1'):
+                    sidedossblack=0
+                elif (crownintensity=='BC2'):
+                    sidedossblack=-1
+                elif (crownintensity=='BC1'):
+                    sidedossblack=-3        
+        if(dossblack<=sidedossblack):
+            result=result+dossblack
+            blackd=dossblack
+        else:
+            result=result+sidedossblack
+            sideblackd=sidedossblack    
+
     df6 = pd.read_csv('black.csv')
     for i in range(len(df6)):
         # table
         if (df6['Location'][i] == 'Table'):
             if (df6['Shape'][i] == shape and shape == 'RO'):
-                if ((sizeprec >= df6['sizemin'][i]) & (cut == df6['cut'][i]) & (sizeprec <= df6['sizemax'][i]) & (
+                if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (sizeprec <= df6['sizemax'][i]) and (
                         tableintensity == df6['Intensity'][i])):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
 
@@ -1532,10 +1915,10 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['2'][i] / 2
-                                    sizepremd= df7['2'][i]
+                                    sizepremd= df7['2'][i]/2
                                 else:
                                     result = result + df7['2'][i]
-                                    sizepremd= df7['2'][i]/2
+                                    sizepremd= df7['2'][i]
                             elif xx == 3:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
@@ -2806,6 +3189,91 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #         result=result+ df9['8'][i]/2
     #     if xx==9:
     #         result=result+ df9['9'][i]/2
+    # open in dossiers?
+
+    if sizeprec<1.0:
+        if(topnatural=='N1' or crownnatural=='N1' or girdlenatural=='N1' or  pavilionnatural=='N1'):
+            if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+                naturald=-1
+                result=result-1
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                naturald=-1
+                result=result-1
+            else:
+                naturald=0
+                result=result+0   
+        elif(topnatural=='N2' or crownnatural=='N2' or girdlenatural=='N2' or  pavilionnatural=='N2'):
+            if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+                naturald=-2
+                result=result-2
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                naturald=-1
+                result=result-1
+            else:
+                naturald=-1
+                result=result-1 
+        elif(topnatural=='N3' or crownnatural=='N3' or girdlenatural=='N3' or pavilionnatural=='N3'):
+            if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
+                naturald=-3
+                result=result-3
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                naturald=-2
+                result=result-2
+            else:
+                naturald=-1
+                result=result-1   
+        if(identedtopnatural=='INT' or identedcrownnatural=='INT' or identedgirdlenatural=='INT' or  identedpavilionnatural=='INT'):
+            if(clarity=='IF'):
+                identednaturald=-3
+                result=result-3
+            elif(clarity=='VVS1' or clarity=='VVS2'):
+                identednaturald=-3
+                result=result-3
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                identednaturald=-2
+                result=result-2
+            else:
+                identednaturald=-1
+                result=result-1   
+        elif(identedtopnatural=='ING' or identedcrownnatural=='ING' or identedgirdlenatural=='ING' or  identedpavilionnatural=='ING'):
+            if(clarity=='IF'):
+                identednaturald=-1
+                result=result-1
+            elif(clarity=='VVS1' or clarity=='VVS2'):
+                identednaturald=-1
+                result=result-1
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                identednaturald=0
+                result=result-0
+            else:
+                identednaturald=0
+                result=result-0
+        elif(identedtopnatural=='INC' or identedcrownnatural=='INC' or identedgirdlenatural=='INC' or  identedpavilionnatural=='INC'):
+            if(clarity=='IF'):
+                identednaturald=-2
+                result=result-2
+            elif(clarity=='VVS1' or clarity=='VVS2'):
+                identednaturald=-1
+                result=result-1
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                identednaturald=0
+                result=result-0
+            else:
+                identednaturald=0
+                result=result-0  
+        elif(identedtopnatural=='INP' or identedcrownnatural=='INP' or identedgirdlenatural=='INP' or  identedpavilionnatural=='INP'):
+            if(clarity=='IF'):
+                identednaturald=-1
+                result=result-1
+            elif(clarity=='VVS1' or clarity=='VVS2'):
+                identednaturald=-1
+                result=result-1
+            elif (clarity=='VS1' or clarity=='VS2'):     
+                identednaturald=-1
+                result=result-1
+            else:
+                identednaturald=0
+                result=result-0                           
     if sizeprec >= 1.0:
         df31 = pd.read_csv('FinishingRoOpen.csv')
         if (shape == 'RO'):
