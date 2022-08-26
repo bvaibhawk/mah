@@ -333,7 +333,7 @@ def page1():
         for i in diamondData.keys():
             if diamondData[i].dtype == object:
                 diamondData[i] = diamondData[i].str.strip()
-        diamondData = diamondData.assign(FINAL_DISCOUNT_AFTER_CAP='')
+        diamondData = diamondData.assign(FINAL_DISCOUNT_AFTER_CAPOFF='')
         diamondData = diamondData.assign(DISCOUNT_BEFORE_CAPOFF='')
         diamondData = diamondData.assign(Capoff='')
         diamondData = diamondData.assign(Differnce_between_Capped_and_Uncapped_Dis='')
