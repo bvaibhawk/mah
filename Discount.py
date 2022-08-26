@@ -50,6 +50,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     cavityd=0.0
     chipd=0.0
     depthd=0.0
+    color1='X'
     capped='NO'
     MNcolorD=0.0
     result = 0.00
@@ -80,9 +81,10 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         if ((color == 'J') or (color == 'K') or (color == 'L') or (color == 'M') or (color=='N')):
             xx = 9
 
-    if(shape=='RO' and sizeprec>=1.0): 
+    if(shape=='RO' and sizeprec>=1.0):
+        color1=color 
         if color=='N':
-            result=result-0.07
+            
             MNcolorD=-7
             color='M'  
         df = pd.read_csv('Toamin.csv')     
@@ -91,14 +93,16 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
-                        result = result + float(df['Discount'][i])
+                        result = float(df['Discount'][i])
                         ff = 1
                 else:
                     if (cut == df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
                         result = result
                     elif (cut == df['CUT'][i]):
-                        result = result + float(df['Discount'][i])
+                        result = float(df['Discount'][i])
                         ff = 1
+        # if(color1=='N'):
+        #     result=result-0.07
         temp = result
         base=temp*100
         result=result*100
@@ -5304,14 +5308,16 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             depthd=-1
     if ff == 0:
         rap = 0;
+    if color1=='N':
+        result=result-7    
     if temp >= -40:
         if temp - result > 20:
             result = temp - 20
-            capped='Y20'
+            capped='20'
     else:
         if temp - result > 15:
             result = temp - 15
-            capped='Y15'
+            capped='15'
     ans=[]
     ans.append(result)
     ans.append(base)
