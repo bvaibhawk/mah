@@ -333,9 +333,9 @@ def page1():
         for i in diamondData.keys():
             if diamondData[i].dtype == object:
                 diamondData[i] = diamondData[i].str.strip()
-        diamondData = diamondData.assign(FINAL_DISCOUNT='')
-        diamondData = diamondData.assign(DISCOUNT_BEFORE_CAP='')
-        diamondData = diamondData.assign(Cap='')
+        diamondData = diamondData.assign(FINAL_DISCOUNT_AFTER_CAP='')
+        diamondData = diamondData.assign(DISCOUNT_BEFORE_CAPOFF='')
+        diamondData = diamondData.assign(Capoff='')
         diamondData = diamondData.assign(Differnce_between_Capped_and_Uncapped_Dis='')
         diamondData = diamondData.assign(DISCOUNTED_RAP='')
         diamondData = diamondData.assign(Base_Dis='')
@@ -549,7 +549,7 @@ def page1():
                                       lower_half,
                                         intended_natural, graining, rap_value)
 
-                diamondData['FINAL_DISCOUNT'][i] = result[0]
+                diamondData['FINAL_DISCOUNT_AFTER_CAPOFF'][i] = result[0]
                 diamondData['Base_Dis'][i] = result[1]
                 diamondData['GD_Dis'][i] = result[2]
                 diamondData['Diameter_Dis_or_MM_Premium'][i] = result[3]
@@ -572,11 +572,11 @@ def page1():
                 diamondData['Ncolor_Dis'][i] = result[20]
                 diamondData['Depth_Dis'][i] = result[21]
                 diamondData['Ktos_Dis'][i] = result[22]
-                diamondData['Cap'][i] = result[23]
+                diamondData['Capoff'][i] = result[23]
                 final_sum = 0
                 for j in range(1, 23):
                     final_sum += result[j]
-                diamondData['DISCOUNT_BEFORE_CAP'][i] = final_sum
+                diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)     
