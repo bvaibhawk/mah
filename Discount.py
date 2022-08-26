@@ -51,7 +51,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     chipd=0.0
     depthd=0.0
     color1='X'
-    capped='NO'
+    capped=0
     MNcolorD=0.0
     result = 0.00
     ff = 0
@@ -5313,11 +5313,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     if temp >= -40:
         if temp - result > 20:
             result = temp - 20
-            capped='20'
+            capped=20
     else:
         if temp - result > 15:
             result = temp - 15
-            capped='15'
+            capped=15
     ans=[]
     ans.append(result)
     ans.append(base)
