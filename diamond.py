@@ -333,34 +333,38 @@ def page1():
         for i in diamondData.keys():
             if diamondData[i].dtype == object:
                 diamondData[i] = diamondData[i].str.strip()
-        diamondData = diamondData.assign(DISCOUNT='')
-        diamondData = diamondData.assign(DISCOUNTED_RAP='')
-        diamondData = diamondData.assign(BaseD='')
-        diamondData = diamondData.assign(GDD='')
-        diamondData = diamondData.assign(DiameterD='')
-        diamondData = diamondData.assign(ColshadeD='')
-        diamondData = diamondData.assign(MilkyD='')
-        diamondData = diamondData.assign(cutcommentsD='')
-        diamondData = diamondData.assign(GrainingD='')
-        diamondData = diamondData.assign(haD='')
-        diamondData = diamondData.assign(EyeCleanD='')
-        diamondData = diamondData.assign(TableCleanD='')
-        diamondData = diamondData.assign(BlackD='')
-        diamondData = diamondData.assign(SideBlackD='')
-        diamondData = diamondData.assign(SizePrems='')
-        diamondData = diamondData.assign(OpenD='')
-        diamondData = diamondData.assign(NaturalD='')
-        diamondData = diamondData.assign(IdentedNaturalD='')
-        diamondData = diamondData.assign(Extra_FacetD='')
-        diamondData = diamondData.assign(CavityD='')
-        diamondData = diamondData.assign(ChipD='')
-        diamondData = diamondData.assign(MNcolorD='')
-        diamondData = diamondData.assign(DepthD='')
-        diamondData = diamondData.assign(KtosD='')
+        diamondData = diamondData.assign(FINAL_DISCOUNT='')
+        diamondData = diamondData.assign(DISCOUNT_BEFORE_CAP='')
         diamondData = diamondData.assign(Cap='')
+        diamondData = diamondData.assign(Differnce_between_Capped_and_Uncapped_Dis='')
+        diamondData = diamondData.assign(DISCOUNTED_RAP='')
+        diamondData = diamondData.assign(Base_Dis='')
+        diamondData = diamondData.assign(Size_Premium='')
+        diamondData = diamondData.assign(GD_Dis='')
+        diamondData = diamondData.assign(Diameter_Dis_or_MM_Premium='')
+        diamondData = diamondData.assign(Colshade_Dis='')
+        diamondData = diamondData.assign(Milky_Dis='')
+        
+        
+        diamondData = diamondData.assign(ha_Dis='')
+        diamondData = diamondData.assign(EyeClean_Dis='')
+        diamondData = diamondData.assign(TableClean_Dis='')
+        diamondData = diamondData.assign(Black_Dis='')
+        diamondData = diamondData.assign(SideBlack_Dis='')
+        
+        diamondData = diamondData.assign(Open_Dis='')
+        diamondData = diamondData.assign(Natural_Dis='')
+        diamondData = diamondData.assign(IdentedNatural_Dis='')
+        
+        diamondData = diamondData.assign(Cavity_Dis='')
+        diamondData = diamondData.assign(Chip_Dis='')
+        diamondData = diamondData.assign(Ncolor_Dis='')
+        diamondData = diamondData.assign(Depth_Dis='')
+        diamondData = diamondData.assign(Ktos_Dis='')
+        diamondData = diamondData.assign(cutcomments_Dis='')
+        diamondData = diamondData.assign(Graining_Dis='')
+        diamondData = diamondData.assign(Extra_Facet_Dis='')
 
-        diamondData = diamondData.assign(Individual_sum='')
-        diamondData = diamondData.assign(diff='')
         records_processed = st.empty()
         progress = st.progress(0)
         for i in range(len(diamondData)):
@@ -545,35 +549,35 @@ def page1():
                                       lower_half,
                                         intended_natural, graining, rap_value)
 
-                diamondData['DISCOUNT'][i] = result[0]
-                diamondData['BaseD'][i] = result[1]
-                diamondData['GDD'][i] = result[2]
-                diamondData['DiameterD'][i] = result[3]
-                diamondData['ColshadeD'][i] = result[4]
-                diamondData['MilkyD'][i] = result[5]
-                diamondData['cutcommentsD'][i] = result[6]
-                diamondData['GrainingD'][i] = result[7]
-                diamondData['haD'][i] = result[8]
-                diamondData['EyeCleanD'][i] = result[9]
-                diamondData['TableCleanD'][i] = result[10]
-                diamondData['BlackD'][i] = result[11]
-                diamondData['SideBlackD'][i] = result[12]
-                diamondData['SizePrems'][i] = result[13]
-                diamondData['OpenD'][i] = result[14]
-                diamondData['NaturalD'][i] = result[15]
-                diamondData['IdentedNaturalD'][i] = result[16]
-                diamondData['Extra_FacetD'][i] = result[17]
-                diamondData['CavityD'][i] = result[18]
-                diamondData['ChipD'][i] = result[19]
-                diamondData['MNcolorD'][i] = result[20]
-                diamondData['DepthD'][i] = result[21]
-                diamondData['KtosD'][i] = result[22]
+                diamondData['FINAL_DISCOUNT'][i] = result[0]
+                diamondData['Base_Dis'][i] = result[1]
+                diamondData['GD_Dis'][i] = result[2]
+                diamondData['Diameter_Dis_or_MM_Premium'][i] = result[3]
+                diamondData['Colshade_Dis'][i] = result[4]
+                diamondData['Milky_Dis'][i] = result[5]
+                diamondData['cutcomments_Dis'][i] = result[6]
+                diamondData['Graining_Dis'][i] = result[7]
+                diamondData['ha_Dis'][i] = result[8]
+                diamondData['EyeClean_Dis'][i] = result[9]
+                diamondData['TableClean_Dis'][i] = result[10]
+                diamondData['Black_Dis'][i] = result[11]
+                diamondData['SideBlack_Dis'][i] = result[12]
+                diamondData['Size_Premium'][i] = result[13]
+                diamondData['Open_Dis'][i] = result[14]
+                diamondData['Natural_Dis'][i] = result[15]
+                diamondData['IdentedNatural_Dis'][i] = result[16]
+                diamondData['Extra_Facet_Dis'][i] = result[17]
+                diamondData['Cavity_Dis'][i] = result[18]
+                diamondData['Chip_Dis'][i] = result[19]
+                diamondData['Ncolor_Dis'][i] = result[20]
+                diamondData['Depth_Dis'][i] = result[21]
+                diamondData['Ktos_Dis'][i] = result[22]
                 diamondData['Cap'][i] = result[23]
                 final_sum = 0
                 for j in range(1, 23):
                     final_sum += result[j]
-                diamondData['Individual_sum'][i] = final_sum
-                diamondData['diff'][i] = result[0] - final_sum
+                diamondData['DISCOUNT_BEFORE_CAP'][i] = final_sum
+                diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)     
                            
