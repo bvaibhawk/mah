@@ -330,9 +330,11 @@ def page1():
             return
         diamondData = pd.read_csv(uploaded_file, encoding= 'unicode_escape')
         diamondData.columns = diamondData.columns.str.strip()
+        diamondData = diamondData.astype(str)
         for i in diamondData.keys():
             if diamondData[i].dtype == object:
                 diamondData[i] = diamondData[i].str.strip()
+
         diamondData = diamondData.assign(FINAL_DISCOUNT_AFTER_CAPOFF='')
         diamondData = diamondData.assign(DISCOUNT_BEFORE_CAPOFF='')
         diamondData = diamondData.assign(Capoff='')
@@ -381,7 +383,7 @@ def page1():
                 fluo = column_default_validation(diamondData, 'FLUO', i, 'Faint')
                 rap = column_default_validation(diamondData, 'RAP', i, 0)
                 ktos = column_default_validation(diamondData, 'KEY_TO_SYMBOL', i, 0)
-                sizeprec = column_default_validation(diamondData, 'WEIGHT', i, 0)
+                sizeprec = float(column_default_validation(diamondData, 'WEIGHT', i, 0))
                 tableclean = column_default_validation(diamondData, 'TABLE_CLEAN', i, 'Yes')
                 eyeclean = column_default_validation(diamondData, 'EYE_CLEAN', i, 'Yes')
                 ha = column_default_validation(diamondData, 'HA', i, 'Yes')
