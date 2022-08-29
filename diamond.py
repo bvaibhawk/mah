@@ -306,7 +306,7 @@ def page1():
         with col8:
             update_button = st.button('Update rapnet pricing')
         if update_button is not None:
-            newRapPrice = pd.read_csv(updated_file)
+            newRapPrice = pd.read_csv(updated_file, encoding= 'unicode_escape')
             rap_columns = ['SHAPE', 'CLARITY', 'COLOUR', 'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP']
             col_check = (x for x in rap_columns if x not in newRapPrice.keys())
             if len(list(col_check)) == 0:
@@ -328,7 +328,7 @@ def page1():
         start_process = st.button("Start Processing")
         if not start_process:
             return
-        diamondData = pd.read_csv(uploaded_file)
+        diamondData = pd.read_csv(uploaded_file, encoding= 'unicode_escape')
         diamondData.columns = diamondData.columns.str.strip()
         for i in diamondData.keys():
             if diamondData[i].dtype == object:
