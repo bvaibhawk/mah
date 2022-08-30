@@ -580,8 +580,9 @@ def page1():
                 diamondData['Ncolor_Dis'][i] = result[20]
                 diamondData['Depth_Dis'][i] = result[21]
                 diamondData['Ktos_Dis'][i] = result[22]
-                diamondData['Capoff'][i] = result[23]
-                diamondData['Days_Dis'][i] = result[24]
+                diamondData['Days_Dis'][i] = result[23]
+                diamondData['Capoff'][i] = result[24]
+                
                 final_sum = 0
                 for j in range(1, 23):
                     final_sum += result[j]
