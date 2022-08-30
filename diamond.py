@@ -56,11 +56,16 @@ text-align: center;
 <p>Powered by <a href = 'https://www.ripik.ai' target='_blank'>Ripik.ai</a></p>
 </div>
 """
+
+
+
 logo = cv2.imread("logo.png")
 logo = cv2.cvtColor(logo, cv2.COLOR_BGR2RGB)
 logo = cv2.resize(logo, (300, 100))
 st.image(logo)
 st.text("\n")
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)-8s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S', filename='discount-tool.log', filemode='w')
 class ColumnError(Exception):
     pass
 def column_default_validation(diamondData, col, i, defaultValue=None):
@@ -424,7 +429,7 @@ def page1():
                 crownnatural = column_default_validation(diamondData, 'Crown_Natural', i, 'No')
                 girdlenatural = column_default_validation(diamondData, 'Girdle_Natural', i, 'No')
                 pavilionnatural = column_default_validation(diamondData, 'Pavilion_Natural', i, 'No')
-                days = column_default_validation(diamondData, 'REF_DAYS', i, 0)
+                days = int(column_default_validation(diamondData, 'REF_DAYS', i, 0))
                 chip = column_default_validation(diamondData, 'CHIP', i, 'No')
                 cavity = column_default_validation(diamondData, 'CAVITY', i, 'No')
                 upgrade1 = column_default_validation(diamondData, 'Upgrade_Color', i, '0')
