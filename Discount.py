@@ -5362,8 +5362,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(MNcolorD)
     ans.append(depthd)
     ans.append(ktosd)
-    ans.append(capped)
     ans.append(daysd)
+    ans.append(capped)
+    
     return ans
   
   
