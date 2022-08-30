@@ -5309,22 +5309,22 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             depthd=-1
     if(sizeprec<1.0):
       if(days>=60 and days<=89):
-        result=result-1
+        result=result-1.0
         daysd=-1
       if(days>=90 and days<=119):
-        result=result-2
+        result=result-2.0
         daysd=-2
       if(days>=120 and days<=179):
-        result=result-3
+        result=result-3.0
         daysd=-3
       if(days>=180 and days<=299):
-        result=result-5
+        result=result-5.0
         daysd=-5
       if(days>=300 and days<=499):
-        result=result-7
+        result=result-7.0
         daysd=-7
       if(days>=500):
-        result=result-10
+        result=result-10.0
         daysd=-10  
     if ff == 0:
         rap = 0;
