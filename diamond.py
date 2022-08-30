@@ -584,7 +584,7 @@ def page1():
                 diamondData['Capoff'][i] = result[24]
                 
                 final_sum = 0
-                for j in range(1, 23):
+                for j in range(1, 24):
                     final_sum += result[j]
                 diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
