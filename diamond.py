@@ -362,6 +362,7 @@ def page1():
         diamondData = diamondData.assign(Chip_Dis='')
         diamondData = diamondData.assign(Ncolor_Dis='')
         diamondData = diamondData.assign(Depth_Dis='')
+        diamondData = diamondData.assign(Days_Dis='')
         diamondData = diamondData.assign(Ktos_Dis='')
         diamondData = diamondData.assign(cutcomments_Dis='')
         diamondData = diamondData.assign(Graining_Dis='')
@@ -575,6 +576,7 @@ def page1():
                 diamondData['Depth_Dis'][i] = result[21]
                 diamondData['Ktos_Dis'][i] = result[22]
                 diamondData['Capoff'][i] = result[23]
+                diamondData['Days_Dis'][i] = result[24]
                 final_sum = 0
                 for j in range(1, 23):
                     final_sum += result[j]
