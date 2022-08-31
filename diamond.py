@@ -429,7 +429,7 @@ def page1():
                 crownnatural = column_default_validation(diamondData, 'Crown_Natural', i, 'No')
                 girdlenatural = column_default_validation(diamondData, 'Girdle_Natural', i, 'No')
                 pavilionnatural = column_default_validation(diamondData, 'Pavilion_Natural', i, 'No')
-                days = int(column_default_validation(diamondData, 'REF_DAYS', i, 0))
+                days = int(float(column_default_validation(diamondData, 'REF_DAYS', i, 0)))
                 chip = column_default_validation(diamondData, 'CHIP', i, 'No')
                 cavity = column_default_validation(diamondData, 'CAVITY', i, 'No')
                 upgrade1 = column_default_validation(diamondData, 'Upgrade_Color', i, '0')
