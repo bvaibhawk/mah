@@ -88,7 +88,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             
             MNcolorD=-7
             color='M'  
-        df = pd.read_csv('Toamin.csv')     
+        df = pd.read_csv('BaseRound.csv')     
         for i in range(len(df)):
             # and polish == df['POL'][i] and symmetry == df['SYM'][i]
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
@@ -206,7 +206,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
                 #     if cut=='VG':
     elif(shape!='RO'):
-        df2 = pd.read_csv('toaminfancy.csv')
+        df2 = pd.read_csv('Basefancy.csv')
         result = 0.00
 
         for i in range(len(df2)):
