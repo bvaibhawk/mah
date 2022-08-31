@@ -68,9 +68,12 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)-8s %(m
                     datefmt='%a, %d %b %Y %H:%M:%S', filename='discount-tool.log', filemode='w')
 class ColumnError(Exception):
     pass
-def column_default_validation(diamondData, col, i, defaultValue=None):
+def column_default_validation(diamondData, col, i, defaultValue=None, no_comma=None):
     if col in diamondData.keys():
-        return diamondData[col][i]
+        if no_comma is None:
+            return diamondData[col][i]
+        else:
+            return diamondData[col][i].replace(',', '')
     if defaultValue is None:
         raise ColumnError(col + ' is missing in the uploaded CSV file. ' \
                                 'Please upload the CSV file in correct format')
@@ -412,7 +415,7 @@ def page1():
                 pavilionef = column_default_validation(diamondData, 'Pavilion_Extra_Facet', i, '0')
                 pavilioncavity = column_default_validation(diamondData, 'Pavilion_cavity', i, '0')
                 pavilionchip = column_default_validation(diamondData, 'Pavilion_Chip', i, '0')
-                depth = column_default_validation(diamondData, 'TD', i, 0)
+                depth = column_default_validation(diamondData, 'TD', i, 0, no_comma=1)
                 if depth == '-':
                     depth = 0.0
                 else:
@@ -429,7 +432,7 @@ def page1():
                 crownnatural = column_default_validation(diamondData, 'Crown_Natural', i, 'No')
                 girdlenatural = column_default_validation(diamondData, 'Girdle_Natural', i, 'No')
                 pavilionnatural = column_default_validation(diamondData, 'Pavilion_Natural', i, 'No')
-                days = int(float(column_default_validation(diamondData, 'REF_DAYS', i, 0)))
+                days = int(float(column_default_validation(diamondData, 'REF_DAYS', i, 0, no_comma=1)))
                 chip = column_default_validation(diamondData, 'CHIP', i, 'No')
                 cavity = column_default_validation(diamondData, 'CAVITY', i, 'No')
                 upgrade1 = column_default_validation(diamondData, 'Upgrade_Color', i, '0')
@@ -438,10 +441,8 @@ def page1():
                 downgrade2 = column_default_validation(diamondData, 'Downgrade_Clarity', i, '0')
 
                 # new variables added here 10-08-2022
-                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
-                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
-                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i)
-                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i)
+                min_diam = column_default_validation(diamondData, 'MIN_DIAM', i, no_comma=1)
+                max_diam = column_default_validation(diamondData, 'MAX_DIAM', i, no_comma=1)
                 if min_diam == '-':
                     min_diam = 0.0
                 else:
