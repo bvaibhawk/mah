@@ -40,12 +40,13 @@ def diameter_premium():
     data_grt_one = pd.read_excel('input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
                                  usecols=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
     central_map = pd.read_excel('output_files/output_extra_discounts.xlsx', sheet_name='CENTRAL')
-    diameter_dict = {'CUT': [], 'POLY': [], 'SYM': [], 'FLUO': [],
+    diameter_dict = {'SHAPE': [], 'CUT': [], 'POLY': [], 'SYM': [], 'FLUO': [],
                      'SIZE': [], 'DIAMETER_MIN': [], 'DIAMETER_MAX': [], 'KEY_COLOR_CLARITY': [], 'DISCOUNT': []}
 
     for i in range(6, 12):
         for j in range(1, len(data.columns)):
             for k in ['NONE', 'FAINT']:
+                diameter_dict['SHAPE'].append('RO')
                 diameter_dict['CUT'].append('EX')
                 diameter_dict['POLY'].append('EX')
                 diameter_dict['SYM'].append('EX')
@@ -75,7 +76,7 @@ def diameter_premium():
         for j in range(5, len(data_grt_one.columns)):
             if not pd.isnull(data_grt_one.iloc[i, j]):
                 for k in ['NONE', 'FAINT']:
-
+                    diameter_dict['SHAPE'].append('RO')
                     for cut_loc in range(i, -1, -1):
                         if not pd.isnull(data_grt_one.iloc[cut_loc, 1]):
                             diameter_dict['CUT'].append(data_grt_one.iloc[cut_loc, 1])
