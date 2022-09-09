@@ -1,5 +1,7 @@
 import pandas as pd
 
+from discount_integration.discount_sql import get_diameter_premium
+
 
 def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
                  eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
@@ -392,183 +394,184 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                               
 
             # DIAMETER
-    if (shape == 'RO'):
-        if sizeprec >= 1.0 and sizeprec <= 1.49:
-            if cut == 'VG':
-                if (xx == 1):
-                    if diameter <= 6.2:
-                        result = result - 0.5
-                        diameterd=-0.5
-                    elif diameter >= 6.3:
-                        result = result + 1.5
-                        diameterd=1.5
-                elif (xx == 2):
-                    if diameter <= 6.2:
-                        result = result - 0.5
-                        diameterd=-0.5
-                    elif diameter >= 6.3:
-                        result = result + 1.5
-                        diameterd=1.5
-                elif (xx == 3 or xx == 4):
-                    if diameter <= 6.2:
-                        result = result - 0.5
-                        diameterd=-0.5
-                    elif diameter >= 6.3:
-                        diameterd=1.5
-                        result = result + 1.5
-                elif (xx == 5):
-                    if diameter <= 6.2:
-                        diameterd=-0.1
-                        result = result - 0.1
-                    elif diameter >= 6.3:
-                        diameterd=1.5
-                        result = result + 1.5
-                elif (xx == 6):
-                    if diameter <= 6.2:
-                        diameterd=-0.5
-                        result = result - 0.5
-                    elif diameter >= 6.3:
-                        diameterd=1.5
-                        result = result + 1.5
-                elif (xx == 7):
-                    if diameter <= 6.2:
-                        diameterd=0
-                        result = result - 0.0
-                    elif diameter >= 6.3:
-                        diameterd=0
-                        result = result + 1.0
-                elif (xx == 8):
-                    if diameter <= 6.2:
-                        diameterd=0
-                        result = result - 0.0
-                    elif diameter >= 6.3:
-                        diameterd=1
-                        result = result + 1.0
-        if cut == 'EX' and polish == 'EX' and symmetry == 'EX' and (fluo == 'None' or fluo == 'Faint'):
-            if sizeprec >= 0.35 and sizeprec <= 0.399 and diameter > 4.5:
-                if color == 'D':
-                    if clarity == 'IF':
-                        diameterd=9
-                        result = result + 9
-                    elif clarity == 'VVS1':
-                        result = result + 14
-                        diameterd=14
-                    elif clarity == 'VVS2':
-                        diameterd=21
-                        result = result + 21
-                if color == 'E':
-                    if clarity == 'IF':
-                        diameterd=7
-                        result = result + 7
-                    elif clarity == 'VVS1':
-                        diameterd=8
-                        result = result + 8
-                    elif clarity == 'VVS2':
-                        diameterd=2
-                        result = result + 2
-                if color == 'F':
-                    if clarity == 'IF':
-                        diameterd=7
-                        result = result + 7
-                    elif clarity == 'VVS1':
-                        diameterd=7
-                        result = result + 7
-                    elif clarity == 'VVS2':
-                        diameterd=2
-                        result = result + 2
-            if sizeprec >= 0.60 and sizeprec <= 0.649 and diameter > 5.4:
-                if color == 'D':
-                    if clarity == 'IF':
-                        diameterd=6
-                        result = result + 6
-                    elif clarity == 'VVS1':
-                        result = result + 9
-                        diameterd=9
-                    elif clarity == 'VVS2':
-                        result = result + 9
-                        diameterd=9
-                if color == 'E':
-                    if clarity == 'IF':
-                        diameterd=7
-                        result = result + 7
-                    elif clarity == 'VVS1':
-                        diameterd=5
-                        result = result + 5
-                    elif clarity == 'VVS2':
-                        diameterd=1
-                        result = result + 1
-                if color == 'F':
-                    if clarity == 'IF':
-                        diameterd=6
-                        result = result + 6
-                    elif clarity == 'VVS1':
-                        result = result + 6
-                        diameterd=6
-                    elif clarity == 'VVS2':
-                        diameterd=1
-                        result = result + 1
-            if sizeprec >= 0.80 and sizeprec <= 0.849 and diameter > 6.0:
-                if color == 'D':
-                    if clarity == 'IF':
-                        diameterd=16
-                        result = result + 16
-                    elif clarity == 'VVS1':
-                        diameterd=10
-                        result = result + 10
-                    elif clarity == 'VVS2':
-                        diameterd=11
-                        result = result + 11
-                if color == 'E':
-                    if clarity == 'IF':
-                        diameterd=5
-                        result = result + 5
-                    elif clarity == 'VVS1':
-                        diameterd=4
-                        result = result + 4
-                    elif clarity == 'VVS2':
-                        diameterd=13
-                        result = result + 13
-                if color == 'F':
-                    if clarity == 'IF':
-                        result = result + 9
-                        diameterd=9
-                    elif clarity == 'VVS1':
-                        result = result + 9
-                        diameterd=9
-                    elif clarity == 'VVS2':
-                        result = result + 13
-                        diameterd=13
-            if sizeprec >= 0.95 and sizeprec <= 0.999 and diameter > 6.3:
-                if color == 'D':
-                    if clarity == 'IF':
-                        diameterd=5
-                        result = result + 5
-                    elif clarity == 'VVS1':
-                        diameterd=6
-                        result = result + 6
-                    elif clarity == 'VVS2':
-                        diameterd=7
-                        result = result + 7
-                if color == 'E':
-                    if clarity == 'IF':
-                        diameterd=6
-                        result = result + 6
-                    elif clarity == 'VVS1':
-                        diameterd=5
-                        result = result + 5
-                    elif clarity == 'VVS2':
-                        diameterd=5
-                        result = result + 5
-                if color == 'F':
-                    if clarity == 'IF':
-                        result = result + 6
-                        diameterd=6
-                    elif clarity == 'VVS1':
-                        result = result + 6
-                        diameterd=6
-                    elif clarity == 'VVS2':
-                        result = result + 5
-                        diameterd=5
+    # if (shape == 'RO'):
+    #     if sizeprec >= 1.0 and sizeprec <= 1.49:
+    #         if cut == 'VG':
+    #             if (xx == 1):
+    #                 if diameter <= 6.2:
+    #                     result = result - 0.5
+    #                     diameterd=-0.5
+    #                 elif diameter >= 6.3:
+    #                     result = result + 1.5
+    #                     diameterd=1.5
+    #             elif (xx == 2):
+    #                 if diameter <= 6.2:
+    #                     result = result - 0.5
+    #                     diameterd=-0.5
+    #                 elif diameter >= 6.3:
+    #                     result = result + 1.5
+    #                     diameterd=1.5
+    #             elif (xx == 3 or xx == 4):
+    #                 if diameter <= 6.2:
+    #                     result = result - 0.5
+    #                     diameterd=-0.5
+    #                 elif diameter >= 6.3:
+    #                     diameterd=1.5
+    #                     result = result + 1.5
+    #             elif (xx == 5):
+    #                 if diameter <= 6.2:
+    #                     diameterd=-0.1
+    #                     result = result - 0.1
+    #                 elif diameter >= 6.3:
+    #                     diameterd=1.5
+    #                     result = result + 1.5
+    #             elif (xx == 6):
+    #                 if diameter <= 6.2:
+    #                     diameterd=-0.5
+    #                     result = result - 0.5
+    #                 elif diameter >= 6.3:
+    #                     diameterd=1.5
+    #                     result = result + 1.5
+    #             elif (xx == 7):
+    #                 if diameter <= 6.2:
+    #                     diameterd=0
+    #                     result = result - 0.0
+    #                 elif diameter >= 6.3:
+    #                     diameterd=0
+    #                     result = result + 1.0
+    #             elif (xx == 8):
+    #                 if diameter <= 6.2:
+    #                     diameterd=0
+    #                     result = result - 0.0
+    #                 elif diameter >= 6.3:
+    #                     diameterd=1
+    #                     result = result + 1.0
+    #     if cut == 'EX' and polish == 'EX' and symmetry == 'EX' and (fluo == 'None' or fluo == 'Faint'):
+    #         if sizeprec >= 0.35 and sizeprec <= 0.399 and diameter > 4.5:
+    #             if color == 'D':
+    #                 if clarity == 'IF':
+    #                     diameterd=9
+    #                     result = result + 9
+    #                 elif clarity == 'VVS1':
+    #                     result = result + 14
+    #                     diameterd=14
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=21
+    #                     result = result + 21
+    #             if color == 'E':
+    #                 if clarity == 'IF':
+    #                     diameterd=7
+    #                     result = result + 7
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=8
+    #                     result = result + 8
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=2
+    #                     result = result + 2
+    #             if color == 'F':
+    #                 if clarity == 'IF':
+    #                     diameterd=7
+    #                     result = result + 7
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=7
+    #                     result = result + 7
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=2
+    #                     result = result + 2
+    #         if sizeprec >= 0.60 and sizeprec <= 0.649 and diameter > 5.4:
+    #             if color == 'D':
+    #                 if clarity == 'IF':
+    #                     diameterd=6
+    #                     result = result + 6
+    #                 elif clarity == 'VVS1':
+    #                     result = result + 9
+    #                     diameterd=9
+    #                 elif clarity == 'VVS2':
+    #                     result = result + 9
+    #                     diameterd=9
+    #             if color == 'E':
+    #                 if clarity == 'IF':
+    #                     diameterd=7
+    #                     result = result + 7
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=5
+    #                     result = result + 5
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=1
+    #                     result = result + 1
+    #             if color == 'F':
+    #                 if clarity == 'IF':
+    #                     diameterd=6
+    #                     result = result + 6
+    #                 elif clarity == 'VVS1':
+    #                     result = result + 6
+    #                     diameterd=6
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=1
+    #                     result = result + 1
+    #         if sizeprec >= 0.80 and sizeprec <= 0.849 and diameter > 6.0:
+    #             if color == 'D':
+    #                 if clarity == 'IF':
+    #                     diameterd=16
+    #                     result = result + 16
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=10
+    #                     result = result + 10
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=11
+    #                     result = result + 11
+    #             if color == 'E':
+    #                 if clarity == 'IF':
+    #                     diameterd=5
+    #                     result = result + 5
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=4
+    #                     result = result + 4
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=13
+    #                     result = result + 13
+    #             if color == 'F':
+    #                 if clarity == 'IF':
+    #                     result = result + 9
+    #                     diameterd=9
+    #                 elif clarity == 'VVS1':
+    #                     result = result + 9
+    #                     diameterd=9
+    #                 elif clarity == 'VVS2':
+    #                     result = result + 13
+    #                     diameterd=13
+    #         if sizeprec >= 0.95 and sizeprec <= 0.999 and diameter > 6.3:
+    #             if color == 'D':
+    #                 if clarity == 'IF':
+    #                     diameterd=5
+    #                     result = result + 5
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=6
+    #                     result = result + 6
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=7
+    #                     result = result + 7
+    #             if color == 'E':
+    #                 if clarity == 'IF':
+    #                     diameterd=6
+    #                     result = result + 6
+    #                 elif clarity == 'VVS1':
+    #                     diameterd=5
+    #                     result = result + 5
+    #                 elif clarity == 'VVS2':
+    #                     diameterd=5
+    #                     result = result + 5
+    #             if color == 'F':
+    #                 if clarity == 'IF':
+    #                     result = result + 6
+    #                     diameterd=6
+    #                 elif clarity == 'VVS1':
+    #                     result = result + 6
+    #                     diameterd=6
+    #                 elif clarity == 'VVS2':
+    #                     result = result + 5
+    #                     diameterd=5
+    result += get_diameter_premium(shape, cut, polish, symmetry, fluo, sizeprec, min_diam, max_diam, color, clarity)
 
                         # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
     if ((sizeprec>=1.0) and ((cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (symmetry == 'EX' or symmetry == 'VG')) and (
