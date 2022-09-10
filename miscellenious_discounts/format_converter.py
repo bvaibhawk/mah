@@ -3,6 +3,8 @@ import math
 import pandas as pd
 import numpy as np
 from pandasql import sqldf
+from openpyxl import load_workbook
+from skimage.measure import label, regionprops
 
 
 def write_excel(filename, sheet_name, dataframe):
@@ -99,5 +101,260 @@ def diameter_premium():
     write_excel('output_files/output_extra_discounts.xlsx', 'Diameter Premiums', output_df)
 
 
+def size_premium():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    df1 = pd.read_excel(xls, "Size Premiums")
+    arr = df1.to_numpy()
+
+    def saveDataFrame(nparr: np.array, name: str):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        if (list(nparrdf.columns).__contains__("Class")):
+            nparrdf = nparrdf.drop(["Class"], axis=1)
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        # return nparrdf
+        nparrdf.to_csv(f"../{name}.csv", index=False)
+
+    def saveDFSizePremiums(df_size_premiums):
+        # converting df to np.array
+        arr = df_size_premiums.to_numpy()
+
+        # Extracting Important Locations
+        # Round Excelent (3VG+) Big (3 to 7 Carats)
+        roexbg = arr[1:25, 14:26]
+        roexbgF = arr[28:52, 14:18]
+
+        # Round Excelent Small (1 to 3 Carats)
+        roexsm = arr[1:21, 1:12]
+        roexsmF = arr[24:44, 1:4]
+
+        # Round VeryGood Small (1 to 3 Carats)
+        rovgsm = arr[47:67, 1:12]
+        rovgsmF = arr[70:90, 1:4]
+
+        # Fancy Section
+        fancy = arr[1:44, 28:39]
+
+        # Round 3VG+ Dossiers
+        roexdossiers = arr[2:15, 40:43]
+
+        # Calling The Save File Functions
+
+        saveDataFrame(roexbg, "roexbg")
+        saveDataFrame(roexbgF, "roexbgF")
+
+        saveDataFrame(roexsm, "roexsm")
+        saveDataFrame(roexsmF, "roexsmF")
+
+        saveDataFrame(rovgsm, "rovgsm")
+        saveDataFrame(rovgsmF, "rovgsmF")
+
+        saveDataFrame(fancy, "fancy")
+
+        saveDataFrame(roexdossiers, "roexdossiers")
+
+    # saves all tables in size premium sheet to 8 csv files
+    saveDFSizePremiums(df1)
+
+
+def doss_base():
+    def get_sheetnames_xlsx(filepath):
+        wb = load_workbook(filepath, read_only=True, keep_links=False)
+        return wb.sheetnames
+
+    sheet_names = get_sheetnames_xlsx("input_files/input_price_module_discounts.xlsm")
+
+    final_df = pd.DataFrame()
+    for sheet in sheet_names:
+        df_list = []
+
+        df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
+
+        # extracting required tables in form of dataframes from spreadsheet
+        binary_rep = np.array(df.notnull().astype('int'))
+        l = label(binary_rep)
+        for s in regionprops(l):
+            if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+                df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+        # iterating through extracted dataframes
+        for d in df_list:
+            clarity = []
+            Cut = []
+            Polish = []
+            Symmetry = []
+            Fluo = []
+            Size = []
+            size_name = sheet
+
+            if d.iloc[0][1] == "Max-55":
+                cut_name = d.iloc[1][1]
+
+            else:
+                cut_name = d.iloc[0][1]
+
+            if cut_name.count("X") == 3:
+                Cut.append("EX")
+                Polish.append("EX")
+                Symmetry.append("EX")
+            elif cut_name.count("X") == 1:
+                Cut.append("EX")
+                Polish.append("DD")
+                Symmetry.append("DD")
+            elif "VG" in cut_name:
+                Cut.append("VG")
+                Polish.append("DD")
+                Symmetry.append("DD")
+            elif "GD" in cut_name:
+                Cut.append("GD")
+                Polish.append("DD")
+                Symmetry.append("DD")
+
+            if "NONE" in cut_name:
+                Fluo.append("None")
+            elif "FAINT" in cut_name:
+                Fluo.append("Faint")
+            elif "MED" in cut_name:
+                Fluo.append("Med")
+            elif "STRONG" in cut_name:
+                Fluo.append("Strong")
+
+            Size.append(size_name)
+
+            sd = d.copy()
+            sd.reset_index(drop=True, inplace=True)
+            if d.iloc[0][1] == "Max-55":
+                sd.columns = sd.iloc[2]
+                sd = sd.drop([0, 1, 2])
+            else:
+                sd.columns = sd.loc[1]
+                sd = sd.drop([0, 1])
+            sd['Cut'] = Cut * len(sd)
+            sd['Polish'] = Polish * len(sd)
+            sd['Symmetry'] = Symmetry * len(sd)
+            sd['Fluo'] = Fluo * len(sd)
+            sd['Size'] = Size * len(sd)
+            sd.rename(columns={sd.columns[0]: "Clarity"}, inplace=True)
+            # print(d)
+            final_df = final_df.append(sd, ignore_index=True)
+
+    final_df.reset_index(inplace=True, drop=True)
+    final_df.to_csv("output/doss.csv")
+
+
+def black_csv():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    df_black = pd.read_excel(xls, "Black")
+
+    black = df_black.to_numpy()
+    # defining extra cols and their values according to the respective dataframes.
+    cols = ["sizemin", "sizemax", "cut", "polish", "sym", "Shape"]
+    colvalues_roex1to6 = [1, 5.99, "EX", "", "", "RO"]
+    colvalues_rovg1to6 = [1, 5.99, "VG", "", "", "RO"]
+    colvalues_rog1to6 = [1, 5.99, "G", "", "", "RO"]
+    colvalues_faex1to3 = [0, 2.99, "EX", "EX", "EX", "Fancy"]
+    colvalues_favg1to3 = [0, 2.99, "", "VG", "VG", "Fancy"]
+    colvalues_faexabove3 = [3, 10, "EX", "EX", "EX", "Fancy"]
+    colvalues_favgabove3 = [3, 10, "", "VG", "VG", "Fancy"]
+    colvalues_dossiers = [0, 0.99, "", "", "", "Dossiers"]
+
+    colvalues_list = [colvalues_roex1to6, colvalues_rovg1to6, colvalues_rog1to6, colvalues_faex1to3,
+                      colvalues_favg1to3, colvalues_faexabove3, colvalues_favgabove3, colvalues_dossiers]
+
+    k = 1
+    for i in range(4):
+        black[1, k] = "Location"
+        black[15, k] = "Location"
+        black[29, k] = "Location"
+        k = k + 12
+
+    # helper functions
+    # converts np array to dataframe
+
+    def toDataFrame(nparr: np.array, index: list):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        nparrdf = nparrdf.set_index(pd.Index(index))
+        return nparrdf
+
+    # fills nan values in the location column
+
+    def fillnaLocations(df):
+        df["Location"] = df["Location"].fillna(method='ffill')
+        return df
+
+    # adds extra columns in the dataframes as per the requirements
+
+    def fillExtraCols(df: pd.DataFrame, cols: list, colvalues: list):
+        for i in range(len(cols)):
+            df[f"{cols[i]}"] = colvalues[i]
+
+    def saveBlackCSV(black):
+        # checks to see if the sheet is correct or not
+        freq = {}
+        included = ["Section", "Intensity", "Table", "Crown"]
+        for row in black:
+            for ele in row:
+                if ele not in included:
+                    continue
+                if ele in freq:
+                    freq[ele] += 1
+                else:
+                    freq[ele] = 1
+
+        if not (list(freq.keys()) == included and np.unique(list(freq.values()))[0] == 8):
+            raise Exception("Invalid Format for Black Discount Sheet")
+
+        # defining regions
+        roex1to6 = black[1:12, 1:12]
+        rovg1to6 = black[15:26, 1:12]
+        rog1to6 = black[29:40, 1:12]
+        faex1to3 = black[1:12, 13:24]
+        favg1to3 = black[15:26, 13:24]
+        faexabove3 = black[1:12, 25:36]
+        favgabove3 = black[15:26, 25:36]
+        dossiers = black[1:12, 37:48]
+
+        # converting to individual dataframes
+        roex1to6df = toDataFrame(roex1to6, list(i for i in range(10)))
+        rovg1to6df = toDataFrame(rovg1to6, list(i for i in range(10, 20)))
+        rog1to6df = toDataFrame(rog1to6, list(i for i in range(20, 30)))
+        faex1to3df = toDataFrame(faex1to3, list(i for i in range(30, 40)))
+        favg1to3df = toDataFrame(favg1to3, list(i for i in range(40, 50)))
+        faexabove3df = toDataFrame(faexabove3, list(i for i in range(50, 60)))
+        favgabove3df = toDataFrame(favgabove3, list(i for i in range(60, 70)))
+        dossiersdf = toDataFrame(dossiers, list(i for i in range(70, 80)))
+
+        df_list = [roex1to6df, rovg1to6df, rog1to6df, faex1to3df,
+                   favg1to3df, faexabove3df, favgabove3df, dossiersdf]
+
+        # filling nan values in the "Location" column
+        for df in df_list:
+            df = fillnaLocations(df)
+
+        for i in range(len(df_list)):
+            fillExtraCols(df_list[i], cols, colvalues_list[i])
+
+        result = pd.concat(df_list)
+        path = "output_files/black.csv"
+        result.to_csv(path, index=False)
+        print(f"File Saved Successfully to {path}")
+
+    saveBlackCSV(black)
+
+
+def depth_csv():
+    depth_data = pd.read_excel('input_files/input_price_module_discounts.xlsm', sheet_name='Depth')
+    depth_dict = {'Depth': []}
+    depth_dict['Depth'].append(depth_data.iloc[2, 1])
+    depth_dict['Depth'].append(depth_data.iloc[3, 1])
+    output_df = pd.DataFrame.from_dict(depth_dict)
+    write_excel('output_files/output_extra_discounts.xlsx', 'Depth', output_df)
+
 # central_mapping()
-diameter_premium()
+# diameter_premium()
+# size_premium()
+# doss_base()
+# black_csv()
+depth_csv()

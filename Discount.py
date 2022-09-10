@@ -13,55 +13,55 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                  pv_depth,
                  girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                  lower_half,
-                 identedtopnatural , graining, rap_value
+                 identedtopnatural, graining, rap_value
                  ):
     # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
-    if(cutcomments=='EX1'):
-        if(cut=='EX' and polish=='EX' and symmetry=='EX'):
-            cutcomments='3EX->EX1'
-        elif(cut=='EX' and (polish!='EX' or symmetry!='EX')):
-            cutcomments='EX->EX1'    
-    elif(cutcomments=='EX2'):
-        if(cut=='EX' and polish=='EX' and symmetry=='EX'):
-            cutcomments='3EX->EX2'
-        elif(cut=='EX' and (polish!='EX' or symmetry!='EX')):
-            cutcomments='EX->EX2'    
-    elif(cutcomments=='VG1'):
-        cutcomments='VG->VG1'
-    elif(cutcomments=='VG2'):
-        cutcomments='VG->VG2'               
-    base=0.0
-    gdd=0.0
-    ktosd=0.0
-    diameterd=0.0
-    colshaded=0.0
-    milkyd=0.0
-    cutcommentsd=0.0
-    grainingd=0.0
-    had=0.0
-    eyecleand=0.0
-    tablecleand=0.0
-    blackd=0.0
-    sideblackd=0.0
-    sizepremd=0.0
-    opend=0.0
-    naturald=0.0
-    identednaturald=0.0
-    efd=0.0
-    cavityd=0.0
-    chipd=0.0
-    depthd=0.0
-    color1='X'
-    capped=0
-    MNcolorD=0.0
+    if (cutcomments == 'EX1'):
+        if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+            cutcomments = '3EX->EX1'
+        elif (cut == 'EX' and (polish != 'EX' or symmetry != 'EX')):
+            cutcomments = 'EX->EX1'
+    elif (cutcomments == 'EX2'):
+        if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+            cutcomments = '3EX->EX2'
+        elif (cut == 'EX' and (polish != 'EX' or symmetry != 'EX')):
+            cutcomments = 'EX->EX2'
+    elif (cutcomments == 'VG1'):
+        cutcomments = 'VG->VG1'
+    elif (cutcomments == 'VG2'):
+        cutcomments = 'VG->VG2'
+    base = 0.0
+    gdd = 0.0
+    ktosd = 0.0
+    diameterd = 0.0
+    colshaded = 0.0
+    milkyd = 0.0
+    cutcommentsd = 0.0
+    grainingd = 0.0
+    had = 0.0
+    eyecleand = 0.0
+    tablecleand = 0.0
+    blackd = 0.0
+    sideblackd = 0.0
+    sizepremd = 0.0
+    opend = 0.0
+    naturald = 0.0
+    identednaturald = 0.0
+    efd = 0.0
+    cavityd = 0.0
+    chipd = 0.0
+    depthd = 0.0
+    color1 = 'X'
+    capped = 0
+    MNcolorD = 0.0
     result = 0.00
-    daysd=0.0
+    daysd = 0.0
     ff = 0
     xx = 0
-    identedcrownnatural='0'
-    identedgirdlenatural='0'
-    identedpavilionnatural='0'
+    identedcrownnatural = '0'
+    identedgirdlenatural = '0'
+    identedpavilionnatural = '0'
     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
         if ((color == 'D') or (color == 'E') or (color == 'F')):
             xx = 1
@@ -81,19 +81,19 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             xx = 7
         if ((color == 'G') or (color == 'H') or (color == 'I')):
             xx = 8
-        if ((color == 'J') or (color == 'K') or (color == 'L') or (color == 'M') or (color=='N')):
+        if ((color == 'J') or (color == 'K') or (color == 'L') or (color == 'M') or (color == 'N')):
             xx = 9
 
-    if(shape=='RO' and sizeprec>=1.0):
-        color1=color 
-        if color=='N':
-            
-            MNcolorD=-7
-            color='M'  
-        df = pd.read_csv('BaseRound.csv')     
+    if (shape == 'RO' and sizeprec >= 1.0):
+        color1 = color
+        if color == 'N':
+            MNcolorD = -7
+            color = 'M'
+        df = pd.read_csv('BaseRound.csv')
         for i in range(len(df)):
             # and polish == df['POL'][i] and symmetry == df['SYM'][i]
-            if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+            if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][
+                i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
                         result = float(df['Discount'][i])
@@ -107,25 +107,25 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         # if(color1=='N'):
         #     result=result-0.07
         temp = result
-        base=temp*100
-        result=result*100
-        if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=1.0 and sizeprec<=2.99:
+        base = temp * 100
+        result = result * 100
+        if (cut == 'EX' or cut == 'VG') and (
+                polish == 'GD' or symmetry == 'GD') and ff == 1 and sizeprec >= 1.0 and sizeprec <= 2.99:
             for i in range(len(df)):
-                if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][i]=='GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
-                    tempo=float(df['Discount'][i])*100
-                    gdd=max(-1*(round(abs(result-tempo)/2)),-7)
-                    result=result+max(-1*(round(abs(result-tempo)/2)),-7)
-                    
-                    break                
+                if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and df['CUT'][
+                    i] == 'GD' and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
+                    tempo = float(df['Discount'][i]) * 100
+                    gdd = max(-1 * (round(abs(result - tempo) / 2)), -7)
+                    result = result + max(-1 * (round(abs(result - tempo) / 2)), -7)
 
+                    break
 
-
-        if ff == 1 or sizeprec>=1.0:
+        if ff == 1 or sizeprec >= 1.0:
 
             # result = result * 100
             temp = result
 
-            if shape == 'RO' and sizeprec>=1.0 and sizeprec<3.0:
+            if shape == 'RO' and sizeprec >= 1.0 and sizeprec < 3.0:
                 # if sizeprec >= 1.00 and sizeprec <= 1.499 and cut == 'EX':
                 #     if color == 'D':
                 #         ktosd=3
@@ -150,52 +150,52 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
                 if xx == 1:
                     if ktos == 1:
-                        ktosd=1
+                        ktosd = 1
                         result = result + 1.0
                     elif ktos >= 5:
-                        ktosd=-1
+                        ktosd = -1
                         result = -1.0 + result
                 elif xx == 2:
                     if ktos == 1:
-                        ktosd=1
+                        ktosd = 1
                         result = result + 1.0
                     elif ktos >= 5:
-                        ktosd=-1
+                        ktosd = -1
                         result = -1.0 + result
                 elif xx == 3:
                     if ktos == 1:
-                        ktosd=1
+                        ktosd = 1
                         result = result + 1.0
                     elif ktos >= 5:
-                        ktosd=-1
+                        ktosd = -1
                         result = -1.0 + result
                 elif xx == 4:
                     if ktos == 1:
-                        ktosd=1.5
+                        ktosd = 1.5
                         result = result + 1.5
                     elif ktos >= 5:
-                        ktosd=-1
+                        ktosd = -1
                         result = -1.0 + result
                 elif xx == 5:
                     if ktos == 1:
-                        ktosd=1.5
+                        ktosd = 1.5
                         result = result + 1.5
                     if ktos >= 5:
-                        ktosd=-1
+                        ktosd = -1
                         result = -1.0 + result
                 elif xx == 6:
                     if ktos == 1:
-                        ktosd=1
+                        ktosd = 1
                         result = result + 1.0
                     if ktos >= 5:
-                        ktosd=0.0
+                        ktosd = 0.0
                         result = 0.0 + result
                 elif xx == 1:
                     if ktos == 1:
-                        ktosd=3
+                        ktosd = 3
                         result = result + 3.0
                     if ktos >= 5:
-                        ktosd=0
+                        ktosd = 0
                         result = 0.0 + result
 
                         # colour
@@ -207,7 +207,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
                 # if szgr=='1.01-1.09' or szgr=='1.50-1.69' or szgr=='2.01-2.09':
                 #     if cut=='VG':
-    elif(shape!='RO'):
+    elif (shape != 'RO'):
         df2 = pd.read_csv('Basefancy.csv')
         result = 0.00
 
@@ -215,183 +215,182 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             if clarity == 'IF':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['IF'][i])
-                    base= float(df2['IF'][i])
+                    base = float(df2['IF'][i])
                     ff = 2
                     break
             elif clarity == 'VVS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['VVS1'][i])
-                    base= float(df2['VVS1'][i])
+                    base = float(df2['VVS1'][i])
                     ff = 2
                     break
             elif clarity == 'VVS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['VVS2'][i])
-                    base=float(df2['VVS2'][i])
+                    base = float(df2['VVS2'][i])
                     ff = 2
                     break
             elif clarity == 'VS1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['VS1'][i])
-                    base=float(result)
+                    base = float(result)
                     ff = 2
                     break
             elif clarity == 'VS2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['VS2'][i])
-                    base=float(result)
+                    base = float(result)
                     ff = 2
                     break
             elif clarity == 'SI1':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['SI1'][i])
-                    base=float(result)
+                    base = float(result)
                     ff = 2
                     break
             elif clarity == 'SI2':
                 if shape == df2['Shape'][i] and color == df2['EX'][i] and szgr == df2['Size'][i]:
                     result = float(df2['SI2'][i])
-                    base=float(result)
+                    base = float(result)
                     ff = 2
                     break
             temp = result
-    if (sizeprec<1.0 and shape=='RO'):
-            df = pd.read_csv('Dossbase.csv')
+    if (sizeprec < 1.0 and shape == 'RO'):
+        df = pd.read_csv('Dossbase.csv')
+        for i in range(len(df)):
+            if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
+                if cut == 'EX' and polish == 'EX' and symmetry == 'EX':
+                    if df['Cut'][i] == 'EX' and df['Polish'][i] == 'EX' and df['Symmetry'][i] == 'EX':
+                        if color == 'D':
+                            result = result + float(df['D'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'E':
+                            result = result + float(df['E'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'F':
+                            result = result + float(df['F'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'G':
+                            result = result + float(df['G'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'H':
+                            result = result + float(df['H'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'I':
+                            result = result + float(df['I'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'J':
+                            result = result + float(df['J'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'L':
+                            result = result + float(df['L'][i])
+                            base = result
+                            ff = 1
+                        elif color == 'M' or color == 'N':
+                            result = result + float(df['M'][i])
+                            base = result
+                            if (color == 'N'):
+                                MNcolorD = -7
+                                result = result - 7
+                            color = 'M'
+
+                            ff = 1
+                        elif color == 'K':
+                            result = result + float(df['K'][i])
+                            base = result
+                            ff = 1
+                        break
+                else:
+                    # if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
+                    #     continue
+                    if (cut == df['Cut'][i] and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
+                        if color == 'D':
+                            result = result + df['D'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'E':
+                            result = result + df['E'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'F':
+                            result = result + df['F'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'G':
+                            result = result + df['G'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'H':
+                            result = result + df['H'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'I':
+                            result = result + df['I'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'J':
+                            result = result + df['J'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'L':
+                            result = result + df['L'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'M':
+                            result = result + df['M'][i]
+                            base = result
+                            ff = 1
+                        elif color == 'K':
+                            result = result + df['K'][i]
+                            base = result
+                            ff = 1
+                        break
+        temp = result
+        tempos = 0
+        if (cut == 'EX' or cut == 'VG') and (
+                polish == 'GD' or symmetry == 'GD') and ff == 1 and sizeprec >= 0.3 and sizeprec <= 2.99:
             for i in range(len(df)):
-                if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
-                    if cut == 'EX' and polish == 'EX' and symmetry == 'EX':
-                        if df['Cut'][i] == 'EX' and df['Polish'][i] == 'EX' and df['Symmetry'][i] == 'EX':
-                            if color == 'D':
-                                result = result + float(df['D'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'E':
-                                result = result + float(df['E'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'F':
-                                result = result + float(df['F'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'G':
-                                result = result + float(df['G'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'H':
-                                result = result + float(df['H'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'I':
-                                result = result + float(df['I'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'J':
-                                result = result + float(df['J'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'L':
-                                result = result + float(df['L'][i])
-                                base=result
-                                ff = 1
-                            elif color == 'M' or color == 'N':
-                                result = result + float(df['M'][i])
-                                base=result
-                                if(color=='N'):
-                                    MNcolorD=-7
-                                    result = result - 7
-                                color = 'M'
-                                
-                                
-                                
-                                ff = 1
-                            elif color == 'K':
-                                result = result + float(df['K'][i])
-                                base=result
-                                ff = 1
-                            break
-                    else:
-                        # if(cut==df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
-                        #     continue
-                        if (cut == df['Cut'][i] and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
-                            if color == 'D':
-                                result = result + df['D'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'E':
-                                result = result + df['E'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'F':
-                                result = result + df['F'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'G':
-                                result = result + df['G'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'H':
-                                result = result + df['H'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'I':
-                                result = result + df['I'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'J':
-                                result = result + df['J'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'L':
-                                result = result + df['L'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'M':
-                                result = result + df['M'][i]
-                                base=result
-                                ff = 1
-                            elif color == 'K':
-                                result = result + df['K'][i]
-                                base=result
-                                ff = 1
-                            break
-            temp = result
-            tempos=0
-            if(cut=='EX' or cut=='VG') and (polish=='GD' or symmetry=='GD') and ff==1 and sizeprec>=0.3 and sizeprec<=2.99:
-              for i in range(len(df)):
-                  if (df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo and df['Cut'][i]=='GD' and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
-                      if color == 'D':
-                          tempos = df['D'][i]
-                          ff = 1
-                      elif color == 'E':
-                          tempos = df['E'][i]
-                          ff = 1
-                      elif color == 'F':
-                          tempos =  df['F'][i]
-                          ff = 1
-                      elif color == 'G':
-                          tempos =  df['G'][i]
-                          ff = 1
-                      elif color == 'H':
-                          tempos =  df['H'][i]
-                          ff = 1
-                      elif color == 'I':
-                          result = result + df['I'][i]
-                          ff = 1
-                      elif color == 'J':
-                          tempos =  df['J'][i]
-                          ff = 1
-                      elif color == 'L':
-                          tempos =  df['L'][i]
-                          ff = 1
-                      elif color == 'M':
-                          tempos =  df['M'][i]
-                          ff = 1
-                      elif color == 'K':
-                          tempos =  df['K'][i]
-                          ff = 1
-              gdd=max(-1*(round(abs(result-tempos)/2)),-5)
-              result=result+max(-1*(round(abs(result-tempos)/2)),-5)    
-                              
+                if (df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo and df['Cut'][
+                    i] == 'GD' and df['Polish'][i] == 'DD' and df['Symmetry'][i] == 'DD'):
+                    if color == 'D':
+                        tempos = df['D'][i]
+                        ff = 1
+                    elif color == 'E':
+                        tempos = df['E'][i]
+                        ff = 1
+                    elif color == 'F':
+                        tempos = df['F'][i]
+                        ff = 1
+                    elif color == 'G':
+                        tempos = df['G'][i]
+                        ff = 1
+                    elif color == 'H':
+                        tempos = df['H'][i]
+                        ff = 1
+                    elif color == 'I':
+                        result = result + df['I'][i]
+                        ff = 1
+                    elif color == 'J':
+                        tempos = df['J'][i]
+                        ff = 1
+                    elif color == 'L':
+                        tempos = df['L'][i]
+                        ff = 1
+                    elif color == 'M':
+                        tempos = df['M'][i]
+                        ff = 1
+                    elif color == 'K':
+                        tempos = df['K'][i]
+                        ff = 1
+            gdd = max(-1 * (round(abs(result - tempos) / 2)), -5)
+            result = result + max(-1 * (round(abs(result - tempos) / 2)), -5)
 
             # DIAMETER
     # if (shape == 'RO'):
@@ -571,59 +570,65 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #                 elif clarity == 'VVS2':
     #                     result = result + 5
     #                     diameterd=5
-    result += get_diameter_premium(shape, cut, polish, symmetry, fluo, sizeprec, min_diam, max_diam, color, clarity)
+    result += get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity)
 
-                        # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
-    if ((sizeprec>=1.0) and ((cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (symmetry == 'EX' or symmetry == 'VG')) and (
+    # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
+    if ((sizeprec >= 1.0) and ((cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+            symmetry == 'EX' or symmetry == 'VG')) and (
             fluo == 'None' or fluo == 'Medium')):
         df3 = pd.read_csv('bgmvg.csv')
         # BROWN
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
+                    df3['Shape'][i] == 'RO')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
             elif ((shape != 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
 
         # GREY
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (
+                    df3['Shape'][i] == 'RO')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
-            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (df3['Shape'][i] == 'FANCY')):
+            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (
+                    df3['Shape'][i] == 'FANCY')):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
                 # GREEN
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
+                    df3['Shape'][i] == 'RO')):
                 result = result + float(df3['Discount'][i])
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
             elif ((shape != 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + float(df3['Discount'][i])
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
                 # MILKY
         for i in range(len(df3)):
             # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (df3['Shape'][i] == 'RO')):
+            if ((shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
+                    df3['Shape'][i] == 'RO')):
                 result = result + float(df3['Discount'][i])
-                milkyd=float(df3['Discount'][i])
+                milkyd = float(df3['Discount'][i])
                 break
             elif ((shape != 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
                     df3['Shape'][i] == 'FANCY')):
                 result = result + float(df3['Discount'][i])
-                milkyd=float(df3['Discount'][i])
+                milkyd = float(df3['Discount'][i])
                 break
                 # #OFFCOLOR
                 # for i in range(len(df3)):
@@ -637,312 +642,307 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     else:
         df3 = pd.read_csv('bgmroelse.csv')
         for i in range(len(df3)):
-            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i])):
+            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i])):
+            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i])):
+            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                colshaded=df3['Discount'][i]
+                colshaded = df3['Discount'][i]
                 break
         for i in range(len(df3)):
-            if (sizeprec>=1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i])):
+            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i])):
                 result = result + df3['Discount'][i]
-                milkyd=df3['Discount'][i]
+                milkyd = df3['Discount'][i]
                 break
                 # for i in range(len(df3)):
         #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i])):
         #         result=result+ df3['Discount'][i]
         #         break
     # add dossiers as well-irrelevant I guess now
-    if(shape=='RO' and sizeprec<1.0):
-    
-        #milky- written as per pricing module file
-        if (clarity=='VS1' or clarity=='VS2'):
-            if milky=='M1':
-                result=result-7
-                milkyd=-7
-            if milky=='M2-' or milky=='M2' or milky=='M3':
-                result=result-13
-                milkyd=-13
+    if (shape == 'RO' and sizeprec < 1.0):
+
+        # milky- written as per pricing module file
+        if (clarity == 'VS1' or clarity == 'VS2'):
+            if milky == 'M1':
+                result = result - 7
+                milkyd = -7
+            if milky == 'M2-' or milky == 'M2' or milky == 'M3':
+                result = result - 13
+                milkyd = -13
             # if milky=='M1+':
             #     result=result-4
-            #     milky=-4       
-        if (clarity=='SI1' or clarity=='SI2'):
-            if milky=='M1':
-                result=result-11
-                milkyd=-11
-            if milky=='M2-' or milky=='M2' or milky=='M3':    
-                result=result-16
-                milkyd=-16
-        if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-3
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-8
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-13
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-3
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-13
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-3
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-13
-                    result=result+colshaded 
-            elif(color=='G' or color=='H' or color=='I'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-5
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-9
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-14
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-9
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-14
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-9
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-14
-                    result=result+colshaded
-            elif(color=='J' or color=='K' or color=='L' or color=='M'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-5
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-9
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-14
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-9
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-14
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-9
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-14
-                    result=result+colshaded
+            #     milky=-4
+        if (clarity == 'SI1' or clarity == 'SI2'):
+            if milky == 'M1':
+                result = result - 11
+                milkyd = -11
+            if milky == 'M2-' or milky == 'M2' or milky == 'M3':
+                result = result - 16
+                milkyd = -16
+        if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -3
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -3
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -3
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -13
+                    result = result + colshaded
+            elif (color == 'G' or color == 'H' or color == 'I'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -14
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -14
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -14
+                    result = result + colshaded
+            elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -14
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -14
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -14
+                    result = result + colshaded
 
-        elif(clarity=='VS1' or clarity=='VS2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-4
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-8
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-13
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-4
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-13
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-4
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-13
-                    result=result+colshaded 
-            elif(color=='G' or color=='H' or color=='I'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-5
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-8
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-13
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-5
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-13
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-13
-                    result=result+colshaded
-            elif(color=='J' or color=='K' or color=='L' or color=='M'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-5
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-8
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-13
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-13
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-13
-                    result=result+colshaded
-        elif(clarity=='SI1' or clarity=='SI2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-3
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-7
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-12
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-3
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-7
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-12
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-3
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-7
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-12
-                    result=result+colshaded 
-            elif(color=='G' or color=='H' or color=='I'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-5
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-8
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-13
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-5
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-13
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-8
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-13
-                    result=result+colshaded
-            elif(color=='J' or color=='K' or color=='L' or color=='M'):
-                if(green=='B1' or brown=='B1' or grey=='B1'):
-                    colshaded=-5
-                    result=result+colshaded
-                elif(green=='B2' or brown=='B2' or grey=='B2'):
-                    colshaded=-9
-                    result=result+colshaded
-                elif(green=='B3' or brown=='B3' or grey=='B3'):
-                    colshaded=-14
-                    result=result+colshaded        
-                elif(green=='G1' or brown=='G1' or grey=='G1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='G2' or brown=='G2' or grey=='G2'):
-                    colshaded=-9
-                    result=result+colshaded   
-                elif(green=='G3' or brown=='G3' or grey=='G3'):
-                    colshaded=-14
-                    result=result+colshaded 
-                elif(green=='MT1' or brown=='MT1' or grey=='MT1'):
-                    colshaded=-5
-                    result=result+colshaded  
-                elif(green=='MT2' or brown=='MT2' or grey=='MT2'):
-                    colshaded=-9
-                    result=result+colshaded   
-                elif(green=='MT3' or brown=='MT3' or grey=='MT3'):
-                    colshaded=-14
-                    result=result+colshaded
+        elif (clarity == 'VS1' or clarity == 'VS2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -4
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -4
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -4
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -13
+                    result = result + colshaded
+            elif (color == 'G' or color == 'H' or color == 'I'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -13
+                    result = result + colshaded
+            elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -13
+                    result = result + colshaded
+        elif (clarity == 'SI1' or clarity == 'SI2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -3
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -7
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -12
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -3
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -7
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -12
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -3
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -7
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -12
+                    result = result + colshaded
+            elif (color == 'G' or color == 'H' or color == 'I'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -13
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -8
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -13
+                    result = result + colshaded
+            elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
+                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+                    colshaded = -14
+                    result = result + colshaded
+                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+                    colshaded = -14
+                    result = result + colshaded
+                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+                    colshaded = -5
+                    result = result + colshaded
+                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+                    colshaded = -9
+                    result = result + colshaded
+                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+                    colshaded = -14
+                    result = result + colshaded
 
-
-
-            
-        
-    
     # Cut
     if ((fluo == 'MED') and (cutcomments == 'VG->VG2' or cutcomments == 'G->GD2')) or shape != 'RO':
         result = result
@@ -950,88 +950,88 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         if cutcomments == '3EX->EX2':
             if (xx == 1):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 2):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 3):
                 result = result - 1.0
-                cutcommentsd=-1
+                cutcommentsd = -1
             elif (xx == 4):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 5):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 6):
                 result = result - 1.0
-                cutcommentsd=-1
+                cutcommentsd = -1
             elif (xx == 7):
                 result = result - 1.0
-                cutcommentsd=-1
+                cutcommentsd = -1
             elif (xx == 8):
                 result = result - 1.0
-                cutcommentsd=-1
+                cutcommentsd = -1
             elif (xx == 9):
                 result = result - 0.5
-                cutcommentsd=-0.5
+                cutcommentsd = -0.5
 
         if cutcomments == 'EX->EX2':
             if (xx == 1):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 2):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 3):
                 result = result - 1.0
-                cutcommentsd=-1
+                cutcommentsd = -1
             elif (xx == 4):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 5):
                 result = result - 2.0
-                cutcommentsd=-2
+                cutcommentsd = -2
             elif (xx == 6):
                 result = result - 1.0
-                cutcommentsd=-1
+                cutcommentsd = -1
             elif (xx == 7):
                 result = result - 1.5
-                cutcommentsd=-1.5
+                cutcommentsd = -1.5
             elif (xx == 8):
                 result = result - 1.5
-                cutcommentsd=-1.5
+                cutcommentsd = -1.5
             elif (xx == 9):
                 result = result - 0.5
-                cutcommentsd=-0.5
+                cutcommentsd = -0.5
         if cutcomments == 'VG->VG1':
             if (xx == 1):
                 result = result + 2.0
-                cutcommentsd=2
+                cutcommentsd = 2
             elif (xx == 2):
                 result = result + 2.0
-                cutcommentsd=2
+                cutcommentsd = 2
             elif (xx == 3):
                 result = result + 2.0
-                cutcommentsd=2
+                cutcommentsd = 2
             elif (xx == 4):
                 result = result + 2.0
-                cutcommentsd=2
+                cutcommentsd = 2
             elif (xx == 5):
                 result = result + 2.0
-                cutcommentsd=2
+                cutcommentsd = 2
             elif (xx == 6):
                 result = result + 1.5
-                cutcommentsd=1.5
+                cutcommentsd = 1.5
             elif (xx == 7):
                 result = result + 1.5
-                cutcommentsd=1.5
+                cutcommentsd = 1.5
             elif (xx == 8):
                 result = result + 1.0
-                cutcommentsd=1
+                cutcommentsd = 1
             elif (xx == 9):
                 result = result + 1.0
-                cutcommentsd=1
+                cutcommentsd = 1
 
     # Graining- add vg+ condition and the extra comment-done
     # if internalgraining=='IGR2':
@@ -1059,177 +1059,177 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                                                             shape != 'RO' and (
                                                                             polish == 'VG' or polish == 'EX') and (
                                                                                     symmetry == 'VG' or symmetry == 'EX'))):
-        #if (surfacegraining == '0' or internalgraining == '0' or surfacegraining == 'NN' or internalgraining == 'NN'):
-#             df21 = pd.read_csv('graining.csv')
-#             result1 = 0
-#             result2 = 0
-#             for i in range(len(df21)):
-#                 if surfacegraining == df21['Graining'][i]:
-#                     if xx == 1:
-#                         result1 = result1 + df21['1'][i]
-#                     if xx == 2:
-#                         result1 = result1 + df21['2'][i]
-#                     if xx == 3:
-#                         result1 = result1 + df21['3'][i]
-#                     if xx == 4:
-#                         result1 = result1 + df21['4'][i]
-#                     if xx == 5:
-#                         result = result + df21['5'][i]
-#                     if xx == 6:
-#                         result = result + df21['6'][i]
-#                     if xx == 7:
-#                         result = result + df21['7'][i]
-#                     if xx == 8:
-#                         result = result + df21['8'][i]
-#                     if xx == 9:
-#                         result = result + df21['9'][i]
-#                     break
-#             for i in range(len(df21)):
-#                 if internalgraining == df21['Graining'][i]:
-#                     if xx == 1:
-#                         result = result + df21['1'][i]
-#                     if xx == 2:
-#                         result = result + df21['2'][i]
-#                     if xx == 3:
-#                         result = result + df21['3'][i]
-#                     if xx == 4:
-#                         result = result + df21['4'][i]
-#                     if xx == 5:
-#                         result = result + df21['5'][i]
-#                     if xx == 6:
-#                         result = result + df21['6'][i]
-#                     if xx == 7:
-#                         result = result + df21['7'][i]
-#                     if xx == 8:
-#                         result = result + df21['8'][i]
-#                     if xx == 9:
-#                         result = result + df21['9'][i]
-#                     break
-#         else:
-          df21 = pd.read_csv('graining.csv')
-          result1 = 0
-          result2 = 0
-          for i in range(len(df21)):
-              if surfacegraining == df21['Graining'][i]:
-                  if xx == 1:
-                      result1 = result1 + df21['1'][i]
-                      
-                  if xx == 2:
-                      result1 = result1 + df21['2'][i]
-                  if xx == 3:
-                      result1 = result1 + df21['3'][i]
-                  if xx == 4:
-                      result1 = result1 + df21['4'][i]
-                  if xx == 5:
-                      result1 = result1 + df21['5'][i]
-                  if xx == 6:
-                      result1 = result1 + df21['6'][i]
-                  if xx == 7:
-                      result1 = result1 + df21['7'][i]
-                  if xx == 8:
-                      result1 = result1 + df21['8'][i]
-                  if xx == 9:
-                      result1 = result1 + df21['9'][i]
-                  break
-          for i in range(len(df21)):
-              if internalgraining == df21['Graining'][i]:
-                  if xx == 1:
-                      result2 = result2 + df21['1'][i]
-                  if xx == 2:
-                      result2 = result2 + df21['2'][i]
-                  if xx == 3:
-                      result2 = result2 + df21['3'][i]
-                  if xx == 4:
-                      result2 = result2 + df21['4'][i]
-                  if xx == 5:
-                      result2 = result2 + df21['5'][i]
-                  if xx == 6:
-                      result2 = result2 + df21['6'][i]
-                  if xx == 7:
-                      result2 = result2 + df21['7'][i]
-                  if xx == 8:
-                      result2 = result2 + df21['8'][i]
-                  if xx == 9:
-                      result2 = result2 + df21['9'][i]
-                  break
-          if (result1 <= result2):
-        
-              result = result + result1
-              grainingd=result1
-          else:
-              result = result + result2
-              grainingd=result2
+        # if (surfacegraining == '0' or internalgraining == '0' or surfacegraining == 'NN' or internalgraining == 'NN'):
+        #             df21 = pd.read_csv('graining.csv')
+        #             result1 = 0
+        #             result2 = 0
+        #             for i in range(len(df21)):
+        #                 if surfacegraining == df21['Graining'][i]:
+        #                     if xx == 1:
+        #                         result1 = result1 + df21['1'][i]
+        #                     if xx == 2:
+        #                         result1 = result1 + df21['2'][i]
+        #                     if xx == 3:
+        #                         result1 = result1 + df21['3'][i]
+        #                     if xx == 4:
+        #                         result1 = result1 + df21['4'][i]
+        #                     if xx == 5:
+        #                         result = result + df21['5'][i]
+        #                     if xx == 6:
+        #                         result = result + df21['6'][i]
+        #                     if xx == 7:
+        #                         result = result + df21['7'][i]
+        #                     if xx == 8:
+        #                         result = result + df21['8'][i]
+        #                     if xx == 9:
+        #                         result = result + df21['9'][i]
+        #                     break
+        #             for i in range(len(df21)):
+        #                 if internalgraining == df21['Graining'][i]:
+        #                     if xx == 1:
+        #                         result = result + df21['1'][i]
+        #                     if xx == 2:
+        #                         result = result + df21['2'][i]
+        #                     if xx == 3:
+        #                         result = result + df21['3'][i]
+        #                     if xx == 4:
+        #                         result = result + df21['4'][i]
+        #                     if xx == 5:
+        #                         result = result + df21['5'][i]
+        #                     if xx == 6:
+        #                         result = result + df21['6'][i]
+        #                     if xx == 7:
+        #                         result = result + df21['7'][i]
+        #                     if xx == 8:
+        #                         result = result + df21['8'][i]
+        #                     if xx == 9:
+        #                         result = result + df21['9'][i]
+        #                     break
+        #         else:
+        df21 = pd.read_csv('graining.csv')
+        result1 = 0
+        result2 = 0
+        for i in range(len(df21)):
+            if surfacegraining == df21['Graining'][i]:
+                if xx == 1:
+                    result1 = result1 + df21['1'][i]
+
+                if xx == 2:
+                    result1 = result1 + df21['2'][i]
+                if xx == 3:
+                    result1 = result1 + df21['3'][i]
+                if xx == 4:
+                    result1 = result1 + df21['4'][i]
+                if xx == 5:
+                    result1 = result1 + df21['5'][i]
+                if xx == 6:
+                    result1 = result1 + df21['6'][i]
+                if xx == 7:
+                    result1 = result1 + df21['7'][i]
+                if xx == 8:
+                    result1 = result1 + df21['8'][i]
+                if xx == 9:
+                    result1 = result1 + df21['9'][i]
+                break
+        for i in range(len(df21)):
+            if internalgraining == df21['Graining'][i]:
+                if xx == 1:
+                    result2 = result2 + df21['1'][i]
+                if xx == 2:
+                    result2 = result2 + df21['2'][i]
+                if xx == 3:
+                    result2 = result2 + df21['3'][i]
+                if xx == 4:
+                    result2 = result2 + df21['4'][i]
+                if xx == 5:
+                    result2 = result2 + df21['5'][i]
+                if xx == 6:
+                    result2 = result2 + df21['6'][i]
+                if xx == 7:
+                    result2 = result2 + df21['7'][i]
+                if xx == 8:
+                    result2 = result2 + df21['8'][i]
+                if xx == 9:
+                    result2 = result2 + df21['9'][i]
+                break
+        if (result1 <= result2):
+
+            result = result + result1
+            grainingd = result1
+        else:
+            result = result + result2
+            grainingd = result2
 
     if ha == 'Y':
         if shape == 'RO':
             if xx == 1:
                 result = result + 1
-                had=1
+                had = 1
             if xx == 2:
                 result = result + 1
-                had=1
+                had = 1
             if xx == 3:
                 result = result + 0.5
-                had=0.5
+                had = 0.5
             if xx == 4:
                 result = result + 1
-                had=1
+                had = 1
             if xx == 5:
                 result = result + 1
-                had=1
+                had = 1
             if xx == 6:
                 result = result + 0.5
-                had=0.5
+                had = 0.5
             if xx == 7:
                 result = result + 1
-                had=1
+                had = 1
             if xx == 8:
                 result = result + 1
-                had=1
+                had = 1
             if xx == 9:
                 result = result + 0
-                had=0
+                had = 0
     if eyeclean == 'Y':
         if shape == 'RO':
             if xx == 7:
                 result = result + 1.5
-                eyecleand=1.5
+                eyecleand = 1.5
             if xx == 8:
                 result = result + 1.5
-                eyecleand=1.5
+                eyecleand = 1.5
             if xx == 9:
                 result = result + 1
-                eyecleand=1
+                eyecleand = 1
         else:
             if xx == 7:
                 result = result + 1.5
-                eyecleand=1.5
+                eyecleand = 1.5
             if xx == 8:
                 result = result + 1.5
-                eyecleand=1.5
+                eyecleand = 1.5
             if xx == 9 or xx == 5 or xx == 6:
-                eyecleand=0.5
+                eyecleand = 0.5
                 result = result + 0.5
     if tableclean == 'Y':
         if shape == 'RO':
             if xx == 4 or xx == 5 or xx == 6:
-                tablecleand=0.5
+                tablecleand = 0.5
                 result = result + 0.5
             if xx == 8 or xx == 7:
-                tablecleand=2.0
+                tablecleand = 2.0
                 result = result + 2.0
             if xx == 9:
-                tablecleand=1
+                tablecleand = 1
                 result = result + 1
         else:
             if xx == 4 or xx == 5:
-                tablecleand=1
+                tablecleand = 1
                 result = result + 1.0
             if xx == 8 or xx == 7:
-                tablecleand=2
+                tablecleand = 2
                 result = result + 2.0
             if xx == 9:
-                tablecleand=1
+                tablecleand = 1
                 result = result + 1
 
                 # #extras- NOT properly written- change line 445
@@ -1456,129 +1456,129 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     # BLACK
     #  (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)
-    if(sizeprec<1.0):
-        dossblack=0.0
-        if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if (tableintensity=='BT1+'):
-                    dossblack=-1
-                elif (tableintensity=='BT1'):
-                    dossblack=-2
-                elif (tableintensity=='BT2'):
-                    dossblack=-3
-                elif (tableintensity=='BT1'):
-                    dossblack=-4
+    if (sizeprec < 1.0):
+        dossblack = 0.0
+        if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (tableintensity == 'BT1+'):
+                    dossblack = -1
+                elif (tableintensity == 'BT1'):
+                    dossblack = -2
+                elif (tableintensity == 'BT2'):
+                    dossblack = -3
+                elif (tableintensity == 'BT1'):
+                    dossblack = -4
             else:
-                if (tableintensity=='BT1+'):
-                    dossblack=-1
-                elif (tableintensity=='BT1'):
-                    dossblack=-2
-                elif (tableintensity=='BT2'):
-                    dossblack=-3
-                elif (tableintensity=='BT1'):
-                    dossblack=-4
-        elif(clarity=='VS1' or clarity=='VS2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if (tableintensity=='BT1+'):
-                    dossblack=0
-                elif (tableintensity=='BT1'):
-                    dossblack=-2
-                elif (tableintensity=='BT2'):
-                    dossblack=-3
-                elif (tableintensity=='BT1'):
-                    dossblack=-4
+                if (tableintensity == 'BT1+'):
+                    dossblack = -1
+                elif (tableintensity == 'BT1'):
+                    dossblack = -2
+                elif (tableintensity == 'BT2'):
+                    dossblack = -3
+                elif (tableintensity == 'BT1'):
+                    dossblack = -4
+        elif (clarity == 'VS1' or clarity == 'VS2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (tableintensity == 'BT1+'):
+                    dossblack = 0
+                elif (tableintensity == 'BT1'):
+                    dossblack = -2
+                elif (tableintensity == 'BT2'):
+                    dossblack = -3
+                elif (tableintensity == 'BT1'):
+                    dossblack = -4
             else:
-                if (tableintensity=='BT1+'):
-                    dossblack=0
-                elif (tableintensity=='BT1'):
-                    dossblack=-2
-                elif (tableintensity=='BT2'):
-                    dossblack=-3
-                elif (tableintensity=='BT1'):
-                    dossblack=-4
-        elif(clarity=='SI1' or clarity=='SI2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if (tableintensity=='BT1+'):
-                    dossblack=0
-                elif (tableintensity=='BT1'):
-                    dossblack=-1
-                elif (tableintensity=='BT2'):
-                    dossblack=-2
-                elif (tableintensity=='BT1'):
-                    dossblack=-4
+                if (tableintensity == 'BT1+'):
+                    dossblack = 0
+                elif (tableintensity == 'BT1'):
+                    dossblack = -2
+                elif (tableintensity == 'BT2'):
+                    dossblack = -3
+                elif (tableintensity == 'BT1'):
+                    dossblack = -4
+        elif (clarity == 'SI1' or clarity == 'SI2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (tableintensity == 'BT1+'):
+                    dossblack = 0
+                elif (tableintensity == 'BT1'):
+                    dossblack = -1
+                elif (tableintensity == 'BT2'):
+                    dossblack = -2
+                elif (tableintensity == 'BT1'):
+                    dossblack = -4
             else:
-                if (tableintensity=='BT1+'):
-                    dossblack=0
-                elif (tableintensity=='BT1'):
-                    dossblack=-1
-                elif (tableintensity=='BT2'):
-                    dossblack=-2
-                elif (tableintensity=='BT1'):
-                    dossblack=-4  
-        sidedossblack=0.0
-        if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if (crownintensity=='BC1+'):
-                    sidedossblack=0
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-1
-                elif (crownintensity=='BC2'):
-                    sidedossblack=-3
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-4
+                if (tableintensity == 'BT1+'):
+                    dossblack = 0
+                elif (tableintensity == 'BT1'):
+                    dossblack = -1
+                elif (tableintensity == 'BT2'):
+                    dossblack = -2
+                elif (tableintensity == 'BT1'):
+                    dossblack = -4
+        sidedossblack = 0.0
+        if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (crownintensity == 'BC1+'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -1
+                elif (crownintensity == 'BC2'):
+                    sidedossblack = -3
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -4
             else:
-                if (crownintensity=='BC1+'):
-                    sidedossblack=0
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-1
-                elif (crownintensity=='BC2'):
-                    sidedossblack=-2
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-3
-        elif(clarity=='VS1' or clarity=='VS2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if (crownintensity=='BC1+'):
-                    sidedossblack=0
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-1
-                elif (crownintensity=='BC2'):
-                    sidedossblack=-3
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-4
+                if (crownintensity == 'BC1+'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -1
+                elif (crownintensity == 'BC2'):
+                    sidedossblack = -2
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -3
+        elif (clarity == 'VS1' or clarity == 'VS2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (crownintensity == 'BC1+'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -1
+                elif (crownintensity == 'BC2'):
+                    sidedossblack = -3
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -4
             else:
-                if (crownintensity=='BC1+'):
-                    sidedossblack=0
-                elif (crownintensity=='BC1'):
-                    sideossblack=0
-                elif (crownintensity=='BC2'):
-                    sidedossblack=-2
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-3
-        elif(clarity=='SI1' or clarity=='SI2'):
-            if(color=='D' or color=='E' or color=='F'):
-                if (crownintensity=='BC1+'):
-                    sidedossblack=0
-                elif (crownintensity=='BC1'):
-                    sidedossblack=0
-                elif (crownintensity=='BC2'):
-                    sidedossblack=-1
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-3
+                if (crownintensity == 'BC1+'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC1'):
+                    sideossblack = 0
+                elif (crownintensity == 'BC2'):
+                    sidedossblack = -2
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -3
+        elif (clarity == 'SI1' or clarity == 'SI2'):
+            if (color == 'D' or color == 'E' or color == 'F'):
+                if (crownintensity == 'BC1+'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC2'):
+                    sidedossblack = -1
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -3
             else:
-                if (crownintensity=='BC1+'):
-                    sidedossblack=0
-                elif (crownintensity=='BC1'):
-                    sidedossblack=0
-                elif (crownintensity=='BC2'):
-                    sidedossblack=-1
-                elif (crownintensity=='BC1'):
-                    sidedossblack=-3        
-        if(dossblack<=sidedossblack):
-            result=result+dossblack
-            blackd=dossblack
+                if (crownintensity == 'BC1+'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = 0
+                elif (crownintensity == 'BC2'):
+                    sidedossblack = -1
+                elif (crownintensity == 'BC1'):
+                    sidedossblack = -3
+        if (dossblack <= sidedossblack):
+            result = result + dossblack
+            blackd = dossblack
         else:
-            result=result+sidedossblack
-            sideblackd=sidedossblack    
+            result = result + sidedossblack
+            sideblackd = sidedossblack
 
     df6 = pd.read_csv('black.csv')
     for i in range(len(df6)):
@@ -1590,91 +1590,91 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
 
                         if xx == 1:
-                            blackd=df6['1'][i]
+                            blackd = df6['1'][i]
                             result = result + df6['1'][i]
                         if xx == 2:
-                            blackd=df6['2'][i]
+                            blackd = df6['2'][i]
                             result = result + df6['2'][i]
                         if xx == 3:
-                            blackd=df6['3'][i]
+                            blackd = df6['3'][i]
                             result = result + df6['3'][i]
                         if xx == 4:
-                            blackd=df6['4'][i]
+                            blackd = df6['4'][i]
                             result = result + df6['4'][i]
                         if xx == 5:
-                            blackd=df6['5'][i]
+                            blackd = df6['5'][i]
                             result = result + df6['5'][i]
                         if xx == 6:
-                            blackd=df6['6'][i]
+                            blackd = df6['6'][i]
                             result = result + df6['6'][i]
                         if xx == 7:
-                            blackd=df6['7'][i]
+                            blackd = df6['7'][i]
                             result = result + df6['7'][i]
                         if xx == 8:
-                            blackd=df6['8'][i]
+                            blackd = df6['8'][i]
                             result = result + df6['8'][i]
                         if xx == 9:
-                            blackd=df6['9'][i]
+                            blackd = df6['9'][i]
                             result = result + df6['9'][i]
                         break
                     else:
                         if xx == 1:
                             result = result + df6['1'][i] / 2
-                            blackd=df6['1'][i]/2
+                            blackd = df6['1'][i] / 2
                         if xx == 2:
                             result = result + df6['2'][i] / 2
-                            blackd=df6['2'][i]/2
+                            blackd = df6['2'][i] / 2
                         if xx == 3:
-                            blackd=df6['3'][i]/2
+                            blackd = df6['3'][i] / 2
                             result = result + df6['3'][i] / 2
                         if xx == 4:
-                            blackd=df6['4'][i]/2
+                            blackd = df6['4'][i] / 2
                             result = result + df6['4'][i] / 2
                         if xx == 5:
-                            blackd=df6['5'][i]/2
+                            blackd = df6['5'][i] / 2
                             result = result + df6['5'][i] / 2
                         if xx == 6:
-                            blackd=df6['6'][i]/2
+                            blackd = df6['6'][i] / 2
                             result = result + df6['6'][i] / 2
                         if xx == 7:
-                            blackd=df6['7'][i]/2
+                            blackd = df6['7'][i] / 2
                             result = result + df6['7'][i] / 2
                         if xx == 8:
-                            blackd=df6['8'][i]/2
+                            blackd = df6['8'][i] / 2
                             result = result + df6['8'][i] / 2
                         if xx == 9:
-                            blackd=df6['9'][i]/2
+                            blackd = df6['9'][i] / 2
                             result = result + df6['9'][i] / 2
                         break
             if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
                 if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
                     i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
                     if xx == 1:
-                        blackd=df6['1'][i]
+                        blackd = df6['1'][i]
                         result = result + df6['1'][i]
                     if xx == 2:
-                        blackd=df6['2'][i]
+                        blackd = df6['2'][i]
                         result = result + df6['2'][i]
                     if xx == 3:
-                        blackd=df6['3'][i]
+                        blackd = df6['3'][i]
                         result = result + df6['3'][i]
                     if xx == 4:
-                        blackd=df6['4'][i]
+                        blackd = df6['4'][i]
                         result = result + df6['4'][i]
                     if xx == 5:
-                        blackd=df6['5'][i]
+                        blackd = df6['5'][i]
                         result = result + df6['5'][i]
                     if xx == 6:
-                        blackd=df6['6'][i]
+                        blackd = df6['6'][i]
                         result = result + df6['6'][i]
                     if xx == 7:
-                        blackd=df6['7'][i]
+                        blackd = df6['7'][i]
                         result = result + df6['7'][i]
                     if xx == 8:
-                        blackd=df6['8'][i]
+                        blackd = df6['8'][i]
                         result = result + df6['8'][i]
                     if xx == 9:
-                        blackd=df6['9'][i]
+                        blackd = df6['9'][i]
                         result = result + df6['9'][i]
                     break
         # table
@@ -1687,90 +1687,90 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
                         if xx == 1:
                             result = result + df6['1'][i]
-                            sideblackd=df6['1'][i]
+                            sideblackd = df6['1'][i]
                         if xx == 2:
                             result = result + df6['2'][i]
-                            sideblackd=df6['2'][i]
+                            sideblackd = df6['2'][i]
                         if xx == 3:
                             result = result + df6['3'][i]
-                            sideblackd=df6['3'][i]
+                            sideblackd = df6['3'][i]
                         if xx == 4:
-                            sideblackd=df6['4'][i]
+                            sideblackd = df6['4'][i]
                             result = result + df6['4'][i]
                         if xx == 5:
-                            sideblackd=df6['5'][i]
+                            sideblackd = df6['5'][i]
                             result = result + df6['5'][i]
                         if xx == 6:
-                            sideblackd=df6['6'][i]
+                            sideblackd = df6['6'][i]
                             result = result + df6['6'][i]
                         if xx == 7:
-                            sideblackd=df6['7'][i]
+                            sideblackd = df6['7'][i]
                             result = result + df6['7'][i]
                         if xx == 8:
-                            sideblackd=df6['8'][i]
+                            sideblackd = df6['8'][i]
                             result = result + df6['8'][i]
                         if xx == 9:
-                            sideblackd=df6['9'][i]
+                            sideblackd = df6['9'][i]
                             result = result + df6['9'][i]
                         break
                     else:
                         if xx == 1:
-                            sideblackd=df6['1'][i]/2
+                            sideblackd = df6['1'][i] / 2
                             result = result + df6['1'][i] / 2
                         if xx == 2:
-                            sideblackd=df6['2'][i]/2
+                            sideblackd = df6['2'][i] / 2
                             result = result + df6['2'][i] / 2
                         if xx == 3:
-                            sideblackd=df6['3'][i]/2
+                            sideblackd = df6['3'][i] / 2
                             result = result + df6['3'][i] / 2
                         if xx == 4:
-                            sideblackd=df6['4'][i]/2
+                            sideblackd = df6['4'][i] / 2
                             result = result + df6['4'][i] / 2
                         if xx == 5:
-                            sideblackd=df6['5'][i]/2
+                            sideblackd = df6['5'][i] / 2
                             result = result + df6['5'][i] / 2
                         if xx == 6:
-                            sideblackd=df6['6'][i]/2
+                            sideblackd = df6['6'][i] / 2
                             result = result + df6['6'][i] / 2
                         if xx == 7:
-                            sideblackd=df6['7'][i]/2
+                            sideblackd = df6['7'][i] / 2
                             result = result + df6['7'][i] / 2
                         if xx == 8:
-                            sideblackd=df6['8'][i]/2
+                            sideblackd = df6['8'][i] / 2
                             result = result + df6['8'][i] / 2
                         if xx == 9:
-                            sideblackd=df6['9'][i]/2
+                            sideblackd = df6['9'][i] / 2
                             result = result + df6['9'][i] / 2
                         break
             if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
                 if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
                     i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == crownintensity):
                     if xx == 1:
-                        sideblackd=df6['1'][i]
+                        sideblackd = df6['1'][i]
                         result = result + df6['1'][i]
                     if xx == 2:
-                        sideblackd=df6['2'][i]
+                        sideblackd = df6['2'][i]
                         result = result + df6['2'][i]
                     if xx == 3:
-                        sideblackd=df6['3'][i]
+                        sideblackd = df6['3'][i]
                         result = result + df6['3'][i]
                     if xx == 4:
-                        sideblackd=df6['4'][i]
+                        sideblackd = df6['4'][i]
                         result = result + df6['4'][i]
                     if xx == 5:
-                        sideblackd=df6['5'][i]
+                        sideblackd = df6['5'][i]
                         result = result + df6['5'][i]
                     if xx == 6:
-                        sideblackd=df6['6'][i]
+                        sideblackd = df6['6'][i]
                         result = result + df6['6'][i]
                     if xx == 7:
-                        sideblackd=df6['7'][i]
+                        sideblackd = df6['7'][i]
                         result = result + df6['7'][i]
                     if xx == 8:
-                        sideblackd=df6['8'][i]
+                        sideblackd = df6['8'][i]
                         result = result + df6['8'][i]
                     if xx == 9:
-                        sideblackd=df6['9'][i]
+                        sideblackd = df6['9'][i]
                         result = result + df6['9'][i]
                     break
     # for i in range(len(df6)):
@@ -1910,7 +1910,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #                     result = result + df6['9'][i]
     #                 break
 
-                    # sizeprem
+    # sizeprem
     # if ro or fancy
     # if 1-3 or 3-7
     # if if vvs f or not
@@ -1920,13 +1920,14 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if color == 'F' and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
                     df7 = pd.read_csv('roexsmF.csv')
                     for i in range(len(df7)):
-                        if(sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]):
-                            if (sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                        if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
+                            if (sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                            (fluo == 'Strong' or fluo == 'Very Strong'))):
                                 result = result + df7['IF VVS F'][i] / 2
-                                sizepremd= df7['IF VVS F'][i] / 2
+                                sizepremd = df7['IF VVS F'][i] / 2
                             else:
                                 result = result + df7['IF VVS F'][i]
-                                sizepremd= df7['IF VVS F'][i]
+                                sizepremd = df7['IF VVS F'][i]
 
                 else:
                     df7 = pd.read_csv('roexsm.csv')
@@ -1934,203 +1935,221 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                         if sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]:
                             if xx == 1:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['1'][i] / 2
-                                    sizepremd= df7['1'][i]/2
+                                    sizepremd = df7['1'][i] / 2
                                 else:
                                     result = result + df7['1'][i]
-                                    sizepremd= df7['1'][i]
+                                    sizepremd = df7['1'][i]
                             elif xx == 2:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['2'][i] / 2
-                                    sizepremd= df7['2'][i]/2
+                                    sizepremd = df7['2'][i] / 2
                                 else:
                                     result = result + df7['2'][i]
-                                    sizepremd= df7['2'][i]
+                                    sizepremd = df7['2'][i]
                             elif xx == 3:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['3'][i] / 2
-                                    sizepremd= df7['3'][i]/2
+                                    sizepremd = df7['3'][i] / 2
                                 else:
                                     result = result + df7['3'][i]
-                                    sizepremd= df7['3'][i]
+                                    sizepremd = df7['3'][i]
                             elif xx == 4:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['4'][i] / 2
-                                    sizepremd= df7['4'][i]/2
+                                    sizepremd = df7['4'][i] / 2
                                 else:
                                     result = result + df7['4'][i]
-                                    sizepremd= df7['4'][i]
+                                    sizepremd = df7['4'][i]
                             elif xx == 5:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['5'][i] / 2
-                                    sizepremd= df7['5'][i]/2
+                                    sizepremd = df7['5'][i] / 2
                                 else:
                                     result = result + df7['5'][i]
-                                    sizepremd= df7['5'][i]
+                                    sizepremd = df7['5'][i]
                             elif xx == 6:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['6'][i] / 2
-                                    sizepremd= df7['6'][i]/2
+                                    sizepremd = df7['6'][i] / 2
                                 else:
                                     result = result + df7['6'][i]
-                                    sizepremd= df7['6'][i]
+                                    sizepremd = df7['6'][i]
                             elif xx == 7:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and ((fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['7'][i] / 2
-                                    sizepremd= df7['7'][i]/2
+                                    sizepremd = df7['7'][i] / 2
                                 else:
                                     result = result + df7['7'][i]
-                                    sizepremd= df7['7'][i]
+                                    sizepremd = df7['7'][i]
                             elif xx == 8:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['8'][i] / 2
-                                    sizepremd= df7['8'][i]/2
+                                    sizepremd = df7['8'][i] / 2
                                 else:
                                     result = result + df7['8'][i]
-                                    sizepremd= df7['8'][i]
+                                    sizepremd = df7['8'][i]
                             elif xx == 9:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['9'][i] / 2
-                                    sizepremd= df7['9'][i]/2
+                                    sizepremd = df7['9'][i] / 2
                                 else:
                                     result = result + df7['9'][i]
-                                    sizepremd= df7['9'][i]
+                                    sizepremd = df7['9'][i]
                             break
             else:
                 if color == 'F' and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
                     df7 = pd.read_csv('rovgsmF.csv')
                     for i in range(len(df7)):
-                        if(sizeprec>=df7['From'][i] and sizeprec<=df7['To'][i]):
+                        if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
                             if (sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
                                 result = result + df7['IF VVS F'][i] / 2
-                                sizepremd= df7['IF VVS F'][i] / 2
+                                sizepremd = df7['IF VVS F'][i] / 2
                             else:
-                                sizepremd= df7['IF VVS F'][i]
+                                sizepremd = df7['IF VVS F'][i]
                                 result = result + df7['IF VVS F'][i]
 
                 else:
                     df7 = pd.read_csv('rovgsm.csv')
                     for i in range(len(df7)):
-                        
+
                         if sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]:
                             if xx == 1:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['1'][i] / 2
-                                    sizepremd= df7['1'][i] / 2
+                                    sizepremd = df7['1'][i] / 2
                                 else:
                                     result = result + df7['1'][i]
-                                    sizepremd= df7['1'][i]
+                                    sizepremd = df7['1'][i]
                             elif xx == 2:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['2'][i] / 2
-                                    sizepremd= df7['2'][i] / 2
+                                    sizepremd = df7['2'][i] / 2
                                 else:
                                     result = result + df7['2'][i]
-                                    sizepremd=  df7['2'][i]
+                                    sizepremd = df7['2'][i]
                             elif xx == 3:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['3'][i] / 2
-                                    sizepremd= df7['3'][i] / 2
+                                    sizepremd = df7['3'][i] / 2
                                 else:
                                     result = result + df7['3'][i]
-                                    sizepremd= df7['3'][i]
+                                    sizepremd = df7['3'][i]
                             elif xx == 4:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['4'][i] / 2
-                                    sizepremd=  df7['4'][i] / 2
+                                    sizepremd = df7['4'][i] / 2
                                 else:
                                     result = result + df7['4'][i]
-                                    sizepremd=  df7['4'][i]
+                                    sizepremd = df7['4'][i]
                             elif xx == 5:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['5'][i] / 2
-                                    sizepremd= df7['5'][i] / 2
+                                    sizepremd = df7['5'][i] / 2
                                 else:
                                     result = result + df7['5'][i]
-                                    sizepremd= df7['5'][i]
+                                    sizepremd = df7['5'][i]
                             elif xx == 6:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['6'][i] / 2
-                                    sizepremd= df7['6'][i] / 2
+                                    sizepremd = df7['6'][i] / 2
                                 else:
                                     result = result + df7['6'][i]
-                                    sizepremd= df7['6'][i]
+                                    sizepremd = df7['6'][i]
                             elif xx == 7:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['7'][i] / 2
-                                    sizepremd= df7['7'][i] / 2
+                                    sizepremd = df7['7'][i] / 2
                                 else:
                                     result = result + df7['7'][i]
-                                    sizepremd= df7['7'][i]
+                                    sizepremd = df7['7'][i]
                             elif xx == 8:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['8'][i] / 2
-                                    sizepremd=  df7['8'][i] / 2
+                                    sizepremd = df7['8'][i] / 2
                                 else:
                                     result = result + df7['8'][i]
-                                    sizepremd= df7['8'][i]
+                                    sizepremd = df7['8'][i]
                             elif xx == 9:
                                 if (
-                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong')):
+                                        sizeprec >= 1.20 and sizeprec <= 2.99 and (
+                                        fluo == 'Strong' or fluo == 'Very Strong')):
                                     result = result + df7['9'][i] / 2
-                                    sizepremd= df7['9'][i] / 2
+                                    sizepremd = df7['9'][i] / 2
                                 else:
                                     result = result + df7['9'][i]
-                                    sizepremd=  df7['9'][i]
+                                    sizepremd = df7['9'][i]
                             break
         elif sizeprec >= 3.00 and sizeprec <= 6.99:
             if (sizeprec >= 3.50 and sizeprec <= 3.749):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         result = result + 3.0
-                        sizepremd= 3
+                        sizepremd = 3
                     else:
                         result = result + 3.0
-                        sizepremd= 3
+                        sizepremd = 3
                 else:
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         result = result + 1.0
-                        sizepremd= 1
+                        sizepremd = 1
                     else:
-                        sizepremd= 1
+                        sizepremd = 1
                         result = result + 1.0
             elif (sizeprec >= 3.75 and sizeprec <= 3.999):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     result = result + 4.0
-                    sizepremd= 4
+                    sizepremd = 4
                 else:
-                    sizepremd= 2
+                    sizepremd = 2
                     result = result + 2.0
             elif (sizeprec >= 4.50 and sizeprec <= 4.99):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     result = result + 3.0
-                    sizepremd= 3
+                    sizepremd = 3
                 else:
-                    sizepremd= 1
+                    sizepremd = 1
                     result = result + 1.0
             elif (sizeprec >= 6.50 and sizeprec <= 6.99):
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     result = result + 3.0
-                    sizepremd= 3
+                    sizepremd = 3
                 else:
-                    sizepremd= 2
+                    sizepremd = 2
                     result = result + 2.0
             else:
                 if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
@@ -2138,85 +2157,85 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                         if (sizeprec >= 3.00 and sizeprec <= 3.00):
                             result = result - 2.0
-                            sizepremd= -2
+                            sizepremd = -2
                         elif (sizeprec >= 4.00 and sizeprec <= 4.00):
                             result = result - 2.0
-                            sizepremd= -2
+                            sizepremd = -2
                         elif (sizeprec >= 5.00 and sizeprec <= 5.00):
                             result = result - 1.0
-                            sizepremd= -1
+                            sizepremd = -1
                     else:
                         df7 = pd.read_csv('roexbg.csv')
                         for i in range(len(df7)):
                             if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
                                 if xx == 1:
-                                    sizepremd= df7['1'][i]
+                                    sizepremd = df7['1'][i]
                                     result = result + df7['1'][i]
                                 if xx == 2:
-                                    sizepremd= df7['2'][i]
+                                    sizepremd = df7['2'][i]
                                     result = result + df7['2'][i]
                                 if xx == 3:
-                                    sizepremd= df7['3'][i]
+                                    sizepremd = df7['3'][i]
                                     result = result + df7['3'][i]
                                 if xx == 4:
-                                    sizepremd= df7['4'][i]
+                                    sizepremd = df7['4'][i]
                                     result = result + df7['4'][i]
                                 if xx == 5:
-                                    sizepremd=  df7['5'][i]
+                                    sizepremd = df7['5'][i]
                                     result = result + df7['5'][i]
                                 if xx == 6:
-                                    sizepremd= df7['6'][i]
+                                    sizepremd = df7['6'][i]
                                     result = result + df7['6'][i]
                                 if xx == 7:
-                                    sizepremd=  df7['7'][i]
+                                    sizepremd = df7['7'][i]
                                     result = result + df7['7'][i]
                                 if xx == 8:
-                                    sizepremd= df7['8'][i]
+                                    sizepremd = df7['8'][i]
                                     result = result + df7['8'][i]
                                 if xx == 9:
-                                    sizepremd= df7['9'][i]
+                                    sizepremd = df7['9'][i]
                                     result = result + df7['9'][i]
                                 break
         elif sizeprec >= 0.59 and sizeprec <= 0.599:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint'):
                 result = result + 1
-                sizepremd=1
+                sizepremd = 1
         elif sizeprec >= 0.78 and sizeprec <= 0.789:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
-                sizepremd=1
+                sizepremd = 1
                 result = result + 1
         elif sizeprec >= 0.79 and sizeprec <= 0.799:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 2
-                sizepremd=2
+                sizepremd = 2
         elif sizeprec >= 0.87 and sizeprec <= 0.879:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 1
-                sizepremd=1
+                sizepremd = 1
         elif sizeprec >= 0.88 and sizeprec <= 0.889:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 2
-                sizepremd=2
+                sizepremd = 2
         elif sizeprec >= 0.89 and sizeprec <= 0.899:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 3
-                sizepremd=3
+                sizepremd = 3
         elif sizeprec >= 0.98 and sizeprec <= 0.989:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 1
-                sizepremd=1
+                sizepremd = 1
         elif sizeprec >= 0.99 and sizeprec <= 0.999:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
                 result = result + 2
-                sizepremd=2
+                sizepremd = 2
                 # Finishing
 
     # open
@@ -3220,89 +3239,93 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #         result=result+ df9['9'][i]/2
     # open in dossiers?
 
-    if sizeprec<1.0:
-        if(topnatural=='N1' or crownnatural=='N1' or girdlenatural=='N1' or  pavilionnatural=='N1'):
-            if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-                naturald=-1
-                result=result-1
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                naturald=-1
-                result=result-1
+    if sizeprec < 1.0:
+        if (topnatural == 'N1' or crownnatural == 'N1' or girdlenatural == 'N1' or pavilionnatural == 'N1'):
+            if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+                naturald = -1
+                result = result - 1
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                naturald = -1
+                result = result - 1
             else:
-                naturald=0
-                result=result+0   
-        elif(topnatural=='N2' or crownnatural=='N2' or girdlenatural=='N2' or  pavilionnatural=='N2'):
-            if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-                naturald=-2
-                result=result-2
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                naturald=-1
-                result=result-1
+                naturald = 0
+                result = result + 0
+        elif (topnatural == 'N2' or crownnatural == 'N2' or girdlenatural == 'N2' or pavilionnatural == 'N2'):
+            if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+                naturald = -2
+                result = result - 2
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                naturald = -1
+                result = result - 1
             else:
-                naturald=-1
-                result=result-1 
-        elif(topnatural=='N3' or crownnatural=='N3' or girdlenatural=='N3' or pavilionnatural=='N3'):
-            if(clarity=='IF' or clarity=='VVS1' or clarity=='VVS2'):
-                naturald=-3
-                result=result-3
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                naturald=-2
-                result=result-2
+                naturald = -1
+                result = result - 1
+        elif (topnatural == 'N3' or crownnatural == 'N3' or girdlenatural == 'N3' or pavilionnatural == 'N3'):
+            if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+                naturald = -3
+                result = result - 3
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                naturald = -2
+                result = result - 2
             else:
-                naturald=-1
-                result=result-1   
-        if(identedtopnatural=='INT' or identedcrownnatural=='INT' or identedgirdlenatural=='INT' or  identedpavilionnatural=='INT'):
-            if(clarity=='IF'):
-                identednaturald=-3
-                result=result-3
-            elif(clarity=='VVS1' or clarity=='VVS2'):
-                identednaturald=-3
-                result=result-3
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                identednaturald=-2
-                result=result-2
+                naturald = -1
+                result = result - 1
+        if (
+                identedtopnatural == 'INT' or identedcrownnatural == 'INT' or identedgirdlenatural == 'INT' or identedpavilionnatural == 'INT'):
+            if (clarity == 'IF'):
+                identednaturald = -3
+                result = result - 3
+            elif (clarity == 'VVS1' or clarity == 'VVS2'):
+                identednaturald = -3
+                result = result - 3
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                identednaturald = -2
+                result = result - 2
             else:
-                identednaturald=-1
-                result=result-1   
-        elif(identedtopnatural=='ING' or identedcrownnatural=='ING' or identedgirdlenatural=='ING' or  identedpavilionnatural=='ING'):
-            if(clarity=='IF'):
-                identednaturald=-1
-                result=result-1
-            elif(clarity=='VVS1' or clarity=='VVS2'):
-                identednaturald=-1
-                result=result-1
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                identednaturald=0
-                result=result-0
+                identednaturald = -1
+                result = result - 1
+        elif (
+                identedtopnatural == 'ING' or identedcrownnatural == 'ING' or identedgirdlenatural == 'ING' or identedpavilionnatural == 'ING'):
+            if (clarity == 'IF'):
+                identednaturald = -1
+                result = result - 1
+            elif (clarity == 'VVS1' or clarity == 'VVS2'):
+                identednaturald = -1
+                result = result - 1
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                identednaturald = 0
+                result = result - 0
             else:
-                identednaturald=0
-                result=result-0
-        elif(identedtopnatural=='INC' or identedcrownnatural=='INC' or identedgirdlenatural=='INC' or  identedpavilionnatural=='INC'):
-            if(clarity=='IF'):
-                identednaturald=-2
-                result=result-2
-            elif(clarity=='VVS1' or clarity=='VVS2'):
-                identednaturald=-1
-                result=result-1
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                identednaturald=0
-                result=result-0
+                identednaturald = 0
+                result = result - 0
+        elif (
+                identedtopnatural == 'INC' or identedcrownnatural == 'INC' or identedgirdlenatural == 'INC' or identedpavilionnatural == 'INC'):
+            if (clarity == 'IF'):
+                identednaturald = -2
+                result = result - 2
+            elif (clarity == 'VVS1' or clarity == 'VVS2'):
+                identednaturald = -1
+                result = result - 1
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                identednaturald = 0
+                result = result - 0
             else:
-                identednaturald=0
-                result=result-0  
-        elif(identedtopnatural=='INP' or identedcrownnatural=='INP' or identedgirdlenatural=='INP' or  identedpavilionnatural=='INP'):
-            if(clarity=='IF'):
-                identednaturald=-1
-                result=result-1
-            elif(clarity=='VVS1' or clarity=='VVS2'):
-                identednaturald=-1
-                result=result-1
-            elif (clarity=='VS1' or clarity=='VS2'):     
-                identednaturald=-1
-                result=result-1
+                identednaturald = 0
+                result = result - 0
+        elif (
+                identedtopnatural == 'INP' or identedcrownnatural == 'INP' or identedgirdlenatural == 'INP' or identedpavilionnatural == 'INP'):
+            if (clarity == 'IF'):
+                identednaturald = -1
+                result = result - 1
+            elif (clarity == 'VVS1' or clarity == 'VVS2'):
+                identednaturald = -1
+                result = result - 1
+            elif (clarity == 'VS1' or clarity == 'VS2'):
+                identednaturald = -1
+                result = result - 1
             else:
-                identednaturald=0
-                result=result-0                           
+                identednaturald = 0
+                result = result - 0
     if sizeprec >= 1.0:
         df31 = pd.read_csv('FinishingRoOpen.csv')
         if (shape == 'RO'):
@@ -3310,235 +3333,235 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if (tableopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend=df31['1'][i]
+                            opend = df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend=df31['2'][i]
+                            opend = df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
+                            opend = df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend=df31['4'][i]
+                            opend = df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
+                            opend = df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
+                            opend = df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
+                            opend = df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
+                            opend = df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
+                            opend = df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=(df31['1'][i] / 2)
+                            opend = (df31['1'][i] / 2)
                             result = result + (df31['1'][i] / 2)
                         if xx == 2:
-                            opend=(df31['2'][i] / 2)
+                            opend = (df31['2'][i] / 2)
                             result = result + (df31['2'][i] / 2)
                         if xx == 3:
-                            opend=(df31['3'][i] / 2)
+                            opend = (df31['3'][i] / 2)
                             result = result + (df31['3'][i] / 2)
                         if xx == 4:
-                            opend=df31['4'][i] / 2
+                            opend = df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend=df31['5'][i] / 2
+                            opend = df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
+                            opend = df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
+                            opend = df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend=df31['8'][i] / 2
+                            opend = df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
+                            opend = df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
                 if (girdleopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend=result + df31['1'][i]
+                            opend = result + df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend=df31['2'][i]
+                            opend = df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
+                            opend = df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend=df31['4'][i]
+                            opend = df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
+                            opend = df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
+                            opend = df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
+                            opend = df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
+                            opend = df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
+                            opend = df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=df31['1'][i] / 2
+                            opend = df31['1'][i] / 2
                             result = result + df31['1'][i] / 2
                         if xx == 2:
-                            opend=df31['2'][i] / 2
+                            opend = df31['2'][i] / 2
                             result = result + df31['2'][i] / 2
                         if xx == 3:
-                            opend= df31['3'][i] / 2
+                            opend = df31['3'][i] / 2
                             result = result + df31['3'][i] / 2
                         if xx == 4:
-                            opend=df31['4'][i] / 2
+                            opend = df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend= df31['5'][i] / 2
+                            opend = df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
+                            opend = df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
+                            opend = df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend=df31['8'][i] / 2
+                            opend = df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
+                            opend = df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
                 if (crownopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend= df31['1'][i]
+                            opend = df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend= df31['2'][i]
+                            opend = df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
+                            opend = df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend= df31['4'][i]
+                            opend = df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
+                            opend = df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
+                            opend = df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
+                            opend = df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
+                            opend = df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
+                            opend = df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=df31['1'][i] / 2
+                            opend = df31['1'][i] / 2
                             result = result + df31['1'][i] / 2
                         if xx == 2:
-                            opend=df31['2'][i] / 2
+                            opend = df31['2'][i] / 2
                             result = result + df31['2'][i] / 2
                         if xx == 3:
-                            opend=df31['3'][i] / 2
+                            opend = df31['3'][i] / 2
                             result = result + df31['3'][i] / 2
                         if xx == 4:
-                            opend=df31['4'][i] / 2
+                            opend = df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend=df31['5'][i] / 2
+                            opend = df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
+                            opend = df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
+                            opend = df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend= df31['8'][i] / 2
+                            opend = df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
+                            opend = df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
                 if (pavilionopen == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
-                            opend=df31['1'][i]
+                            opend = df31['1'][i]
                             result = result + df31['1'][i]
                         if xx == 2:
-                            opend=df31['2'][i]
+                            opend = df31['2'][i]
                             result = result + df31['2'][i]
                         if xx == 3:
-                            opend=df31['3'][i]
+                            opend = df31['3'][i]
                             result = result + df31['3'][i]
                         if xx == 4:
-                            opend=df31['4'][i]
+                            opend = df31['4'][i]
                             result = result + df31['4'][i]
                         if xx == 5:
-                            opend=df31['5'][i]
+                            opend = df31['5'][i]
                             result = result + df31['5'][i]
                         if xx == 6:
-                            opend=df31['6'][i]
+                            opend = df31['6'][i]
                             result = result + df31['6'][i]
                         if xx == 7:
-                            opend=df31['7'][i]
+                            opend = df31['7'][i]
                             result = result + df31['7'][i]
                         if xx == 8:
-                            opend=df31['8'][i]
+                            opend = df31['8'][i]
                             result = result + df31['8'][i]
                         if xx == 9:
-                            opend=df31['9'][i]
+                            opend = df31['9'][i]
                             result = result + df31['9'][i]
                     else:
                         if xx == 1:
-                            opend=df31['1'][i] / 2
+                            opend = df31['1'][i] / 2
                             result = result + df31['1'][i] / 2
                         if xx == 2:
-                            opend=df31['2'][i] / 2
+                            opend = df31['2'][i] / 2
                             result = result + df31['2'][i] / 2
                         if xx == 3:
-                            opend=df31['3'][i] / 2
+                            opend = df31['3'][i] / 2
                             result = result + df31['3'][i] / 2
                         if xx == 4:
-                            opend=df31['4'][i] / 2
+                            opend = df31['4'][i] / 2
                             result = result + df31['4'][i] / 2
                         if xx == 5:
-                            opend=df31['5'][i] / 2
+                            opend = df31['5'][i] / 2
                             result = result + df31['5'][i] / 2
                         if xx == 6:
-                            opend=df31['6'][i] / 2
+                            opend = df31['6'][i] / 2
                             result = result + df31['6'][i] / 2
                         if xx == 7:
-                            opend=df31['7'][i] / 2
+                            opend = df31['7'][i] / 2
                             result = result + df31['7'][i] / 2
                         if xx == 8:
-                            opend= df31['8'][i] / 2
+                            opend = df31['8'][i] / 2
                             result = result + df31['8'][i] / 2
                         if xx == 9:
-                            opend=df31['9'][i] / 2
+                            opend = df31['9'][i] / 2
                             result = result + df31['9'][i] / 2
-            tempnat=result
+            tempnat = result
             for i in range(len(df31)):
                 if (topnatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    
+
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
                             result = result + df31['1'][i]
@@ -3694,11 +3717,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            naturald=result-tempnat
-            temppp=result
+            naturald = result - tempnat
+            temppp = result
             for i in range(len(df31)):
                 if (identedtopnatural == df31['open'][i] and cut == df31['Cut'][i]):
-                    
+
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
                             result = result + df31['1'][i]
@@ -3854,8 +3877,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            identednaturald=result-temppp
-            temppp=result
+            identednaturald = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topef == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -4013,8 +4036,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            efd=result-temppp
-            temppp=result
+            efd = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topcavity == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -4172,8 +4195,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            cavityd=result-temppp
-            temppp=result
+            cavityd = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topchip == df31['open'][i] and cut == df31['Cut'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -4331,11 +4354,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            chipd=result-temppp            
+            chipd = result - temppp
         else:
-            temppp=result
+            temppp = result
             for i in range(len(df31)):
-                
+
                 if (tableopen == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
                         if xx == 1:
@@ -4493,8 +4516,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            opend=result-temppp
-            temppp=result
+            opend = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topnatural == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -4655,8 +4678,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            naturald=result-temppp
-            temppp=result
+            naturald = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topef == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -4814,8 +4837,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            efd=result-temppp
-            temppp=result
+            efd = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topcavity == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -4975,8 +4998,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            cavityd=result-temppp
-            temppp=result
+            cavityd = result - temppp
+            temppp = result
             for i in range(len(df31)):
                 if (topchip == df31['open'][i] and polish == df31['Polish'][i] and symmetry == df31['Symmetry'][i]):
                     if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
@@ -5135,9 +5158,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result = result + df31['8'][i] / 2
                         if xx == 9:
                             result = result + df31['9'][i] / 2
-            chipd=result-temppp
-            
-                            # Internal Grading I dont think this is present in the stockfile
+            chipd = result - temppp
+
+            # Internal Grading I dont think this is present in the stockfile
     df30 = pd.read_csv('InternalGrading.csv')
     for i in range(len(df30)):
         if (shape == 'RO' and shape == df30['Shape'][i] and upgrade1 == df30['what'][i]):
@@ -5301,47 +5324,54 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     result = result + 100 * df30['8'][i]
                 if xx == 9:
                     result = result + 100 * df30['9'][i]
-    if (sizeprec >= 0.30 and sizeprec <= 0.99):
+
+    # Depth discount
+    depth_data = pd.read_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx',
+                               sheet_name='Depth')
+    if 0.30 <= sizeprec <= 0.99:
         if cut == 'EX' and depth >= 63 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
                 color == 'D' or color == 'E' or color == 'F'):
-            result = result - 1.0
-            depthd=-1
+            depthd = depth_data['Depth'][0]
+            result = result + depthd
         if cut == 'VG' and depth >= 64.8 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
                 color != 'J' or color != 'K' or color != 'L' or color != 'I'):
+            depthd = depth_data['Depth'][1]
+            result = result + depthd
+    # Depth discount
+
+    if (sizeprec < 1.0):
+        if (days >= 60 and days <= 89):
             result = result - 1.0
-            depthd=-1
-    if(sizeprec<1.0):
-      if(days>=60 and days<=89):
-        result=result-1.0
-        daysd=-1
-      if(days>=90 and days<=119):
-        result=result-2.0
-        daysd=-2
-      if(days>=120 and days<=179):
-        result=result-3.0
-        daysd=-3
-      if(days>=180 and days<=299):
-        result=result-5.0
-        daysd=-5
-      if(days>=300 and days<=499):
-        result=result-7.0
-        daysd=-7
-      if(days>=500):
-        result=result-10.0
-        daysd=-10  
+            daysd = -1
+        if (days >= 90 and days <= 119):
+            result = result - 2.0
+            daysd = -2
+        if (days >= 120 and days <= 179):
+            result = result - 3.0
+            daysd = -3
+        if (days >= 180 and days <= 299):
+            result = result - 5.0
+            daysd = -5
+        if (days >= 300 and days <= 499):
+            result = result - 7.0
+            daysd = -7
+        if (days >= 500):
+            result = result - 10.0
+
+    daysd = -10
     if ff == 0:
         rap = 0;
-    if color1=='N':
-        result=result-7    
+    if color1 == 'N':
+        result = result - 7
     if temp >= -40:
         if temp - result > 20:
             result = temp - 20
-            capped=20
+            capped = 20
     else:
         if temp - result > 15:
             result = temp - 15
-            capped=15
-    ans=[]
+            capped = 15
+    ans = []
     ans.append(result)
     ans.append(base)
     ans.append(gdd)
@@ -5367,10 +5397,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(ktosd)
     ans.append(daysd)
     ans.append(capped)
-    
+
     return ans
-  
-  
+
 # def get_cut_comments(cert, shape, cut, tabl, height, ratio, cr_angle,td,pv_angle, pv_depth, girdle_percentage,star_length, lower_half):
 #     if cert=='GIA' and shape=='RO':
 #         if(cut=='EX' and tabl>=56 and tabl<=59 and cr_angle>=34 and cr_angle<=35.5 and pv_angle>=40.6 and pv_angle<=41.2 and girdle_percentage>=2.5 and girdle_percentage<=3.5 and ratio>=0 and ratio<=0.5 and star_length>=50 and star_length<=55 and lower_half>=75 and lower_half<=80 and td>=59.5 and td<=62.7):
