@@ -158,11 +158,8 @@ def size_premium():
 
 
 def doss_base():
-    def get_sheetnames_xlsx(filepath):
-        wb = load_workbook(filepath, read_only=True, keep_links=False)
-        return wb.sheetnames
-
-    sheet_names = get_sheetnames_xlsx("input_files/input_price_module_discounts.xlsm")
+    sheet_names = ['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.40-0.44', '0.40-0.44', '0.60-0.69', '0.70-0.74',
+                   '0.75-0.79', '0.80-0.89', '0.90-0.94', '0.95-0.99']
 
     final_df = pd.DataFrame()
     for sheet in sheet_names:
@@ -215,7 +212,7 @@ def doss_base():
             elif "FAINT" in cut_name:
                 Fluo.append("Faint")
             elif "MED" in cut_name:
-                Fluo.append("Med")
+                Fluo.append("Medium")
             elif "STRONG" in cut_name:
                 Fluo.append("Strong")
 
@@ -239,7 +236,7 @@ def doss_base():
             final_df = final_df.append(sd, ignore_index=True)
 
     final_df.reset_index(inplace=True, drop=True)
-    final_df.to_csv("output/doss.csv")
+    final_df.to_csv("../Dossbase.csv")
 
 
 def black_csv():
@@ -355,6 +352,6 @@ def depth_csv():
 # central_mapping()
 # diameter_premium()
 # size_premium()
-# doss_base()
+doss_base()
 # black_csv()
-depth_csv()
+# depth_csv()

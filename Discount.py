@@ -570,7 +570,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #                 elif clarity == 'VVS2':
     #                     result = result + 5
     #                     diameterd=5
-    result += get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity)
+    diameterd = get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity)
+    result += diameterd
 
     # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
     if ((sizeprec >= 1.0) and ((cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
@@ -2115,127 +2116,166 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                     sizepremd = df7['9'][i]
                             break
         elif sizeprec >= 3.00 and sizeprec <= 6.99:
-            if (sizeprec >= 3.50 and sizeprec <= 3.749):
-                if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-                    if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
-                        result = result + 3.0
-                        sizepremd = 3
-                    else:
-                        result = result + 3.0
-                        sizepremd = 3
+            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+                                 symmetry == 'EX' or symmetry == 'VG'):
+                if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
+                    roexbgf_size_prem = pd.read_csv('roexbgF.csv')
+                    for i in range(len(roexbgf_size_prem)):
+                        if roexbgf_size_prem['From'][i] <= sizeprec <= roexbgf_size_prem['To'][i]:
+                            sizepremd = roexbgf_size_prem['IF VVS F'][i]
+                            result += sizepremd
+                            break
                 else:
-                    if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
-                        result = result + 1.0
-                        sizepremd = 1
-                    else:
-                        sizepremd = 1
-                        result = result + 1.0
-            elif (sizeprec >= 3.75 and sizeprec <= 3.999):
-                if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-                    result = result + 4.0
-                    sizepremd = 4
-                else:
-                    sizepremd = 2
-                    result = result + 2.0
-            elif (sizeprec >= 4.50 and sizeprec <= 4.99):
-                if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-                    result = result + 3.0
-                    sizepremd = 3
-                else:
-                    sizepremd = 1
-                    result = result + 1.0
-            elif (sizeprec >= 6.50 and sizeprec <= 6.99):
-                if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-                    result = result + 3.0
-                    sizepremd = 3
-                else:
-                    sizepremd = 2
-                    result = result + 2.0
-            else:
-                if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                        symmetry == 'EX' or symmetry == 'VG'):
-                    if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
-                        if (sizeprec >= 3.00 and sizeprec <= 3.00):
-                            result = result - 2.0
-                            sizepremd = -2
-                        elif (sizeprec >= 4.00 and sizeprec <= 4.00):
-                            result = result - 2.0
-                            sizepremd = -2
-                        elif (sizeprec >= 5.00 and sizeprec <= 5.00):
-                            result = result - 1.0
-                            sizepremd = -1
-                    else:
-                        df7 = pd.read_csv('roexbg.csv')
-                        for i in range(len(df7)):
-                            if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
-                                if xx == 1:
-                                    sizepremd = df7['1'][i]
-                                    result = result + df7['1'][i]
-                                if xx == 2:
-                                    sizepremd = df7['2'][i]
-                                    result = result + df7['2'][i]
-                                if xx == 3:
-                                    sizepremd = df7['3'][i]
-                                    result = result + df7['3'][i]
-                                if xx == 4:
-                                    sizepremd = df7['4'][i]
-                                    result = result + df7['4'][i]
-                                if xx == 5:
-                                    sizepremd = df7['5'][i]
-                                    result = result + df7['5'][i]
-                                if xx == 6:
-                                    sizepremd = df7['6'][i]
-                                    result = result + df7['6'][i]
-                                if xx == 7:
-                                    sizepremd = df7['7'][i]
-                                    result = result + df7['7'][i]
-                                if xx == 8:
-                                    sizepremd = df7['8'][i]
-                                    result = result + df7['8'][i]
-                                if xx == 9:
-                                    sizepremd = df7['9'][i]
-                                    result = result + df7['9'][i]
-                                break
-        elif sizeprec >= 0.59 and sizeprec <= 0.599:
+                    df7 = pd.read_csv('roexbg.csv')
+                    for i in range(len(df7)):
+                        if df7['From'][i] <= sizeprec <= df7['To'][i]:
+                            sizepremd = roexbgf_size_prem[str(xx)][i]
+                            result += sizepremd
+                            break
+            # if (sizeprec >= 3.50 and sizeprec <= 3.749): TBD
+            #     if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+            #         if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
+            #             result = result + 3.0
+            #             sizepremd = 3
+            #         else:
+            #             result = result + 3.0
+            #             sizepremd = 3
+            #     else:
+            #         if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
+            #             result = result + 1.0
+            #             sizepremd = 1
+            #         else:
+            #             sizepremd = 1
+            #             result = result + 1.0
+            # elif (sizeprec >= 3.75 and sizeprec <= 3.999):
+            #     if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+            #         result = result + 4.0
+            #         sizepremd = 4
+            #     else:
+            #         sizepremd = 2
+            #         result = result + 2.0
+            # elif (sizeprec >= 4.50 and sizeprec <= 4.99):
+            #     if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+            #         result = result + 3.0
+            #         sizepremd = 3
+            #     else:
+            #         sizepremd = 1
+            #         result = result + 1.0
+            # elif (sizeprec >= 6.50 and sizeprec <= 6.99):
+            #     if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+            #         result = result + 3.0
+            #         sizepremd = 3
+            #     else:
+            #         sizepremd = 2
+            #         result = result + 2.0
+            # else:
+            #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+            #             symmetry == 'EX' or symmetry == 'VG'):
+            #         if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
+            #             if (sizeprec >= 3.00 and sizeprec <= 3.00):
+            #                 result = result - 2.0
+            #                 sizepremd = -2
+            #             elif (sizeprec >= 4.00 and sizeprec <= 4.00):
+            #                 result = result - 2.0
+            #                 sizepremd = -2
+            #             elif (sizeprec >= 5.00 and sizeprec <= 5.00):
+            #                 result = result - 1.0
+            #                 sizepremd = -1
+            #         else:
+            #             df7 = pd.read_csv('roexbg.csv')
+            #             for i in range(len(df7)):
+            #                 if sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]:
+            #                     if xx == 1:
+            #                         sizepremd = df7['1'][i]
+            #                         result = result + df7['1'][i]
+            #                     if xx == 2:
+            #                         sizepremd = df7['2'][i]
+            #                         result = result + df7['2'][i]
+            #                     if xx == 3:
+            #                         sizepremd = df7['3'][i]
+            #                         result = result + df7['3'][i]
+            #                     if xx == 4:
+            #                         sizepremd = df7['4'][i]
+            #                         result = result + df7['4'][i]
+            #                     if xx == 5:
+            #                         sizepremd = df7['5'][i]
+            #                         result = result + df7['5'][i]
+            #                     if xx == 6:
+            #                         sizepremd = df7['6'][i]
+            #                         result = result + df7['6'][i]
+            #                     if xx == 7:
+            #                         sizepremd = df7['7'][i]
+            #                         result = result + df7['7'][i]
+            #                     if xx == 8:
+            #                         sizepremd = df7['8'][i]
+            #                         result = result + df7['8'][i]
+            #                     if xx == 9:
+            #                         sizepremd = df7['9'][i]
+            #                         result = result + df7['9'][i]
+            #                     break
+        else:
+            size_prem_doss = pd.read_csv('roexdossiers.csv')
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint'):
-                result = result + 1
-                sizepremd = 1
-        elif sizeprec >= 0.78 and sizeprec <= 0.789:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                sizepremd = 1
-                result = result + 1
-        elif sizeprec >= 0.79 and sizeprec <= 0.799:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                result = result + 2
-                sizepremd = 2
-        elif sizeprec >= 0.87 and sizeprec <= 0.879:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                result = result + 1
-                sizepremd = 1
-        elif sizeprec >= 0.88 and sizeprec <= 0.889:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                result = result + 2
-                sizepremd = 2
-        elif sizeprec >= 0.89 and sizeprec <= 0.899:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                result = result + 3
-                sizepremd = 3
-        elif sizeprec >= 0.98 and sizeprec <= 0.989:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                result = result + 1
-                sizepremd = 1
-        elif sizeprec >= 0.99 and sizeprec <= 0.999:
-            if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG'):
-                result = result + 2
-                sizepremd = 2
+                    symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint') and (
+                    clarity == 'I1' or clarity == 'IF' or clarity == 'SI1' or clarity == 'SI2'):
+                for i in range(len(size_prem_doss)):
+                    size_range = str(size_prem_doss['Size Range'][i])
+                    size_low = float(size_range.split('-')[0])
+                    size_high = float(size_range.split('-')[1])
+                    if size_low <= sizeprec <= size_high:
+                        sizepremd = float(size_prem_doss['FL-SI2'][i])
+                        result += sizepremd
+                        break
+    else:
+        fancy_size_prem = pd.read_csv('fancy.csv')
+        for i in range(len(fancy_size_prem)):
+            size_low = fancy_size_prem['From'][i]
+            size_high = fancy_size_prem['To'][i]
+            if size_low <= sizeprec <= size_high:
+                sizepremd = float(fancy_size_prem[str(xx)][i])
+                result += sizepremd
+                break
+
+        # elif sizeprec >= 0.59 and sizeprec <= 0.599: TBD
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint'):
+        #         result = result + 1
+        #         sizepremd = 1
+        # elif sizeprec >= 0.78 and sizeprec <= 0.789:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         sizepremd = 1
+        #         result = result + 1
+        # elif sizeprec >= 0.79 and sizeprec <= 0.799:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         result = result + 2
+        #         sizepremd = 2
+        # elif sizeprec >= 0.87 and sizeprec <= 0.879:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         result = result + 1
+        #         sizepremd = 1
+        # elif sizeprec >= 0.88 and sizeprec <= 0.889:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         result = result + 2
+        #         sizepremd = 2
+        # elif sizeprec >= 0.89 and sizeprec <= 0.899:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         result = result + 3
+        #         sizepremd = 3
+        # elif sizeprec >= 0.98 and sizeprec <= 0.989:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         result = result + 1
+        #         sizepremd = 1
+        # elif sizeprec >= 0.99 and sizeprec <= 0.999:
+        #     if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
+        #             symmetry == 'EX' or symmetry == 'VG'):
+        #         result = result + 2
+        #         sizepremd = 2
                 # Finishing
 
     # open

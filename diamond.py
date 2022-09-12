@@ -602,7 +602,7 @@ def page1():
                 logging.error('Something went wrong with record number ' + str(i + 1) + ' ' + str(e))
                 logging.error(traceback.format_exc())
             records_processed.text(str(i) + ' out of ' + str(len(diamondData) - 1) + ' records processed')
-            progress.progress(float(i) / (len(diamondData) - 1))
+            progress.progress(float(i) / (len(diamondData)))
         if not exception_flag:
             diamondData = diamondData.astype(str)
             st.write(diamondData)
