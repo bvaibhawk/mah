@@ -213,6 +213,8 @@ def doss_base():
                 Fluo.append("Faint")
             elif "MED" in cut_name:
                 Fluo.append("Medium")
+            elif "VERY STRONG" in cut_name:
+                Fluo.append("Very Strong")
             elif "STRONG" in cut_name:
                 Fluo.append("Strong")
 
