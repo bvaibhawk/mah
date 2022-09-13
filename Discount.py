@@ -1,6 +1,7 @@
 import pandas as pd
 
 from discount_integration.discount_sql import get_diameter_premium
+from utils.cut_comment_util import get_cut
 
 
 def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
@@ -17,20 +18,22 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                  ):
     # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
-    if (cutcomments == 'EX1'):
-        if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-            cutcomments = '3EX->EX1'
-        elif (cut == 'EX' and (polish != 'EX' or symmetry != 'EX')):
-            cutcomments = 'EX->EX1'
-    elif (cutcomments == 'EX2'):
-        if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
-            cutcomments = '3EX->EX2'
-        elif (cut == 'EX' and (polish != 'EX' or symmetry != 'EX')):
-            cutcomments = 'EX->EX2'
-    elif (cutcomments == 'VG1'):
-        cutcomments = 'VG->VG1'
-    elif (cutcomments == 'VG2'):
-        cutcomments = 'VG->VG2'
+    # if (cutcomments == 'EX1'):
+    #     if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+    #         cutcomments = '3EX-EX1'
+    #     elif (cut == 'EX' and (polish != 'EX' or symmetry != 'EX')):
+    #         cutcomments = 'EX-EX1'
+    # elif (cutcomments == 'EX2'):
+    #     if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
+    #         cutcomments = '3EX-EX2'
+    #     elif (cut == 'EX' and (polish != 'EX' or symmetry != 'EX')):
+    #         cutcomments = 'EX-EX2'
+    # elif (cutcomments == 'VG1'):
+    #     if (cut == 'VG' and (polish != 'VG' or symmetry != 'VG')):
+    #         cutcomments = 'VG-VG1'
+    # elif (cutcomments == 'VG2'):
+    #     if (cut == 'VG' and (polish != 'VG' or symmetry != 'VG')):
+    #         cutcomments = 'VG-VG2'
     base = 0.0
     gdd = 0.0
     ktosd = 0.0
@@ -945,94 +948,112 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     result = result + colshaded
 
     # Cut
-    if ((fluo == 'MED') and (cutcomments == 'VG->VG2' or cutcomments == 'G->GD2')) or shape != 'RO':
-        result = result
-    else:
-        if cutcomments == '3EX->EX2':
-            if (xx == 1):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 2):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 3):
-                result = result - 1.0
-                cutcommentsd = -1
-            elif (xx == 4):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 5):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 6):
-                result = result - 1.0
-                cutcommentsd = -1
-            elif (xx == 7):
-                result = result - 1.0
-                cutcommentsd = -1
-            elif (xx == 8):
-                result = result - 1.0
-                cutcommentsd = -1
-            elif (xx == 9):
-                result = result - 0.5
-                cutcommentsd = -0.5
+    if shape == 'RO' and sizeprec >= 1:
+        if (fluo == 'Medium') and (cutcomments == 'VG2' or cutcomments == 'GD2'):
+            result = result
+        else:
+            cut_comments_data = pd.read_csv('cut_comments.csv')
+            cps_val = get_cut(cut, polish, symmetry)  # cps stands for cut, poly, sym combo
+            for i in range(len(cut_comments_data)):
+                if cps_val == cut_comments_data['Cut'][i] and cutcomments == cut_comments_data['Cut Comment'][i]:
+                    cutcommentsd = cut_comments_data[str(xx)][i]
+                    result += cutcommentsd
+    elif sizeprec >= 1:
+        cut_comments_data = pd.read_csv('cut_comments.csv')
+        cps_val = 'Fancy Shape'  # cps stands for cut, poly, sym combo
+        for i in range(len(cut_comments_data)):
+            if cps_val == cut_comments_data['Cut'][i] and cutcomments == cut_comments_data['Cut Comment'][i]:
+                cutcommentsd = cut_comments_data[str(xx)][i]
+                result += cutcommentsd
 
-        if cutcomments == 'EX->EX2':
-            if (xx == 1):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 2):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 3):
-                result = result - 1.0
-                cutcommentsd = -1
-            elif (xx == 4):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 5):
-                result = result - 2.0
-                cutcommentsd = -2
-            elif (xx == 6):
-                result = result - 1.0
-                cutcommentsd = -1
-            elif (xx == 7):
-                result = result - 1.5
-                cutcommentsd = -1.5
-            elif (xx == 8):
-                result = result - 1.5
-                cutcommentsd = -1.5
-            elif (xx == 9):
-                result = result - 0.5
-                cutcommentsd = -0.5
-        if cutcomments == 'VG->VG1':
-            if (xx == 1):
-                result = result + 2.0
-                cutcommentsd = 2
-            elif (xx == 2):
-                result = result + 2.0
-                cutcommentsd = 2
-            elif (xx == 3):
-                result = result + 2.0
-                cutcommentsd = 2
-            elif (xx == 4):
-                result = result + 2.0
-                cutcommentsd = 2
-            elif (xx == 5):
-                result = result + 2.0
-                cutcommentsd = 2
-            elif (xx == 6):
-                result = result + 1.5
-                cutcommentsd = 1.5
-            elif (xx == 7):
-                result = result + 1.5
-                cutcommentsd = 1.5
-            elif (xx == 8):
-                result = result + 1.0
-                cutcommentsd = 1
-            elif (xx == 9):
-                result = result + 1.0
-                cutcommentsd = 1
+    # if ((fluo == 'Medium') and (cutcomments == 'VG->VG2' or cutcomments == 'G->GD2')) or shape != 'RO':
+    #     result = result
+    # else:
+    #     if cutcomments == '3EX->EX2':
+    #         if (xx == 1):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 2):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 3):
+    #             result = result - 1.0
+    #             cutcommentsd = -1
+    #         elif (xx == 4):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 5):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 6):
+    #             result = result - 1.0
+    #             cutcommentsd = -1
+    #         elif (xx == 7):
+    #             result = result - 1.0
+    #             cutcommentsd = -1
+    #         elif (xx == 8):
+    #             result = result - 1.0
+    #             cutcommentsd = -1
+    #         elif (xx == 9):
+    #             result = result - 0.5
+    #             cutcommentsd = -0.5
+    #
+    #     if cutcomments == 'EX->EX2':
+    #         if (xx == 1):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 2):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 3):
+    #             result = result - 1.0
+    #             cutcommentsd = -1
+    #         elif (xx == 4):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 5):
+    #             result = result - 2.0
+    #             cutcommentsd = -2
+    #         elif (xx == 6):
+    #             result = result - 1.0
+    #             cutcommentsd = -1
+    #         elif (xx == 7):
+    #             result = result - 1.5
+    #             cutcommentsd = -1.5
+    #         elif (xx == 8):
+    #             result = result - 1.5
+    #             cutcommentsd = -1.5
+    #         elif (xx == 9):
+    #             result = result - 0.5
+    #             cutcommentsd = -0.5
+    #     if cutcomments == 'VG->VG1':
+    #         if (xx == 1):
+    #             result = result + 2.0
+    #             cutcommentsd = 2
+    #         elif (xx == 2):
+    #             result = result + 2.0
+    #             cutcommentsd = 2
+    #         elif (xx == 3):
+    #             result = result + 2.0
+    #             cutcommentsd = 2
+    #         elif (xx == 4):
+    #             result = result + 2.0
+    #             cutcommentsd = 2
+    #         elif (xx == 5):
+    #             result = result + 2.0
+    #             cutcommentsd = 2
+    #         elif (xx == 6):
+    #             result = result + 1.5
+    #             cutcommentsd = 1.5
+    #         elif (xx == 7):
+    #             result = result + 1.5
+    #             cutcommentsd = 1.5
+    #         elif (xx == 8):
+    #             result = result + 1.0
+    #             cutcommentsd = 1
+    #         elif (xx == 9):
+    #             result = result + 1.0
+    #             cutcommentsd = 1
 
     # Graining- add vg+ condition and the extra comment-done
     # if internalgraining=='IGR2':
@@ -1923,7 +1944,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     for i in range(len(df7)):
                         if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
                             if (sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                            (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                    (fluo == 'Strong' or fluo == 'Very Strong'))):
                                 result = result + df7['IF VVS F'][i] / 2
                                 sizepremd = df7['IF VVS F'][i] / 2
                             else:
@@ -1937,7 +1958,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             if xx == 1:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['1'][i] / 2
                                     sizepremd = df7['1'][i] / 2
                                 else:
@@ -1946,7 +1967,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 2:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['2'][i] / 2
                                     sizepremd = df7['2'][i] / 2
                                 else:
@@ -1955,7 +1976,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 3:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['3'][i] / 2
                                     sizepremd = df7['3'][i] / 2
                                 else:
@@ -1964,7 +1985,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 4:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['4'][i] / 2
                                     sizepremd = df7['4'][i] / 2
                                 else:
@@ -1973,7 +1994,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 5:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['5'][i] / 2
                                     sizepremd = df7['5'][i] / 2
                                 else:
@@ -1982,7 +2003,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 6:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['6'][i] / 2
                                     sizepremd = df7['6'][i] / 2
                                 else:
@@ -1991,7 +2012,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 7:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
                                     result = result + df7['7'][i] / 2
                                     sizepremd = df7['7'][i] / 2
                                 else:
@@ -2117,7 +2138,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             break
         elif sizeprec >= 3.00 and sizeprec <= 6.99:
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                                 symmetry == 'EX' or symmetry == 'VG'):
+                    symmetry == 'EX' or symmetry == 'VG'):
                 if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
                     roexbgf_size_prem = pd.read_csv('roexbgF.csv')
                     for i in range(len(roexbgf_size_prem)):
@@ -2216,7 +2237,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         else:
             size_prem_doss = pd.read_csv('roexdossiers.csv')
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
-                    symmetry == 'EX' or symmetry == 'VG') and (fluo == 'Medium' or fluo == 'None' or fluo == 'Faint') and (
+                    symmetry == 'EX' or symmetry == 'VG') and (
+                    fluo == 'Medium' or fluo == 'None' or fluo == 'Faint') and (
                     clarity == 'I1' or clarity == 'IF' or clarity == 'SI1' or clarity == 'SI2'):
                 for i in range(len(size_prem_doss)):
                     size_range = str(size_prem_doss['Size Range'][i])
@@ -2276,7 +2298,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #             symmetry == 'EX' or symmetry == 'VG'):
         #         result = result + 2
         #         sizepremd = 2
-                # Finishing
+        # Finishing
 
     # open
     # df9=pd.read_csv('Finishing.csv')
@@ -5453,6 +5475,3 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 #         elif(cut=='GD' and tabl>=53 and tabl<=62 and cr_angle>=31 and cr_angle<=38.7 and pv_angle>=39.8 and pv_angle<=42.6 and girdle_percentage>=2 and girdle_percentage<=6.5 and ratio>=0 and ratio<=1.6 and star_length>=45 and star_length<=55 and lower_half>=70 and lower_half<=80 and td>=57.5 and td<=66.2):
 #             cutcc='G->GD1'
 #     return cutcc
-
-
-

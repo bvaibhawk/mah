@@ -351,9 +351,45 @@ def depth_csv():
     output_df = pd.DataFrame.from_dict(depth_dict)
     write_excel('output_files/output_extra_discounts.xlsx', 'Depth', output_df)
 
+
+def cut_csv():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    df_cut = pd.read_excel(xls, "Cut")
+
+    def toDataFrame(nparr: np.array):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        return nparrdf
+
+    def saveCutCSV(df_cut: pd.DataFrame):
+        cut = df_cut.to_numpy()
+        freq = {}
+        included = ["Section", "Cut"]
+        for row in cut:
+            for ele in row:
+                if ele not in included:
+                    continue
+                if ele in freq:
+                    freq[ele] += 1
+                else:
+                    freq[ele] = 1
+
+        if not (list(freq.keys()) == included and np.unique(list(freq.values()))[0] == 1):
+            raise Exception("Invalid Format for Cut Discount Sheet")
+        cut[1, 2] = "Cut Comment"
+        cut_imp = cut[1:13, 1:13]
+        cutdf = toDataFrame(cut_imp)
+        cutdf["Cut"] = cutdf["Cut"].fillna(method="ffill")
+        cutdf.to_csv("../cut_comments.csv", index=False)
+
+    saveCutCSV(df_cut)
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
-doss_base()
+# doss_base()
 # black_csv()
 # depth_csv()
+cut_csv()
