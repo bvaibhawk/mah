@@ -92,21 +92,23 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         if color == 'N':
             MNcolorD = -7
             color = 'M'
-        df = pd.read_csv('BaseRound.csv')
+        df = pd.read_csv('1ct_5ctup.csv')
         for i in range(len(df)):
             # and polish == df['POL'][i] and symmetry == df['SYM'][i]
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][
                 i] and fluo == df['FLUO'][i] and szgr == df['Size'][i]:
                 if (cut == 'EX' and polish == 'EX' and symmetry == 'EX'):
                     if (polish == df['POL'][i] and symmetry == df['SYM'][i]):
-                        result = float(df['Discount'][i])
+                        result = df['Discount'][i]
                         ff = 1
+                        break
                 else:
                     if (cut == df['CUT'][i] and df['POL'][i] == 'EX' and df['SYM'][i] == 'EX'):
                         result = result
                     elif (cut == df['CUT'][i]):
                         result = float(df['Discount'][i])
                         ff = 1
+                        break
         # if(color1=='N'):
         #     result=result-0.07
         temp = result
@@ -1478,323 +1480,378 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     # BLACK
     #  (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)
-    if (sizeprec < 1.0):
-        dossblack = 0.0
-        if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (tableintensity == 'BT1+'):
-                    dossblack = -1
-                elif (tableintensity == 'BT1'):
-                    dossblack = -2
-                elif (tableintensity == 'BT2'):
-                    dossblack = -3
-                elif (tableintensity == 'BT1'):
-                    dossblack = -4
-            else:
-                if (tableintensity == 'BT1+'):
-                    dossblack = -1
-                elif (tableintensity == 'BT1'):
-                    dossblack = -2
-                elif (tableintensity == 'BT2'):
-                    dossblack = -3
-                elif (tableintensity == 'BT1'):
-                    dossblack = -4
-        elif (clarity == 'VS1' or clarity == 'VS2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (tableintensity == 'BT1+'):
-                    dossblack = 0
-                elif (tableintensity == 'BT1'):
-                    dossblack = -2
-                elif (tableintensity == 'BT2'):
-                    dossblack = -3
-                elif (tableintensity == 'BT1'):
-                    dossblack = -4
-            else:
-                if (tableintensity == 'BT1+'):
-                    dossblack = 0
-                elif (tableintensity == 'BT1'):
-                    dossblack = -2
-                elif (tableintensity == 'BT2'):
-                    dossblack = -3
-                elif (tableintensity == 'BT1'):
-                    dossblack = -4
-        elif (clarity == 'SI1' or clarity == 'SI2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (tableintensity == 'BT1+'):
-                    dossblack = 0
-                elif (tableintensity == 'BT1'):
-                    dossblack = -1
-                elif (tableintensity == 'BT2'):
-                    dossblack = -2
-                elif (tableintensity == 'BT1'):
-                    dossblack = -4
-            else:
-                if (tableintensity == 'BT1+'):
-                    dossblack = 0
-                elif (tableintensity == 'BT1'):
-                    dossblack = -1
-                elif (tableintensity == 'BT2'):
-                    dossblack = -2
-                elif (tableintensity == 'BT1'):
-                    dossblack = -4
-        sidedossblack = 0.0
-        if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (crownintensity == 'BC1+'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -1
-                elif (crownintensity == 'BC2'):
-                    sidedossblack = -3
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -4
-            else:
-                if (crownintensity == 'BC1+'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -1
-                elif (crownintensity == 'BC2'):
-                    sidedossblack = -2
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -3
-        elif (clarity == 'VS1' or clarity == 'VS2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (crownintensity == 'BC1+'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -1
-                elif (crownintensity == 'BC2'):
-                    sidedossblack = -3
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -4
-            else:
-                if (crownintensity == 'BC1+'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC1'):
-                    sideossblack = 0
-                elif (crownintensity == 'BC2'):
-                    sidedossblack = -2
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -3
-        elif (clarity == 'SI1' or clarity == 'SI2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (crownintensity == 'BC1+'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC2'):
-                    sidedossblack = -1
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -3
-            else:
-                if (crownintensity == 'BC1+'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = 0
-                elif (crownintensity == 'BC2'):
-                    sidedossblack = -1
-                elif (crownintensity == 'BC1'):
-                    sidedossblack = -3
-        if (dossblack <= sidedossblack):
-            result = result + dossblack
-            blackd = dossblack
-        else:
-            result = result + sidedossblack
-            sideblackd = sidedossblack
+    if sizeprec < 1.0:
+        dossier_black = pd.read_csv('black.csv')
+        for i in range(len(dossier_black)):
+            if dossier_black['Intensity'][i] == tableintensity:
+                blackd += dossier_black[str(xx)][i]
+                result += blackd
+            if dossier_black['Intensity'][i] == crownintensity:
+                sideblackd += dossier_black[str(xx)][i]
+                result += sideblackd
+    else:
+        df6 = pd.read_csv('black.csv')
+        for i in range(len(df6)):
+            # table
+            if df6['Location'][i] == 'Table':
+                if df6['Shape'][i] == shape and shape == 'RO':
+                    if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (
+                            sizeprec <= df6['sizemax'][i]) and (
+                            tableintensity == df6['Intensity'][i])):
+                        if fluo != 'None' and fluo != 'Faint':
+                            blackd += df6[str(xx)][i]
+                            result += blackd
+                            break
+                        else:
+                            blackd += (df6[str(xx)][i] / 2)
+                            result += blackd
+                            break
+                if df6['Shape'][i] == 'Fancy' and shape != 'RO':
+                    if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
+                        i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
+                        blackd += df6[str(xx)][i]
+                        result += blackd
+                        break
+            # table
+        for i in range(len(df6)):
+            # table
+            if (df6['Location'][i] == 'Crown'):
+                if df6['Shape'][i] == shape and shape == 'RO':
+                    if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (
+                            sizeprec <= df6['sizemax'][i]) and (
+                            tableintensity == df6['Intensity'][i])):
+                        if fluo != 'None' and fluo != 'Faint':
+                            sideblackd += df6[str(xx)][i]
+                            result += sideblackd
+                            break
+                        else:
+                            sideblackd += (df6[str(xx)][i] / 2)
+                            result += sideblackd
+                            break
+                if df6['Shape'][i] == 'Fancy' and shape != 'RO':
+                    if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
+                        i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
+                        sideblackd += df6[str(xx)][i]
+                        result += sideblackd
+                        break
 
-    df6 = pd.read_csv('black.csv')
-    for i in range(len(df6)):
-        # table
-        if (df6['Location'][i] == 'Table'):
-            if (df6['Shape'][i] == shape and shape == 'RO'):
-                if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (sizeprec <= df6['sizemax'][i]) and (
-                        tableintensity == df6['Intensity'][i])):
-                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+        # dossblack = 0.0 TBD
+        # if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (tableintensity == 'BT1+'):
+        #             dossblack = -1
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -2
+        #         elif (tableintensity == 'BT2'):
+        #             dossblack = -3
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -4
+        #     else:
+        #         if (tableintensity == 'BT1+'):
+        #             dossblack = -1
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -2
+        #         elif (tableintensity == 'BT2'):
+        #             dossblack = -3
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -4
+        # elif (clarity == 'VS1' or clarity == 'VS2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (tableintensity == 'BT1+'):
+        #             dossblack = 0
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -2
+        #         elif (tableintensity == 'BT2'):
+        #             dossblack = -3
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -4
+        #     else:
+        #         if (tableintensity == 'BT1+'):
+        #             dossblack = 0
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -2
+        #         elif (tableintensity == 'BT2'):
+        #             dossblack = -3
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -4
+        # elif (clarity == 'SI1' or clarity == 'SI2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (tableintensity == 'BT1+'):
+        #             dossblack = 0
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -1
+        #         elif (tableintensity == 'BT2'):
+        #             dossblack = -2
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -4
+        #     else:
+        #         if (tableintensity == 'BT1+'):
+        #             dossblack = 0
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -1
+        #         elif (tableintensity == 'BT2'):
+        #             dossblack = -2
+        #         elif (tableintensity == 'BT1'):
+        #             dossblack = -4
+        # sidedossblack = 0.0
+        # if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (crownintensity == 'BC1+'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -1
+        #         elif (crownintensity == 'BC2'):
+        #             sidedossblack = -3
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -4
+        #     else:
+        #         if (crownintensity == 'BC1+'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -1
+        #         elif (crownintensity == 'BC2'):
+        #             sidedossblack = -2
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -3
+        # elif (clarity == 'VS1' or clarity == 'VS2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (crownintensity == 'BC1+'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -1
+        #         elif (crownintensity == 'BC2'):
+        #             sidedossblack = -3
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -4
+        #     else:
+        #         if (crownintensity == 'BC1+'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC1'):
+        #             sideossblack = 0
+        #         elif (crownintensity == 'BC2'):
+        #             sidedossblack = -2
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -3
+        # elif (clarity == 'SI1' or clarity == 'SI2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (crownintensity == 'BC1+'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC2'):
+        #             sidedossblack = -1
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -3
+        #     else:
+        #         if (crownintensity == 'BC1+'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = 0
+        #         elif (crownintensity == 'BC2'):
+        #             sidedossblack = -1
+        #         elif (crownintensity == 'BC1'):
+        #             sidedossblack = -3
+        # if (dossblack <= sidedossblack):
+        #     result = result + dossblack
+        #     blackd = dossblack
+        # else:
+        #     result = result + sidedossblack
+        #     sideblackd = sidedossblack
 
-                        if xx == 1:
-                            blackd = df6['1'][i]
-                            result = result + df6['1'][i]
-                        if xx == 2:
-                            blackd = df6['2'][i]
-                            result = result + df6['2'][i]
-                        if xx == 3:
-                            blackd = df6['3'][i]
-                            result = result + df6['3'][i]
-                        if xx == 4:
-                            blackd = df6['4'][i]
-                            result = result + df6['4'][i]
-                        if xx == 5:
-                            blackd = df6['5'][i]
-                            result = result + df6['5'][i]
-                        if xx == 6:
-                            blackd = df6['6'][i]
-                            result = result + df6['6'][i]
-                        if xx == 7:
-                            blackd = df6['7'][i]
-                            result = result + df6['7'][i]
-                        if xx == 8:
-                            blackd = df6['8'][i]
-                            result = result + df6['8'][i]
-                        if xx == 9:
-                            blackd = df6['9'][i]
-                            result = result + df6['9'][i]
-                        break
-                    else:
-                        if xx == 1:
-                            result = result + df6['1'][i] / 2
-                            blackd = df6['1'][i] / 2
-                        if xx == 2:
-                            result = result + df6['2'][i] / 2
-                            blackd = df6['2'][i] / 2
-                        if xx == 3:
-                            blackd = df6['3'][i] / 2
-                            result = result + df6['3'][i] / 2
-                        if xx == 4:
-                            blackd = df6['4'][i] / 2
-                            result = result + df6['4'][i] / 2
-                        if xx == 5:
-                            blackd = df6['5'][i] / 2
-                            result = result + df6['5'][i] / 2
-                        if xx == 6:
-                            blackd = df6['6'][i] / 2
-                            result = result + df6['6'][i] / 2
-                        if xx == 7:
-                            blackd = df6['7'][i] / 2
-                            result = result + df6['7'][i] / 2
-                        if xx == 8:
-                            blackd = df6['8'][i] / 2
-                            result = result + df6['8'][i] / 2
-                        if xx == 9:
-                            blackd = df6['9'][i] / 2
-                            result = result + df6['9'][i] / 2
-                        break
-            if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
-                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
-                    i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
-                    if xx == 1:
-                        blackd = df6['1'][i]
-                        result = result + df6['1'][i]
-                    if xx == 2:
-                        blackd = df6['2'][i]
-                        result = result + df6['2'][i]
-                    if xx == 3:
-                        blackd = df6['3'][i]
-                        result = result + df6['3'][i]
-                    if xx == 4:
-                        blackd = df6['4'][i]
-                        result = result + df6['4'][i]
-                    if xx == 5:
-                        blackd = df6['5'][i]
-                        result = result + df6['5'][i]
-                    if xx == 6:
-                        blackd = df6['6'][i]
-                        result = result + df6['6'][i]
-                    if xx == 7:
-                        blackd = df6['7'][i]
-                        result = result + df6['7'][i]
-                    if xx == 8:
-                        blackd = df6['8'][i]
-                        result = result + df6['8'][i]
-                    if xx == 9:
-                        blackd = df6['9'][i]
-                        result = result + df6['9'][i]
-                    break
-        # table
-    for i in range(len(df6)):
-        if (df6['Location'][i] == 'Crown'):
-            if (df6['Shape'][i] == shape and shape == 'RO'):
-                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
-                        df6['Intensity'][i] == crownintensity):
-                    if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+    # df6 = pd.read_csv('black.csv') TBD
+    # for i in range(len(df6)):
+    #     # table
+    #     if (df6['Location'][i] == 'Table'):
+    #         if (df6['Shape'][i] == shape and shape == 'RO'):
+    #             if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (sizeprec <= df6['sizemax'][i]) and (
+    #                     tableintensity == df6['Intensity'][i])):
+    #                 if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+    #
+    #                     if xx == 1:
+    #                         blackd = df6['1'][i]
+    #                         result = result + df6['1'][i]
+    #                     if xx == 2:
+    #                         blackd = df6['2'][i]
+    #                         result = result + df6['2'][i]
+    #                     if xx == 3:
+    #                         blackd = df6['3'][i]
+    #                         result = result + df6['3'][i]
+    #                     if xx == 4:
+    #                         blackd = df6['4'][i]
+    #                         result = result + df6['4'][i]
+    #                     if xx == 5:
+    #                         blackd = df6['5'][i]
+    #                         result = result + df6['5'][i]
+    #                     if xx == 6:
+    #                         blackd = df6['6'][i]
+    #                         result = result + df6['6'][i]
+    #                     if xx == 7:
+    #                         blackd = df6['7'][i]
+    #                         result = result + df6['7'][i]
+    #                     if xx == 8:
+    #                         blackd = df6['8'][i]
+    #                         result = result + df6['8'][i]
+    #                     if xx == 9:
+    #                         blackd = df6['9'][i]
+    #                         result = result + df6['9'][i]
+    #                     break
+    #                 else:
+    #                     if xx == 1:
+    #                         result = result + df6['1'][i] / 2
+    #                         blackd = df6['1'][i] / 2
+    #                     if xx == 2:
+    #                         result = result + df6['2'][i] / 2
+    #                         blackd = df6['2'][i] / 2
+    #                     if xx == 3:
+    #                         blackd = df6['3'][i] / 2
+    #                         result = result + df6['3'][i] / 2
+    #                     if xx == 4:
+    #                         blackd = df6['4'][i] / 2
+    #                         result = result + df6['4'][i] / 2
+    #                     if xx == 5:
+    #                         blackd = df6['5'][i] / 2
+    #                         result = result + df6['5'][i] / 2
+    #                     if xx == 6:
+    #                         blackd = df6['6'][i] / 2
+    #                         result = result + df6['6'][i] / 2
+    #                     if xx == 7:
+    #                         blackd = df6['7'][i] / 2
+    #                         result = result + df6['7'][i] / 2
+    #                     if xx == 8:
+    #                         blackd = df6['8'][i] / 2
+    #                         result = result + df6['8'][i] / 2
+    #                     if xx == 9:
+    #                         blackd = df6['9'][i] / 2
+    #                         result = result + df6['9'][i] / 2
+    #                     break
+    #         if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
+    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
+    #                 i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
+    #                 if xx == 1:
+    #                     blackd = df6['1'][i]
+    #                     result = result + df6['1'][i]
+    #                 if xx == 2:
+    #                     blackd = df6['2'][i]
+    #                     result = result + df6['2'][i]
+    #                 if xx == 3:
+    #                     blackd = df6['3'][i]
+    #                     result = result + df6['3'][i]
+    #                 if xx == 4:
+    #                     blackd = df6['4'][i]
+    #                     result = result + df6['4'][i]
+    #                 if xx == 5:
+    #                     blackd = df6['5'][i]
+    #                     result = result + df6['5'][i]
+    #                 if xx == 6:
+    #                     blackd = df6['6'][i]
+    #                     result = result + df6['6'][i]
+    #                 if xx == 7:
+    #                     blackd = df6['7'][i]
+    #                     result = result + df6['7'][i]
+    #                 if xx == 8:
+    #                     blackd = df6['8'][i]
+    #                     result = result + df6['8'][i]
+    #                 if xx == 9:
+    #                     blackd = df6['9'][i]
+    #                     result = result + df6['9'][i]
+    #                 break
+    #     # table
+    # for i in range(len(df6)):
+    #     if (df6['Location'][i] == 'Crown'):
+    #         if (df6['Shape'][i] == shape and shape == 'RO'):
+    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and cut == df6['cut'][i] and
+    #                     df6['Intensity'][i] == crownintensity):
+    #                 if fluo != 'None' and fluo != 'Medium' and fluo != 'Faint':
+    #
+    #                     if xx == 1:
+    #                         result = result + df6['1'][i]
+    #                         sideblackd = df6['1'][i]
+    #                     if xx == 2:
+    #                         result = result + df6['2'][i]
+    #                         sideblackd = df6['2'][i]
+    #                     if xx == 3:
+    #                         result = result + df6['3'][i]
+    #                         sideblackd = df6['3'][i]
+    #                     if xx == 4:
+    #                         sideblackd = df6['4'][i]
+    #                         result = result + df6['4'][i]
+    #                     if xx == 5:
+    #                         sideblackd = df6['5'][i]
+    #                         result = result + df6['5'][i]
+    #                     if xx == 6:
+    #                         sideblackd = df6['6'][i]
+    #                         result = result + df6['6'][i]
+    #                     if xx == 7:
+    #                         sideblackd = df6['7'][i]
+    #                         result = result + df6['7'][i]
+    #                     if xx == 8:
+    #                         sideblackd = df6['8'][i]
+    #                         result = result + df6['8'][i]
+    #                     if xx == 9:
+    #                         sideblackd = df6['9'][i]
+    #                         result = result + df6['9'][i]
+    #                     break
+    #                 else:
+    #                     if xx == 1:
+    #                         sideblackd = df6['1'][i] / 2
+    #                         result = result + df6['1'][i] / 2
+    #                     if xx == 2:
+    #                         sideblackd = df6['2'][i] / 2
+    #                         result = result + df6['2'][i] / 2
+    #                     if xx == 3:
+    #                         sideblackd = df6['3'][i] / 2
+    #                         result = result + df6['3'][i] / 2
+    #                     if xx == 4:
+    #                         sideblackd = df6['4'][i] / 2
+    #                         result = result + df6['4'][i] / 2
+    #                     if xx == 5:
+    #                         sideblackd = df6['5'][i] / 2
+    #                         result = result + df6['5'][i] / 2
+    #                     if xx == 6:
+    #                         sideblackd = df6['6'][i] / 2
+    #                         result = result + df6['6'][i] / 2
+    #                     if xx == 7:
+    #                         sideblackd = df6['7'][i] / 2
+    #                         result = result + df6['7'][i] / 2
+    #                     if xx == 8:
+    #                         sideblackd = df6['8'][i] / 2
+    #                         result = result + df6['8'][i] / 2
+    #                     if xx == 9:
+    #                         sideblackd = df6['9'][i] / 2
+    #                         result = result + df6['9'][i] / 2
+    #                     break
+    #         if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
+    #             if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
+    #                 i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == crownintensity):
+    #                 if xx == 1:
+    #                     sideblackd = df6['1'][i]
+    #                     result = result + df6['1'][i]
+    #                 if xx == 2:
+    #                     sideblackd = df6['2'][i]
+    #                     result = result + df6['2'][i]
+    #                 if xx == 3:
+    #                     sideblackd = df6['3'][i]
+    #                     result = result + df6['3'][i]
+    #                 if xx == 4:
+    #                     sideblackd = df6['4'][i]
+    #                     result = result + df6['4'][i]
+    #                 if xx == 5:
+    #                     sideblackd = df6['5'][i]
+    #                     result = result + df6['5'][i]
+    #                 if xx == 6:
+    #                     sideblackd = df6['6'][i]
+    #                     result = result + df6['6'][i]
+    #                 if xx == 7:
+    #                     sideblackd = df6['7'][i]
+    #                     result = result + df6['7'][i]
+    #                 if xx == 8:
+    #                     sideblackd = df6['8'][i]
+    #                     result = result + df6['8'][i]
+    #                 if xx == 9:
+    #                     sideblackd = df6['9'][i]
+    #                     result = result + df6['9'][i]
+    #                 break
 
-                        if xx == 1:
-                            result = result + df6['1'][i]
-                            sideblackd = df6['1'][i]
-                        if xx == 2:
-                            result = result + df6['2'][i]
-                            sideblackd = df6['2'][i]
-                        if xx == 3:
-                            result = result + df6['3'][i]
-                            sideblackd = df6['3'][i]
-                        if xx == 4:
-                            sideblackd = df6['4'][i]
-                            result = result + df6['4'][i]
-                        if xx == 5:
-                            sideblackd = df6['5'][i]
-                            result = result + df6['5'][i]
-                        if xx == 6:
-                            sideblackd = df6['6'][i]
-                            result = result + df6['6'][i]
-                        if xx == 7:
-                            sideblackd = df6['7'][i]
-                            result = result + df6['7'][i]
-                        if xx == 8:
-                            sideblackd = df6['8'][i]
-                            result = result + df6['8'][i]
-                        if xx == 9:
-                            sideblackd = df6['9'][i]
-                            result = result + df6['9'][i]
-                        break
-                    else:
-                        if xx == 1:
-                            sideblackd = df6['1'][i] / 2
-                            result = result + df6['1'][i] / 2
-                        if xx == 2:
-                            sideblackd = df6['2'][i] / 2
-                            result = result + df6['2'][i] / 2
-                        if xx == 3:
-                            sideblackd = df6['3'][i] / 2
-                            result = result + df6['3'][i] / 2
-                        if xx == 4:
-                            sideblackd = df6['4'][i] / 2
-                            result = result + df6['4'][i] / 2
-                        if xx == 5:
-                            sideblackd = df6['5'][i] / 2
-                            result = result + df6['5'][i] / 2
-                        if xx == 6:
-                            sideblackd = df6['6'][i] / 2
-                            result = result + df6['6'][i] / 2
-                        if xx == 7:
-                            sideblackd = df6['7'][i] / 2
-                            result = result + df6['7'][i] / 2
-                        if xx == 8:
-                            sideblackd = df6['8'][i] / 2
-                            result = result + df6['8'][i] / 2
-                        if xx == 9:
-                            sideblackd = df6['9'][i] / 2
-                            result = result + df6['9'][i] / 2
-                        break
-            if (df6['Shape'][i] == 'Fancy' and shape != 'RO'):
-                if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['symmetry'][
-                    i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == crownintensity):
-                    if xx == 1:
-                        sideblackd = df6['1'][i]
-                        result = result + df6['1'][i]
-                    if xx == 2:
-                        sideblackd = df6['2'][i]
-                        result = result + df6['2'][i]
-                    if xx == 3:
-                        sideblackd = df6['3'][i]
-                        result = result + df6['3'][i]
-                    if xx == 4:
-                        sideblackd = df6['4'][i]
-                        result = result + df6['4'][i]
-                    if xx == 5:
-                        sideblackd = df6['5'][i]
-                        result = result + df6['5'][i]
-                    if xx == 6:
-                        sideblackd = df6['6'][i]
-                        result = result + df6['6'][i]
-                    if xx == 7:
-                        sideblackd = df6['7'][i]
-                        result = result + df6['7'][i]
-                    if xx == 8:
-                        sideblackd = df6['8'][i]
-                        result = result + df6['8'][i]
-                    if xx == 9:
-                        sideblackd = df6['9'][i]
-                        result = result + df6['9'][i]
-                    break
     # for i in range(len(df6)):
     #     if (df6['Location'][i] == 'Girdle'):
     #         if (df6['Shape'][i] == shape and shape == 'RO'):

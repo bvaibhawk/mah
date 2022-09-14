@@ -1,4 +1,5 @@
 import math
+import numbers
 
 import pandas as pd
 import numpy as np
@@ -268,20 +269,29 @@ def black_csv():
         k = k + 12
 
     # helper functions
-    # converts np array to dataframe
-
-    def toDataFrame(nparr: np.array, index: list):
-        nparrdf = pd.DataFrame(list(nparr))
-        nparrdf.columns = nparrdf.iloc[0]
-        nparrdf = nparrdf.drop(nparrdf.index[0])
-        nparrdf = nparrdf.set_index(pd.Index(index))
-        return nparrdf
-
     # fills nan values in the location column
 
     def fillnaLocations(df):
         df["Location"] = df["Location"].fillna(method='ffill')
         return df
+
+    # converts np array to dataframe
+
+    def toDataFrame(nparr: np.array, index: list):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        nparrdf = fillnaLocations(nparrdf)
+        for i in range(len(nparrdf["Intensity"])):
+            if nparrdf.Location[i] == "Table":
+                nparrdf["Intensity"][i] = "BT" + str(nparrdf["Intensity"][i])
+            elif nparrdf.Location[i] == "Crown":
+                nparrdf["Intensity"][i] = "BC" + str(nparrdf["Intensity"][i])
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        nparrdf = nparrdf.set_index(pd.Index(index))
+        return nparrdf
 
     # adds extra columns in the dataframes as per the requirements
 
@@ -336,7 +346,7 @@ def black_csv():
             fillExtraCols(df_list[i], cols, colvalues_list[i])
 
         result = pd.concat(df_list)
-        path = "output_files/black.csv"
+        path = "../black.csv"
         result.to_csv(path, index=False)
         print(f"File Saved Successfully to {path}")
 
@@ -386,10 +396,151 @@ def cut_csv():
     saveCutCSV(df_cut)
 
 
+def cut_1_5_base_csv():
+    sheet_names = ['1.01-1.09', '1.50-1.69', '2.01-2.09', '3.01-3.09', '4.01-4.09', '5.01-5.09']
+    final_df = pd.DataFrame()
+
+    for sheet in sheet_names:
+        df_list = []
+
+        df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
+
+        # extracting required tables in form of dataframes from spreadsheet
+        binary_rep = np.array(df.notnull().astype('int'))
+        l = label(binary_rep)
+        for s in regionprops(l):
+            if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+                df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+        # iterating through extracted dataframes
+        for d in df_list:
+            clarity = []
+            Cut = []
+            Polish = []
+            Symmetry = []
+            Fluo = []
+            Size = []
+            size_name = sheet.split(" ")[-1]
+            flag = 0
+
+            d.reset_index(drop=True, inplace=True)
+            # if d.iloc[:,0].isna().sum()>1:
+            # print(d)
+            #     cut_name = d.iloc[0][0]
+            #     d.drop(d.columns[0], axis=1, inplace=True)
+            # else:
+            cut_name = d.iloc[0][0]
+            # print(d)
+
+            if cut_name == 'Very Strong':
+                cut_name = 'Good Very Strong'
+
+            # print(cut_name)
+            # print(cut_name[0])
+
+            if cut_name[0] == '3':
+                val = cut_name.split(" ")[-2]
+                val2 = cut_name.split(" ")[-1]
+                Cut.append(val[1:])
+                Polish.append(val[1:])
+                Symmetry.append(val[1:])
+                Fluo.append(val2)
+            elif "-" in cut_name:
+                val = cut_name.split("-")[0]
+                val2 = cut_name.split("-")[1]
+                Cut.append(val)
+                Polish.append(val)
+                Symmetry.append(val)
+                Fluo.append(val2)
+            else:
+                if len(cut_name) < 3:
+                    val = cut_name.split(" ")[0]
+                    val2 = cut_name.split(" ")[1]
+                    Cut.append(val)
+                    Polish.append(val)
+                    Symmetry.append(val)
+                    Fluo.append(val2)
+                else:
+                    val = cut_name.split(" ")[0]
+                    val2 = " ".join(cut_name.split(" ")[1:])
+                    Cut.append(val)
+                    Polish.append(val)
+                    Symmetry.append(val)
+                    Fluo.append(val2)
+
+            # elif "VG" in cut_name:
+            #     Cut.append("VG")
+            #     Polish.append("DD")
+            #     Symmetry.append("DD")
+            # elif "GD" in cut_name:
+            #     Cut.append("GD")
+            #     Polish.append("DD")
+            #     Symmetry.append("DD")
+
+            # if "NON" in cut_name:
+            #     Fluo.append("None")
+            # elif "FNT" in cut_name:
+            #     Fluo.append("Faint")
+            # elif "MED" in cut_name:
+            #     Fluo.append("Medium")
+            # elif "STG" in cut_name:
+            #     Fluo.append("Strong")
+            # elif "VST" in cut_name:
+            #     Fluo.append("Very Strong")
+
+            Size.append(size_name)
+
+            sd = d.copy()
+            sd.reset_index(drop=True, inplace=True)
+
+            # print(Cut)
+
+            sd.drop(sd.columns[0], axis=1, inplace=True)
+            sd.columns = sd.loc[0]
+            sd = sd.drop([0])
+            sd.rename(columns={sd.columns[0]: "Clarity"}, inplace=True)
+
+            # if flag==0:
+            #     sd.columns = sd.loc[1]
+            #     sd = sd.drop([0,1])
+            #     sd.rename(columns={sd.columns[0]: "Clarity" }, inplace = True)
+
+            # else:
+
+            #     sd.columns = sd.iloc[2]
+            #     sd = sd.drop([1,2])
+
+            #     sd.rename(columns={sd.columns[0]: "Clarity" }, inplace = True)
+            sd = pd.melt(sd, id_vars='Clarity', value_vars=['IF', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1', 'SI2', 'I1'])
+
+            sd.rename(columns={'Clarity': 'COLOR', 0: 'CLARITY', 'value': 'Discount'}, inplace=True)
+
+            sd['Shape'] = ['RO'] * len(sd)
+            sd['CUT'] = Cut * len(sd)
+            sd['POL'] = Polish * len(sd)
+            sd['SYM'] = Symmetry * len(sd)
+            sd['FLUO'] = Fluo * len(sd)
+            sd['Size'] = Size * len(sd)
+
+            sd = sd[['Discount', 'Shape', 'COLOR', 'CLARITY', 'CUT', 'POL', 'SYM', 'FLUO', 'Size']]
+
+            # print(cut_name)
+
+            # sd.dropna(inplace=True)
+            # print(sd)
+            final_df = final_df.append(sd, ignore_index=True)
+
+    print(final_df.head(10))
+    final_df.reset_index(inplace=True, drop=True)
+
+    final_df.to_csv("../1ct_5ctup.csv")
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
 # doss_base()
 # black_csv()
 # depth_csv()
-cut_csv()
+# cut_csv()
+# cut_1_5_base_csv()
