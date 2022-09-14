@@ -381,7 +381,7 @@ def cut_csv():
         cut_imp = cut[1:13, 1:13]
         cutdf = toDataFrame(cut_imp)
         cutdf["Cut"] = cutdf["Cut"].fillna(method="ffill")
-        cutdf.to_csv("output_files/cut.csv", index=False)
+        cutdf.to_csv("../cut_comments.csv", index=False)
 
     saveCutCSV(df_cut)
 
