@@ -23,7 +23,7 @@ def write_excel(filename, sheet_name, dataframe):
 
 
 def central_mapping():
-    clarity_color_mapping = pd.read_excel('input_files/input_price_module_discounts.xlsm', sheet_name='Central',
+    clarity_color_mapping = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Central',
                                           usecols=[1, 2, 3, 4, 5, 6, 7, 8, 9])
 
     clarity_cut_dict = {'COLOR': [], 'CLARITY': [], 'KEY': []}
@@ -34,15 +34,15 @@ def central_mapping():
             clarity_cut_dict['CLARITY'].append(clarity_color_mapping.iloc[1, j])
             clarity_cut_dict['KEY'].append(clarity_color_mapping.iloc[i, j])
     output_df = pd.DataFrame.from_dict(clarity_cut_dict)
-    write_excel('output_files/output_extra_discounts.xlsx', 'CENTRAL', output_df)
+    write_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', 'CENTRAL', output_df)
 
 
 def diameter_premium():
-    data = pd.read_excel('input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
+    data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
                          usecols=[16, 17, 18, 19, 20])
-    data_grt_one = pd.read_excel('input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
+    data_grt_one = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
                                  usecols=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
-    central_map = pd.read_excel('output_files/output_extra_discounts.xlsx', sheet_name='CENTRAL')
+    central_map = pd.read_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', sheet_name='CENTRAL')
     diameter_dict = {'SHAPE': [], 'CUT': [], 'POLY': [], 'SYM': [], 'FLUO': [],
                      'SIZE': [], 'DIAMETER_MIN': [], 'DIAMETER_MAX': [], 'KEY_COLOR_CLARITY': [], 'DISCOUNT': []}
 
@@ -99,22 +99,30 @@ def diameter_premium():
                     diameter_dict['KEY_COLOR_CLARITY'].append(data_grt_one.iloc[2, j])
                     diameter_dict['DISCOUNT'].append(data_grt_one.iloc[i, j])
     output_df = pd.DataFrame.from_dict(diameter_dict)
-    write_excel('output_files/output_extra_discounts.xlsx', 'Diameter Premiums', output_df)
+    write_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', 'Diameter Premiums', output_df)
 
 
 def size_premium():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     df1 = pd.read_excel(xls, "Size Premiums")
     arr = df1.to_numpy()
 
     def saveDataFrame(nparr: np.array, name: str):
+
         nparrdf = pd.DataFrame(list(nparr))
+
         nparrdf.columns = nparrdf.iloc[0]
+
         if (list(nparrdf.columns).__contains__("Class")):
             nparrdf = nparrdf.drop(["Class"], axis=1)
+
         nparrdf = nparrdf.drop(nparrdf.index[0])
-        # return nparrdf
-        nparrdf.to_csv(f"../{name}.csv", index=False)
+
+        for i in range(len(nparrdf.columns.values)):
+
+            if isinstance(nparrdf.columns.values[i], numbers.Number):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
+        nparrdf.to_csv(f"{name}.csv", index=False)
 
     def saveDFSizePremiums(df_size_premiums):
         # converting df to np.array
@@ -166,7 +174,7 @@ def doss_base():
     for sheet in sheet_names:
         df_list = []
 
-        df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
+        df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
 
         # extracting required tables in form of dataframes from spreadsheet
         binary_rep = np.array(df.notnull().astype('int'))
@@ -239,11 +247,11 @@ def doss_base():
             final_df = final_df.append(sd, ignore_index=True)
 
     final_df.reset_index(inplace=True, drop=True)
-    final_df.to_csv("../Dossbase.csv")
+    final_df.to_csv("Dossbase.csv")
 
 
 def black_csv():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     df_black = pd.read_excel(xls, "Black")
 
     black = df_black.to_numpy()
@@ -346,7 +354,7 @@ def black_csv():
             fillExtraCols(df_list[i], cols, colvalues_list[i])
 
         result = pd.concat(df_list)
-        path = "../black.csv"
+        path = "black.csv"
         result.to_csv(path, index=False)
         print(f"File Saved Successfully to {path}")
 
@@ -354,16 +362,16 @@ def black_csv():
 
 
 def depth_csv():
-    depth_data = pd.read_excel('input_files/input_price_module_discounts.xlsm', sheet_name='Depth')
+    depth_data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Depth')
     depth_dict = {'Depth': []}
     depth_dict['Depth'].append(depth_data.iloc[2, 1])
     depth_dict['Depth'].append(depth_data.iloc[3, 1])
     output_df = pd.DataFrame.from_dict(depth_dict)
-    write_excel('output_files/output_extra_discounts.xlsx', 'Depth', output_df)
+    write_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', 'Depth', output_df)
 
 
 def cut_csv():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     df_cut = pd.read_excel(xls, "Cut")
 
     def toDataFrame(nparr: np.array):
@@ -391,7 +399,7 @@ def cut_csv():
         cut_imp = cut[1:13, 1:13]
         cutdf = toDataFrame(cut_imp)
         cutdf["Cut"] = cutdf["Cut"].fillna(method="ffill")
-        cutdf.to_csv("../cut_comments.csv", index=False)
+        cutdf.to_csv("cut_comments.csv", index=False)
 
     saveCutCSV(df_cut)
 
@@ -403,7 +411,7 @@ def cut_1_5_base_csv():
     for sheet in sheet_names:
         df_list = []
 
-        df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
+        df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
 
         # extracting required tables in form of dataframes from spreadsheet
         binary_rep = np.array(df.notnull().astype('int'))
@@ -433,14 +441,14 @@ def cut_1_5_base_csv():
             # print(d)
 
             if cut_name == 'Very Strong':
-                cut_name = 'Good Very Strong'
+                cut_name = 'GD Very Strong'
 
             # print(cut_name)
             # print(cut_name[0])
 
             if cut_name[0] == '3':
-                val = cut_name.split(" ")[-2]
-                val2 = cut_name.split(" ")[-1]
+                val = cut_name.split(" ")[0]
+                val2 = " ".join(cut_name.split(" ")[1:])
                 Cut.append(val[1:])
                 Polish.append(val[1:])
                 Symmetry.append(val[1:])
@@ -455,6 +463,8 @@ def cut_1_5_base_csv():
             else:
                 if len(cut_name) < 3:
                     val = cut_name.split(" ")[0]
+                    if val == "Good":
+                        val = "GD"
                     val2 = cut_name.split(" ")[1]
                     Cut.append(val)
                     Polish.append(val)
@@ -462,6 +472,8 @@ def cut_1_5_base_csv():
                     Fluo.append(val2)
                 else:
                     val = cut_name.split(" ")[0]
+                    if val == "Good":
+                        val = "GD"
                     val2 = " ".join(cut_name.split(" ")[1:])
                     Cut.append(val)
                     Polish.append(val)
@@ -533,14 +545,14 @@ def cut_1_5_base_csv():
     print(final_df.head(10))
     final_df.reset_index(inplace=True, drop=True)
 
-    final_df.to_csv("../1ct_5ctup.csv")
+    final_df.to_csv("1ct_5ctup.csv")
 
 
 def fancy_base_csv():
     final_df = pd.DataFrame()
     df_list = []
 
-    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Fancy Shapes')
+    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name='Fancy Shapes')
 
     # extracting required tables in form of dataframes from spreadsheet
     binary_rep = np.array(df.notnull().astype('int'))
@@ -593,7 +605,7 @@ def fancy_base_csv():
     final_df.reset_index(inplace=True, drop=True)
     print(final_df.head(10))
 
-    final_df.to_csv("../fancy_base.csv")
+    final_df.to_csv("fancy_base.csv")
 
 
 # central_mapping()
@@ -604,4 +616,4 @@ def fancy_base_csv():
 # depth_csv()
 # cut_csv()
 # cut_1_5_base_csv()
-fancy_base_csv()
+# fancy_base_csv()
