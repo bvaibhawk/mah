@@ -536,6 +536,66 @@ def cut_1_5_base_csv():
     final_df.to_csv("../1ct_5ctup.csv")
 
 
+def fancy_base_csv():
+    final_df = pd.DataFrame()
+    df_list = []
+
+    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Fancy Shapes')
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    # iterating through extracted dataframes
+    for d in df_list:
+        clarity = []
+        Cut = []
+        Polish = []
+        Symmetry = []
+        Fluo = []
+        Size = []
+        shape = []
+        flag = 0
+
+        d.reset_index(drop=True, inplace=True)
+        # print(d)
+
+        shape.append(d.columns[0])
+        if d.iloc[0][0] == 'EX/EX':
+            Size.append(d.iloc[1][0])
+            flag = 1
+        else:
+            Size.append(d.iloc[0][0])
+
+        sd = d.copy()
+        sd.reset_index(drop=True, inplace=True)
+
+        # print(Cut)
+        if flag == 1:
+            sd.columns = sd.loc[1]
+            sd = sd.drop([0, 1])
+            sd.rename(columns={sd.columns[0]: "Clarity"}, inplace=True)
+        else:
+            sd.columns = sd.loc[0]
+            sd = sd.drop([0])
+            sd.rename(columns={sd.columns[0]: "Clarity"}, inplace=True)
+
+        sd['Size'] = Size * len(sd)
+        sd['Shape'] = shape * len(sd)
+
+        # print(sd)
+
+        final_df = final_df.append(sd, ignore_index=True)
+
+    final_df.reset_index(inplace=True, drop=True)
+    print(final_df.head(10))
+
+    final_df.to_csv("../fancy_base.csv")
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -544,3 +604,4 @@ def cut_1_5_base_csv():
 # depth_csv()
 # cut_csv()
 # cut_1_5_base_csv()
+fancy_base_csv()
