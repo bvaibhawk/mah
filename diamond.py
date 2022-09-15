@@ -11,6 +11,7 @@ from datetime import date, datetime
 # from Discount import calcDiscount, get_cut_comments
 from Discount import calcDiscount
 from FetchRap import fetchrap, fetch_size
+from price_module_upload import page3
 from singlediscount import page2
 import warnings
 warnings.filterwarnings("ignore")
@@ -609,8 +610,8 @@ def page1():
             st.download_button('Download CSV', diamondData.to_csv(index=False),
                            mime='text/csv', file_name='discountOutput.csv')
 page_names = {
-    'Single calculate': page2,
-    "Bulk upload": page1
+    "Bulk upload": page1,
+    'Price Module upload': page3
 }
 st.sidebar.markdown("<h1>Discount Calculator</h1>", unsafe_allow_html=True)
 selected_page = st.sidebar.selectbox("Select Calculator", page_names.keys())
