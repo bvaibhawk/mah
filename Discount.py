@@ -1134,7 +1134,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         result1 = 0
         result2 = 0
         for i in range(len(df21)):
-            if surfacegraining == df21['Graining'][i]:
+            if graining == df21['Graining'][i]:
                 if xx == 1:
                     result1 = result1 + df21['1'][i]
 
@@ -1155,34 +1155,34 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if xx == 9:
                     result1 = result1 + df21['9'][i]
                 break
-        for i in range(len(df21)):
-            if internalgraining == df21['Graining'][i]:
-                if xx == 1:
-                    result2 = result2 + df21['1'][i]
-                if xx == 2:
-                    result2 = result2 + df21['2'][i]
-                if xx == 3:
-                    result2 = result2 + df21['3'][i]
-                if xx == 4:
-                    result2 = result2 + df21['4'][i]
-                if xx == 5:
-                    result2 = result2 + df21['5'][i]
-                if xx == 6:
-                    result2 = result2 + df21['6'][i]
-                if xx == 7:
-                    result2 = result2 + df21['7'][i]
-                if xx == 8:
-                    result2 = result2 + df21['8'][i]
-                if xx == 9:
-                    result2 = result2 + df21['9'][i]
-                break
-        if (result1 <= result2):
-
-            result = result + result1
-            grainingd = result1
-        else:
-            result = result + result2
-            grainingd = result2
+        # for i in range(len(df21)):
+        #     if internalgraining == df21['Graining'][i]:
+        #         if xx == 1:
+        #             result2 = result2 + df21['1'][i]
+        #         if xx == 2:
+        #             result2 = result2 + df21['2'][i]
+        #         if xx == 3:
+        #             result2 = result2 + df21['3'][i]
+        #         if xx == 4:
+        #             result2 = result2 + df21['4'][i]
+        #         if xx == 5:
+        #             result2 = result2 + df21['5'][i]
+        #         if xx == 6:
+        #             result2 = result2 + df21['6'][i]
+        #         if xx == 7:
+        #             result2 = result2 + df21['7'][i]
+        #         if xx == 8:
+        #             result2 = result2 + df21['8'][i]
+        #         if xx == 9:
+        #             result2 = result2 + df21['9'][i]
+        #         break
+        # if (result1 <= result2):
+        #
+        #     result = result + result1
+        #     grainingd = result1
+        # else:
+        result = result + result1
+        grainingd = result1
 
     if ha == 'Y':
         if shape == 'RO':

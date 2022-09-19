@@ -23,7 +23,8 @@ def write_excel(filename, sheet_name, dataframe):
 
 
 def central_mapping():
-    clarity_color_mapping = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Central',
+    clarity_color_mapping = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
+                                          sheet_name='Central',
                                           usecols=[1, 2, 3, 4, 5, 6, 7, 8, 9])
 
     clarity_cut_dict = {'COLOR': [], 'CLARITY': [], 'KEY': []}
@@ -38,11 +39,14 @@ def central_mapping():
 
 
 def diameter_premium():
-    data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
+    data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
+                         sheet_name='Diameter Premiums',
                          usecols=[16, 17, 18, 19, 20])
-    data_grt_one = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Diameter Premiums',
+    data_grt_one = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
+                                 sheet_name='Diameter Premiums',
                                  usecols=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14])
-    central_map = pd.read_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', sheet_name='CENTRAL')
+    central_map = pd.read_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx',
+                                sheet_name='CENTRAL')
     diameter_dict = {'SHAPE': [], 'CUT': [], 'POLY': [], 'SYM': [], 'FLUO': [],
                      'SIZE': [], 'DIAMETER_MIN': [], 'DIAMETER_MAX': [], 'KEY_COLOR_CLARITY': [], 'DISCOUNT': []}
 
@@ -167,7 +171,7 @@ def size_premium():
 
 
 def doss_base():
-    sheet_names = ['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.40-0.44', '0.40-0.44', '0.60-0.69', '0.70-0.74',
+    sheet_names = ['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.40-0.44', '0.45-0.49', '0.50-0.59', '0.70-0.74',
                    '0.75-0.79', '0.80-0.89', '0.90-0.94', '0.95-0.99']
 
     final_df = pd.DataFrame()
@@ -221,7 +225,7 @@ def doss_base():
             elif "FAINT" in cut_name:
                 Fluo.append("Faint")
             elif "MED" in cut_name:
-                Fluo.append("Medium")
+                Fluo.append("Med")
             elif "VERY STRONG" in cut_name:
                 Fluo.append("Very Strong")
             elif "STRONG" in cut_name:
@@ -362,7 +366,8 @@ def black_csv():
 
 
 def depth_csv():
-    depth_data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm', sheet_name='Depth')
+    depth_data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
+                               sheet_name='Depth')
     depth_dict = {'Depth': []}
     depth_dict['Depth'].append(depth_data.iloc[2, 1])
     depth_dict['Depth'].append(depth_data.iloc[3, 1])
@@ -378,6 +383,9 @@ def cut_csv():
         nparrdf = pd.DataFrame(list(nparr))
         nparrdf.columns = nparrdf.iloc[0]
         nparrdf = nparrdf.drop(nparrdf.index[0])
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
         return nparrdf
 
     def saveCutCSV(df_cut: pd.DataFrame):
@@ -552,7 +560,8 @@ def fancy_base_csv():
     final_df = pd.DataFrame()
     df_list = []
 
-    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name='Fancy Shapes')
+    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm",
+                       sheet_name='Fancy Shapes')
 
     # extracting required tables in form of dataframes from spreadsheet
     binary_rep = np.array(df.notnull().astype('int'))
@@ -608,6 +617,88 @@ def fancy_base_csv():
     final_df.to_csv("fancy_base.csv")
 
 
+def graining_csv():
+    final_df = pd.DataFrame()
+    df_list = []
+
+    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name='Graining')
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    # iterating through extracted dataframes
+    for d in df_list:
+
+        # print(d)
+
+        if len(d) > 2:
+            final_columns = ['Graining', 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+            graining = d.iloc[:, 0].str.split("-", -1, expand=True)[1]
+            graining.reset_index(drop=True, inplace=True)
+            graining = pd.Series(["I" + str(word) if str(word).startswith("G") else word for word in graining])
+            d.reset_index(drop=True, inplace=True)
+            d = d.drop([0])
+            d.drop(d.columns[0:3], axis=1, inplace=True)
+            d.insert(0, 'Graining', graining)
+            d.columns = final_columns
+            d.reset_index(drop=True, inplace=True)
+            d.dropna(inplace=True)
+
+            final_df = d
+    # final_df.reset_index(inplace=True,drop=True)
+    print(final_df.head(10))
+
+    final_df.to_csv("graining.csv")
+
+
+def internal_grading_csv():
+    final_df = pd.DataFrame()
+    df_list = []
+
+    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Internal Grading')
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    # iterating through extracted dataframes
+    for d in df_list:
+
+        shape = []
+        # print(d)
+
+        if len(d.columns) > 11:
+            d.drop(d.columns[0], axis=1, inplace=True)
+
+        if d.iloc[0][0] != np.nan:
+            shape.append(d.iloc[0][0])
+        else:
+            shape.append(d.iloc[0][1])
+        d.columns = d.loc[1]
+        d = d.drop([0, 1])
+        d.iloc[:, 0] = d.iloc[:, 0].ffill(axis=0)
+        d.reset_index(drop=True, inplace=True)
+
+        d['Shape'] = shape * len(d)
+        d.rename(columns={d.columns[0]: "Grade", d.columns[1]: "What"}, inplace=True)
+        # print(d)
+
+        final_df = final_df.append(d, ignore_index=True)
+
+    final_df.reset_index(inplace=True, drop=True)
+    print(final_df.head(10))
+
+    final_df.to_csv("../internal_grading.csv")
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -617,3 +708,5 @@ def fancy_base_csv():
 # cut_csv()
 # cut_1_5_base_csv()
 # fancy_base_csv()
+# graining_csv()
+# internal_grading_csv()
