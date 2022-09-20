@@ -1184,77 +1184,113 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         result = result + result1
         grainingd = result1
 
-    if ha == 'Y':
-        if shape == 'RO':
-            if xx == 1:
-                result = result + 1
-                had = 1
-            if xx == 2:
-                result = result + 1
-                had = 1
-            if xx == 3:
-                result = result + 0.5
-                had = 0.5
-            if xx == 4:
-                result = result + 1
-                had = 1
-            if xx == 5:
-                result = result + 1
-                had = 1
-            if xx == 6:
-                result = result + 0.5
-                had = 0.5
-            if xx == 7:
-                result = result + 1
-                had = 1
-            if xx == 8:
-                result = result + 1
-                had = 1
-            if xx == 9:
-                result = result + 0
-                had = 0
-    if eyeclean == 'Y':
-        if shape == 'RO':
-            if xx == 7:
-                result = result + 1.5
-                eyecleand = 1.5
-            if xx == 8:
-                result = result + 1.5
-                eyecleand = 1.5
-            if xx == 9:
-                result = result + 1
-                eyecleand = 1
-        else:
-            if xx == 7:
-                result = result + 1.5
-                eyecleand = 1.5
-            if xx == 8:
-                result = result + 1.5
-                eyecleand = 1.5
-            if xx == 9 or xx == 5 or xx == 6:
-                eyecleand = 0.5
-                result = result + 0.5
-    if tableclean == 'Y':
-        if shape == 'RO':
-            if xx == 4 or xx == 5 or xx == 6:
-                tablecleand = 0.5
-                result = result + 0.5
-            if xx == 8 or xx == 7:
-                tablecleand = 2.0
-                result = result + 2.0
-            if xx == 9:
-                tablecleand = 1
-                result = result + 1
-        else:
-            if xx == 4 or xx == 5:
-                tablecleand = 1
-                result = result + 1.0
-            if xx == 8 or xx == 7:
-                tablecleand = 2
-                result = result + 2.0
-            if xx == 9:
-                tablecleand = 1
-                result = result + 1
+    #extras
+    extra_data = pd.read_csv('extras.csv')
+    if ha != '':
+        for i in range(len(extra_data)):
+            if extra_data['Field'][i] == 'H&A' and shape == 'RO' and extra_data['Shape'][i] == 'RO':
+                had += extra_data[str(xx)][i]
+                result += had
+                break
+            elif extra_data['Field'][i] == 'H&A' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy':
+                had += extra_data[str(xx)][i]
+                result += had
+                break
+
+    if tableclean != '':
+        for i in range(len(extra_data)):
+            if extra_data['Field'][i] == 'Table Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO':
+                tablecleand += extra_data[str(xx)][i]
+                result += tablecleand
+                break
+            elif extra_data['Field'][i] == 'Table Clean' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy':
+                tablecleand += extra_data[str(xx)][i]
+                result += tablecleand
+                break
+
+    if eyeclean != '':
+        for i in range(len(extra_data)):
+            if extra_data['Field'][i] == 'Eye Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO':
+                eyecleand += extra_data[str(xx)][i]
+                result += eyecleand
+                break
+            elif extra_data['Field'][i] == 'Eye Clean' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy':
+                eyecleand += extra_data[str(xx)][i]
+                result += eyecleand
+                break
+
+
+    # if ha == 'Y':
+    #     if shape == 'RO':
+    #         if xx == 1:
+    #             result = result + 1
+    #             had = 1
+    #         if xx == 2:
+    #             result = result + 1
+    #             had = 1
+    #         if xx == 3:
+    #             result = result + 0.5
+    #             had = 0.5
+    #         if xx == 4:
+    #             result = result + 1
+    #             had = 1
+    #         if xx == 5:
+    #             result = result + 1
+    #             had = 1
+    #         if xx == 6:
+    #             result = result + 0.5
+    #             had = 0.5
+    #         if xx == 7:
+    #             result = result + 1
+    #             had = 1
+    #         if xx == 8:
+    #             result = result + 1
+    #             had = 1
+    #         if xx == 9:
+    #             result = result + 0
+    #             had = 0
+    # if eyeclean == 'Y':
+    #     if shape == 'RO':
+    #         if xx == 7:
+    #             result = result + 1.5
+    #             eyecleand = 1.5
+    #         if xx == 8:
+    #             result = result + 1.5
+    #             eyecleand = 1.5
+    #         if xx == 9:
+    #             result = result + 1
+    #             eyecleand = 1
+    #     else:
+    #         if xx == 7:
+    #             result = result + 1.5
+    #             eyecleand = 1.5
+    #         if xx == 8:
+    #             result = result + 1.5
+    #             eyecleand = 1.5
+    #         if xx == 9 or xx == 5 or xx == 6:
+    #             eyecleand = 0.5
+    #             result = result + 0.5
+    # if tableclean == 'Y':
+    #     if shape == 'RO':
+    #         if xx == 4 or xx == 5 or xx == 6:
+    #             tablecleand = 0.5
+    #             result = result + 0.5
+    #         if xx == 8 or xx == 7:
+    #             tablecleand = 2.0
+    #             result = result + 2.0
+    #         if xx == 9:
+    #             tablecleand = 1
+    #             result = result + 1
+    #     else:
+    #         if xx == 4 or xx == 5:
+    #             tablecleand = 1
+    #             result = result + 1.0
+    #         if xx == 8 or xx == 7:
+    #             tablecleand = 2
+    #             result = result + 2.0
+    #         if xx == 9:
+    #             tablecleand = 1
+    #             result = result + 1
 
                 # #extras- NOT properly written- change line 445
     # df4=pd.read_csv('extras.csv')

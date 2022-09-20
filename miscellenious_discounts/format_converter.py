@@ -699,6 +699,119 @@ def internal_grading_csv():
     final_df.to_csv("../internal_grading.csv")
 
 
+def extras_csv():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    extras_df = pd.read_excel(xls, "Extras")
+    extras = extras_df.to_numpy()
+
+    def toDataFrame(nparr: np.array):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
+        return nparrdf
+
+    def gsCellToXIndex(x1: str, x2: str):
+        xx1 = 0
+        xx2 = 0
+        if len(x1) > 1:
+            xx1 += 26 * (len(x1) - 1)
+        if len(x2) > 1:
+            xx2 += 26 * (len(x1) - 1)
+
+        xx1 += ord(x1[-1]) - ord("A")
+        xx2 += ord(x2[-1]) - ord("A")
+
+        return range(xx1, xx2 + 1)
+
+    def saveExtrasCSV(extras):
+
+        if not (extras[0, ord("B") - ord("A")] == "Round" and
+                extras[0, ord("D") - ord("A")] == extras[0, ord("P") - ord("A")] == "Section" and
+                extras[0, ord("N") - ord("A")] == "Fancy" and extras[2, 1] == "H&A"):
+            raise Exception("Incorrect Format for Extras Discount Sheet")
+
+        ro = extras[1:10, gsCellToXIndex("B", "L")]
+        fa = extras[1:10, gsCellToXIndex("N", "X")]
+
+        ro[0, 0] = "Field"
+        ro[0, 1] = "FieldValue"
+        fa[0, 0] = "Field"
+        fa[0, 1] = "FieldValue"
+
+        rodf = toDataFrame(ro)
+        fadf = toDataFrame(fa)
+
+        rodf["Field"] = rodf["Field"].fillna(method="ffill")
+        fadf["Field"] = fadf["Field"].fillna(method="ffill")
+
+        rodf["Shape"] = "RO"
+        fadf["Shape"] = "Fancy"
+        rodf.set_index(pd.Index(list(i for i in range(len(rodf)))), inplace=True)
+        fadf.set_index(pd.Index(list(i for i in range(
+            len(rodf), len(rodf) + len(fadf)))), inplace=True)
+
+        result = pd.concat([rodf, fadf])
+        result.to_csv("../extras.csv", index=False)
+
+    saveExtrasCSV(extras)
+
+
+def bgm_csv():
+    final_df = pd.DataFrame()
+
+    df_list = []
+
+    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='BGM')
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    flag = set()
+
+    # iterating through extracted dataframes
+    for d in df_list:
+
+        # d.reset_index(drop=True,inplace=True)
+        # print(d)
+
+        # print(d.columns[0])
+
+        if d.columns[0] not in flag:
+            cut_name = d.columns[0]
+        else:
+            cut_name = 'Rounds Otherwise'
+
+        if d.columns[0] == 'Rounds 3VG+ /Non-Med':
+            flag.add(d.columns[0])
+
+        d[d.columns[0]] = d[d.columns[0]].ffill(axis=0)
+
+        d.columns = ['BGM', 'BGM Type', 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        d.dropna(inplace=True)
+        d.reset_index(inplace=True, drop=True)
+        # print(cut_name)
+        # print(d)
+
+        if "Rounds 3VG+" in cut_name:
+            d.to_csv("../BGM_3VG.csv")
+
+        elif "Rounds Otherwise" in cut_name:
+            d.to_csv("../BGM_RO.csv")
+
+        elif "Fancy" in cut_name:
+            d.to_csv("../BGM_Fancy.csv")
+
+        elif "Dossier" in cut_name:
+            d.to_csv("../BGM_dossier.csv")
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -710,3 +823,5 @@ def internal_grading_csv():
 # fancy_base_csv()
 # graining_csv()
 # internal_grading_csv()
+# extras_csv()
+bgm_csv()
