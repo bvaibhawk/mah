@@ -812,6 +812,140 @@ def bgm_csv():
             d.to_csv("../BGM_dossier.csv")
 
 
+def finishing_csv():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    finishing_df = pd.read_excel(xls, "Finishing")
+    finishing = finishing_df.to_numpy()
+
+    # defining extra columns
+    cols = ["Cut", "Polish", "Sym", "Shape"]
+    colvalues_roex = ["EX", "", "", "RO"]
+    colvalues_rovg = ["VG", "", "", "RO"]
+    colvalues_rog = ["G", "", "", "RO"]
+    colvalues_faex = ["EX", "EX", "EX", "Fancy"]
+    colvalues_favg = ["", "VG", "VG", "Fancy"]
+    colvalues_dossiers = ["", "", "", "Dossiers"]
+
+    # helper functions
+
+    def gsCellToXIndex(x1: str, x2: str):
+        xx1 = 0
+        xx2 = 0
+        if len(x1) > 1:
+            xx1 += 26 * (len(x1) - 1)
+        if len(x2) > 1:
+            xx2 += 26 * (len(x1) - 1)
+
+        xx1 += ord(x1[-1]) - ord("A")
+        xx2 += ord(x2[-1]) - ord("A")
+
+        return range(xx1, xx2 + 1)
+
+    def toDataFrame(nparr: np.array):
+        nparr[0, 0] = "What"
+        nparr[0, 1] = "Value"
+        nparr[0, 2] = "Location"
+        nparr[1, 1] = "HO"
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
+        return nparrdf
+
+    def cleanDF(nparr):
+        nparrdf = toDataFrame(nparr)
+        nparrdf["What"] = nparrdf["What"].fillna(method="ffill")
+        nparrdf["Value"] = nparrdf["Value"].fillna(method="ffill")
+        nparrdf["Location"] = nparrdf["Location"].fillna(method="ffill")
+        droppableIndices = []
+        for i in range(len(nparrdf)):
+            isDroppable = True
+            for j in range(1, 10):
+                isDroppable = isDroppable and np.array(nparrdf[j].isnull())[i]
+            if isDroppable:
+                droppableIndices.append(i + 1)
+        nparrdf.drop(droppableIndices, axis=0, inplace=True)
+        return nparrdf
+
+    def fillExtraCols(df: pd.DataFrame, cols: list, colvalues: list):
+        for i in range(len(cols)):
+            df[f"{cols[i]}"] = colvalues[i]
+
+    def saveFinishingCSV(finishing):
+
+        freq = {}
+        included = ["Section", "HO", "Open", "Natural", "Small", "Medium", "Big",
+                    "Indented Natural", "Table", "Girdle", "Crown", "Pavilion", "Top"]
+        for row in finishing:
+            for ele in row:
+                if ele not in included:
+                    continue
+                if ele in freq:
+                    freq[ele] += 1
+                else:
+                    freq[ele] = 1
+        temp = list(freq.keys())
+        included.sort()
+        temp.sort()
+        if not (temp == included and
+                (freq["Section"] == freq["HO"] == freq["Open"] == freq["Medium"] == freq["Big"] == freq[
+                    "Indented Natural"] == freq["Top"] == 6) and
+                (freq["Table"] == freq["Crown"] == freq["Girdle"] == 45) and
+                freq["Small"] == 9 and freq["Natural"] == 12 and freq["Pavilion"] == 51):
+            raise Exception("Invalid Format for Finishing Discount Sheet")
+
+        # defining regions of interest
+        roex = finishing[1:52, gsCellToXIndex("B", "M")]
+        rovg = finishing[56:107, gsCellToXIndex("B", "M")]
+        rog = finishing[111:162, gsCellToXIndex("B", "M")]
+
+        faex = finishing[1:52, gsCellToXIndex("O", "Z")]
+        favg = finishing[56:107, gsCellToXIndex("O", "Z")]
+
+        dossiers = finishing[1:36, gsCellToXIndex("AB", "AM")]
+
+        # converting the data into correct format using helper functions
+        roexdf = cleanDF(roex)
+        roexdf.set_index(
+            pd.Index(list(i for i in range(len(roexdf)))), inplace=True)
+        fillExtraCols(roexdf, cols, colvalues_roex)
+
+        rovgdf = cleanDF(rovg)
+        rovgdf.set_index(pd.Index(list(i for i in range(
+            len(roexdf), 2 * len(rovgdf)))), inplace=True)
+        fillExtraCols(rovgdf, cols, colvalues_rovg)
+
+        rogdf = cleanDF(rog)
+        rogdf.set_index(pd.Index(list(i for i in range(
+            2 * len(rovgdf), 3 * len(rogdf)))), inplace=True)
+        fillExtraCols(rogdf, cols, colvalues_rog)
+
+        faexdf = cleanDF(faex)
+        faexdf.set_index(pd.Index(list(i for i in range(
+            3 * len(rogdf), 4 * len(faexdf)))), inplace=True)
+        fillExtraCols(faexdf, cols, colvalues_faex)
+
+        favgdf = cleanDF(favg)
+        favgdf.set_index(pd.Index(list(i for i in range(
+            4 * len(faexdf), 5 * len(favgdf)))), inplace=True)
+        fillExtraCols(favgdf, cols, colvalues_favg)
+
+        dossiersdf = cleanDF(dossiers)
+        dossiersdf.set_index(pd.Index(list(i for i in range(
+            5 * len(favgdf), 5 * len(favgdf) + len(dossiersdf)))), inplace=True)
+        fillExtraCols(dossiersdf, cols, colvalues_dossiers)
+
+        # combining the different dataframes
+        result = pd.concat([roexdf, rovgdf, rogdf, faexdf, favgdf, dossiersdf])
+
+        # saving as csv file
+        result.to_csv("../finishing.csv", index=False)
+
+    saveFinishingCSV(finishing)
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -824,4 +958,5 @@ def bgm_csv():
 # graining_csv()
 # internal_grading_csv()
 # extras_csv()
-bgm_csv()
+# bgm_csv()
+finishing_csv()

@@ -581,373 +581,403 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
     if ((sizeprec >= 1.0) and ((cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
             symmetry == 'EX' or symmetry == 'VG')) and (
-            fluo == 'None' or fluo == 'Medium')):
-        df3 = pd.read_csv('bgmvg.csv')
-        # BROWN
+            fluo == 'None' or fluo == 'Medium' or fluo == 'Faint') and shape == 'RO'):
+        bgm_ro = pd.read_csv('BGM_3VG.csv')
+        for i in range(len(bgm_ro)):
+            if bgm_ro['BGM Type'][i] == colshaded:
+                colshaded += bgm_ro[str(xx)][i]
+                result += colshaded
+                break
+            elif bgm_ro['BGM Type'][i] == milkyd:
+                milkyd += bgm_ro[str(xx)][i]
+                result += milkyd
+                break
+        # df3 = pd.read_csv('bgmvg.csv')
+        # # BROWN
+        # for i in range(len(df3)):
+        #     # next line giving eror
+        #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'RO')):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        #     elif ((shape != 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'FANCY')):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        #
+        # # GREY
+        # for i in range(len(df3)):
+        #     # next line giving eror
+        #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'RO')):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        #     elif ((shape != 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'FANCY')):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        #         # GREEN
+        # for i in range(len(df3)):
+        #     # next line giving eror
+        #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'RO')):
+        #         result = result + float(df3['Discount'][i])
+        #         colshaded = df3['Discount'][i]
+        #         break
+        #     elif ((shape != 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'FANCY')):
+        #         result = result + float(df3['Discount'][i])
+        #         colshaded = df3['Discount'][i]
+        #         break
+        #         # MILKY
+        # for i in range(len(df3)):
+        #     # next line giving eror
+        #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'RO')):
+        #         result = result + float(df3['Discount'][i])
+        #         milkyd = float(df3['Discount'][i])
+        #         break
+        #     elif ((shape != 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
+        #             df3['Shape'][i] == 'FANCY')):
+        #         result = result + float(df3['Discount'][i])
+        #         milkyd = float(df3['Discount'][i])
+        #         break
+        #         # #OFFCOLOR
+        #         # for i in range(len(df3)):
+        #         #     #next line giving eror
+        #         #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i]) and (df3['Shape'][i]=='RO') ):
+        #         #         result=result+ df3['Discount'][i]
+        #         #         break
+        #         #     elif ((shape!='RO') and (xx == df3['Section'][i]) and ( offcolor == df3['bgm'][i]) and (df3['Shape'][i]=='FANCY')):
+        #         #         result=result+ df3['Discount'][i]
+        #         break
+    elif shape == 'RO' and sizeprec >= 1.0:
+        df3 = pd.read_csv('BGM_RO.csv')
         for i in range(len(df3)):
-            # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'RO')):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
+            if df3['BGM Type'][i] == colshaded:
+                colshaded += df3[str(xx)][i]
+                result += colshaded
                 break
-            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'FANCY')):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
+            elif df3['BGM Type'][i] == milkyd:
+                milkyd += df3[str(xx)][i]
+                result += milkyd
                 break
-
-        # GREY
-        for i in range(len(df3)):
-            # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'RO')):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
-                break
-            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'FANCY')):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
-                break
-                # GREEN
-        for i in range(len(df3)):
-            # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'RO')):
-                result = result + float(df3['Discount'][i])
-                colshaded = df3['Discount'][i]
-                break
-            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'FANCY')):
-                result = result + float(df3['Discount'][i])
-                colshaded = df3['Discount'][i]
-                break
-                # MILKY
-        for i in range(len(df3)):
-            # next line giving eror
-            if ((shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'RO')):
-                result = result + float(df3['Discount'][i])
-                milkyd = float(df3['Discount'][i])
-                break
-            elif ((shape != 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i]) and (
-                    df3['Shape'][i] == 'FANCY')):
-                result = result + float(df3['Discount'][i])
-                milkyd = float(df3['Discount'][i])
-                break
-                # #OFFCOLOR
-                # for i in range(len(df3)):
-                #     #next line giving eror
-                #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i]) and (df3['Shape'][i]=='RO') ):
-                #         result=result+ df3['Discount'][i]
-                #         break
-                #     elif ((shape!='RO') and (xx == df3['Section'][i]) and ( offcolor == df3['bgm'][i]) and (df3['Shape'][i]=='FANCY')):
-                #         result=result+ df3['Discount'][i]
-                break
-    else:
-        df3 = pd.read_csv('bgmroelse.csv')
-        for i in range(len(df3)):
-            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i])):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
-                break
-        for i in range(len(df3)):
-            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i])):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
-                break
-        for i in range(len(df3)):
-            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i])):
-                result = result + df3['Discount'][i]
-                colshaded = df3['Discount'][i]
-                break
-        for i in range(len(df3)):
-            if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i])):
-                result = result + df3['Discount'][i]
-                milkyd = df3['Discount'][i]
-                break
+        #     if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i])):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        # for i in range(len(df3)):
+        #     if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (green == df3['bgm'][i])):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        # for i in range(len(df3)):
+        #     if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (grey == df3['bgm'][i])):
+        #         result = result + df3['Discount'][i]
+        #         colshaded = df3['Discount'][i]
+        #         break
+        # for i in range(len(df3)):
+        #     if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (milky == df3['bgm'][i])):
+        #         result = result + df3['Discount'][i]
+        #         milkyd = df3['Discount'][i]
+        #         break
                 # for i in range(len(df3)):
         #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i])):
         #         result=result+ df3['Discount'][i]
         #         break
     # add dossiers as well-irrelevant I guess now
-    if (shape == 'RO' and sizeprec < 1.0):
-
+    elif shape != 'RO' and sizeprec >= 1.0:
+        df3 = pd.read_csv('BGM_Fancy.csv')
+        for i in range(len(df3)):
+            if df3['BGM Type'][i] == colshaded:
+                colshaded += df3[str(xx)][i]
+                result += colshaded
+                break
+            elif df3['BGM Type'][i] == milkyd:
+                milkyd += df3[str(xx)][i]
+                result += milkyd
+                break
         # milky- written as per pricing module file
-        if (clarity == 'VS1' or clarity == 'VS2'):
-            if milky == 'M1':
-                result = result - 7
-                milkyd = -7
-            if milky == 'M2-' or milky == 'M2' or milky == 'M3':
-                result = result - 13
-                milkyd = -13
-            # if milky=='M1+':
-            #     result=result-4
-            #     milky=-4
-        if (clarity == 'SI1' or clarity == 'SI2'):
-            if milky == 'M1':
-                result = result - 11
-                milkyd = -11
-            if milky == 'M2-' or milky == 'M2' or milky == 'M3':
-                result = result - 16
-                milkyd = -16
-        if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -3
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -3
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -3
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -13
-                    result = result + colshaded
-            elif (color == 'G' or color == 'H' or color == 'I'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -14
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -14
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -14
-                    result = result + colshaded
-            elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -14
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -14
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -14
-                    result = result + colshaded
+        # if (clarity == 'VS1' or clarity == 'VS2'):
+        #     if milky == 'M1':
+        #         result = result - 7
+        #         milkyd = -7
+        #     if milky == 'M2-' or milky == 'M2' or milky == 'M3':
+        #         result = result - 13
+        #         milkyd = -13
+        #     # if milky=='M1+':
+        #     #     result=result-4
+        #     #     milky=-4
+        # if (clarity == 'SI1' or clarity == 'SI2'):
+        #     if milky == 'M1':
+        #         result = result - 11
+        #         milkyd = -11
+        #     if milky == 'M2-' or milky == 'M2' or milky == 'M3':
+        #         result = result - 16
+        #         milkyd = -16
+        # if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -3
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -3
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -3
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #     elif (color == 'G' or color == 'H' or color == 'I'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #     elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #
+        # elif (clarity == 'VS1' or clarity == 'VS2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -4
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -4
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -4
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #     elif (color == 'G' or color == 'H' or color == 'I'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #     elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        # elif (clarity == 'SI1' or clarity == 'SI2'):
+        #     if (color == 'D' or color == 'E' or color == 'F'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -3
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -7
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -12
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -3
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -7
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -12
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -3
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -7
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -12
+        #             result = result + colshaded
+        #     elif (color == 'G' or color == 'H' or color == 'I'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -8
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -13
+        #             result = result + colshaded
+        #     elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
+        #         if (green == 'B1' or brown == 'B1' or grey == 'B1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #         elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
+        #             colshaded = -14
+        #             result = result + colshaded
+        #         elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
+        #             colshaded = -5
+        #             result = result + colshaded
+        #         elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
+        #             colshaded = -9
+        #             result = result + colshaded
+        #         elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
+        #             colshaded = -14
+        #             result = result + colshaded
 
-        elif (clarity == 'VS1' or clarity == 'VS2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -4
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -4
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -4
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -13
-                    result = result + colshaded
-            elif (color == 'G' or color == 'H' or color == 'I'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -13
-                    result = result + colshaded
-            elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -13
-                    result = result + colshaded
-        elif (clarity == 'SI1' or clarity == 'SI2'):
-            if (color == 'D' or color == 'E' or color == 'F'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -3
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -7
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -12
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -3
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -7
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -12
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -3
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -7
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -12
-                    result = result + colshaded
-            elif (color == 'G' or color == 'H' or color == 'I'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -13
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -8
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -13
-                    result = result + colshaded
-            elif (color == 'J' or color == 'K' or color == 'L' or color == 'M'):
-                if (green == 'B1' or brown == 'B1' or grey == 'B1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'B2' or brown == 'B2' or grey == 'B2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'B3' or brown == 'B3' or grey == 'B3'):
-                    colshaded = -14
-                    result = result + colshaded
-                elif (green == 'G1' or brown == 'G1' or grey == 'G1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'G2' or brown == 'G2' or grey == 'G2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'G3' or brown == 'G3' or grey == 'G3'):
-                    colshaded = -14
-                    result = result + colshaded
-                elif (green == 'MT1' or brown == 'MT1' or grey == 'MT1'):
-                    colshaded = -5
-                    result = result + colshaded
-                elif (green == 'MT2' or brown == 'MT2' or grey == 'MT2'):
-                    colshaded = -9
-                    result = result + colshaded
-                elif (green == 'MT3' or brown == 'MT3' or grey == 'MT3'):
-                    colshaded = -14
-                    result = result + colshaded
+    elif shape == 'RO' and sizeprec < 1.0:
+        pass
 
     # Cut
     if shape == 'RO' and sizeprec >= 1:
@@ -2245,7 +2275,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     df7 = pd.read_csv('roexbg.csv')
                     for i in range(len(df7)):
                         if df7['From'][i] <= sizeprec <= df7['To'][i]:
-                            sizepremd = roexbgf_size_prem[str(xx)][i]
+                            sizepremd = df7[str(xx)][i]
                             result += sizepremd
                             break
             # if (sizeprec >= 3.50 and sizeprec <= 3.749): TBD
