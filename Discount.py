@@ -97,6 +97,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 else:
                     MNcolorD += mn_data['EX-'][i]
                 result += MNcolorD
+                break
 
     if (shape == 'RO' and sizeprec >= 1.0):
         color1 = color
@@ -5553,24 +5554,31 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             result = result + depthd
     # Depth discount
 
-    if (sizeprec < 1.0):
-        if (days >= 60 and days <= 89):
-            result = result - 1.0
-            daysd = -1
-        if (days >= 90 and days <= 119):
-            result = result - 2.0
-            daysd = -2
-        if (days >= 120 and days <= 179):
-            result = result - 3.0
-            daysd = -3
-        if (days >= 180 and days <= 299):
-            result = result - 5.0
-            daysd = -5
-        if (days >= 300 and days <= 499):
-            result = result - 7.0
-            daysd = -7
-        if (days >= 500):
-            result = result - 10.0
+    #Days
+    day_csv = pd.read_csv('days_discount.csv')
+    for i in range(len(day_csv)):
+        if day_csv['Days Min'][i] <= days <= day_csv['Days Max'][j]:
+            daysd += day_csv['Discount'][i]
+            result += daysd
+            break
+    # if (sizeprec < 1.0):
+    #     if (days >= 60 and days <= 89):
+    #         result = result - 1.0
+    #         daysd = -1
+    #     if (days >= 90 and days <= 119):
+    #         result = result - 2.0
+    #         daysd = -2
+    #     if (days >= 120 and days <= 179):
+    #         result = result - 3.0
+    #         daysd = -3
+    #     if (days >= 180 and days <= 299):
+    #         result = result - 5.0
+    #         daysd = -5
+    #     if (days >= 300 and days <= 499):
+    #         result = result - 7.0
+    #         daysd = -7
+    #     if (days >= 500):
+    #         result = result - 10.0
 
     daysd = -10
     if ff == 0:

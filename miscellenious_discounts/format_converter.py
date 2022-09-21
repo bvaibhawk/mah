@@ -1042,4 +1042,4 @@ def days_csv():
 # finishing_csv()
 # ktos_csv()
 # mncolor_csv()
-days_csv()
+# days_csv()
