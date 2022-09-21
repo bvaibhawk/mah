@@ -796,20 +796,23 @@ def bgm_csv():
         d.columns = ['BGM', 'BGM Type', 1, 2, 3, 4, 5, 6, 7, 8, 9]
         d.dropna(inplace=True)
         d.reset_index(inplace=True, drop=True)
-        # print(cut_name)
+
         # print(d)
 
         if "Rounds 3VG+" in cut_name:
-            d.to_csv("../BGM_3VG.csv")
+            # print("yes")
+            d.to_csv("../BGM_3VG.csv", index=False)
 
-        elif "Rounds Otherwise" in cut_name:
-            d.to_csv("../BGM_RO.csv")
+        if "Rounds Otherwise" in cut_name:
+            # print("yes")
+            d.to_csv("../BGM_RO.csv", index=False)
 
-        elif "Fancy" in cut_name:
-            d.to_csv("../BGM_Fancy.csv")
+        if "Fancy" in cut_name:
+            # print("yes")
+            d.to_csv("../BGM_Fancy.csv", index=False)
 
-        elif "Dossier" in cut_name:
-            d.to_csv("../BGM_dossier.csv")
+        if "Dossiers" in cut_name:
+            d.to_csv("../BGM_dossier.csv", index=False)
 
 
 def finishing_csv():
@@ -946,6 +949,83 @@ def finishing_csv():
     saveFinishingCSV(finishing)
 
 
+def ktos_csv():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    k2s_df = pd.read_excel(xls, "KtoS Premiums")
+    k2s = k2s_df.to_numpy()
+    k2s = k2s[2:5, 1:15]
+
+    def toDataFrame(nparr: np.array):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        # nparrdf = fillnaLocations(nparrdf)
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number) and not math.isnan(nparrdf.columns.values[i]):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        # nparrdf = nparrdf.set_index(pd.Index(index))
+        return nparrdf
+
+    k2s_df = toDataFrame(k2s)
+    k2s_df.dropna(how='all', axis=1, inplace=True)
+    k2s_df.to_csv("../k2s.csv")
+
+
+def mncolor_csv():
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    discounts_n_colors_df = pd.read_excel(xls, "Discounts N Colors")
+    discounts_n_colors = discounts_n_colors_df.to_numpy()
+    discounts_n_colors = discounts_n_colors[2:8, 1:4]
+
+    def toDataFrame(nparr: np.array):
+        nparrdf = pd.DataFrame(list(nparr))
+        nparrdf.columns = nparrdf.iloc[0]
+        nparrdf = nparrdf.drop(nparrdf.index[0])
+        return nparrdf
+
+    discounts_n_colors_df = toDataFrame(discounts_n_colors)
+    discounts_n_colors_df["size_min"] = discounts_n_colors_df["Size/Cut"]
+    discounts_n_colors_df["size_max"] = [0.99, 1.49, 1.99, 2.99, 5.99]
+
+    discounts_n_colors_df.to_csv("../discountsncolors.csv")
+
+
+def days_csv():
+    final_df = pd.DataFrame()
+
+    df_list = []
+
+    df = pd.read_excel("input_files/days_sheet.xlsx")
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    flag = set()
+
+    # iterating through extracted dataframes
+    for d in df_list:
+        d.columns = d.loc[1]
+        d = d.drop([0, 1])
+        d.reset_index(drop=True, inplace=True)
+        # print(d)
+
+        d['Days Min'] = d['DAYS'].apply(lambda x: x.split("-")[0] if '>' not in x else str(x).split(">")[0])
+
+        d['Days Max'] = d['DAYS'].apply(lambda x: x.split("-")[1] if '>' not in x else 99999)
+
+        d.drop(['DAYS'], inplace=True, axis=1)
+
+        d.rename(columns={d.columns[0]: "Discount"}, inplace=True)
+
+        final_df = final_df.append(d, ignore_index=True)
+
+    final_df.to_csv("../days_discount.csv")
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -959,4 +1039,7 @@ def finishing_csv():
 # internal_grading_csv()
 # extras_csv()
 # bgm_csv()
-finishing_csv()
+# finishing_csv()
+# ktos_csv()
+# mncolor_csv()
+days_csv()

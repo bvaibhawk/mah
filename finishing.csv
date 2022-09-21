@@ -1,0 +1,210 @@
+What,Value,Location,1,2,3,4,5,6,7,8,9,Cut,Polish,Sym,Shape
+HO,HO,Table,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,EX,,,RO
+HO,HO,Crown,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.0,-1.0,-1.0,EX,,,RO
+HO,HO,Girdle,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,EX,,,RO
+HO,HO,Pavilion,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,0.0,0.0,0.0,EX,,,RO
+Open,Small,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,EX,,,RO
+Open,Small,Crown,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,EX,,,RO
+Open,Small,Girdle,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,0.0,EX,,,RO
+Open,Small,Pavilion,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-0.5,-0.5,0.0,EX,,,RO
+Open,Medium,Table,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,EX,,,RO
+Open,Medium,Crown,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,EX,,,RO
+Open,Medium,Girdle,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,EX,,,RO
+Open,Medium,Pavilion,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-2.5,-2.5,-1.5,EX,,,RO
+Open,Big,Table,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,EX,,,RO
+Open,Big,Crown,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-7.0,-7.0,-6.0,EX,,,RO
+Open,Big,Girdle,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-6.0,-6.0,-5.0,EX,,,RO
+Open,Big,Pavilion,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-5.0,-5.0,-4.0,EX,,,RO
+Natural,Indented Natural,Table,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-0.5,EX,,,RO
+Natural,Indented Natural,Crown,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-0.5,EX,,,RO
+Natural,Indented Natural,Girdle,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,EX,,,RO
+Natural,Indented Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,EX,,,RO
+Natural,Natural,Top,-1.5,-1.5,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,EX,,,RO
+Natural,Natural,Top,-2.0,-2.0,-1.5,-1.5,-1.5,-0.5,-1.0,-1.0,-0.5,EX,,,RO
+Natural,Natural,Top,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,EX,,,RO
+Natural,Natural,Pavilion,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,EX,,,RO
+Natural,Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,EX,,,RO
+Natural,Natural,Pavilion,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,EX,,,RO
+Others,Extra Facet,Table,-1.0,-1.0,-0.5,0.0,0.0,0.0,0.0,0.0,0.0,EX,,,RO
+Others,Extra Facet,Crown,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,0.0,0.0,EX,,,RO
+Others,Extra Facet,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,EX,,,RO
+Others,Extra Facet,Pavilion,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,0.0,0.0,EX,,,RO
+Others,Cavity,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,EX,,,RO
+Others,Cavity,Crown,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,EX,,,RO
+Others,Cavity,Girdle,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,EX,,,RO
+Others,Cavity,Pavilion,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,EX,,,RO
+Others,Chip,Table,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,0.0,EX,,,RO
+Others,Chip,Crown,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,EX,,,RO
+Others,Chip,Girdle,-0.5,-0.5,0.0,-0.5,-0.5,-0.5,-0.5,0.0,0.0,EX,,,RO
+Others,Chip,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,EX,,,RO
+HO,HO,Table,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,VG,,,RO
+HO,HO,Crown,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,VG,,,RO
+HO,HO,Girdle,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,VG,,,RO
+HO,HO,Pavilion,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,VG,,,RO
+Open,Small,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,VG,,,RO
+Open,Small,Crown,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,VG,,,RO
+Open,Small,Girdle,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,VG,,,RO
+Open,Small,Pavilion,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,VG,,,RO
+Open,Medium,Table,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,VG,,,RO
+Open,Medium,Crown,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,VG,,,RO
+Open,Medium,Girdle,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,VG,,,RO
+Open,Medium,Pavilion,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,VG,,,RO
+Open,Big,Table,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,VG,,,RO
+Open,Big,Crown,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,VG,,,RO
+Open,Big,Girdle,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,VG,,,RO
+Open,Big,Pavilion,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,VG,,,RO
+Natural,Indented Natural,Table,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-0.5,VG,,,RO
+Natural,Indented Natural,Crown,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,VG,,,RO
+Natural,Indented Natural,Girdle,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,VG,,,RO
+Natural,Indented Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,VG,,,RO
+Natural,Natural,Top,-1.5,-1.5,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,VG,,,RO
+Natural,Natural,Top,-2.0,-2.0,-1.5,-1.5,-1.5,-0.5,-1.0,-1.0,-0.5,VG,,,RO
+Natural,Natural,Top,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,VG,,,RO
+Natural,Natural,Pavilion,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,VG,,,RO
+Natural,Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,VG,,,RO
+Natural,Natural,Pavilion,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,VG,,,RO
+Others,Extra Facet,Table,-1.0,-1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,VG,,,RO
+Others,Extra Facet,Crown,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,VG,,,RO
+Others,Extra Facet,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,VG,,,RO
+Others,Extra Facet,Pavilion,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,VG,,,RO
+Others,Cavity,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,VG,,,RO
+Others,Cavity,Crown,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,VG,,,RO
+Others,Cavity,Girdle,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,VG,,,RO
+Others,Cavity,Pavilion,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,VG,,,RO
+Others,Chip,Table,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,0.0,VG,,,RO
+Others,Chip,Crown,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,VG,,,RO
+Others,Chip,Girdle,-0.5,-0.5,0.0,-0.5,-0.5,-0.5,-0.5,0.0,0.0,VG,,,RO
+Others,Chip,Pavilion,-0.5,-0.5,0.0,-0.5,-0.5,-0.5,-0.5,0.0,0.0,VG,,,RO
+HO,HO,Table,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,G,,,RO
+HO,HO,Crown,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,G,,,RO
+HO,HO,Girdle,-0.5,-0.5,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+HO,HO,Pavilion,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Open,Small,Table,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,G,,,RO
+Open,Small,Crown,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,G,,,RO
+Open,Small,Girdle,-1.5,-1.5,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,G,,,RO
+Open,Small,Pavilion,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,G,,,RO
+Open,Medium,Table,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-3.5,-3.5,-2.5,G,,,RO
+Open,Medium,Crown,-4.0,-4.0,-3.5,-4.0,-4.0,-3.5,-2.5,-2.5,-2.0,G,,,RO
+Open,Medium,Girdle,-3.0,-3.0,-2.5,-3.0,-3.0,-2.5,-2.0,-2.0,-1.5,G,,,RO
+Open,Medium,Pavilion,-2.5,-2.5,-2.0,-2.5,-2.5,-2.0,-1.5,-1.5,-1.0,G,,,RO
+Open,Big,Table,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-7.0,-7.0,-6.0,G,,,RO
+Open,Big,Crown,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-6.0,-6.0,-5.0,G,,,RO
+Open,Big,Girdle,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-5.0,-5.0,-4.0,G,,,RO
+Open,Big,Pavilion,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,G,,,RO
+Natural,Indented Natural,Table,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Natural,Indented Natural,Crown,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Natural,Indented Natural,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Natural,Indented Natural,Pavilion,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Natural,Natural,Top,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,G,,,RO
+Natural,Natural,Top,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,G,,,RO
+Natural,Natural,Top,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.5,-1.0,G,,,RO
+Natural,Natural,Pavilion,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,G,,,RO
+Natural,Natural,Pavilion,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,-0.5,G,,,RO
+Natural,Natural,Pavilion,-1.5,-1.5,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,G,,,RO
+Others,Extra Facet,Table,-1.0,-1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Others,Extra Facet,Crown,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Others,Extra Facet,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Others,Extra Facet,Pavilion,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,G,,,RO
+Others,Cavity,Table,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-2.5,-2.5,-1.5,G,,,RO
+Others,Cavity,Crown,-1.5,-1.5,-0.5,-1.5,-1.5,-0.5,-0.5,-0.5,-0.5,G,,,RO
+Others,Cavity,Girdle,-2.5,-2.5,-1.5,-2.5,-2.5,-1.5,-1.5,-1.5,-0.5,G,,,RO
+Others,Cavity,Pavilion,-1.5,-1.5,-0.5,-1.5,-1.5,-0.5,-0.5,-0.5,-0.5,G,,,RO
+Others,Chip,Table,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-1.0,-1.0,0.0,G,,,RO
+Others,Chip,Crown,-0.5,-0.5,0.0,-0.5,-0.5,0.0,-1.0,-1.0,0.0,G,,,RO
+Others,Chip,Girdle,-0.5,-0.5,0.0,-0.5,-0.5,0.0,-0.5,-0.5,0.0,G,,,RO
+Others,Chip,Pavilion,-0.5,-0.5,0.0,-0.5,-0.5,0.0,-0.5,-0.5,0.0,G,,,RO
+HO,HO,Table,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,EX,EX,EX,Fancy
+HO,HO,Crown,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,EX,EX,EX,Fancy
+HO,HO,Girdle,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,EX,EX,EX,Fancy
+HO,HO,Pavilion,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,EX,EX,EX,Fancy
+Open,Small,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,EX,EX,EX,Fancy
+Open,Small,Crown,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,EX,EX,EX,Fancy
+Open,Small,Girdle,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,EX,EX,EX,Fancy
+Open,Small,Pavilion,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,EX,EX,EX,Fancy
+Open,Medium,Table,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,EX,EX,EX,Fancy
+Open,Medium,Crown,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,EX,EX,EX,Fancy
+Open,Medium,Girdle,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,EX,EX,EX,Fancy
+Open,Medium,Pavilion,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,EX,EX,EX,Fancy
+Open,Big,Table,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,EX,EX,EX,Fancy
+Open,Big,Crown,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,EX,EX,EX,Fancy
+Open,Big,Girdle,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,EX,EX,EX,Fancy
+Open,Big,Pavilion,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,EX,EX,EX,Fancy
+Natural,Indented Natural,Table,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Natural,Indented Natural,Crown,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Natural,Indented Natural,Girdle,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,EX,EX,EX,Fancy
+Natural,Indented Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,EX,EX,EX,Fancy
+Natural,Natural,Top,-1.5,-1.5,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,EX,EX,EX,Fancy
+Natural,Natural,Top,-2.0,-2.0,-1.5,-1.5,-1.5,-0.5,-1.0,-1.0,-0.5,EX,EX,EX,Fancy
+Natural,Natural,Top,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,EX,EX,EX,Fancy
+Natural,Natural,Pavilion,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Natural,Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,EX,EX,EX,Fancy
+Natural,Natural,Pavilion,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,EX,EX,EX,Fancy
+Others,Extra Facet,Table,-1.0,-1.0,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Others,Extra Facet,Crown,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Others,Extra Facet,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Others,Extra Facet,Pavilion,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Others,Cavity,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,EX,EX,EX,Fancy
+Others,Cavity,Crown,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,EX,EX,EX,Fancy
+Others,Cavity,Girdle,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,EX,EX,EX,Fancy
+Others,Cavity,Pavilion,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,EX,EX,EX,Fancy
+Others,Chip,Table,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,0.0,EX,EX,EX,Fancy
+Others,Chip,Crown,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,EX,EX,EX,Fancy
+Others,Chip,Girdle,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,EX,EX,EX,Fancy
+Others,Chip,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,EX,EX,EX,Fancy
+HO,HO,Table,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,,VG,VG,Fancy
+HO,HO,Crown,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,,VG,VG,Fancy
+HO,HO,Girdle,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,,VG,VG,Fancy
+HO,HO,Pavilion,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,,VG,VG,Fancy
+Open,Small,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,VG,VG,Fancy
+Open,Small,Crown,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,,VG,VG,Fancy
+Open,Small,Girdle,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,,VG,VG,Fancy
+Open,Small,Pavilion,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,,VG,VG,Fancy
+Open,Medium,Table,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,VG,VG,Fancy
+Open,Medium,Crown,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,,VG,VG,Fancy
+Open,Medium,Girdle,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,VG,VG,Fancy
+Open,Medium,Pavilion,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,,VG,VG,Fancy
+Open,Big,Table,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,,VG,VG,Fancy
+Open,Big,Crown,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,,VG,VG,Fancy
+Open,Big,Girdle,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,,VG,VG,Fancy
+Open,Big,Pavilion,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,VG,VG,Fancy
+Natural,Indented Natural,Table,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-0.5,,VG,VG,Fancy
+Natural,Indented Natural,Crown,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,VG,VG,Fancy
+Natural,Indented Natural,Girdle,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,VG,VG,Fancy
+Natural,Indented Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,VG,VG,Fancy
+Natural,Natural,Top,-1.5,-1.5,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,VG,VG,Fancy
+Natural,Natural,Top,-2.0,-2.0,-1.5,-1.5,-1.5,-0.5,-1.0,-1.0,-0.5,,VG,VG,Fancy
+Natural,Natural,Top,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,,VG,VG,Fancy
+Natural,Natural,Pavilion,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,,VG,VG,Fancy
+Natural,Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,,VG,VG,Fancy
+Natural,Natural,Pavilion,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,VG,VG,Fancy
+Others,Extra Facet,Table,-1.0,-1.0,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,,VG,VG,Fancy
+Others,Extra Facet,Crown,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,VG,VG,Fancy
+Others,Extra Facet,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,VG,VG,Fancy
+Others,Extra Facet,Pavilion,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,VG,VG,Fancy
+Others,Cavity,Table,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,,VG,VG,Fancy
+Others,Cavity,Crown,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,,VG,VG,Fancy
+Others,Cavity,Girdle,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,,VG,VG,Fancy
+Others,Cavity,Pavilion,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,,VG,VG,Fancy
+Others,Chip,Table,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,0.0,,VG,VG,Fancy
+Others,Chip,Crown,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,VG,VG,Fancy
+Others,Chip,Girdle,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,VG,VG,Fancy
+Others,Chip,Pavilion,-0.5,-0.5,0.0,-0.5,-0.5,-0.5,-0.5,0.0,0.0,,VG,VG,Fancy
+HO,HO,Table,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,Dossiers
+HO,HO,Crown,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,Dossiers
+HO,HO,Girdle,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,Dossiers
+HO,HO,Pavilion,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,Dossiers
+Open,Small,Table,-3.0,-3.0,-3.0,-3.0,-3.0,-3.0,-2.0,-2.0,-2.0,,,,Dossiers
+Open,Small,Crown,-3.0,-3.0,-3.0,-3.0,-3.0,-3.0,-2.0,-2.0,-2.0,,,,Dossiers
+Open,Small,Pavilion,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,,,,Dossiers
+Open,Medium,Table,-8.0,-8.0,-8.0,-8.0,-8.0,-8.0,-8.0,-8.0,-8.0,,,,Dossiers
+Open,Medium,Crown,-8.0,-8.0,-8.0,-8.0,-8.0,-8.0,-7.0,-7.0,-7.0,,,,Dossiers
+Open,Medium,Pavilion,-6.0,-6.0,-6.0,-6.0,-6.0,-6.0,-5.0,-5.0,-5.0,,,,Dossiers
+Open,Big,Table,-12.0,-12.0,-12.0,-12.0,-12.0,-12.0,-12.0,-12.0,-12.0,,,,Dossiers
+Open,Big,Crown,-10.0,-10.0,-10.0,-10.0,-10.0,-10.0,-10.0,-10.0,-10.0,,,,Dossiers
+Open,Big,Pavilion,-9.0,-9.0,-9.0,-9.0,-9.0,-9.0,-9.0,-9.0,-9.0,,,,Dossiers
+Natural,Indented Natural,Table,-3.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,-1.0,-1.0,,,,Dossiers
+Natural,Indented Natural,Crown,-2.0,-2.0,-2.0,-1.0,-1.0,-1.0,0.0,0.0,0.0,,,,Dossiers
+Natural,Indented Natural,Girdle,-1.0,-1.0,-1.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,Dossiers
+Natural,Indented Natural,Pavilion,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,0.0,0.0,,,,Dossiers
+Natural,Natural,Top,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,0.0,0.0,,,,Dossiers
+Natural,Natural,Pavilion,-3.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,-1.0,-1.0,,,,Dossiers

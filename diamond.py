@@ -519,6 +519,7 @@ def page1():
                 
  
 #                 cutcomments ='NN'
+                ktos_attribute = ktos
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
                 rap = fetchrap(shape, szgr, color, clarity)
@@ -557,7 +558,7 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                        intended_natural, graining, rap_value)
+                                        intended_natural, graining, rap_value, ktos_attribute)
 
                 diamondData['FINAL_DISCOUNT_AFTER_CAPOFF'][i] = result[0]
                 diamondData['Base_Dis'][i] = result[1]
