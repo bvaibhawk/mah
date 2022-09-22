@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)-8s %(m
 
 
 def page5():
-    price_module_file = st.file_uploader("Choose a csv file to update price module file", type='xlsx')
+    price_module_file = st.file_uploader("Choose a csv file to update Very Strong Fluo Discount file", type='xlsx')
     if price_module_file:
         start_conversion = st.button('Start Upload')
         if start_conversion:

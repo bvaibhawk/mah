@@ -705,7 +705,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #         result = result + df3['Discount'][i]
         #         milkyd = df3['Discount'][i]
         #         break
-                # for i in range(len(df3)):
+        # for i in range(len(df3)):
         #     if ((shape == 'RO') and (xx == df3['Section'][i]) and (offcolor == df3['bgm'][i])):
         #         result=result+ df3['Discount'][i]
         #         break
@@ -1243,7 +1243,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         result = result + result1
         grainingd = result1
 
-    #extras
+    # extras
     extra_data = pd.read_csv('extras.csv')
     if ha != '':
         for i in range(len(extra_data)):
@@ -1277,7 +1277,6 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 eyecleand += extra_data[str(xx)][i]
                 result += eyecleand
                 break
-
 
     # if ha == 'Y':
     #     if shape == 'RO':
@@ -1351,7 +1350,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #             tablecleand = 1
     #             result = result + 1
 
-                # #extras- NOT properly written- change line 445
+    # #extras- NOT properly written- change line 445
     # df4=pd.read_csv('extras.csv')
     # for i in range(len(df4)):
     #     if(shape=='RO'):
@@ -5555,7 +5554,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             result = result + depthd
     # Depth discount
 
-    #Days
+    # Days
     day_csv = pd.read_csv('days_discount.csv')
     for i in range(len(day_csv)):
         if day_csv['Days Min'][i] <= days <= day_csv['Days Max'][i]:
@@ -5583,15 +5582,14 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     # daysd = -10
 
-    #very strong fluo
+    # very strong fluo
     vst_fluo_data = pd.read_csv('very_strong_fluo.csv')
     for i in range(len(vst_fluo_data)):
         vst_size = vst_fluo_data['Size_min'][i] <= sizeprec <= vst_fluo_data['Size_max'][i]
-        if shape == vst_fluo_data['Shape'][i] and  vst_size and vst_fluo_data['Fluo'] == fluo:
+        if shape == vst_fluo_data['Shape'][i] and vst_size and vst_fluo_data['Fluo'][i] == fluo:
             very_strong_fluod += float(vst_fluo_data['Discount'][i])
             result += very_strong_fluod
             break
-
 
     if ff == 0:
         rap = 0;

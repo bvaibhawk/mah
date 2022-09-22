@@ -1032,7 +1032,7 @@ def very_strong_fluo():
     shape = fluo_data.iloc[3, 1].split(' ')[0]
     size_min = fluo_data.iloc[3, 1].replace('CT', '').split(' ')[1].split('-')[0]
     size_max = fluo_data.iloc[3, 1].replace('CT', '').split(' ')[1].split('-')[1]
-    fluo = fluo_data.iloc[3, 3]
+    fluo = 'Very Strong'
     discount = fluo_data.iloc[3, 4].split(' ')[0]
     fluo_dict['Shape'].append(shape)
     fluo_dict['Size_min'].append(size_min)
