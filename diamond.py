@@ -11,9 +11,13 @@ from datetime import date, datetime
 # from Discount import calcDiscount, get_cut_comments
 from Discount import calcDiscount
 from FetchRap import fetchrap, fetch_size
+from days_discount_upload import page4
 from price_module_upload import page3
 from singlediscount import page2
 import warnings
+
+from very_strong_fl_upload import page5
+
 warnings.filterwarnings("ignore")
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
                    menu_items=None)
@@ -376,6 +380,7 @@ def page1():
         diamondData = diamondData.assign(cutcomments_Dis='')
         diamondData = diamondData.assign(Graining_Dis='')
         diamondData = diamondData.assign(Extra_Facet_Dis='')
+        diamondData = diamondData.assign(Very_Strong_Fluo_Dis='')
 
         records_processed = st.empty()
         progress = st.progress(0)
@@ -585,9 +590,10 @@ def page1():
                 diamondData['Ktos_Dis'][i] = result[22]
                 diamondData['Days_Dis'][i] = result[23]
                 diamondData['Capoff'][i] = result[24]
+                diamondData['Very_Strong_Fluo_Dis'][i] = result[25]
                 
                 final_sum = 0
-                for j in range(1, 24):
+                for j in range(1, 25):
                     final_sum += result[j]
                 diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
@@ -612,7 +618,9 @@ def page1():
                            mime='text/csv', file_name='discountOutput.csv')
 page_names = {
     "Bulk upload": page1,
-    'Price Module upload': page3
+    'Price Module upload': page3,
+    'Days discount upload': page4,
+    'Very Strong Fluorescence upload': page5
 }
 st.sidebar.markdown("<h1>Discount Calculator</h1>", unsafe_allow_html=True)
 selected_page = st.sidebar.selectbox("Select Calculator", page_names.keys())

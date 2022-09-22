@@ -660,7 +660,7 @@ def internal_grading_csv():
     final_df = pd.DataFrame()
     df_list = []
 
-    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Internal Grading')
+    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name='Internal Grading')
 
     # extracting required tables in form of dataframes from spreadsheet
     binary_rep = np.array(df.notnull().astype('int'))
@@ -696,11 +696,11 @@ def internal_grading_csv():
     final_df.reset_index(inplace=True, drop=True)
     print(final_df.head(10))
 
-    final_df.to_csv("../internal_grading.csv")
+    final_df.to_csv("internal_grading.csv")
 
 
 def extras_csv():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     extras_df = pd.read_excel(xls, "Extras")
     extras = extras_df.to_numpy()
 
@@ -754,7 +754,7 @@ def extras_csv():
             len(rodf), len(rodf) + len(fadf)))), inplace=True)
 
         result = pd.concat([rodf, fadf])
-        result.to_csv("../extras.csv", index=False)
+        result.to_csv("extras.csv", index=False)
 
     saveExtrasCSV(extras)
 
@@ -764,7 +764,7 @@ def bgm_csv():
 
     df_list = []
 
-    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='BGM')
+    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name='BGM')
 
     # extracting required tables in form of dataframes from spreadsheet
     binary_rep = np.array(df.notnull().astype('int'))
@@ -801,22 +801,22 @@ def bgm_csv():
 
         if "Rounds 3VG+" in cut_name:
             # print("yes")
-            d.to_csv("../BGM_3VG.csv", index=False)
+            d.to_csv("BGM_3VG.csv", index=False)
 
         if "Rounds Otherwise" in cut_name:
             # print("yes")
-            d.to_csv("../BGM_RO.csv", index=False)
+            d.to_csv("BGM_RO.csv", index=False)
 
         if "Fancy" in cut_name:
             # print("yes")
-            d.to_csv("../BGM_Fancy.csv", index=False)
+            d.to_csv("BGM_Fancy.csv", index=False)
 
         if "Dossiers" in cut_name:
-            d.to_csv("../BGM_dossier.csv", index=False)
+            d.to_csv("BGM_dossier.csv", index=False)
 
 
 def finishing_csv():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     finishing_df = pd.read_excel(xls, "Finishing")
     finishing = finishing_df.to_numpy()
 
@@ -944,13 +944,13 @@ def finishing_csv():
         result = pd.concat([roexdf, rovgdf, rogdf, faexdf, favgdf, dossiersdf])
 
         # saving as csv file
-        result.to_csv("../finishing.csv", index=False)
+        result.to_csv("finishing.csv", index=False)
 
     saveFinishingCSV(finishing)
 
 
 def ktos_csv():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     k2s_df = pd.read_excel(xls, "KtoS Premiums")
     k2s = k2s_df.to_numpy()
     k2s = k2s[2:5, 1:15]
@@ -968,11 +968,11 @@ def ktos_csv():
 
     k2s_df = toDataFrame(k2s)
     k2s_df.dropna(how='all', axis=1, inplace=True)
-    k2s_df.to_csv("../k2s.csv")
+    k2s_df.to_csv("k2s.csv")
 
 
 def mncolor_csv():
-    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     discounts_n_colors_df = pd.read_excel(xls, "Discounts N Colors")
     discounts_n_colors = discounts_n_colors_df.to_numpy()
     discounts_n_colors = discounts_n_colors[2:8, 1:4]
@@ -987,7 +987,7 @@ def mncolor_csv():
     discounts_n_colors_df["size_min"] = discounts_n_colors_df["Size/Cut"]
     discounts_n_colors_df["size_max"] = [0.99, 1.49, 1.99, 2.99, 5.99]
 
-    discounts_n_colors_df.to_csv("../discountsncolors.csv")
+    discounts_n_colors_df.to_csv("discountsncolors.csv")
 
 
 def days_csv():
@@ -995,7 +995,7 @@ def days_csv():
 
     df_list = []
 
-    df = pd.read_excel("input_files/days_sheet.xlsx")
+    df = pd.read_excel("miscellenious_discounts/input_files/days_sheet.xlsx")
 
     # extracting required tables in form of dataframes from spreadsheet
     binary_rep = np.array(df.notnull().astype('int'))
@@ -1023,7 +1023,24 @@ def days_csv():
 
         final_df = final_df.append(d, ignore_index=True)
 
-    final_df.to_csv("../days_discount.csv")
+    final_df.to_csv("days_discount.csv")
+
+
+def very_strong_fluo():
+    fluo_dict = {'Shape': [], 'Size_min': [], 'Size_max': [], 'Fluo': [], 'Discount': []}
+    fluo_data = pd.read_excel('miscellenious_discounts/input_files/ver_strong_fl.xlsx')
+    shape = fluo_data.iloc[3, 1].split(' ')[0]
+    size_min = fluo_data.iloc[3, 1].replace('CT', '').split(' ')[1].split('-')[0]
+    size_max = fluo_data.iloc[3, 1].replace('CT', '').split(' ')[1].split('-')[1]
+    fluo = fluo_data.iloc[3, 3]
+    discount = fluo_data.iloc[3, 4].split(' ')[0]
+    fluo_dict['Shape'].append(shape)
+    fluo_dict['Size_min'].append(size_min)
+    fluo_dict['Size_max'].append(size_max)
+    fluo_dict['Fluo'].append(fluo)
+    fluo_dict['Discount'].append(discount)
+    output_df = pd.DataFrame.from_dict(fluo_dict)
+    output_df.to_csv('very_strong_fluo.csv')
 
 
 # central_mapping()
@@ -1043,3 +1060,4 @@ def days_csv():
 # ktos_csv()
 # mncolor_csv()
 # days_csv()
+# very_strong_fluo()

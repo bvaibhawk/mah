@@ -37,6 +37,12 @@ def page3():
                 conv.cut_1_5_base_csv()
                 conv.fancy_base_csv()
                 conv.graining_csv()
+                conv.finishing_csv()
+                conv.internal_grading_csv()
+                conv.extras_csv()
+                conv.mncolor_csv()
+                conv.bgm_csv()
+                conv.ktos_csv()
                 st.write('Successfully uploaded and updated')
             except BaseException as e:
                 if os.path.exists("miscellenious_discounts/input_files/input_price_module_discounts.xlsm"):

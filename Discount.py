@@ -60,6 +60,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     MNcolorD = 0.0
     result = 0.00
     daysd = 0.0
+    very_strong_fluod = 0.0
     ff = 0
     xx = 0
     identedcrownnatural = '0'
@@ -5557,7 +5558,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #Days
     day_csv = pd.read_csv('days_discount.csv')
     for i in range(len(day_csv)):
-        if day_csv['Days Min'][i] <= days <= day_csv['Days Max'][j]:
+        if day_csv['Days Min'][i] <= days <= day_csv['Days Max'][i]:
             daysd += day_csv['Discount'][i]
             result += daysd
             break
@@ -5580,7 +5581,18 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #     if (days >= 500):
     #         result = result - 10.0
 
-    daysd = -10
+    # daysd = -10
+
+    #very strong fluo
+    vst_fluo_data = pd.read_csv('very_strong_fluo.csv')
+    for i in range(len(vst_fluo_data)):
+        vst_size = vst_fluo_data['Size_min'][i] <= sizeprec <= vst_fluo_data['Size_max'][i]
+        if shape == vst_fluo_data['Shape'][i] and  vst_size and vst_fluo_data['Fluo'] == fluo:
+            very_strong_fluod += float(vst_fluo_data['Discount'][i])
+            result += very_strong_fluod
+            break
+
+
     if ff == 0:
         rap = 0;
     if color1 == 'N':
@@ -5619,6 +5631,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(ktosd)
     ans.append(daysd)
     ans.append(capped)
+    ans.append(very_strong_fluod)
 
     return ans
 
