@@ -1043,6 +1043,62 @@ def very_strong_fluo():
     output_df.to_csv('very_strong_fluo.csv')
 
 
+def params_fancy():
+    final_df = pd.DataFrame()
+    df_list = []
+
+    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Parameters Fancy')
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    counter = 0
+    flou_name = {0: "Faint", 1: "Medium", 2: "Strong", 3: "Very Strong"}
+    upper_dict = {"50's": 0.59, "60's": 0.69, "70's": 0.79, "80's": 0.89, "90's": 0.99}
+    flou_df = pd.DataFrame()
+    second_table = pd.DataFrame()
+    third_dataframe = pd.DataFrame()
+    # iterating through extracted dataframes
+    for d in df_list:
+        d.reset_index(inplace=True, drop=True)
+
+        if pd.isna(d.iloc[0][0]) == True and len(d.columns) > 3:
+            d['Flou'] = [flou_name[counter]] * len(d)
+            flou_df = flou_df.append(d, ignore_index=True)
+            counter += 1
+
+        elif pd.isna(d.iloc[0][0]) == False and len(d.columns) > 3:
+            weight = d.iloc[0][0]
+            # d.columns = d.loc[0]
+            d = d.drop([0])
+            d.reset_index(inplace=True, drop=True)
+            d.columns = ['Clarity', 'IF', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1', 'SI2']
+            # print(d)
+            # d['Symmetry'] = ['VG']*len(d)
+            # d['Polish'] = ['VG']*len(d)
+            d['Weight'] = [weight] * len(d)
+            third_dataframe = third_dataframe.append(d, ignore_index=True)
+
+        if len(d.columns) == 3:
+            symm = polish = d.iloc[0][1].split(" ")[-1][:-1]
+            d.columns = ['Lower', 'Upper', 'Discount']
+            d = d.drop([0, 1])
+            d.reset_index(inplace=True, drop=True)
+            d['Upper'] = d['Upper'].apply(lambda x: x.split("-")[1] if "-" in str(x) else x)
+            d['Upper'] = d['Upper'].apply(lambda x: upper_dict[x] if "s" in str(x) else x)
+            d['Symmetry'] = [symm] * len(d)
+            d['Polish'] = [polish] * len(d)
+            second_table = second_table.append(d, ignore_index=True)
+
+    flou_df.to_csv("../fluo_disc.csv")
+    second_table.to_csv("../second_df.csv")
+    third_dataframe.to_csv("../third_df.csv")
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -1061,3 +1117,4 @@ def very_strong_fluo():
 # mncolor_csv()
 # days_csv()
 # very_strong_fluo()
+params_fancy()
