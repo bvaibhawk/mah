@@ -61,6 +61,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     result = 0.00
     daysd = 0.0
     very_strong_fluod = 0.0
+    fancy_fluod = 0.0
+    sym_pold = 0.0
     ff = 0
     xx = 0
     identedcrownnatural = '0'
@@ -5591,6 +5593,39 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             result += very_strong_fluod
             break
 
+    # Parameteres fancy
+    ## Fluo discount
+    if shape != 'RO':
+        fluo_data = pd.read_csv('fluo_disc.csv')
+        for i in range(len(fluo_data)):
+            if fluo_data['Color'][i] == color and fluo_data['Fluo'][i] == fluo:
+                try:
+                    fancy_fluod += float(fluo_data[clarity][i])
+                    result += fancy_fluod
+                    break
+                except BaseException as e:
+                    pass
+    ## symm/polish
+    if shape != 'RO' and symmetry == 'GD' and polish == 'GD':
+        sym_pol = pd.read_csv('second_df.csv')
+        for i in range(len(sym_pol)):
+            if sym_pol['Lower'][i] <= sizeprec <= sym_pol['Upper'][i]:
+                sym_pold += sym_pol['Discount'][i]
+                result += sym_pold
+                break
+    elif shape != 'RO' and (symmetry == 'VG' or symmetry == 'EX') and (polish == 'VG' or polish == 'EX'):
+        sym_pol = pd.read_csv('third_df.csv')
+        for i in range(len(sym_pol)):
+            size_range = sym_pol['Weight'][i]
+            size_mn = float(size_range.split('-')[0])
+            size_mx = float(size_range.split('-')[1])
+            if size_mn <= sizeprec <= size_mx and sym_pol['Clarity'][i] == color:
+                try:
+                    sym_pold += sym_pol[clarity][i]
+                    result += sym_pold
+                    break
+                except BaseException as e:
+                    pass
     if ff == 0:
         rap = 0;
     if color1 == 'N':
@@ -5628,8 +5663,10 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans.append(depthd)
     ans.append(ktosd)
     ans.append(daysd)
-    ans.append(capped)
     ans.append(very_strong_fluod)
+    ans.append(fancy_fluod)
+    ans.append(sym_pold)
+    ans.append(capped)
 
     return ans
 

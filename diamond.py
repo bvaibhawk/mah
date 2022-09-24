@@ -381,6 +381,8 @@ def page1():
         diamondData = diamondData.assign(Graining_Dis='')
         diamondData = diamondData.assign(Extra_Facet_Dis='')
         diamondData = diamondData.assign(Very_Strong_Fluo_Dis='')
+        diamondData = diamondData.assign(Fancy_Fluo_Dis='')
+        diamondData = diamondData.assign(Fancy_Poly_Sym_Dis='')
 
         records_processed = st.empty()
         progress = st.progress(0)
@@ -589,11 +591,13 @@ def page1():
                 diamondData['Depth_Dis'][i] = result[21]
                 diamondData['Ktos_Dis'][i] = result[22]
                 diamondData['Days_Dis'][i] = result[23]
-                diamondData['Capoff'][i] = result[24]
-                diamondData['Very_Strong_Fluo_Dis'][i] = result[25]
+                diamondData['Very_Strong_Fluo_Dis'][i] = result[24]
+                diamondData['Fancy_Fluo_Dis'][i] = result[25]
+                diamondData['Fancy_Poly_Sym_Dis'][i] = result[26]
+                diamondData['Capoff'][i] = result[27]
                 
                 final_sum = 0
-                for j in range(1, 25):
+                for j in range(1, 27):
                     final_sum += result[j]
                 diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum

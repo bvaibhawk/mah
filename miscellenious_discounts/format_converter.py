@@ -1117,4 +1117,4 @@ def params_fancy():
 # mncolor_csv()
 # days_csv()
 # very_strong_fluo()
-params_fancy()
+# params_fancy()
