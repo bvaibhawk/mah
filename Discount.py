@@ -2456,7 +2456,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         # Finishing
 
     # open
-    # df9=pd.read_csv('Finishing.csv')
+    # df9=pd.read_csv('Finishing.csv') TBD
     # for i in range(len(df9)):
     #     #table
     #     if(df6['Location'][i]=='Table'):
@@ -3455,6 +3455,116 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #     if xx==9:
     #         result=result+ df9['9'][i]/2
     # open in dossiers?
+
+    #finishing
+    finishing_data = pd.read_csv('finishing.csv')
+    for i in range(len(finishing_data)):
+        if shape == 'RO' and sizeprec >= 1:
+            if cut == finishing_data['Cut'][i] and tableopen == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topnatural == finishing_data['Property'][i] \
+                    and finishing_data['Shape'][i] == 'RO':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and identedtopnatural == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topcavity == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topchip == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and crownef == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+        elif shape == 'RO' and sizeprec < 1:
+            if cut == finishing_data['Cut'][i] and tableopen == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Dossiers':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Dossiers':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and identedtopnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Dossiers':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topcavity == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Dossiers':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topchip == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Dossiers':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and crownef == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Dossiers':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+        elif shape != 'RO':
+            if cut == finishing_data['Cut'][i] and tableopen == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and identedtopnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topcavity == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and topchip == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
+            elif cut == finishing_data['Cut'][i] and crownef == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy':
+                if fluo in ['None', 'Faint']:
+                    result += (finishing_data[str(xx)][i] / 2)
+                else:
+                    result += finishing_data[str(xx)][i]
 
     if sizeprec < 1.0:
         if (topnatural == 'N1' or crownnatural == 'N1' or girdlenatural == 'N1' or pavilionnatural == 'N1'):

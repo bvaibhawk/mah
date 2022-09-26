@@ -816,8 +816,10 @@ def bgm_csv():
 
 
 def finishing_csv():
-    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
+    xls = pd.ExcelFile("input_files/input_price_module_discounts.xlsm")
     finishing_df = pd.read_excel(xls, "Finishing")
+    finishing_df["Discounts for MED and above otherwise use Discounts/2 "] = finishing_df['Unnamed: 16'] = finishing_df[
+        'Unnamed: 29'] = finishing_df["Unnamed: 0"]
     finishing = finishing_df.to_numpy()
 
     # defining extra columns
@@ -847,21 +849,18 @@ def finishing_csv():
     def toDataFrame(nparr: np.array):
         nparr[0, 0] = "What"
         nparr[0, 1] = "Value"
-        nparr[0, 2] = "Location"
+        nparr[0, 2] = "Property"
         nparr[1, 1] = "HO"
         nparrdf = pd.DataFrame(list(nparr))
         nparrdf.columns = nparrdf.iloc[0]
         nparrdf = nparrdf.drop(nparrdf.index[0])
-        for i in range(len(nparrdf.columns.values)):
-            if isinstance(nparrdf.columns.values[i], numbers.Number):
-                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
         return nparrdf
 
     def cleanDF(nparr):
         nparrdf = toDataFrame(nparr)
         nparrdf["What"] = nparrdf["What"].fillna(method="ffill")
         nparrdf["Value"] = nparrdf["Value"].fillna(method="ffill")
-        nparrdf["Location"] = nparrdf["Location"].fillna(method="ffill")
+        nparrdf["Property"] = nparrdf["Property"].fillna(method="ffill")
         droppableIndices = []
         for i in range(len(nparrdf)):
             isDroppable = True
@@ -880,7 +879,7 @@ def finishing_csv():
 
         freq = {}
         included = ["Section", "HO", "Open", "Natural", "Small", "Medium", "Big",
-                    "Indented Natural", "Table", "Girdle", "Crown", "Pavilion", "Top"]
+                    "Indented Natural"]
         for row in finishing:
             for ele in row:
                 if ele not in included:
@@ -894,9 +893,8 @@ def finishing_csv():
         temp.sort()
         if not (temp == included and
                 (freq["Section"] == freq["HO"] == freq["Open"] == freq["Medium"] == freq["Big"] == freq[
-                    "Indented Natural"] == freq["Top"] == 6) and
-                (freq["Table"] == freq["Crown"] == freq["Girdle"] == 45) and
-                freq["Small"] == 9 and freq["Natural"] == 12 and freq["Pavilion"] == 51):
+                    "Indented Natural"] == 6) and
+                freq["Small"] == 9 and freq["Natural"] == 12):
             raise Exception("Invalid Format for Finishing Discount Sheet")
 
         # defining regions of interest
@@ -943,8 +941,11 @@ def finishing_csv():
         # combining the different dataframes
         result = pd.concat([roexdf, rovgdf, rogdf, faexdf, favgdf, dossiersdf])
 
+        for i in range(len(result)):
+            result["Property"][i] = result["Property"][i][-3:]
+
         # saving as csv file
-        result.to_csv("finishing.csv", index=False)
+        result.to_csv("../finishing.csv", index=False)
 
     saveFinishingCSV(finishing)
 
