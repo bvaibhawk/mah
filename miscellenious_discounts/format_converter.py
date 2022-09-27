@@ -660,7 +660,8 @@ def internal_grading_csv():
     final_df = pd.DataFrame()
     df_list = []
 
-    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name='Internal Grading')
+    df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm",
+                       sheet_name='Internal Grading')
 
     # extracting required tables in form of dataframes from spreadsheet
     binary_rep = np.array(df.notnull().astype('int'))
@@ -945,7 +946,7 @@ def finishing_csv():
             result["Property"][i] = result["Property"][i][-3:]
 
         # saving as csv file
-        result.to_csv("../finishing.csv", index=False)
+        result.to_csv("finishing.csv", index=False)
 
     saveFinishingCSV(finishing)
 
@@ -1100,6 +1101,135 @@ def params_fancy():
     third_dataframe.to_csv("../third_df.csv")
 
 
+def polish_sym_csv():
+    final_df = pd.DataFrame()
+    df_list = []
+
+    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Polish-Symmetry')
+
+    base_dis = pd.read_csv("../Dossbase.csv")
+
+    def round_nearest(n, r):
+        return n - math.fmod(n, r)
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    new_df = pd.DataFrame()
+    final_df = pd.DataFrame()
+    sizes = ['0.3_0.99', '1_2.99']
+    count = 0
+    # iterating through extracted dataframes
+    for d in df_list:
+        d.reset_index(inplace=True, drop=True)
+        d.columns = d.iloc[0]
+        # print(d)
+        if len(d) > 4:
+            d.columns = map(str.title, d.columns)
+            d = d.drop([0])
+            df1 = d[['Cut', 'Polish', 'Symmetry']]
+            df1.reset_index(inplace=True, drop=True)
+            mask1 = base_dis[(base_dis['Cut'] == 'EX') &
+                             (base_dis['Polish'] == 'EX') &
+                             (base_dis['Symmetry'] == 'EX')]
+
+            mask2 = base_dis[(base_dis['Cut'] == 'VG') &
+                             (base_dis['Polish'] == 'VG') &
+                             (base_dis['Symmetry'] == 'VG')]
+
+            base_dis.drop(mask1.index, inplace=True)
+            base_dis.drop(mask2.index, inplace=True)
+
+            for p in ['EX', 'VG']:
+                for pol, symm in zip(df1[df1['Cut'] == p]['Polish'].values, df1[df1['Cut'] == p]['Symmetry'].values):
+                    for fl in ['None', 'Faint', 'Med', 'Strong', 'Very Strong']:
+                        dd1 = base_dis[(base_dis['Fluo'] == fl) & (base_dis['Cut'] == 'EX')]
+                        dd2 = base_dis[(base_dis['Fluo'] == fl) & (base_dis['Cut'] == 'VG')]
+                        dd3 = base_dis[(base_dis['Fluo'] == fl) & (base_dis['Cut'] == 'GD')]
+
+                        dd1['Polish'] = [pol] * len(dd1)
+                        dd1['Symmetry'] = [symm] * len(dd1)
+
+                        # print(dd1)
+
+                        dd2['Polish'] = [pol] * len(dd2)
+                        dd2['Symmetry'] = [symm] * len(dd2)
+
+                        dd4 = dd1[['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'Size', 'Fluo', 'Clarity', 'Cut',
+                                   'Polish', 'Symmetry']].set_index(
+                            ['Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).subtract(dd3[['D', 'E', 'F', 'G',
+                                                                                                    'H', 'I', 'J', 'K',
+                                                                                                    'L', 'M', 'Size',
+                                                                                                    'Fluo',
+                                                                                                    'Clarity']].set_index(
+                            ['Size', 'Fluo', 'Clarity']), axis=1) / 2
+                        dd5 = dd2[['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'Size', 'Fluo', 'Clarity', 'Cut',
+                                   'Polish', 'Symmetry']].set_index(
+                            ['Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).subtract(dd3[['D', 'E', 'F', 'G',
+                                                                                                    'H', 'I', 'J', 'K',
+                                                                                                    'L', 'M', 'Size',
+                                                                                                    'Fluo',
+                                                                                                    'Clarity']].set_index(
+                            ['Size', 'Fluo', 'Clarity']), axis=1) / 2
+
+                        # round off to nearest 0.5
+                        dd4 = dd4.apply(lambda x: x.mul(-2).round().div(2))
+                        dd5 = dd5.apply(lambda x: x.mul(-2).round().div(2))
+
+                        dd4.reset_index(inplace=True)
+                        dd5.reset_index(inplace=True)
+
+                        if count == 0:
+                            for col in ['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']:
+                                # dd4[col] = np.where(dd4[col]>-5,-5,dd4[col])
+                                dd4[col] = dd4[col].apply(lambda x: min(-x, -5))
+
+                            for col in ['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']:
+                                dd5[col] = dd5[col].apply(lambda x: min(-x, -5))
+
+
+                        elif count == 1:
+                            for col in ['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']:
+                                dd4[col] = dd4[col].apply(lambda x: min(-x, -7))
+
+                            for col in ['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M']:
+                                dd5[col] = dd5[col].apply(lambda x: min(-x, -7))
+
+                        # dd4.reset_index(inplace=True)
+                        # dd5.reset_index(inplace=True)
+                        dd4.drop_duplicates(subset=['Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry'],
+                                            inplace=True)
+                        dd5.drop_duplicates(subset=['Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry'],
+                                            inplace=True)
+
+                        dd6 = dd1[['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'Size', 'Fluo', 'Clarity', 'Cut',
+                                   'Polish', 'Symmetry']].set_index(
+                            ['Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).add(dd4[['D', 'E', 'F', 'G', 'H',
+                                                                                               'I', 'J', 'K', 'L', 'M',
+                                                                                               'Size', 'Fluo',
+                                                                                               'Clarity']].set_index(
+                            ['Size', 'Fluo', 'Clarity']), axis=1).reset_index()
+                        dd7 = dd2[['D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'Size', 'Fluo', 'Clarity', 'Cut',
+                                   'Polish', 'Symmetry']].set_index(
+                            ['Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).add(dd5[['D', 'E', 'F', 'G', 'H',
+                                                                                               'I', 'J', 'K', 'L', 'M',
+                                                                                               'Size', 'Fluo',
+                                                                                               'Clarity']].set_index(
+                            ['Size', 'Fluo', 'Clarity']), axis=1).reset_index()
+
+                        new_df = new_df.append(dd6, ignore_index=True)
+                        new_df = new_df.append(dd7, ignore_index=True)
+
+            new_df.reset_index(inplace=True)
+            new_df.to_csv(f"../polish_symm_{sizes[count]}.csv", index=False)
+            count += 1
+
+        # final_df.append(new_df,ignore_index=True)
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -1113,9 +1243,10 @@ def params_fancy():
 # internal_grading_csv()
 # extras_csv()
 # bgm_csv()
-# finishing_csv()
+finishing_csv()
 # ktos_csv()
 # mncolor_csv()
 # days_csv()
 # very_strong_fluo()
 # params_fancy()
+# polish_sym_csv()

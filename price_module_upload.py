@@ -31,7 +31,7 @@ def page3():
                 conv.diameter_premium()
                 conv.size_premium()
                 conv.doss_base()
-                conv.black_csv()
+                #conv.black_csv()
                 conv.depth_csv()
                 conv.cut_csv()
                 conv.cut_1_5_base_csv()
