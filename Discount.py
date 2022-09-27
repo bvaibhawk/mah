@@ -5784,6 +5784,13 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         if temp - result > 15:
             result = temp - 15
             capped = 15
+
+
+    # polish_sym
+    if shape == 'RO':
+        pass
+
+
     ans = []
     ans.append(result)
     ans.append(base)
