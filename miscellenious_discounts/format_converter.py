@@ -854,6 +854,9 @@ def finishing_csv():
         nparr[1, 1] = "HO"
         nparrdf = pd.DataFrame(list(nparr))
         nparrdf.columns = nparrdf.iloc[0]
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number) and not math.isnan(nparrdf.columns.values[i]):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
         nparrdf = nparrdf.drop(nparrdf.index[0])
         return nparrdf
 
