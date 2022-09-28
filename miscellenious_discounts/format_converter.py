@@ -1233,6 +1233,34 @@ def polish_sym_csv():
 
         # final_df.append(new_df,ignore_index=True)
 
+
+def fl_premium_csv():
+    fprem_data = pd.read_excel('input_files/fl_premium.xlsx')
+    fl_prem_dict = {'Size_min': [], 'Size_max': [], 'Cut': [], 'Polish': [], 'Symmetry': [], 'Clarity': [], 'Color': [],
+                    'Discount': [], 'Fluo': []}
+    fprem_data = fprem_data.drop([0, 1, 2, 10, 11, 12, 13, 14])
+    fprem_data = fprem_data.drop(columns=['Unnamed: 0'])
+    for i in range(len(fprem_data)):
+        if str(fprem_data.iloc[i, 0]) != 'nan' and str(fprem_data.iloc[i, 0]) != 'SIZE':
+            size_min = fprem_data.iloc[i, 0].split('-')[0]
+            size_max = fprem_data.iloc[i, 0].split('-')[1]
+            for j in range(2):
+                color = str(fprem_data.iloc[1, 3 + j])
+                discount = str(fprem_data.iloc[i, 3 + j])
+                fl_prem_dict['Size_min'].append(size_min)
+                fl_prem_dict['Size_max'].append(size_min)
+                fl_prem_dict['Cut'].append('EX')
+                fl_prem_dict['Polish'].append('EX')
+                fl_prem_dict['Symmetry'].append('EX')
+                fl_prem_dict['Clarity'].append('FL')
+                fl_prem_dict['Color'].append(color)
+                fl_prem_dict['Fluo'].append('None')
+                fl_prem_dict['Discount'].append(discount)
+    fl_data = pd.DataFrame.from_dict(fl_prem_dict)
+    fl_data.to_csv('../fl_premium.csv')
+    print(fl_data)
+
+
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -1252,4 +1280,5 @@ def polish_sym_csv():
 # days_csv()
 # very_strong_fluo()
 # params_fancy()
-polish_sym_csv()
+# polish_sym_csv()
+# fl_premium_csv()

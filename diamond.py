@@ -383,6 +383,7 @@ def page1():
         diamondData = diamondData.assign(Very_Strong_Fluo_Dis='')
         diamondData = diamondData.assign(Fancy_Fluo_Dis='')
         diamondData = diamondData.assign(Fancy_Poly_Sym_Dis='')
+        diamondData = diamondData.assign(FL_Premium='')
 
         records_processed = st.empty()
         progress = st.progress(0)
@@ -480,6 +481,7 @@ def page1():
                 graining = column_default_validation(diamondData, 'GRAINING', i)
                 cavity = column_default_validation(diamondData, 'CAVITY', i)
                 chip = column_default_validation(diamondData, 'CHIP', i)
+                remarks = column_default_validation(diamondData, 'REMARKS', i)
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
 
@@ -565,7 +567,7 @@ def page1():
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                        intended_natural, graining, rap_value, ktos_attribute)
+                                        intended_natural, graining, rap_value, ktos_attribute, remarks)
 
                 diamondData['FINAL_DISCOUNT_AFTER_CAPOFF'][i] = result[0]
                 diamondData['Base_Dis'][i] = result[1]
@@ -594,10 +596,11 @@ def page1():
                 diamondData['Very_Strong_Fluo_Dis'][i] = result[24]
                 diamondData['Fancy_Fluo_Dis'][i] = result[25]
                 diamondData['Fancy_Poly_Sym_Dis'][i] = result[26]
-                diamondData['Capoff'][i] = result[27]
+                diamondData['FL_Premium'][i] = result[27]
+                diamondData['Capoff'][i] = result[28]
                 
                 final_sum = 0
-                for j in range(1, 27):
+                for j in range(1, 28):
                     final_sum += result[j]
                 diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum

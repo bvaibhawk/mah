@@ -14,7 +14,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                  pv_depth,
                  girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                  lower_half,
-                 identedtopnatural, graining, rap_value, ktos_attribute
+                 identedtopnatural, graining, rap_value, ktos_attribute, remarks
                  ):
     # test_df = pd.DataFrame({'SZ GR':[szgr], 'CERTCT':[certct], 'COLOR':[color_dict[color]], 'CLARITY':[clarity_dict[clarity]], 'CUT':[cut],
     #                       'POLISH':[polish], 'SYMMETRY':[symmetry], 'FLUO':[fluo], 'rap':[rap], 'PUR RAP DIS':[pur_rap_dis]})
@@ -63,6 +63,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     very_strong_fluod = 0.0
     fancy_fluod = 0.0
     sym_pold = 0.0
+    pol_symd = 0.0
+    fl_premiumd = 0.0
     ff = 0
     xx = 0
     identedcrownnatural = '0'
@@ -3456,11 +3458,12 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #         result=result+ df9['9'][i]/2
     # open in dossiers?
 
-    #finishing
+    # finishing
     finishing_data = pd.read_csv('finishing.csv')
     for i in range(len(finishing_data)):
         if shape == 'RO' and sizeprec >= 1:
-            if cut == finishing_data['Cut'][i] and tableopen == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+            if cut == finishing_data['Cut'][i] and tableopen == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'RO':
                 if fluo in ['None', 'Faint']:
                     opend += (finishing_data[str(xx)][i] / 2)
                     result += opend
@@ -3475,28 +3478,32 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 else:
                     naturald += finishing_data[str(xx)][i]
                     result += naturald
-            elif cut == finishing_data['Cut'][i] and identedtopnatural == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+            elif cut == finishing_data['Cut'][i] and identedtopnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'RO':
                 if fluo in ['None', 'Faint']:
                     identednaturald += (finishing_data[str(xx)][i] / 2)
                     result += identednaturald
                 else:
                     identednaturald += finishing_data[str(xx)][i]
                     result += identednaturald
-            elif cut == finishing_data['Cut'][i] and topcavity == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+            elif cut == finishing_data['Cut'][i] and topcavity == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'RO':
                 if fluo in ['None', 'Faint']:
                     cavityd += (finishing_data[str(xx)][i] / 2)
                     result += cavityd
                 else:
                     cavityd += finishing_data[str(xx)][i]
                     result += cavityd
-            elif cut == finishing_data['Cut'][i] and topchip == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+            elif cut == finishing_data['Cut'][i] and topchip == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'RO':
                 if fluo in ['None', 'Faint']:
                     chipd += (finishing_data[str(xx)][i] / 2)
                     result += chipd
                 else:
                     chipd += finishing_data[str(xx)][i]
                     result += chipd
-            elif cut == finishing_data['Cut'][i] and crownef == finishing_data['Property'][i] and finishing_data['Shape'][i] == 'RO':
+            elif cut == finishing_data['Cut'][i] and crownef == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'RO':
                 if fluo in ['None', 'Faint']:
                     efd += (finishing_data[str(xx)][i] / 2)
                     result += efd
@@ -5523,7 +5530,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #                         result = result + df31['9'][i] / 2
     #         chipd = result - temppp
 
-            # Internal Grading I dont think this is present in the stockfile
+    # Internal Grading I dont think this is present in the stockfile
     df30 = pd.read_csv('InternalGrading.csv')
     for i in range(len(df30)):
         if (shape == 'RO' and shape == df30['Shape'][i] and upgrade1 == df30['what'][i]):
@@ -5785,41 +5792,35 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             result = temp - 15
             capped = 15
 
-
     # polish_sym
-    if shape == 'RO':
-        pass
+    if shape == 'RO' and sizeprec < 1:
+        pol_sym_data = pd.read_csv('polish_symm_0.3_0.99.csv')
+        for i in range(len(pol_sym_data)):
+            if pol_sym_data['Size'][i] == szgr and pol_sym_data['Fluo'][i] == fluo and \
+                    clarity == pol_sym_data['Clarity'][i] and cut == pol_sym_data['Cut'][i] and \
+                    polish == pol_sym_data['Polish'][i] and symmetry == pol_sym_data['Symmetry'][i]:
+                try:
+                    pol_symd += pol_sym_data[color][i]
+                    result += pol_symd
+                    break
+                except BaseException as e:
+                    print(str(e))
 
+    # fl_premium
+    if shape == 'RO' and remarks == 'Type 2A':
+        fl_data = pd.read_csv('fl_premium.csv')
+        for i in range(len(fl_data)):
+            if float(fl_data['Size_min'][i]) <= sizeprec <= float(fl_data['Size_max'][i]) and cut == fl_data['Cut'][i] \
+                    and polish == fl_data['Polish'][i] and symmetry == fl_data['Symmetry'][i] and clarity == fl_data[
+                'Clarity'][i] \
+                    and fluo == fl_data['Fluo'][i]:
+                fl_premiumd += float(fl_data['Discount'][i])
+                result += fl_premiumd
+                break
 
-    ans = []
-    ans.append(result)
-    ans.append(base)
-    ans.append(gdd)
-    ans.append(diameterd)
-    ans.append(colshaded)
-    ans.append(milkyd)
-    ans.append(cutcommentsd)
-    ans.append(grainingd)
-    ans.append(had)
-    ans.append(eyecleand)
-    ans.append(tablecleand)
-    ans.append(blackd)
-    ans.append(sideblackd)
-    ans.append(sizepremd)
-    ans.append(opend)
-    ans.append(naturald)
-    ans.append(identednaturald)
-    ans.append(efd)
-    ans.append(cavityd)
-    ans.append(chipd)
-    ans.append(MNcolorD)
-    ans.append(depthd)
-    ans.append(ktosd)
-    ans.append(daysd)
-    ans.append(very_strong_fluod)
-    ans.append(fancy_fluod)
-    ans.append(sym_pold)
-    ans.append(capped)
+    ans = [result, base, gdd, diameterd, colshaded, milkyd, cutcommentsd, grainingd, had, eyecleand, tablecleand,
+           blackd, sideblackd, sizepremd, opend, naturald, identednaturald, efd, cavityd, chipd, MNcolorD, depthd,
+           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, capped]
 
     return ans
 
