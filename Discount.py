@@ -5805,6 +5805,18 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     break
                 except BaseException as e:
                     print(str(e))
+    elif shape == 'RO':
+        pol_sym_data = pd.read_csv('polish_symm_1.00_2.99.csv')
+        for i in range(len(pol_sym_data)):
+            if pol_sym_data['Size'][i] == szgr and pol_sym_data['Fluo'][i] == fluo and \
+                    clarity == pol_sym_data['Clarity'][i] and cut == pol_sym_data['Cut'][i] and \
+                    polish == pol_sym_data['Polish'][i] and symmetry == pol_sym_data['Symmetry'][i]:
+                try:
+                    pol_symd += pol_sym_data[color][i]
+                    result += pol_symd
+                    break
+                except BaseException as e:
+                    print(str(e))
 
     # fl_premium
     if shape == 'RO' and remarks == 'Type 2A':
@@ -5820,7 +5832,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     ans = [result, base, gdd, diameterd, colshaded, milkyd, cutcommentsd, grainingd, had, eyecleand, tablecleand,
            blackd, sideblackd, sizepremd, opend, naturald, identednaturald, efd, cavityd, chipd, MNcolorD, depthd,
-           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, capped]
+           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, pol_symd, capped]
 
     return ans
 

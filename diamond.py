@@ -384,6 +384,7 @@ def page1():
         diamondData = diamondData.assign(Fancy_Fluo_Dis='')
         diamondData = diamondData.assign(Fancy_Poly_Sym_Dis='')
         diamondData = diamondData.assign(FL_Premium='')
+        diamondData = diamondData.assign(Polish_Symmetry_Dis='')
 
         records_processed = st.empty()
         progress = st.progress(0)
@@ -597,10 +598,11 @@ def page1():
                 diamondData['Fancy_Fluo_Dis'][i] = result[25]
                 diamondData['Fancy_Poly_Sym_Dis'][i] = result[26]
                 diamondData['FL_Premium'][i] = result[27]
-                diamondData['Capoff'][i] = result[28]
+                diamondData['Polish_Symmetry_Dis'][i] = result[28]
+                diamondData['Capoff'][i] = result[29]
                 
                 final_sum = 0
-                for j in range(1, 28):
+                for j in range(1, 29):
                     final_sum += result[j]
                 diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum

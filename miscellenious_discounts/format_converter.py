@@ -419,7 +419,7 @@ def cut_1_5_base_csv():
     for sheet in sheet_names:
         df_list = []
 
-        df = pd.read_excel("miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
+        df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name=sheet)
 
         # extracting required tables in form of dataframes from spreadsheet
         binary_rep = np.array(df.notnull().astype('int'))
@@ -463,10 +463,12 @@ def cut_1_5_base_csv():
                 Fluo.append(val2)
             elif "-" in cut_name:
                 val = cut_name.split("-")[0]
+                if val == 'X':
+                    val = "EX"
                 val2 = cut_name.split("-")[1]
                 Cut.append(val)
-                Polish.append(val)
-                Symmetry.append(val)
+                Polish.append("DD")
+                Symmetry.append("DD")
                 Fluo.append(val2)
             else:
                 if len(cut_name) < 3:
@@ -475,8 +477,8 @@ def cut_1_5_base_csv():
                         val = "GD"
                     val2 = cut_name.split(" ")[1]
                     Cut.append(val)
-                    Polish.append(val)
-                    Symmetry.append(val)
+                    Polish.append("DD")
+                    Symmetry.append("DD")
                     Fluo.append(val2)
                 else:
                     val = cut_name.split(" ")[0]
@@ -484,8 +486,8 @@ def cut_1_5_base_csv():
                         val = "GD"
                     val2 = " ".join(cut_name.split(" ")[1:])
                     Cut.append(val)
-                    Polish.append(val)
-                    Symmetry.append(val)
+                    Polish.append("DD")
+                    Symmetry.append("DD")
                     Fluo.append(val2)
 
             # elif "VG" in cut_name:
@@ -531,6 +533,17 @@ def cut_1_5_base_csv():
             #     sd = sd.drop([1,2])
 
             #     sd.rename(columns={sd.columns[0]: "Clarity" }, inplace = True)
+            # if flag==0:
+            #     sd.columns = sd.loc[1]
+            #     sd = sd.drop([0,1])
+            #     sd.rename(columns={sd.columns[0]: "Clarity" }, inplace = True)
+
+            # else:
+
+            #     sd.columns = sd.iloc[2]
+            #     sd = sd.drop([1,2])
+
+            #     sd.rename(columns={sd.columns[0]: "Clarity" }, inplace = True)
             sd = pd.melt(sd, id_vars='Clarity', value_vars=['IF', 'VVS1', 'VVS2', 'VS1', 'VS2', 'SI1', 'SI2', 'I1'])
 
             sd.rename(columns={'Clarity': 'COLOR', 0: 'CLARITY', 'value': 'Discount'}, inplace=True)
@@ -553,7 +566,7 @@ def cut_1_5_base_csv():
     print(final_df.head(10))
     final_df.reset_index(inplace=True, drop=True)
 
-    final_df.to_csv("1ct_5ctup.csv")
+    final_df.to_csv("../1ct_5ctup.csv")
 
 
 def fancy_base_csv():
@@ -1234,6 +1247,126 @@ def polish_sym_csv():
         # final_df.append(new_df,ignore_index=True)
 
 
+def polish_sym_csv_one_cut_up():
+    final_df = pd.DataFrame()
+    df_list = []
+
+    df = pd.read_excel("input_files/input_price_module_discounts.xlsm", sheet_name='Polish-Symmetry')
+
+    base_dis = pd.read_csv("../1ct_5ctup.csv")
+    base_dis = base_dis.rename(columns={'CUT': 'Cut', 'POL': 'Polish', 'SYM': 'Symmetry', 'FLUO': 'Fluo',
+                                        'COLOR': 'Color', 'CLARITY': 'Clarity'})
+
+    def round_nearest(n, r):
+        return n - math.fmod(n, r)
+
+    # extracting required tables in form of dataframes from spreadsheet
+    binary_rep = np.array(df.notnull().astype('int'))
+    l = label(binary_rep)
+    for s in regionprops(l):
+        if df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]].shape[1] >= 2:
+            df_list.append(df.iloc[s.bbox[0]:s.bbox[2], s.bbox[1]:s.bbox[3]])
+
+    new_df = pd.DataFrame()
+    final_df = pd.DataFrame()
+    label_ = ""
+    # iterating through extracted dataframes
+    for d in df_list:
+        d.reset_index(inplace=True, drop=True)
+        d.columns = d.iloc[0]
+        # print(d)
+        if len(d) > 4:
+            d.columns = map(str.title, d.columns)
+            d = d.drop([0])
+            df1 = d[['Cut', 'Polish', 'Symmetry']]
+            df1.reset_index(inplace=True, drop=True)
+            mask1 = base_dis[(base_dis['Cut'] == 'EX') &
+                             (base_dis['Polish'] == 'EX') &
+                             (base_dis['Symmetry'] == 'EX')]
+
+            base_dis.drop(mask1.index, inplace=True)
+            base_dis.reset_index(inplace=True, drop=True)
+
+            mask2 = base_dis[(base_dis['Cut'] == 'VG') &
+                             (base_dis['Polish'] == 'VG') &
+                             (base_dis['Symmetry'] == 'VG')]
+
+            base_dis.drop(mask2.index, inplace=True)
+            base_dis.reset_index(inplace=True, drop=True)
+
+            mask3 = base_dis[(base_dis['Size'] == "3.01-3.09") |
+                             (base_dis['Size'] == "4.01-4.09") |
+                             (base_dis['Size'] == "5.01-5.09")]
+
+            base_dis.drop(mask3.index, inplace=True)
+            base_dis.reset_index(inplace=True, drop=True)
+
+            for p in ['EX', 'VG']:
+                for pol, symm in zip(df1[df1['Cut'] == p]['Polish'].values, df1[df1['Cut'] == p]['Symmetry'].values):
+                    for fl in ['None', 'Faint', 'Med', 'Strong', 'Very Strong']:
+                        dd1 = base_dis[(base_dis['Fluo'] == fl) & (base_dis['Cut'] == 'EX')]
+                        dd2 = base_dis[(base_dis['Fluo'] == fl) & (base_dis['Cut'] == 'VG')]
+                        dd3 = base_dis[(base_dis['Fluo'] == fl) & (base_dis['Cut'] == 'GD')]
+
+                        dd1['Polish'] = [pol] * len(dd1)
+                        dd1['Symmetry'] = [symm] * len(dd1)
+
+                        # print(dd1)
+
+                        dd2['Polish'] = [pol] * len(dd2)
+                        dd2['Symmetry'] = [symm] * len(dd2)
+
+                        dd4 = dd1[['Discount', 'Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish',
+                                   'Symmetry']].set_index(
+                            ['Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).subtract(
+                            dd3[['Discount', 'Color', 'Size', 'Fluo', 'Clarity']].set_index(
+                                ['Color', 'Size', 'Fluo', 'Clarity']), axis=1) / 2
+                        dd5 = dd2[['Discount', 'Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish',
+                                   'Symmetry']].set_index(
+                            ['Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).subtract(
+                            dd3[['Discount', 'Color', 'Size', 'Fluo', 'Clarity']].set_index(
+                                ['Color', 'Size', 'Fluo', 'Clarity']), axis=1) / 2
+
+                        # round off to nearest 0.5
+                        dd4 = dd4.apply(lambda x: x.mul(-2).round().div(2))
+                        dd5 = dd5.apply(lambda x: x.mul(-2).round().div(2))
+
+                        dd4.reset_index(inplace=True)
+                        dd5.reset_index(inplace=True)
+
+                        label_ = "1.00_2.99"
+
+                        dd4['Discount'] = dd4['Discount'].apply(lambda x: min(-x, -7))
+
+                        dd5['Discount'] = dd5['Discount'].apply(lambda x: min(-x, -7))
+
+                        # dd4.reset_index(inplace=True)
+                        # dd5.reset_index(inplace=True)
+                        dd4.drop_duplicates(subset=['Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry'],
+                                            inplace=True)
+                        dd5.drop_duplicates(subset=['Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry'],
+                                            inplace=True)
+
+                        dd6 = dd1[
+                            ['Discount', 'Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']].set_index(
+                            ['Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).add(
+                            dd4[['Discount', 'Color', 'Size', 'Fluo', 'Clarity']].set_index(
+                                ['Color', 'Size', 'Fluo', 'Clarity']), axis=1).reset_index()
+                        dd7 = dd2[
+                            ['Discount', 'Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']].set_index(
+                            ['Color', 'Size', 'Fluo', 'Clarity', 'Cut', 'Polish', 'Symmetry']).add(
+                            dd5[['Discount', 'Color', 'Size', 'Fluo', 'Clarity']].set_index(
+                                ['Color', 'Size', 'Fluo', 'Clarity']), axis=1).reset_index()
+
+                        new_df = new_df.append(dd6, ignore_index=True)
+                        new_df = new_df.append(dd7, ignore_index=True)
+
+            new_df.reset_index(inplace=True, drop=True)
+            new_df.to_csv(f"../polish_symm_{label_}.csv", index=False)
+
+        # final_df.append(new_df,ignore_index=True)
+
+
 def fl_premium_csv():
     fprem_data = pd.read_excel('input_files/fl_premium.xlsx')
     fl_prem_dict = {'Size_min': [], 'Size_max': [], 'Cut': [], 'Polish': [], 'Symmetry': [], 'Clarity': [], 'Color': [],
@@ -1260,7 +1393,6 @@ def fl_premium_csv():
     fl_data.to_csv('../fl_premium.csv')
     print(fl_data)
 
-
 # central_mapping()
 # diameter_premium()
 # size_premium()
@@ -1282,3 +1414,4 @@ def fl_premium_csv():
 # params_fancy()
 # polish_sym_csv()
 # fl_premium_csv()
+# polish_sym_csv_one_cut_up()
