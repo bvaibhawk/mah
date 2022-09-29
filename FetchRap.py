@@ -29,12 +29,13 @@ def fetchrap(shape, szgr, color, clarity):
 def fetch_size(shape, sizeprec):
     if shape == 'RO':
         size_range_ro = pd.read_csv('size_range_round.csv')
-        for i in size_range_ro['ROUND']:
-            szlist = list(map(float, i.strip().strip("'").split('-')))
+        for i in range(len(size_range_ro['ROUND'])):
+            k = size_range_ro['ROUND'][i]
+            szlist = list(map(float, k.strip().strip("'").split('-')))
             szmin = szlist[0]
             szmax = szlist[1]
             if szmin <= sizeprec <= szmax:
-                return i.strip().strip("'")
+                return size_range_ro['VAL'][i].strip().strip("'")
     else:
         size_range_fn = pd.read_csv('size_range_fancy.csv')
         for i in size_range_fn['FANCY']:

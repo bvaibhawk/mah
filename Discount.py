@@ -7,7 +7,7 @@ from utils.cut_comment_util import get_cut
 def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
                  eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                  tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
-                 girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip, depth, green,
+                 girdleef, girdlecavity, girdlechip, pavilionef, pavilioncavity, pavilionchip, depth, col_shade,
                  grey, brown, milky, tableopen, crownopen, girdleopen, pavilionopen, topnatural, crownnatural,
                  girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1, downgrade2, days,
                  min_diam, max_diam, tabl, height, ratio, cr_angle, cr_height, pv_angle,
@@ -98,13 +98,13 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             if mn_data['size_min'][i] <= sizeprec <= mn_data['size_max'][i]:
                 color = 'M'
                 if cut == 'EX':
-                    MNcolorD += mn_data['EX'][i]
+                    MNcolorD += mn_data['EX'][i] * 100
                 else:
-                    MNcolorD += mn_data['EX-'][i]
-                result += MNcolorD
+                    MNcolorD += mn_data['EX-'][i] * 100
                 break
-
-    if (shape == 'RO' and sizeprec >= 1.0):
+    if fluo == 'Medium':
+        fluo = 'MED'
+    if (shape == 'RO' and sizeprec > 1.0):
         color1 = color
         # if color == 'N': TBD
         #     MNcolorD = -7
@@ -284,7 +284,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     ff = 2
                     break
             temp = result
-    if sizeprec < 1.0 and shape == 'RO':
+    if sizeprec <= 1.0 and shape == 'RO':
         df = pd.read_csv('Dossbase.csv')
         for i in range(len(df)):
             if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
@@ -420,7 +420,9 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                         ff = 1
             gdd = max(-1 * (round(abs(result - tempos) / 2)), -5)
             result = result + max(-1 * (round(abs(result - tempos) / 2)), -5)
-
+        if fluo == 'MED':
+            fluo = 'Medium'
+        result += MNcolorD
             # DIAMETER
     # if (shape == 'RO'):
     #     if sizeprec >= 1.0 and sizeprec <= 1.49:
@@ -599,7 +601,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #                 elif clarity == 'VVS2':
     #                     result = result + 5
     #                     diameterd=5
-    diameterd = get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity)
+    diameterd = get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity, sizeprec)
     result += diameterd
 
     # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
@@ -608,11 +610,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             fluo == 'None' or fluo == 'Medium' or fluo == 'Faint') and shape == 'RO'):
         bgm_ro = pd.read_csv('BGM_3VG.csv')
         for i in range(len(bgm_ro)):
-            if bgm_ro['BGM Type'][i] == colshaded:
+            if bgm_ro['BGM Type'][i] == col_shade:
                 colshaded += bgm_ro[str(xx)][i]
                 result += colshaded
                 break
-            elif bgm_ro['BGM Type'][i] == milkyd:
+            elif bgm_ro['BGM Type'][i] == milky:
                 milkyd += bgm_ro[str(xx)][i]
                 result += milkyd
                 break
@@ -682,11 +684,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     elif shape == 'RO' and sizeprec >= 1.0:
         df3 = pd.read_csv('BGM_RO.csv')
         for i in range(len(df3)):
-            if df3['BGM Type'][i] == colshaded:
+            if df3['BGM Type'][i] == col_shade:
                 colshaded += df3[str(xx)][i]
                 result += colshaded
                 break
-            elif df3['BGM Type'][i] == milkyd:
+            elif df3['BGM Type'][i] == milky:
                 milkyd += df3[str(xx)][i]
                 result += milkyd
                 break
@@ -717,11 +719,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     elif shape != 'RO' and sizeprec >= 1.0:
         df3 = pd.read_csv('BGM_Fancy.csv')
         for i in range(len(df3)):
-            if df3['BGM Type'][i] == colshaded:
+            if df3['BGM Type'][i] == col_shade:
                 colshaded += df3[str(xx)][i]
                 result += colshaded
                 break
-            elif df3['BGM Type'][i] == milkyd:
+            elif df3['BGM Type'][i] == milky:
                 milkyd += df3[str(xx)][i]
                 result += milkyd
                 break
@@ -1003,11 +1005,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     elif shape == 'RO' and sizeprec < 1.0:
         df3 = pd.read_csv('BGM_dossier.csv')
         for i in range(len(df3)):
-            if df3['BGM Type'][i] == colshaded:
+            if df3['BGM Type'][i] == col_shade:
                 colshaded += df3[str(xx)][i]
                 result += colshaded
                 break
-            elif df3['BGM Type'][i] == milkyd:
+            elif df3['BGM Type'][i] == milky:
                 milkyd += df3[str(xx)][i]
                 result += milkyd
                 break
@@ -1244,8 +1246,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #     result = result + result1
         #     grainingd = result1
         # else:
-        result = result + result1
-        grainingd = result1
+        grainingd = result1 * 100
+        result += grainingd
 
     # extras
     extra_data = pd.read_csv('extras.csv')
@@ -5713,7 +5715,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     day_csv = pd.read_csv('days_discount.csv')
     for i in range(len(day_csv)):
         if day_csv['Days Min'][i] <= days <= day_csv['Days Max'][i]:
-            daysd += day_csv['Discount'][i]
+            daysd += day_csv['Discount'][i] * 100
             result += daysd
             break
     # if (sizeprec < 1.0):
