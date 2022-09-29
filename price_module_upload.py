@@ -46,9 +46,9 @@ def page3():
                 conv.days_csv()
                 conv.very_strong_fluo()
                 conv.params_fancy()
-                conv.polish_sym_csv()
+                # conv.polish_sym_csv()
                 conv.fl_premium_csv()
-                conv.polish_sym_csv_one_cut_up()
+                # conv.polish_sym_csv_one_cut_up()
                 st.write('Successfully uploaded and updated')
             except BaseException as e:
                 if os.path.exists("miscellenious_discounts/input_files/input_price_module_discounts.xlsm"):

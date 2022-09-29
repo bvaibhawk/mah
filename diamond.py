@@ -607,7 +607,9 @@ def page1():
                 diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
-                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)     
+                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
+                diamondData = diamondData.drop(columns=['FINAL_DISCOUNT_AFTER_CAPOFF', 'GD_Dis', 'Capoff', 'DISCOUNT_BEFORE_CAPOFF',
+                                          'Differnce_between_Capped_and_Uncapped_Dis', 'DISCOUNTED_RAP'])
                            
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
