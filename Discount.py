@@ -70,6 +70,18 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     identedcrownnatural = '0'
     identedgirdlenatural = '0'
     identedpavilionnatural = '0'
+
+
+    if shape == 'RO' and color == 'N':
+        mn_data = pd.read_csv('discountsncolors.csv')
+        for i in range(len(mn_data)):
+            if mn_data['size_min'][i] <= sizeprec <= mn_data['size_max'][i]:
+                color = 'M'
+                if cut == 'EX':
+                    MNcolorD += mn_data['EX'][i] * 100
+                else:
+                    MNcolorD += mn_data['EX-'][i] * 100
+                break
     if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
         if ((color == 'D') or (color == 'E') or (color == 'F')):
             xx = 1
@@ -91,17 +103,6 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             xx = 8
         if ((color == 'J') or (color == 'K') or (color == 'L') or (color == 'M') or (color == 'N')):
             xx = 9
-
-    if shape == 'RO' and color == 'N':
-        mn_data = pd.read_csv('discountsncolors.csv')
-        for i in range(len(mn_data)):
-            if mn_data['size_min'][i] <= sizeprec <= mn_data['size_max'][i]:
-                color = 'M'
-                if cut == 'EX':
-                    MNcolorD += mn_data['EX'][i] * 100
-                else:
-                    MNcolorD += mn_data['EX-'][i] * 100
-                break
     if fluo == 'Medium':
         fluo = 'MED'
     if (shape == 'RO' and sizeprec > 1.0):
