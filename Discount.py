@@ -1246,7 +1246,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #     result = result + result1
         #     grainingd = result1
         # else:
-        grainingd = result1 * 100
+        grainingd = result1
         result += grainingd
 
     # extras
@@ -1587,7 +1587,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 blackd += dossier_black[str(xx)][i]
                 result += blackd
                 break
-            if dossier_black['Intensity'][i] == tableintensity and dossier_black['Shape'][i] == 'Dossiers':
+            if dossier_black['Intensity'][i] == crownintensity and dossier_black['Shape'][i] == 'Dossiers':
                 sideblackd += dossier_black[str(xx)][i]
                 result += sideblackd
                 break
@@ -1621,7 +1621,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 if df6['Shape'][i] == shape and shape == 'RO':
                     if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (
                             sizeprec <= df6['sizemax'][i]) and (
-                            tableintensity == df6['Intensity'][i])):
+                            crownintensity == df6['Intensity'][i])):
                         if fluo != 'None' and fluo != 'Faint':
                             sideblackd += df6[str(xx)][i]
                             result += sideblackd
@@ -1632,7 +1632,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
                     if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
-                        i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
+                        i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == crownintensity):
                         sideblackd += df6[str(xx)][i]
                         result += sideblackd
                         break
