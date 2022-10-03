@@ -608,8 +608,6 @@ def page1():
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
-                diamondData = diamondData.drop(columns=['FINAL_DISCOUNT_AFTER_CAPOFF', 'GD_Dis', 'Capoff', 'DISCOUNT_BEFORE_CAPOFF',
-                                          'Differnce_between_Capped_and_Uncapped_Dis', 'DISCOUNTED_RAP'])
                            
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
@@ -623,6 +621,9 @@ def page1():
             records_processed.text(str(i) + ' out of ' + str(len(diamondData) - 1) + ' records processed')
             progress.progress(float(i) / (len(diamondData)))
         if not exception_flag:
+            diamondData = diamondData.drop(
+                columns=['FINAL_DISCOUNT_AFTER_CAPOFF', 'GD_Dis', 'Capoff', 'DISCOUNT_BEFORE_CAPOFF',
+                         'Differnce_between_Capped_and_Uncapped_Dis', 'DISCOUNTED_RAP'])
             diamondData = diamondData.astype(str)
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
