@@ -619,7 +619,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 colshaded += bgm_ro[str(xx)][i]
                 result += colshaded
                 break
-            elif bgm_ro['BGM Type'][i] == milky:
+        for i in range(len(bgm_ro)):
+            if bgm_ro['BGM Type'][i] == milky:
                 milkyd += bgm_ro[str(xx)][i]
                 result += milkyd
                 break
@@ -687,14 +688,15 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #         #         result=result+ df3['Discount'][i]
         #         break
     elif shape == 'RO' and sizeprec >= 1.0:
-        df3 = pd.read_csv('BGM_RO.csv')
-        for i in range(len(df3)):
-            if df3['BGM Type'][i] == col_shade:
-                colshaded += df3[str(xx)][i]
+        bgm_ro = pd.read_csv('BGM_RO.csv')
+        for i in range(len(bgm_ro)):
+            if bgm_ro['BGM Type'][i] == col_shade:
+                colshaded += bgm_ro[str(xx)][i]
                 result += colshaded
                 break
-            elif df3['BGM Type'][i] == milky:
-                milkyd += df3[str(xx)][i]
+        for i in range(len(bgm_ro)):
+            if bgm_ro['BGM Type'][i] == milky:
+                milkyd += bgm_ro[str(xx)][i]
                 result += milkyd
                 break
         #     if (sizeprec >= 1.0 and (shape == 'RO') and (xx == df3['Section'][i]) and (brown == df3['bgm'][i])):
@@ -728,7 +730,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 colshaded += df3[str(xx)][i]
                 result += colshaded
                 break
-            elif df3['BGM Type'][i] == milky:
+        for i in range(len(df3)):
+            if df3['BGM Type'][i] == milky:
                 milkyd += df3[str(xx)][i]
                 result += milkyd
                 break
@@ -1014,7 +1017,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 colshaded += df3[str(xx)][i]
                 result += colshaded
                 break
-            elif df3['BGM Type'][i] == milky:
+        for i in range(len(df3)):
+            if df3['BGM Type'][i] == milky:
                 milkyd += df3[str(xx)][i]
                 result += milkyd
                 break
@@ -1254,40 +1258,47 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         grainingd = result1
         result += grainingd
 
-    # extras
-    extra_data = pd.read_csv('extras.csv')
-    if ha != '':
-        for i in range(len(extra_data)):
-            if extra_data['Field'][i] == 'H&A' and shape == 'RO' and extra_data['Shape'][i] == 'RO':
-                had += extra_data[str(xx)][i]
-                result += had
-                break
-            elif extra_data['Field'][i] == 'H&A' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy':
-                had += extra_data[str(xx)][i]
-                result += had
-                break
+    #
+    if cut == 'EX' and (fluo == 'None' or fluo == 'Faint') and sizeprec >= 1.0:
+        extra_data = pd.read_csv('extras.csv')
+        if ha != '':
+            for i in range(len(extra_data)):
+                if extra_data['Field'][i] == 'H&A' and shape == 'RO' and extra_data['Shape'][i] == 'RO' \
+                        and extra_data['FieldValue'][i] == ha:
+                    had += extra_data[str(xx)][i]
+                    result += had
+                    break
+                elif extra_data['Field'][i] == 'H&A' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy' \
+                        and extra_data['FieldValue'][i] == ha:
+                    had += extra_data[str(xx)][i]
+                    result += had
+                    break
 
-    if tableclean != '':
-        for i in range(len(extra_data)):
-            if extra_data['Field'][i] == 'Table Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO':
-                tablecleand += extra_data[str(xx)][i]
-                result += tablecleand
-                break
-            elif extra_data['Field'][i] == 'Table Clean' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy':
-                tablecleand += extra_data[str(xx)][i]
-                result += tablecleand
-                break
+        if tableclean != '':
+            for i in range(len(extra_data)):
+                if extra_data['Field'][i] == 'Table Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO' \
+                        and extra_data['FieldValue'][i] == tableclean:
+                    tablecleand += extra_data[str(xx)][i]
+                    result += tablecleand
+                    break
+                elif extra_data['Field'][i] == 'Table Clean' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy' \
+                        and extra_data['FieldValue'][i] == tableclean:
+                    tablecleand += extra_data[str(xx)][i]
+                    result += tablecleand
+                    break
 
-    if eyeclean != '':
-        for i in range(len(extra_data)):
-            if extra_data['Field'][i] == 'Eye Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO':
-                eyecleand += extra_data[str(xx)][i]
-                result += eyecleand
-                break
-            elif extra_data['Field'][i] == 'Eye Clean' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy':
-                eyecleand += extra_data[str(xx)][i]
-                result += eyecleand
-                break
+        if eyeclean != '':
+            for i in range(len(extra_data)):
+                if extra_data['Field'][i] == 'Eye Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO' \
+                        and extra_data['FieldValue'][i] == eyeclean:
+                    eyecleand += extra_data[str(xx)][i]
+                    result += eyecleand
+                    break
+                elif extra_data['Field'][i] == 'Eye Clean' and shape != 'RO' and extra_data['Shape'][i] == 'Fancy' \
+                        and extra_data['FieldValue'][i] == eyeclean:
+                    eyecleand += extra_data[str(xx)][i]
+                    result += eyecleand
+                    break
 
     # if ha == 'Y':
     #     if shape == 'RO':
@@ -5711,7 +5722,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             depthd = depth_data['Depth'][0]
             result = result + depthd
         if cut == 'VG' and depth >= 64.8 and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and (
-                color != 'J' or color != 'K' or color != 'L' or color != 'I'):
+                color != 'J' and color != 'K' and color != 'L' and color != 'M'):
             depthd = depth_data['Depth'][1]
             result = result + depthd
     # Depth discount

@@ -271,7 +271,7 @@ def black_csv():
     cols = ["sizemin", "sizemax", "cut", "polish", "sym", "Shape"]
     colvalues_roex1to6 = [1, 5.99, "EX", "", "", "RO"]
     colvalues_rovg1to6 = [1, 5.99, "VG", "", "", "RO"]
-    colvalues_rog1to6 = [1, 5.99, "G", "", "", "RO"]
+    colvalues_rog1to6 = [1, 5.99, "GD", "", "", "RO"]
     colvalues_faex1to3 = [0, 2.99, "EX", "EX", "EX", "Fancy"]
     colvalues_favg1to3 = [0, 2.99, "", "VG", "VG", "Fancy"]
     colvalues_faexabove3 = [3, 10, "EX", "EX", "EX", "Fancy"]
