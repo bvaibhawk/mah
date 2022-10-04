@@ -489,22 +489,22 @@ def page1():
                 if(shape=='ROUND' or shape=='RD'): 
                   shape='RO'
                   diamondData['SHAPE'][i] = shape
-                if(shape=='CS'):
+                if(shape=='CUSHION' or shape=='CS'):
                   shape='CUSHION'
                   diamondData['SHAPE'][i] = shape
-                if(shape=='EM'):
+                if(shape=='EMERALD' or shape=='EM'):
                   shape='EMERALD'
                   diamondData['SHAPE'][i] = shape
                 if(shape=='MARQUISE' or shape=='MQ'): 
                   shape='MARQUISE'
                   diamondData['SHAPE'][i] = shape
-                if(shape=='PR'):
+                if(shape=='PR' or shape=='PEAR'):
                   shape='PEAR'
                   diamondData['SHAPE'][i] = shape
-                if(shape=='PRN'): 
+                if(shape=='PRN' or shape=='PRINCESS'):
                   shape='PRINCESS'
                   diamondData['SHAPE'][i] = shape
-                if(shape=='OV'):
+                if(shape=='OV' or shape=='OVAL'):
                   shape='OVAL'
                   diamondData['SHAPE'][i] = shape 
                 if fluo=='FNT':
@@ -516,7 +516,7 @@ def page1():
                 if fluo=='NON':
                    fluo='None'   
                    diamondData['FLUO'][i] = fluo 
-                if fluo=='STG':
+                if fluo=='STG' or fluo=='STR':
                    fluo='Strong'
                    diamondData['FLUO'][i] = fluo 
                 if fluo=='VST':

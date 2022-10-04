@@ -71,8 +71,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     identedgirdlenatural = '0'
     identedpavilionnatural = '0'
 
-
-    if shape == 'RO' and color == 'N':
+    if color == 'N':
         mn_data = pd.read_csv('discountsncolors.csv')
         for i in range(len(mn_data)):
             if mn_data['size_min'][i] <= sizeprec <= mn_data['size_max'][i]:
@@ -103,8 +102,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             xx = 8
         if ((color == 'J') or (color == 'K') or (color == 'L') or (color == 'M') or (color == 'N')):
             xx = 9
-    if fluo == 'Medium':
-        fluo = 'MED'
+    if xx == 0:
+        print(xx, clarity, color)
     if (shape == 'RO' and sizeprec > 1.0):
         color1 = color
         # if color == 'N': TBD
@@ -287,6 +286,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             temp = result
     if sizeprec <= 1.0 and shape == 'RO':
         df = pd.read_csv('Dossbase.csv')
+        df['Fluo'] = df['Fluo'].replace('Med', 'Medium')
         for i in range(len(df)):
             if df['Clarity'][i] == clarity and szgr == df['Size'][i] and df['Fluo'][i] == fluo:
                 if cut == 'EX' and polish == 'EX' and symmetry == 'EX':
@@ -424,7 +424,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         if fluo == 'MED':
             fluo = 'Medium'
         result += MNcolorD
-            # DIAMETER
+        # DIAMETER
     # if (shape == 'RO'):
     #     if sizeprec >= 1.0 and sizeprec <= 1.49:
     #         if cut == 'VG':
@@ -602,7 +602,11 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     #                 elif clarity == 'VVS2':
     #                     result = result + 5
     #                     diameterd=5
-    diameterd = get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity, sizeprec)
+    try:
+        diameterd = get_diameter_premium(shape, cut, polish, symmetry, fluo, szgr, min_diam, max_diam, color, clarity,
+                                         sizeprec)
+    except BaseException as e:
+        pass
     result += diameterd
 
     # bgm- Note- need to ask whether it is one exculsive table or multiple table combined- currently considered one exclusive table
@@ -2197,7 +2201,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                     result = result + df7['9'][i]
                                     sizepremd = df7['9'][i]
                             break
-            else:
+            elif cut == 'VG' or cut == 'EX':
                 if color == 'F' and (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2'):
                     df7 = pd.read_csv('rovgsmF.csv')
                     for i in range(len(df7)):
@@ -5753,7 +5757,13 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ## Fluo discount
     if shape != 'RO':
         fluo_data = pd.read_csv('fluo_disc.csv')
-        for i in range(len(fluo_data)):
+        new_header = fluo_data.iloc[0]
+        fluo_data = fluo_data[1:]
+        new_header[1] = 'Color'
+        fluo_data.columns = new_header
+        fluo_data.rename(columns={'Faint': 'Fluo'}, inplace=True)
+        # print(fluo_data)
+        for i in range(1, len(fluo_data)):
             if fluo_data['Color'][i] == color and fluo_data['Fluo'][i] == fluo:
                 try:
                     fancy_fluod += float(fluo_data[clarity][i])
