@@ -2312,19 +2312,49 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                                     sizepremd = df7['9'][i]
                             break
         elif sizeprec >= 3.00 and sizeprec <= 6.99:
+            tcut, tpol, tsym = '', '', ''
+            # initializing the temp cut,poly,sym variables to handles vg+, 3ex etc mappings
             if (cut == 'EX' or cut == 'VG') and (polish == 'EX' or polish == 'VG') and (
                     symmetry == 'EX' or symmetry == 'VG'):
-                if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
-                    roexbgf_size_prem = pd.read_csv('roexbgF.csv')
-                    for i in range(len(roexbgf_size_prem)):
-                        if roexbgf_size_prem['From'][i] <= sizeprec <= roexbgf_size_prem['To'][i]:
+                tcut, tpol, tsym = 'VG+', 'VG+', 'VG+'
+            if (clarity == 'IF' or clarity == 'VVS1' or clarity == 'VVS2') and color == 'F':
+                roexbgf_size_prem = pd.read_csv('roexbgF.csv')
+                for i in range(len(roexbgf_size_prem)):
+                    if roexbgf_size_prem['From'][i] <= sizeprec <= roexbgf_size_prem['To'][i]:
+                        if roexbgf_size_prem['Cut'][i] == 'EX':
+                            if roexbgf_size_prem['Cut'][i] == cut and roexbgf_size_prem['Polish'][i] == polish and \
+                                    roexbgf_size_prem['Sym'][i] == symmetry and fluo == 'None':
+                                sizepremd = roexbgf_size_prem['IF VVS F'][i]
+                                result += sizepremd
+                                break
+                            else:
+                                sizepremd = roexbgf_size_prem['IF VVS F'][i + 1]
+                                result += sizepremd
+                                break
+                        elif tcut == roexbgf_size_prem['Cut'][i] \
+                                and tpol == roexbgf_size_prem['Polish'][i] \
+                                and tsym == roexbgf_size_prem['Sym'][i]:
                             sizepremd = roexbgf_size_prem['IF VVS F'][i]
                             result += sizepremd
                             break
-                else:
-                    df7 = pd.read_csv('roexbg.csv')
-                    for i in range(len(df7)):
-                        if df7['From'][i] <= sizeprec <= df7['To'][i]:
+
+            else:
+                df7 = pd.read_csv('roexbg.csv')
+                for i in range(len(df7)):
+                    if df7['From'][i] <= sizeprec <= df7['To'][i]:
+                        if df7['Cut'][i] == 'EX':
+                            if df7['Cut'][i] == cut and df7['Polish'][i] == polish and \
+                                    df7['Sym'][i] == symmetry and fluo == 'None':
+                                sizepremd = df7[str(xx)][i]
+                                result += sizepremd
+                                break
+                            else:
+                                sizepremd = df7[str(xx)][i + 1]
+                                result += sizepremd
+                                break
+                        elif tcut == df7['Cut'][i] \
+                                and tpol == df7['Polish'][i] \
+                                and tsym == df7['Sym'][i]:
                             sizepremd = df7[str(xx)][i]
                             result += sizepremd
                             break

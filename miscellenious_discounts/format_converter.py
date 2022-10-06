@@ -120,20 +120,36 @@ def size_premium():
     arr = df1.to_numpy()
 
     def saveDataFrame(nparr: np.array, name: str):
-
         nparrdf = pd.DataFrame(list(nparr))
-
         nparrdf.columns = nparrdf.iloc[0]
-
         if (list(nparrdf.columns).__contains__("Class")):
+            nparrdf["Cut"] = ""
+            nparrdf["Polish"] = ""
+            nparrdf["Sym"] = ""
+            for i in range(len(nparrdf)):
+                if nparrdf["Class"][i] == "3EX -NONE":
+                    nparrdf["Cut"][i] = "EX"
+                    nparrdf["Polish"][i] = "EX"
+                    nparrdf["Sym"][i] = "EX"
+
+                elif nparrdf["Class"][i] == "3VG+":
+                    nparrdf["Cut"][i] = "VG+"
+                    nparrdf["Polish"][i] = "VG+"
+                    nparrdf["Sym"][i] = "VG+"
+
+                else:
+                    nparrdf["Cut"][i] = "Else"
+                    nparrdf["Polish"][i] = "Else"
+                    nparrdf["Sym"][i] = "Else"
+
             nparrdf = nparrdf.drop(["Class"], axis=1)
 
         nparrdf = nparrdf.drop(nparrdf.index[0])
-
         for i in range(len(nparrdf.columns.values)):
-
             if isinstance(nparrdf.columns.values[i], numbers.Number):
                 nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
+        # return nparrdf
+
         nparrdf.to_csv(f"{name}.csv", index=False)
 
     def saveDFSizePremiums(df_size_premiums):
@@ -263,26 +279,32 @@ def doss_base():
 
 
 def black_csv():
-    xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
-    df_black = pd.read_excel(xls, "Black")
+    pd.options.mode.chained_assignment = None
+
+    df_black = pd.read_excel(
+        "miscellenious_discounts/input_files/input_price_module_discounts.xlsm", sheet_name="Black")
 
     black = df_black.to_numpy()
     # defining extra cols and their values according to the respective dataframes.
     cols = ["sizemin", "sizemax", "cut", "polish", "sym", "Shape"]
-    colvalues_roex1to6 = [1, 5.99, "EX", "", "", "RO"]
-    colvalues_rovg1to6 = [1, 5.99, "VG", "", "", "RO"]
-    colvalues_rog1to6 = [1, 5.99, "GD", "", "", "RO"]
+    colvalues_roex1to3 = [1, 2.99, "EX", "", "", "RO"]
+    colvalues_rovg1to3 = [1, 2.99, "VG", "", "", "RO"]
+    colvalues_rog1to3 = [1, 2.99, "G", "", "", "RO"]
+    colvalues_roex3to6 = [3, 5.99, "EX", "", "", "RO"]
+    colvalues_rovg3to6 = [3, 5.99, "VG", "", "", "RO"]
+    colvalues_rog3to6 = [3, 5.99, "G", "", "", "RO"]
     colvalues_faex1to3 = [0, 2.99, "EX", "EX", "EX", "Fancy"]
     colvalues_favg1to3 = [0, 2.99, "", "VG", "VG", "Fancy"]
     colvalues_faexabove3 = [3, 10, "EX", "EX", "EX", "Fancy"]
     colvalues_favgabove3 = [3, 10, "", "VG", "VG", "Fancy"]
     colvalues_dossiers = [0, 0.99, "", "", "", "Dossiers"]
 
-    colvalues_list = [colvalues_roex1to6, colvalues_rovg1to6, colvalues_rog1to6, colvalues_faex1to3,
+    colvalues_list = [colvalues_roex1to3, colvalues_rovg1to3, colvalues_rog1to3, colvalues_roex3to6, colvalues_rovg3to6,
+                      colvalues_rog3to6, colvalues_faex1to3,
                       colvalues_favg1to3, colvalues_faexabove3, colvalues_favgabove3, colvalues_dossiers]
 
     k = 1
-    for i in range(4):
+    for i in range(5):
         black[1, k] = "Location"
         black[15, k] = "Location"
         black[29, k] = "Location"
@@ -302,6 +324,7 @@ def black_csv():
         nparrdf.columns = nparrdf.iloc[0]
         nparrdf = fillnaLocations(nparrdf)
         for i in range(len(nparrdf["Intensity"])):
+            # temp = copy.deepcopy(nparrdf["Intensity"][i])
             if nparrdf.Location[i] == "Table":
                 nparrdf["Intensity"][i] = "BT" + str(nparrdf["Intensity"][i])
             elif nparrdf.Location[i] == "Crown":
@@ -332,13 +355,16 @@ def black_csv():
                 else:
                     freq[ele] = 1
 
-        if not (list(freq.keys()) == included and np.unique(list(freq.values()))[0] == 8):
+        if not (list(freq.keys()) == included and np.unique(list(freq.values()))[0] == 11):
             raise Exception("Invalid Format for Black Discount Sheet")
 
         # defining regions
-        roex1to6 = black[1:12, 1:12]
-        rovg1to6 = black[15:26, 1:12]
-        rog1to6 = black[29:40, 1:12]
+        roex1to3 = black[1:12, 1:12]
+        rovg1to3 = black[15:26, 1:12]
+        rog1to3 = black[29:40, 1:12]
+        roex3to6 = black[1:12, 49:61]
+        rovg3to6 = black[15:26, 49:61]
+        rog3to6 = black[29:40, 49:61]
         faex1to3 = black[1:12, 13:24]
         favg1to3 = black[15:26, 13:24]
         faexabove3 = black[1:12, 25:36]
@@ -346,16 +372,19 @@ def black_csv():
         dossiers = black[1:12, 37:48]
 
         # converting to individual dataframes
-        roex1to6df = toDataFrame(roex1to6, list(i for i in range(10)))
-        rovg1to6df = toDataFrame(rovg1to6, list(i for i in range(10, 20)))
-        rog1to6df = toDataFrame(rog1to6, list(i for i in range(20, 30)))
-        faex1to3df = toDataFrame(faex1to3, list(i for i in range(30, 40)))
-        favg1to3df = toDataFrame(favg1to3, list(i for i in range(40, 50)))
-        faexabove3df = toDataFrame(faexabove3, list(i for i in range(50, 60)))
-        favgabove3df = toDataFrame(favgabove3, list(i for i in range(60, 70)))
-        dossiersdf = toDataFrame(dossiers, list(i for i in range(70, 80)))
+        roex1to3df = toDataFrame(roex1to3, list(i for i in range(10)))
+        rovg1to3df = toDataFrame(rovg1to3, list(i for i in range(10, 20)))
+        rog1to3df = toDataFrame(rog1to3, list(i for i in range(20, 30)))
+        roex3to6df = toDataFrame(roex3to6, list(i for i in range(30, 40)))
+        rovg3to6df = toDataFrame(rovg3to6, list(i for i in range(40, 50)))
+        rog3to6df = toDataFrame(rog3to6, list(i for i in range(50, 60)))
+        faex1to3df = toDataFrame(faex1to3, list(i for i in range(60, 70)))
+        favg1to3df = toDataFrame(favg1to3, list(i for i in range(70, 80)))
+        faexabove3df = toDataFrame(faexabove3, list(i for i in range(80, 90)))
+        favgabove3df = toDataFrame(favgabove3, list(i for i in range(90, 100)))
+        dossiersdf = toDataFrame(dossiers, list(i for i in range(100, 110)))
 
-        df_list = [roex1to6df, rovg1to6df, rog1to6df, faex1to3df,
+        df_list = [roex1to3df, rovg1to3df, rog1to3df, roex3to6df, rovg3to6df, rog3to6df, faex1to3df,
                    favg1to3df, faexabove3df, favgabove3df, dossiersdf]
 
         # filling nan values in the "Location" column
@@ -840,18 +869,23 @@ def bgm_csv():
 def finishing_csv():
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     finishing_df = pd.read_excel(xls, "Finishing")
-    finishing_df["Discounts for MED and above otherwise use Discounts/2 "] = finishing_df['Unnamed: 16'] = finishing_df[
-        'Unnamed: 29'] = finishing_df["Unnamed: 0"]
+    # print(finishing_df)
+    finishing_df["Discounts for MED and above otherwise use Discounts/2 - Rounds 1Ct-2.99Ct"] = finishing_df[
+        "Discounts for MED and above otherwise use Discounts/2 - Rounds 3Ct-5.99Ct"] = finishing_df['Unnamed: 16'] = \
+    finishing_df['Unnamed: 29'] = finishing_df["Unnamed: 0"]
     finishing = finishing_df.to_numpy()
 
     # defining extra columns
-    cols = ["Cut", "Polish", "Sym", "Shape"]
-    colvalues_roex = ["EX", "", "", "RO"]
-    colvalues_rovg = ["VG", "", "", "RO"]
-    colvalues_rog = ["G", "", "", "RO"]
-    colvalues_faex = ["EX", "EX", "EX", "Fancy"]
-    colvalues_favg = ["", "VG", "VG", "Fancy"]
-    colvalues_dossiers = ["", "", "", "Dossiers"]
+    cols = ["sizemin", "sizemax", "Cut", "Polish", "Sym", "Shape"]
+    colvalues_roex1to3 = [1, 2.99, "EX", "", "", "RO"]
+    colvalues_rovg1to3 = [1, 2.99, "VG", "", "", "RO"]
+    colvalues_rog1to3 = [1, 2.99, "G", "", "", "RO"]
+    colvalues_roex3to6 = [3, 5.99, "EX", "", "", "RO"]
+    colvalues_rovg3to6 = [3, 5.99, "VG", "", "", "RO"]
+    colvalues_rog3to6 = [3, 5.99, "G", "", "", "RO"]
+    colvalues_faex = ["", "", "EX", "EX", "EX", "Fancy"]
+    colvalues_favg = ["", "", "", "VG", "VG", "Fancy"]
+    colvalues_dossiers = [0, 0.99, "", "", "", "Dossiers"]
 
     # helper functions
 
@@ -875,10 +909,10 @@ def finishing_csv():
         nparr[1, 1] = "HO"
         nparrdf = pd.DataFrame(list(nparr))
         nparrdf.columns = nparrdf.iloc[0]
-        for i in range(len(nparrdf.columns.values)):
-            if isinstance(nparrdf.columns.values[i], numbers.Number) and not math.isnan(nparrdf.columns.values[i]):
-                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
         nparrdf = nparrdf.drop(nparrdf.index[0])
+        for i in range(len(nparrdf.columns.values)):
+            if isinstance(nparrdf.columns.values[i], numbers.Number):
+                nparrdf.columns.values[i] = int(nparrdf.columns.values[i])
         return nparrdf
 
     def cleanDF(nparr):
@@ -903,7 +937,7 @@ def finishing_csv():
     def saveFinishingCSV(finishing):
 
         freq = {}
-        included = ["Section", "HO", "Open", "Natural", "Small", "Medium", "Big",
+        included = ["Section", "HO", "Open", "Medium", "Big",
                     "Indented Natural"]
         for row in finishing:
             for ele in row:
@@ -918,14 +952,17 @@ def finishing_csv():
         temp.sort()
         if not (temp == included and
                 (freq["Section"] == freq["HO"] == freq["Open"] == freq["Medium"] == freq["Big"] == freq[
-                    "Indented Natural"] == 6) and
-                freq["Small"] == 9 and freq["Natural"] == 12):
+                    "Indented Natural"] == 9)):
             raise Exception("Invalid Format for Finishing Discount Sheet")
 
         # defining regions of interest
-        roex = finishing[1:52, gsCellToXIndex("B", "M")]
-        rovg = finishing[56:107, gsCellToXIndex("B", "M")]
-        rog = finishing[111:162, gsCellToXIndex("B", "M")]
+        roex1to3 = finishing[1:52, gsCellToXIndex("B", "M")]
+        rovg1to3 = finishing[56:107, gsCellToXIndex("B", "M")]
+        rog1to3 = finishing[111:162, gsCellToXIndex("B", "M")]
+
+        roex3to6 = finishing[1:52, gsCellToXIndex("AO", "AZ")]
+        rovg3to6 = finishing[56:107, gsCellToXIndex("AO", "AZ")]
+        rog3to6 = finishing[111:162, gsCellToXIndex("AO", "AZ")]
 
         faex = finishing[1:52, gsCellToXIndex("O", "Z")]
         favg = finishing[56:107, gsCellToXIndex("O", "Z")]
@@ -933,38 +970,54 @@ def finishing_csv():
         dossiers = finishing[1:36, gsCellToXIndex("AB", "AM")]
 
         # converting the data into correct format using helper functions
-        roexdf = cleanDF(roex)
-        roexdf.set_index(
-            pd.Index(list(i for i in range(len(roexdf)))), inplace=True)
-        fillExtraCols(roexdf, cols, colvalues_roex)
+        roex1to3df = cleanDF(roex1to3)
+        roex1to3df.set_index(
+            pd.Index(list(i for i in range(len(roex1to3df)))), inplace=True)
+        fillExtraCols(roex1to3df, cols, colvalues_roex1to3)
 
-        rovgdf = cleanDF(rovg)
-        rovgdf.set_index(pd.Index(list(i for i in range(
-            len(roexdf), 2 * len(rovgdf)))), inplace=True)
-        fillExtraCols(rovgdf, cols, colvalues_rovg)
+        rovg1to3df = cleanDF(rovg1to3)
+        rovg1to3df.set_index(pd.Index(list(i for i in range(
+            len(roex1to3df), 2 * len(rovg1to3df)))), inplace=True)
+        fillExtraCols(rovg1to3df, cols, colvalues_rovg1to3)
 
-        rogdf = cleanDF(rog)
-        rogdf.set_index(pd.Index(list(i for i in range(
-            2 * len(rovgdf), 3 * len(rogdf)))), inplace=True)
-        fillExtraCols(rogdf, cols, colvalues_rog)
+        rog1to3df = cleanDF(rog1to3)
+        rog1to3df.set_index(pd.Index(list(i for i in range(
+            2 * len(rovg1to3df), 3 * len(rog1to3df)))), inplace=True)
+        fillExtraCols(rog1to3df, cols, colvalues_rog1to3)
+
+        roex3to6df = cleanDF(roex3to6)
+        roex3to6df.set_index(
+            pd.Index(list(i for i in range(3 * len(rovg1to3df), 4 * len(rog1to3df)))), inplace=True)
+        fillExtraCols(roex3to6df, cols, colvalues_roex3to6)
+
+        rovg3to6df = cleanDF(rovg3to6)
+        rovg3to6df.set_index(pd.Index(list(i for i in range(
+            4 * len(roex3to6df), 5 * len(rovg3to6df)))), inplace=True)
+        fillExtraCols(rovg3to6df, cols, colvalues_rovg3to6)
+
+        rog3to6df = cleanDF(rog3to6)
+        rog3to6df.set_index(pd.Index(list(i for i in range(
+            5 * len(rovg3to6df), 6 * len(rog3to6df)))), inplace=True)
+        fillExtraCols(rog3to6df, cols, colvalues_rog3to6)
 
         faexdf = cleanDF(faex)
         faexdf.set_index(pd.Index(list(i for i in range(
-            3 * len(rogdf), 4 * len(faexdf)))), inplace=True)
+            6 * len(rog3to6df), 7 * len(faexdf)))), inplace=True)
         fillExtraCols(faexdf, cols, colvalues_faex)
 
         favgdf = cleanDF(favg)
         favgdf.set_index(pd.Index(list(i for i in range(
-            4 * len(faexdf), 5 * len(favgdf)))), inplace=True)
+            7 * len(faexdf), 8 * len(favgdf)))), inplace=True)
         fillExtraCols(favgdf, cols, colvalues_favg)
 
         dossiersdf = cleanDF(dossiers)
         dossiersdf.set_index(pd.Index(list(i for i in range(
-            5 * len(favgdf), 5 * len(favgdf) + len(dossiersdf)))), inplace=True)
+            8 * len(favgdf), 8 * len(favgdf) + len(dossiersdf)))), inplace=True)
         fillExtraCols(dossiersdf, cols, colvalues_dossiers)
 
         # combining the different dataframes
-        result = pd.concat([roexdf, rovgdf, rogdf, faexdf, favgdf, dossiersdf])
+        result = pd.concat([roex1to3df, rovg1to3df, rog1to3df, roex3to6df,
+                            rovg3to6df, rog3to6df, faexdf, favgdf, dossiersdf])
 
         for i in range(len(result)):
             result["Property"][i] = result["Property"][i][-3:]

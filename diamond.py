@@ -429,7 +429,10 @@ def page1():
                 if depth == '-':
                     depth = 0.0
                 else:
-                    depth = float(depth)
+                    try:
+                        depth = float(depth)
+                    except:
+                        depth = 0.0
                 green = column_default_validation(diamondData, 'GREEN', i, 'No')
                 grey = column_default_validation(diamondData, 'GREY', i, 'No')
                 brown = column_default_validation(diamondData, 'BROWN', i, '0')
