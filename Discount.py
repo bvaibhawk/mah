@@ -5796,7 +5796,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 except BaseException as e:
                     pass
     ## symm/polish
-    if shape != 'RO' and symmetry == 'GD' and polish == 'GD':
+    if shape != 'RO' and (symmetry == 'GD' or polish == 'GD'):
         sym_pol = pd.read_csv('second_df.csv')
         for i in range(len(sym_pol)):
             if sym_pol['Lower'][i] <= sizeprec <= sym_pol['Upper'][i]:
