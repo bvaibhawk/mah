@@ -1267,7 +1267,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         result += grainingd
 
     #
-    if cut == 'EX' and (fluo == 'None' or fluo == 'Faint') and sizeprec >= 1.0:
+    if cut == 'EX' and (fluo == 'None' or fluo == 'Faint') and shape == 'RO':
         extra_data = pd.read_csv('extras.csv')
         if ha != '':
             for i in range(len(extra_data)):
@@ -1281,7 +1281,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     had += extra_data[str(xx)][i]
                     result += had
                     break
-
+    if fluo == 'None' or fluo == 'Faint':
+        extra_data = pd.read_csv('extras.csv')
         if tableclean != '':
             for i in range(len(extra_data)):
                 if extra_data['Field'][i] == 'Table Clean' and shape == 'RO' and extra_data['Shape'][i] == 'RO' \
