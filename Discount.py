@@ -1,6 +1,7 @@
 import pandas as pd
 import math
 
+from capoff import capoff_prem, capoff_discounts
 from discount_integration.discount_sql import get_diameter_premium
 from utils.cut_comment_util import get_cut
 
@@ -5852,9 +5853,14 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 result += fl_premiumd
                 break
 
+    capped_prem = capoff_prem([cutcommentsd, 0, 0, had, grainingd, eyecleand, tablecleand])
+    capped_dis = capoff_discounts([colshaded, milkyd, blackd + sideblackd, 0, 0, 0, cavityd,
+                                   opend, efd, naturald, identednaturald, chipd, grainingd],
+                                  base + pol_symd + depthd + sizepremd + diameterd + ktosd)
+
     ans = [result, base, gdd, diameterd, colshaded, milkyd, cutcommentsd, grainingd, had, eyecleand, tablecleand,
            blackd, sideblackd, sizepremd, opend, naturald, identednaturald, efd, cavityd, chipd, MNcolorD, depthd,
-           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, pol_symd, capped]
+           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, pol_symd, capped_prem, capped_dis, capped]
 
     return ans
 

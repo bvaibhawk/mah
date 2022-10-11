@@ -17,6 +17,9 @@ from singlediscount import page2
 import warnings
 
 from very_strong_fl_upload import page5
+from price_module_history import page6
+from individual_history import page7
+from upload_sheet import page8
 
 warnings.filterwarnings("ignore")
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
@@ -385,6 +388,9 @@ def page1():
         diamondData = diamondData.assign(Fancy_Poly_Sym_Dis='')
         diamondData = diamondData.assign(FL_Premium='')
         diamondData = diamondData.assign(Polish_Symmetry_Dis='')
+        diamondData = diamondData.assign(Capoff_premiums='')
+        diamondData = diamondData.assign(Capoff_discounts='')
+        diamondData = diamondData.assign(Final_Total_discount='')
 
         records_processed = st.empty()
         progress = st.progress(0)
@@ -602,12 +608,15 @@ def page1():
                 diamondData['Fancy_Poly_Sym_Dis'][i] = result[26]
                 diamondData['FL_Premium'][i] = result[27]
                 diamondData['Polish_Symmetry_Dis'][i] = result[28]
-                diamondData['Capoff'][i] = result[29]
+                diamondData['Capoff_premiums'][i] = result[29]
+                diamondData['Capoff_discounts'][i] = result[30]
+                diamondData['Capoff'][i] = result[31]
                 
                 final_sum = 0
-                for j in range(1, 29):
-                    final_sum += result[j]
-                diamondData['DISCOUNT_BEFORE_CAPOFF'][i] = final_sum
+                for j in range(0, 30):
+                    if j not in [0, 30, 7, 8, 9, 10, 6]:
+                        final_sum += result[j]
+                diamondData['Final_Total_discount'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
@@ -635,7 +644,10 @@ page_names = {
     "Bulk upload": page1,
     'Price Module upload': page3,
     'Days discount upload': page4,
-    'Very Strong Fluorescence upload': page5
+    'Very Strong Fluorescence upload': page5,
+    'Price Module History': page6,
+    'Individual Discount History': page7,
+    'Upload Discount Sheet': page8
 }
 st.sidebar.markdown("<h1>Discount Calculator</h1>", unsafe_allow_html=True)
 selected_page = st.sidebar.selectbox("Select Calculator", page_names.keys())

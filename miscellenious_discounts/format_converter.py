@@ -22,7 +22,7 @@ def write_excel(filename, sheet_name, dataframe):
         writer.save()
 
 
-def central_mapping():
+def central_mapping(final_datetime):
     clarity_color_mapping = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
                                           sheet_name='Central',
                                           usecols=[1, 2, 3, 4, 5, 6, 7, 8, 9])
@@ -38,7 +38,7 @@ def central_mapping():
     write_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', 'CENTRAL', output_df)
 
 
-def diameter_premium():
+def diameter_premium(final_datetime):
     data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
                          sheet_name='Diameter Premiums',
                          usecols=[16, 17, 18, 19, 20])
@@ -114,7 +114,7 @@ def diameter_premium():
     write_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', 'Diameter Premiums', output_df)
 
 
-def size_premium():
+def size_premium(final_datetime):
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     df1 = pd.read_excel(xls, "Size Premiums")
     arr = df1.to_numpy()
@@ -194,7 +194,7 @@ def size_premium():
     saveDFSizePremiums(df1)
 
 
-def doss_base():
+def doss_base(final_datetime):
     sheet_names = ['0.30-0.34', '0.35-0.39', '0.40-0.44', '0.40-0.44', '0.45-0.49', '0.50-0.59', '0.60-0.69', '0.70-0.74',
                    '0.75-0.79', '0.80-0.89', '0.90-0.94', '0.95-0.99']
 
@@ -278,7 +278,7 @@ def doss_base():
     final_df.to_csv("Dossbase.csv")
 
 
-def black_csv():
+def black_csv(final_datetime):
     pd.options.mode.chained_assignment = None
 
     df_black = pd.read_excel(
@@ -402,7 +402,7 @@ def black_csv():
     saveBlackCSV(black)
 
 
-def depth_csv():
+def depth_csv(final_datetime):
     depth_data = pd.read_excel('miscellenious_discounts/input_files/input_price_module_discounts.xlsm',
                                sheet_name='Depth')
     depth_dict = {'Depth': []}
@@ -412,7 +412,7 @@ def depth_csv():
     write_excel('miscellenious_discounts/output_files/output_extra_discounts.xlsx', 'Depth', output_df)
 
 
-def cut_csv():
+def cut_csv(final_datetime):
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     df_cut = pd.read_excel(xls, "Cut")
 
@@ -449,7 +449,7 @@ def cut_csv():
     saveCutCSV(df_cut)
 
 
-def cut_1_5_base_csv():
+def cut_1_5_base_csv(final_datetime):
     sheet_names = ['1.01-1.09', '1.50-1.69', '2.01-2.09', '3.01-3.09', '4.01-4.09', '5.01-5.09']
     final_df = pd.DataFrame()
 
@@ -606,7 +606,7 @@ def cut_1_5_base_csv():
     final_df.to_csv("1ct_5ctup.csv")
 
 
-def fancy_base_csv():
+def fancy_base_csv(final_datetime):
     final_df = pd.DataFrame()
     df_list = []
 
@@ -667,7 +667,7 @@ def fancy_base_csv():
     final_df.to_csv("fancy_base.csv")
 
 
-def graining_csv():
+def graining_csv(final_datetime):
     final_df = pd.DataFrame()
     df_list = []
 
@@ -706,7 +706,7 @@ def graining_csv():
     final_df.to_csv("graining.csv")
 
 
-def internal_grading_csv():
+def internal_grading_csv(final_datetime):
     final_df = pd.DataFrame()
     df_list = []
 
@@ -750,7 +750,7 @@ def internal_grading_csv():
     final_df.to_csv("internal_grading.csv")
 
 
-def extras_csv():
+def extras_csv(final_datetime):
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     extras_df = pd.read_excel(xls, "Extras")
     extras = extras_df.to_numpy()
@@ -810,7 +810,7 @@ def extras_csv():
     saveExtrasCSV(extras)
 
 
-def bgm_csv():
+def bgm_csv(final_datetime):
     final_df = pd.DataFrame()
 
     df_list = []
@@ -866,7 +866,7 @@ def bgm_csv():
             d.to_csv("BGM_dossier.csv", index=False)
 
 
-def finishing_csv():
+def finishing_csv(final_datetime):
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     finishing_df = pd.read_excel(xls, "Finishing")
     # print(finishing_df)
@@ -1028,7 +1028,7 @@ def finishing_csv():
     saveFinishingCSV(finishing)
 
 
-def ktos_csv():
+def ktos_csv(final_datetime):
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     k2s_df = pd.read_excel(xls, "KtoS Premiums")
     k2s = k2s_df.to_numpy()
@@ -1050,7 +1050,7 @@ def ktos_csv():
     k2s_df.to_csv("k2s.csv")
 
 
-def mncolor_csv():
+def mncolor_csv(final_datetime):
     xls = pd.ExcelFile("miscellenious_discounts/input_files/input_price_module_discounts.xlsm")
     discounts_n_colors_df = pd.read_excel(xls, "Discounts N Colors")
     discounts_n_colors = discounts_n_colors_df.to_numpy()
@@ -1069,7 +1069,7 @@ def mncolor_csv():
     discounts_n_colors_df.to_csv("discountsncolors.csv")
 
 
-def days_csv():
+def days_csv(final_datetime):
     final_df = pd.DataFrame()
 
     df_list = []
@@ -1105,7 +1105,7 @@ def days_csv():
     final_df.to_csv("days_discount.csv")
 
 
-def very_strong_fluo():
+def very_strong_fluo(final_datetime):
     fluo_dict = {'Shape': [], 'Size_min': [], 'Size_max': [], 'Fluo': [], 'Discount': []}
     fluo_data = pd.read_excel('miscellenious_discounts/input_files/ver_strong_fl.xlsx')
     shape = fluo_data.iloc[3, 1].split(' ')[0]
@@ -1122,7 +1122,7 @@ def very_strong_fluo():
     output_df.to_csv('very_strong_fluo.csv')
 
 
-def params_fancy():
+def params_fancy(final_datetime):
     final_df = pd.DataFrame()
     df_list = []
 
@@ -1178,7 +1178,7 @@ def params_fancy():
     third_dataframe.to_csv("third_df.csv")
 
 
-def polish_sym_csv():
+def polish_sym_csv(final_datetime):
     final_df = pd.DataFrame()
     df_list = []
 
@@ -1308,7 +1308,7 @@ def polish_sym_csv():
         # final_df.append(new_df,ignore_index=True)
 
 
-def polish_sym_csv_one_cut_up():
+def polish_sym_csv_one_cut_up(final_datetime):
     final_df = pd.DataFrame()
     df_list = []
 
@@ -1420,7 +1420,7 @@ def polish_sym_csv_one_cut_up():
         # final_df.append(new_df,ignore_index=True)
 
 
-def fl_premium_csv():
+def fl_premium_csv(final_datetime):
     fprem_data = pd.read_excel('miscellenious_discounts/input_files/fl_premium.xlsx')
     fl_prem_dict = {'Size_min': [], 'Size_max': [], 'Cut': [], 'Polish': [], 'Symmetry': [], 'Clarity': [], 'Color': [],
                     'Discount': [], 'Fluo': []}
