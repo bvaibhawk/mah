@@ -14,7 +14,7 @@ def page8():
     # file_name = f'miscellenious_discounts/input_files/main_sheet_{final_datetime}.xlsx'
     total_files = glob.glob(f"miscellenious_discounts/input_files/individual_uploads/*.xls"+"*")
 
-    price_module_list = glob.glob(f'miscellenious_discounts/input_files/pricing_module/*.xlsx')
+    price_module_list = glob.glob(f'miscellenious_discounts/input_files/*.xlsx')
 
     # my_file = Path(file_name)
     # if my_file.is_file()==False:
@@ -34,7 +34,7 @@ def page8():
 
     st.subheader("Upload Sheet")
 
-    st.markdown(st.session_state['footer'], unsafe_allow_html=True)
+    # st.markdown(st.session_state['footer'], unsafe_allow_html=True)
 
     selected_sheet = st.selectbox("Select Sheet to upload",options=sheet_list)
     if selected_sheet=='Upload New Sheet':

@@ -6,7 +6,7 @@ def page7():
 
     st.subheader("Individual Discount Upload History")
 
-    st.markdown(st.session_state['footer'], unsafe_allow_html=True)
+    # st.markdown(st.session_state['footer'], unsafe_allow_html=True)
 
     total_files = glob.glob(f"miscellenious_discounts/input_files/individual_uploads/*.xls"+"*")
     # total_files = sorted(total_files)
