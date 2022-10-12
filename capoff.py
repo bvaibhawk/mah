@@ -138,9 +138,21 @@ def capoff_discounts(discounts, basic):
         discount_sum = 0
         for i in range(len(group_discount)):
             discount_sum += group_discount[i]
-
+        # print(discount_df[discount_df["Grading"] ==
+        #       property_group[1]]["Group Maxima"].values)
+        # print(property_group)
+        # print(discount_df[discount_df["Grading"] ==
+        #       property_group[0]]["Group Maxima"].values)
+        # print(property_group[0])
+        for i in range(len(property_group)):
+            if len(discount_df[discount_df["Grading"] == property_group[i]]["Group Maxima"].values) > 0:
+                temp = discount_df[discount_df["Grading"] ==
+                                   property_group[i]]["Group Maxima"].values[0]
+                break
+            else:
+                temp = 0
         discount_sum = max(
-            discount_sum, discount_df[discount_df["Grading"] == property_group[0]]["Group Maxima"].values[0])
+            discount_sum, temp)
         return discount_sum
 
     def capDiscountTotal(properties, discounts, discount_df):
@@ -175,28 +187,21 @@ def capoff_discounts(discounts, basic):
 
         return capDiscountDossiers(basic, max(total_dis, grp1_dis + grp2_dis + grp3_dis))
 
-    def capDiscountDossiers(basic, internal):
+    def capDiscountDossiers(total_basic_dis, total_internal_dis):
         # basic is a list of numbers: basic discounts
         # internal is also a list of numbers: internal gradings discounts
-
-        total_basic_dis = 0
-        total_internal_dis = 0
-
-        for i in basic:
-            total_basic_dis += i
-        for j in internal:
-            total_internal_dis += j
 
         if total_basic_dis < -40:
             total_internal_dis = max(-20, total_internal_dis)
         else:
             total_internal_dis = max(-15, total_internal_dis)
 
-        return total_basic_dis, total_internal_dis
+        return total_internal_dis
 
     # testcase for one up discount capoff
     properties = lowerMaximadf["Grading"].values
+    # print(properties)
     # discounts = [-2, -3, -4, -5, -6, -7, -8, -9, -10, -11, -12, -13, -14]
     # discounts = discounts[::-1]
 
-    capDiscountsOneUp(properties, discounts, lowerMaximadf, basic)
+    return capDiscountsOneUp(properties, discounts, lowerMaximadf, basic)

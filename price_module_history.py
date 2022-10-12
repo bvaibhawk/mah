@@ -8,7 +8,7 @@ def page6():
 
     # st.markdown(st.session_state['footer'], unsafe_allow_html=True)
 
-    total_files = glob.glob("miscellenious_discounts/input_files/*.xlsx")
+    total_files = glob.glob("miscellenious_discounts/input_files/input_price_module_discounts_*.xlsx")
     # total_files = sorted(total_files)
     total_files.sort(key = lambda x: x.split("@")[-1])
 

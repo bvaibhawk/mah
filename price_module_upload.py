@@ -31,7 +31,7 @@ def page3():
                 current_datetime = datetime.datetime.now()
                 final_datetime = str(current_datetime.date()) + "_" + str(current_datetime.hour) + "_" + str(
                     current_datetime.minute) + "_" + str(current_datetime.second)
-                total_files = glob.glob("miscellenious_discounts/input_files/*.xlsx")
+                total_files = glob.glob("miscellenious_discounts/input_files/input_price_module_discounts_*.xlsx")
                 st.session_state['final_datetime'] = final_datetime
 
                 total_files = sorted(total_files)
@@ -43,6 +43,8 @@ def page3():
                     del total_files[0]
 
                 with open(os.path.join('miscellenious_discounts/input_files', f'input_price_module_discounts_{final_datetime}.xlsx'), "wb") as f:
+                    f.write(price_module_file.getbuffer())
+                with open(os.path.join('miscellenious_discounts/input_files', f'input_price_module_discounts.xlsm'), "wb") as f:
                     f.write(price_module_file.getbuffer())
                 conv.central_mapping(final_datetime)
                 conv.diameter_premium(final_datetime)

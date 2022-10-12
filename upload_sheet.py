@@ -14,7 +14,7 @@ def page8():
     # file_name = f'miscellenious_discounts/input_files/main_sheet_{final_datetime}.xlsx'
     total_files = glob.glob(f"miscellenious_discounts/input_files/individual_uploads/*.xls"+"*")
 
-    price_module_list = glob.glob(f'miscellenious_discounts/input_files/*.xlsx')
+    price_module_list = glob.glob(f'miscellenious_discounts/input_files/*.xlsm')
 
     # my_file = Path(file_name)
     # if my_file.is_file()==False:
