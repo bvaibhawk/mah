@@ -118,7 +118,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             xx = 9
     if xx == 0:
         print(xx, clarity, color)
-    if (shape == 'RO' and sizeprec > 1.0):
+    if (shape == 'RO' and sizeprec >= 1.0):
         color1 = color
         # if color == 'N': TBD
         #     MNcolorD = -7
@@ -298,7 +298,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     ff = 2
                     break
             temp = result
-    if sizeprec <= 1.0 and shape == 'RO':
+    if sizeprec < 1.0 and shape == 'RO':
         df = pd.read_csv('Dossbase.csv')
         df['Fluo'] = df['Fluo'].replace('Med', 'Medium')
         for i in range(len(df)):
