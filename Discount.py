@@ -13,6 +13,11 @@ def round_half_up(n, decimals=0):
     multiplier = 10 ** decimals
     return (math.floor(n*multiplier + 0.5) / multiplier) * sign_flag
 
+def round_05(n):
+    doubled = n * 2
+    doubled = round(doubled)
+    return doubled / 2
+
 def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
                  eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                  tableintensity, crownintensity, topef, topcavity, topchip, crownef, crowncavity, crownchip,
@@ -1632,7 +1637,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result += blackd
                             break
                         else:
-                            blackd += round_half_up((df6[str(xx)][i] / 2), 1)
+                            blackd += (df6[str(xx)][i] / 2)
                             result += blackd
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
@@ -1654,7 +1659,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             result += sideblackd
                             break
                         else:
-                            sideblackd += round_half_up((df6[str(xx)][i] / 2), 1)
+                            sideblackd += (df6[str(xx)][i] / 2)
                             result += sideblackd
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
@@ -3525,7 +3530,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     finishing_data['Shape'][i] == 'RO' and \
                     finishing_data['sizemin'][i] <= sizeprec <= finishing_data['sizemax'][i]:
                 if fluo not in ['None', 'Faint']:
-                    opend += round_half_up((finishing_data[str(xx)][i] / 2), 1)
+                    opend += (finishing_data[str(xx)][i] / 2)
                     result += opend
                 else:
                     opend += finishing_data[str(xx)][i]
@@ -3534,7 +3539,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     and finishing_data['Shape'][i] == 'RO' and \
                     finishing_data['sizemin'][i] <= sizeprec <= finishing_data['sizemax'][i]:
                 if fluo not in ['None', 'Faint']:
-                    naturald += round_half_up((finishing_data[str(xx)][i] / 2), 1)
+                    naturald += (finishing_data[str(xx)][i] / 2)
                     result += naturald
                 else:
                     naturald += finishing_data[str(xx)][i]
@@ -3543,7 +3548,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     finishing_data['Shape'][i] == 'RO' and \
                     finishing_data['sizemin'][i] <= sizeprec <= finishing_data['sizemax'][i]:
                 if fluo not in ['None', 'Faint']:
-                    identednaturald += round_half_up((finishing_data[str(xx)][i] / 2), 1)
+                    identednaturald += (finishing_data[str(xx)][i] / 2)
                     result += identednaturald
                 else:
                     identednaturald += finishing_data[str(xx)][i]
@@ -3552,7 +3557,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     finishing_data['Shape'][i] == 'RO' and \
                     finishing_data['sizemin'][i] <= sizeprec <= finishing_data['sizemax'][i]:
                 if fluo not in ['None', 'Faint']:
-                    cavityd += round_half_up((finishing_data[str(xx)][i] / 2), 1)
+                    cavityd += (finishing_data[str(xx)][i] / 2)
                     result += cavityd
                 else:
                     cavityd += finishing_data[str(xx)][i]
@@ -3561,7 +3566,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     finishing_data['Shape'][i] == 'RO' and \
                     finishing_data['sizemin'][i] <= sizeprec <= finishing_data['sizemax'][i]:
                 if fluo not in ['None', 'Faint']:
-                    chipd += round_half_up((finishing_data[str(xx)][i] / 2), 1)
+                    chipd += (finishing_data[str(xx)][i] / 2)
                     result += chipd
                 else:
                     chipd += finishing_data[str(xx)][i]
@@ -3570,7 +3575,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     finishing_data['Shape'][i] == 'RO' and \
                     finishing_data['sizemin'][i] <= sizeprec <= finishing_data['sizemax'][i]:
                 if fluo not in ['None', 'Faint']:
-                    efd += round_half_up((finishing_data[str(xx)][i] / 2), 1)
+                    efd += (finishing_data[str(xx)][i] / 2)
                     result += efd
                 else:
                     efd += finishing_data[str(xx)][i]

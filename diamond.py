@@ -9,7 +9,7 @@ import pandas as pd
 import cv2
 from datetime import date, datetime
 # from Discount import calcDiscount, get_cut_comments
-from Discount import calcDiscount
+from Discount import calcDiscount, round_05
 from FetchRap import fetchrap, fetch_size
 from days_discount_upload import page4
 from price_module_upload import page3
@@ -616,7 +616,7 @@ def page1():
                 for j in range(len(result)):
                     if j not in [0, 31, 7, 8, 9, 10, 6, 4, 5, 11, 12, 14, 15, 16, 17, 18, 19]:
                         final_sum += result[j]
-                diamondData['Final_Total_discount'][i] = final_sum
+                diamondData['Final_Total_discount'][i] = round_05(final_sum)
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
                 diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
