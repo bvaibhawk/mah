@@ -5,6 +5,7 @@ from pathlib import Path
 from openpyxl import load_workbook
 import glob
 import os
+import miscellenious_discounts.format_converter as conv
 
 
 def page8():
@@ -74,8 +75,28 @@ def page8():
                     with pd.ExcelWriter(price_module_list[-1], engine="openpyxl", mode="a", if_sheet_exists="replace") as writer2:
                         new_df.to_excel(writer2, sheet_name=selected_sheet, index=False)
 
-
-
+            conv.central_mapping(final_datetime)
+            conv.diameter_premium(final_datetime)
+            conv.size_premium(final_datetime)
+            conv.doss_base(final_datetime)
+            conv.black_csv(final_datetime)
+            conv.depth_csv(final_datetime)
+            conv.cut_csv(final_datetime)
+            conv.cut_1_5_base_csv(final_datetime)
+            conv.fancy_base_csv(final_datetime)
+            conv.graining_csv(final_datetime)
+            conv.internal_grading_csv(final_datetime)
+            conv.extras_csv(final_datetime)
+            conv.bgm_csv(final_datetime)
+            conv.finishing_csv(final_datetime)
+            conv.ktos_csv(final_datetime)
+            conv.mncolor_csv(final_datetime)
+            conv.days_csv(final_datetime)
+            conv.very_strong_fluo(final_datetime)
+            conv.params_fancy(final_datetime)
+            conv.polish_sym_csv(final_datetime)
+            conv.fl_premium_csv(final_datetime)
+            conv.polish_sym_csv_one_cut_up(final_datetime)
             st.info(f"{selected_sheet} Sheet uploaded succesfully!")
 
     

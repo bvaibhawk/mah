@@ -355,7 +355,7 @@ def page1():
         diamondData = diamondData.assign(DISCOUNT_BEFORE_CAPOFF='')
         diamondData = diamondData.assign(Capoff='')
         diamondData = diamondData.assign(Differnce_between_Capped_and_Uncapped_Dis='')
-        diamondData = diamondData.assign(DISCOUNTED_RAP='')
+        diamondData = diamondData.assign(Discounted_RAP_price_of_stone='')
         diamondData = diamondData.assign(Base_Dis='')
         diamondData = diamondData.assign(Size_Premium='')
         diamondData = diamondData.assign(GD_Dis='')
@@ -451,7 +451,10 @@ def page1():
                 crownnatural = column_default_validation(diamondData, 'Crown_Natural', i, 'No')
                 girdlenatural = column_default_validation(diamondData, 'Girdle_Natural', i, 'No')
                 pavilionnatural = column_default_validation(diamondData, 'Pavilion_Natural', i, 'No')
-                days = int(float(column_default_validation(diamondData, 'REF_DAYS', i, 0, no_comma=1)))
+                try:
+                    days = int(float(column_default_validation(diamondData, 'REF_DAYS', i, 0, no_comma=1)))
+                except:
+                    days = 0
                 chip = column_default_validation(diamondData, 'CHIP', i, 'No')
                 cavity = column_default_validation(diamondData, 'CAVITY', i, 'No')
                 upgrade1 = column_default_validation(diamondData, 'Upgrade_Color', i, '0')
@@ -616,10 +619,11 @@ def page1():
                 for j in range(len(result)):
                     if j not in [0, 31, 7, 8, 9, 10, 6, 4, 5, 11, 12, 14, 15, 16, 17, 18, 19]:
                         final_sum += result[j]
-                diamondData['Final_Total_discount'][i] = round_05(final_sum)
+                final_sum = round_05(final_sum)
+                diamondData['Final_Total_discount'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
                 #diamondData['BaseD'][i] = result[1]
-                diamondData['DISCOUNTED_RAP'][i] = rap * ((100 + result[0]) / 100)
+                diamondData['Discounted_RAP_price_of_stone'][i] = round(rap_value * ((100 + final_sum) / 100), 2)
                            
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
@@ -635,7 +639,7 @@ def page1():
         if not exception_flag:
             diamondData = diamondData.drop(
                 columns=['FINAL_DISCOUNT_AFTER_CAPOFF', 'GD_Dis', 'Capoff', 'DISCOUNT_BEFORE_CAPOFF',
-                         'Differnce_between_Capped_and_Uncapped_Dis', 'DISCOUNTED_RAP'])
+                         'Differnce_between_Capped_and_Uncapped_Dis'])
             diamondData = diamondData.astype(str)
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
