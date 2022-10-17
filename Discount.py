@@ -1611,7 +1611,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     # BLACK
     #  (sizeprec<=df6['sizemax'][i]) & (cut==df6['cut'][i]) & (df6['Intensity']==tableintensity)
-    if sizeprec < 1.0:
+    if sizeprec < 1.0 and shape == 'RO':
         dossier_black = pd.read_csv('black.csv')
         for i in range(len(dossier_black)):
             if dossier_black['Intensity'][i] == tableintensity and dossier_black['Shape'][i] == 'Dossiers':
