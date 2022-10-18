@@ -161,7 +161,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             # result = result * 100
             temp = result
             ktos_data = pd.read_csv('k2s.csv')
-            if shape == 'RO' and 1.0 <= sizeprec < 3.0:
+            if shape == 'RO' and 1.0 <= sizeprec <= 3.0:
                 if ktos == 1 and (ktos_attribute == 'Feather' or ktos_attribute == 'Pinpoint'):
                     ktosd = ktos_data[str(xx)][0]
                     result += ktosd
@@ -5838,9 +5838,10 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         for i in range(len(pol_sym_data)):
             if pol_sym_data['Size'][i] == szgr and pol_sym_data['Fluo'][i] == fluo and \
                     clarity == pol_sym_data['Clarity'][i] and cut == pol_sym_data['Cut'][i] and \
-                    polish == pol_sym_data['Polish'][i] and symmetry == pol_sym_data['Symmetry'][i]:
+                    polish == pol_sym_data['Polish'][i] and symmetry == pol_sym_data['Symmetry'][i]\
+                    and color == pol_sym_data['Color'][i]:
                 try:
-                    pol_symd += pol_sym_data[color][i]
+                    pol_symd += pol_sym_data['Discount'][i]
                     result += pol_symd
                     break
                 except BaseException as e:
