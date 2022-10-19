@@ -1641,7 +1641,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (
                             sizeprec <= df6['sizemax'][i]) and (
                             tableintensity == df6['Intensity'][i])):
-                        if fluo == 'None' or fluo == 'Faint':
+                        if fluo == 'None' or fluo == 'Faint' or fluo == 'Medium':
                             blackd += df6[str(xx)][i]
                             result += blackd
                             break
@@ -1663,7 +1663,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     if ((sizeprec >= df6['sizemin'][i]) and (cut == df6['cut'][i]) and (
                             sizeprec <= df6['sizemax'][i]) and (
                             crownintensity == df6['Intensity'][i])):
-                        if fluo == 'None' or fluo == 'Faint':
+                        if fluo == 'None' or fluo == 'Faint' or fluo == 'Medium':
                             sideblackd += df6[str(xx)][i]
                             result += sideblackd
                             break
