@@ -85,6 +85,15 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     identedgirdlenatural = '0'
     identedpavilionnatural = '0'
 
+    polish_eff = ''
+    symmetry_eff = ''
+    if polish == 'GD' or symmetry == 'GD':
+        polish_eff , symmetry_eff = 'GD', 'GD'
+    elif polish == 'VG' or symmetry == 'VG':
+        polish_eff, symmetry_eff = 'VG', 'VG'
+    else:
+        polish_eff, symmetry_eff = 'EX', 'EX'
+
     if color == 'N':
         mn_data = pd.read_csv('discountsncolors.csv')
         for i in range(len(mn_data)):
@@ -1642,7 +1651,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
                     if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
-                        i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == tableintensity):
+                        i] == symmetry_eff and df6['polish'][i] == polish_eff and df6['Intensity'][i] == tableintensity):
                         blackd += df6[str(xx)][i]
                         result += blackd
                         break
@@ -1664,7 +1673,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
                     if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
-                        i] == symmetry and df6['polish'][i] == polish and df6['Intensity'][i] == crownintensity):
+                        i] == symmetry_eff and df6['polish'][i] == polish_eff and df6['Intensity'][i] == crownintensity):
                         sideblackd += df6[str(xx)][i]
                         result += sideblackd
                         break
@@ -3606,28 +3615,28 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                 efd += finishing_data[str(xx)][i]
                 result += efd
         elif shape != 'RO':
-            if polish == finishing_data['Polish'][i] and tableopen == finishing_data['Property'][i] and \
-                    finishing_data['Shape'][i] == 'Fancy' and symmetry == finishing_data['Sym'][i]:
+            if polish_eff == finishing_data['Polish'][i] and tableopen == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy' and symmetry_eff == finishing_data['Sym'][i]:
                 opend += finishing_data[str(xx)][i]
                 result += opend
-            elif polish == finishing_data['Polish'][i] and topnatural == finishing_data['Property'][i] and \
-                    finishing_data['Shape'][i] == 'Fancy' and symmetry == finishing_data['Sym'][i]:
+            elif polish_eff == finishing_data['Polish'][i] and topnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy' and symmetry_eff == finishing_data['Sym'][i]:
                 naturald += finishing_data[str(xx)][i]
                 result += naturald
-            elif polish == finishing_data['Polish'][i] and identedtopnatural == finishing_data['Property'][i] and \
-                    finishing_data['Shape'][i] == 'Fancy' and symmetry == finishing_data['Sym'][i]:
+            elif polish_eff == finishing_data['Polish'][i] and identedtopnatural == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy' and symmetry_eff == finishing_data['Sym'][i]:
                 identednaturald += finishing_data[str(xx)][i]
                 result += identednaturald
-            elif polish == finishing_data['Polish'][i] and topcavity == finishing_data['Property'][i] and \
-                    finishing_data['Shape'][i] == 'Fancy' and symmetry == finishing_data['Sym'][i]:
+            elif polish_eff == finishing_data['Polish'][i] and topcavity == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy' and symmetry_eff == finishing_data['Sym'][i]:
                 cavityd += finishing_data[str(xx)][i]
                 result += cavityd
-            elif polish == finishing_data['Polish'][i] and topchip == finishing_data['Property'][i] and \
-                    finishing_data['Shape'][i] == 'Fancy' and symmetry == finishing_data['Sym'][i]:
+            elif polish_eff == finishing_data['Polish'][i] and topchip == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy' and symmetry_eff == finishing_data['Sym'][i]:
                 chipd += finishing_data[str(xx)][i]
                 result += chipd
-            elif polish == finishing_data['Polish'][i] and crownef == finishing_data['Property'][i] and \
-                    finishing_data['Shape'][i] == 'Fancy' and symmetry == finishing_data['Sym'][i]:
+            elif polish_eff == finishing_data['Polish'][i] and crownef == finishing_data['Property'][i] and \
+                    finishing_data['Shape'][i] == 'Fancy' and symmetry_eff == finishing_data['Sym'][i]:
                 efd += finishing_data[str(xx)][i]
                 result += efd
 
