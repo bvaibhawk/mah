@@ -583,7 +583,10 @@ def page1():
                                         intended_natural, graining, rap_value, ktos_attribute, remarks)
 
                 diamondData['FINAL_DISCOUNT_AFTER_CAPOFF'][i] = result[0]
-                diamondData['Base_Dis'][i] = result[1]
+                if result[1] == 0:
+                    diamondData['Base_Dis'][i] = 'NA'
+                else:
+                    diamondData['Base_Dis'][i] = result[1]
                 diamondData['GD_Dis'][i] = result[2]
                 diamondData['Diameter_Dis_or_MM_Premium'][i] = result[3]
                 diamondData['Colshade_Dis'][i] = result[4]
