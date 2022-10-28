@@ -5,18 +5,25 @@ from capoff import capoff_prem, capoff_discounts
 from discount_integration.discount_sql import get_diameter_premium
 from utils.cut_comment_util import get_cut
 
+
+def match(a: str, b: str):
+    return a.casefold() == b.casefold()
+
+
 def round_half_up(n, decimals=0):
     sign_flag = 1
     if n < 0:
         n *= -1
         sign_flag = -1
     multiplier = 10 ** decimals
-    return (math.floor(n*multiplier + 0.5) / multiplier) * sign_flag
+    return (math.floor(n * multiplier + 0.5) / multiplier) * sign_flag
+
 
 def round_05(n):
     doubled = n * 2
     doubled = round(doubled)
     return doubled / 2
+
 
 def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec, tableclean,
                  eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
@@ -88,7 +95,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     polish_eff = ''
     symmetry_eff = ''
     if polish == 'GD' or symmetry == 'GD':
-        polish_eff , symmetry_eff = 'GD', 'GD'
+        polish_eff, symmetry_eff = 'GD', 'GD'
     elif polish == 'VG' or symmetry == 'VG':
         polish_eff, symmetry_eff = 'VG', 'VG'
     else:
@@ -171,7 +178,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
             temp = result
             ktos_data = pd.read_csv('k2s.csv')
             if shape == 'RO' and 1.0 <= sizeprec <= 3.0:
-                if ktos == 1 and (ktos_attribute == 'Feather' or ktos_attribute == 'Pinpoint'):
+                if ktos == 1 and (match(ktos_attribute, 'Feather') or match(ktos_attribute, 'Pinpoint')):
                     ktosd = ktos_data[str(xx)][0]
                     result += ktosd
                 elif ktos >= 5:
@@ -1651,7 +1658,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
                     if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
-                        i] == symmetry_eff and df6['polish'][i] == polish_eff and df6['Intensity'][i] == tableintensity):
+                        i] == symmetry_eff and df6['polish'][i] == polish_eff and df6['Intensity'][
+                        i] == tableintensity):
                         blackd += df6[str(xx)][i]
                         result += blackd
                         break
@@ -1673,7 +1681,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             break
                 if df6['Shape'][i] == 'Fancy' and shape != 'RO':
                     if (sizeprec >= df6['sizemin'][i] and sizeprec <= df6['sizemax'][i] and df6['sym'][
-                        i] == symmetry_eff and df6['polish'][i] == polish_eff and df6['Intensity'][i] == crownintensity):
+                        i] == symmetry_eff and df6['polish'][i] == polish_eff and df6['Intensity'][
+                        i] == crownintensity):
                         sideblackd += df6[str(xx)][i]
                         result += sideblackd
                         break
@@ -5847,7 +5856,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         for i in range(len(pol_sym_data)):
             if pol_sym_data['Size'][i] == szgr and pol_sym_data['Fluo'][i] == fluo and \
                     clarity == pol_sym_data['Clarity'][i] and cut == pol_sym_data['Cut'][i] and \
-                    polish == pol_sym_data['Polish'][i] and symmetry == pol_sym_data['Symmetry'][i]\
+                    polish == pol_sym_data['Polish'][i] and symmetry == pol_sym_data['Symmetry'][i] \
                     and color == pol_sym_data['Color'][i]:
                 try:
                     pol_symd += pol_sym_data['Discount'][i]
@@ -5875,7 +5884,8 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
 
     ans = [result, base, gdd, diameterd, colshaded, milkyd, cutcommentsd, grainingd, had, eyecleand, tablecleand,
            blackd, sideblackd, sizepremd, opend, naturald, identednaturald, efd, cavityd, chipd, MNcolorD, depthd,
-           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, pol_symd, capped_prem, capped_dis, capped]
+           ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, pol_symd, capped_prem, capped_dis,
+           capped]
 
     return ans
 

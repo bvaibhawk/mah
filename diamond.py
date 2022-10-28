@@ -21,6 +21,11 @@ from price_module_history import page6
 from individual_history import page7
 from upload_sheet import page8
 
+
+def match(a: str, b: str):
+    return a.casefold() == b.casefold()
+
+
 warnings.filterwarnings("ignore")
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
                    menu_items=None)
@@ -65,8 +70,6 @@ text-align: center;
 </div>
 """
 
-
-
 logo = cv2.imread("logo.png")
 logo = cv2.cvtColor(logo, cv2.COLOR_BGR2RGB)
 logo = cv2.resize(logo, (300, 100))
@@ -74,8 +77,12 @@ st.image(logo)
 st.text("\n")
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)-8s %(message)s',
                     datefmt='%a, %d %b %Y %H:%M:%S', filename='discount-tool.log', filemode='w')
+
+
 class ColumnError(Exception):
     pass
+
+
 def column_default_validation(diamondData, col, i, defaultValue=None, no_comma=None):
     if col in diamondData.keys():
         if no_comma is None:
@@ -86,6 +93,8 @@ def column_default_validation(diamondData, col, i, defaultValue=None, no_comma=N
         raise ColumnError(col + ' is missing in the uploaded CSV file. ' \
                                 'Please upload the CSV file in correct format')
     return float(defaultValue) if defaultValue == 0 else defaultValue
+
+
 def page1():
     # with open('diamond.pkl', 'rb') as handle:
     #     model = pickle.load(handle)
@@ -307,35 +316,54 @@ def page1():
     #         st.error("Please input proper values")
     format = '%b %d %Y %H:%M:%S'
     now = datetime.now()
-    last_updated = pd.read_csv('lastupdated.csv')
+    last_updated_r = pd.read_csv('lastupdated_round.csv')
+    last_updated_f = pd.read_csv('lastupdated_fancy.csv')
     col1, col2, col3 = st.columns(3)
     col4, col5, col6 = st.columns(3)
     col7, col8, col9 = st.columns(3)
+    col10, col11, col12 = st.columns(3)
     with col2:
         updated_file = st.file_uploader("Choose a csv file to update rapnet pricing", type='csv')
     with col5:
-        if len(last_updated) == 0:
+        if len(last_updated_r) == 0:
             st.write("Rapnet pricing not updated yet")
         else:
-            st.write("Rapnet pricing last updated on  - " + last_updated['update_date'][len(last_updated) - 1])
+            st.write("Round Rapnet pricing last updated on  - " + last_updated_r['update_date'][len(last_updated_r) - 1])
+            st.write("Fancy Rapnet pricing last updated on  - " + last_updated_f['update_date'][len(last_updated_f) - 1])
     if updated_file is not None:
         with col8:
-            update_button = st.button('Update rapnet pricing')
-        if update_button is not None:
-            newRapPrice = pd.read_csv(updated_file, encoding= 'unicode_escape')
+            update_button = st.button('Update rapnet pricing for round')
+        with col11:
+            update_button2 = st.button('Update rapnet pricing for fancy')
+        if update_button:
+            newRapPrice = pd.read_csv(updated_file, encoding='unicode_escape')
             rap_columns = ['SHAPE', 'CLARITY', 'COLOUR', 'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP']
             col_check = (x for x in rap_columns if x not in newRapPrice.keys())
             if len(list(col_check)) == 0:
-                newRapPrice.to_csv('rap_price.csv')
-                last_updated.loc[len(last_updated['update_date'])] = [now.strftime(format)]
-                last_updated.to_csv('lastupdated.csv', index=False)
+                newRapPrice.to_csv('rap_price_round.csv')
+                last_updated_r.loc[len(last_updated_r['update_date'])] = [now.strftime(format)]
+                last_updated_r.to_csv('lastupdated_round.csv', index=False)
                 # with col5:
                 #     st.write('Price updated')
             else:
                 with col5:
                     st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
                              "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
-    
+        elif update_button2:
+            newRapPrice = pd.read_csv(updated_file, encoding='unicode_escape')
+            rap_columns = ['SHAPE', 'CLARITY', 'COLOUR', 'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP']
+            col_check = (x for x in rap_columns if x not in newRapPrice.keys())
+            if len(list(col_check)) == 0:
+                newRapPrice.to_csv('rap_price_fancy.csv')
+                last_updated_f.loc[len(last_updated_f['update_date'])] = [now.strftime(format)]
+                last_updated_f.to_csv('lastupdated_fancy.csv', index=False)
+                # with col5:
+                #     st.write('Price updated')
+            else:
+                with col5:
+                    st.write("Incorrect format for csv file. Must contain 'SHAPE', 'CLARITY', 'COLOUR', "
+                             "'SIZE_RANGE_MIN', 'SIZE_RANGE_MAX', 'RAP' columns")
+
     uploaded_file = st.file_uploader("Choose a csv file to get discount values", type='csv')
 
     result = 0.0
@@ -344,7 +372,7 @@ def page1():
         start_process = st.button("Start Processing")
         if not start_process:
             return
-        diamondData = pd.read_csv(uploaded_file, encoding= 'unicode_escape')
+        diamondData = pd.read_csv(uploaded_file, encoding='unicode_escape')
         diamondData.columns = diamondData.columns.str.strip()
         diamondData = diamondData.astype(str)
         for i in diamondData.keys():
@@ -362,18 +390,17 @@ def page1():
         diamondData = diamondData.assign(Diameter_Dis_or_MM_Premium='')
         diamondData = diamondData.assign(Colshade_Dis='')
         diamondData = diamondData.assign(Milky_Dis='')
-        
-        
+
         diamondData = diamondData.assign(ha_Dis='')
         diamondData = diamondData.assign(EyeClean_Dis='')
         diamondData = diamondData.assign(TableClean_Dis='')
         diamondData = diamondData.assign(Black_Dis='')
         diamondData = diamondData.assign(SideBlack_Dis='')
-        
+
         diamondData = diamondData.assign(Open_Dis='')
         diamondData = diamondData.assign(Natural_Dis='')
         diamondData = diamondData.assign(IdentedNatural_Dis='')
-        
+
         diamondData = diamondData.assign(Cavity_Dis='')
         diamondData = diamondData.assign(Chip_Dis='')
         diamondData = diamondData.assign(Ncolor_Dis='')
@@ -397,7 +424,7 @@ def page1():
         for i in range(len(diamondData)):
             try:
 
-                cert= column_default_validation(diamondData, 'CERT', i)
+                cert = column_default_validation(diamondData, 'CERT', i)
                 shape = column_default_validation(diamondData, 'SHAPE', i)  # updated with client stock sheet
                 szgr = '0.30-0.34'  # column_default_validation(diamondData, 'SIZE RANGE', i, '0.30-0.34')
                 color = column_default_validation(diamondData, 'COLOR', i, 'D')  # updated with client stock sheet
@@ -498,74 +525,129 @@ def page1():
                 rap_value = column_default_validation(diamondData, 'RAP_VALUE', i)
                 # new variables added here 10-08-2022
 
-                if(shape=='ROUND' or shape=='RD'): 
-                  shape='RO'
-                  diamondData['SHAPE'][i] = shape
-                if(shape=='CUSHION' or shape=='CS'):
-                  shape='CUSHION'
-                  diamondData['SHAPE'][i] = shape
-                if(shape=='EMERALD' or shape=='EM'):
-                  shape='EMERALD'
-                  diamondData['SHAPE'][i] = shape
-                if(shape=='MARQUISE' or shape=='MQ'): 
-                  shape='MARQUISE'
-                  diamondData['SHAPE'][i] = shape
-                if(shape=='PR' or shape=='PEAR'):
-                  shape='PEAR'
-                  diamondData['SHAPE'][i] = shape
-                if(shape=='PRN' or shape=='PRINCESS'):
-                  shape='PRINCESS'
-                  diamondData['SHAPE'][i] = shape
-                if(shape=='OV' or shape=='OVAL'):
-                  shape='OVAL'
-                  diamondData['SHAPE'][i] = shape 
-                if fluo=='FNT':
-                   fluo='Faint'
-                   diamondData['FLUO'][i] = fluo
-                if fluo=='MED':
-                   fluo='Medium'
-                   diamondData['FLUO'][i] = fluo
-                if fluo=='NON':
-                   fluo='None'   
-                   diamondData['FLUO'][i] = fluo 
-                if fluo=='STG' or fluo=='STR':
-                   fluo='Strong'
-                   diamondData['FLUO'][i] = fluo 
-                if fluo=='VST':
-                   fluo='Very Strong'
-                   diamondData['FLUO'][i] = fluo 
+                if match(shape, 'ROUND') or match(shape, 'RO') or match(shape, 'BR'):
+                    shape = 'RO'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'CUSHION') or match(shape, 'CS') or match(shape, 'CUSHION MODIFIED') or \
+                        match(shape, 'CUSHION BRILLIANT') or match(shape, 'SQAURE CUSHION'):
+                    shape = 'CUSHION'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'EMERALD') or match(shape, 'EM'):
+                    shape = 'EMERALD'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'MARQUISE') or match(shape, 'MQ'):
+                    shape = 'MARQUISE'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'PR') or match(shape, 'PEAR'):
+                    shape = 'PEAR'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'PS') or match(shape, 'PRINCESS'):
+                    shape = 'PRINCESS'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'OV') or match(shape, 'OVAL'):
+                    shape = 'OVAL'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'HEART') or match(shape, 'HT'):
+                    shape = 'HEART'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'RADIANT') or match(shape, 'RD') or match(shape, 'LONG RADIANT'):
+                    shape = 'RADIANT'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'ASSHER') or match(shape, 'SQUARE EMERALD'):
+                    shape = 'ASSHER'
+                    diamondData['SHAPE'][i] = shape
+                if match(shape, 'BUGGET'):
+                    shape = 'BUGGET'
+                    diamondData['SHAPE'][i] = shape
+
+                if match(fluo, 'FNT') or match(fluo, 'FAINT'):
+                    fluo = 'Faint'
+                    diamondData['FLUO'][i] = fluo
+                if match(fluo, 'MED') or match(fluo, 'MEDIUM'):
+                    fluo = 'Medium'
+                    diamondData['FLUO'][i] = fluo
+                if match(fluo, 'NON') or match(fluo, 'NN') or match(fluo, 'NONE'):
+                    fluo = 'None'
+                    diamondData['FLUO'][i] = fluo
+                if match(fluo, 'STG') or match(fluo, 'STR') or match(fluo, 'STRONG'):
+                    fluo = 'Strong'
+                    diamondData['FLUO'][i] = fluo
+                if match(fluo, 'VST') or match(fluo, 'VERY STRONG'):
+                    fluo = 'Very Strong'
+                    diamondData['FLUO'][i] = fluo
+
+                if match(cut, 'EX') or match(cut, 'EXCELLENT'):
+                    cut = 'EX'
+                if match(cut, 'VG') or match(cut, 'VERY GOOD'):
+                    cut = 'VG'
+                if match(cut, 'G') or match(cut, 'GD'):
+                    cut = 'GD'
+
+                if match(polish, 'EX') or match(polish, 'EXCELLENT'):
+                    polish = 'EX'
+                if match(polish, 'VG') or match(polish, 'VERY GOOD'):
+                    polish = 'VG'
+                if match(polish, 'G') or match(polish, 'GD'):
+                    polish = 'GD'
+
+                if match(symmetry, 'EX') or match(symmetry, 'EXCELLENT'):
+                    symmetry = 'EX'
+                if match(symmetry, 'VG') or match(symmetry, 'VERY GOOD'):
+                    symmetry = 'VG'
+                if match(symmetry, 'G') or match(symmetry, 'GD'):
+                    symmetry = 'GD'
+
+                if match(ha, 'Yes') or match(ha, 'Y'):
+                    eyeclean = 'Y'
+                if match(ha, 'No') or match(ha, 'N'):
+                    eyeclean = 'N'
+
+                if match(tableclean, 'Yes') or match(tableclean, 'Y'):
+                    eyeclean = 'Y'
+                if match(tableclean, 'No') or match(tableclean, 'N'):
+                    eyeclean = 'N'
+
+                if match(eyeclean, 'Yes') or match(eyeclean, 'Y'):
+                    eyeclean = 'Y'
+                if match(eyeclean, 'No') or match(eyeclean, 'N'):
+                    eyeclean = 'N'
+
+                # case matching for other attributes
+                color = color.upper()
+                clarity = clarity.upper()
+
                 # Function calls to determine ktos, size range, cutcomments and rap_value ##################
-#                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
-#                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
-#                                                                   star_length, lower_half)
-                
- 
-#                 cutcomments ='NN'
+                #                 diamondData['CUT_COMMENTS'][i] = get_cut_comments(cert,shape,cut, tabl, height, ratio,
+                #                                                                   cr_angle,depth, pv_angle, pv_depth, girdle_percentage,
+                #                                                                   star_length, lower_half)
+
+                #                 cutcomments ='NN'
                 ktos_attribute = ktos
                 ktos = len(ktos.split(',')) if isinstance(ktos, str) else 0
                 szgr = fetch_size(shape, sizeprec)
-                rap = fetchrap(shape, szgr, color, clarity)
+                rap = fetchrap(shape, szgr, color, clarity, sizeprec)
                 rap_value = rap * sizeprec
                 diamondData['RAP_VALUE'][i] = rap_value
                 # Function calls to determine ktos, size range, cutcomments and rap_price ##################
-                if(sizeprec>=1):
-                   if(max_diam<=6.2):
-                    diameter=max_diam
-                   elif(min_diam>=6.3): 
-                    diameter=min_diam
-                   else: 
-                    diameter=6.25         
+                if (sizeprec >= 1):
+                    if (max_diam <= 6.2):
+                        diameter = max_diam
+                    elif (min_diam >= 6.3):
+                        diameter = min_diam
+                    else:
+                        diameter = 6.25
                 else:
-                   diameter=min_diam
+                    diameter = min_diam
                 diamondData['RAP'][i] = rap
-                if graining=='IGR1' or graining=='IGR2' or graining=='IGR3':
-                  internalgrainig=graining
-                  surfacegraining='0'
+                if graining == 'IGR1' or graining == 'IGR2' or graining == 'IGR3':
+                    internalgrainig = graining
+                    surfacegraining = '0'
                 else:
-                  internalgrainig='0'
-                  surfacegraining=graining
+                    internalgrainig = '0'
+                    surfacegraining = graining
 
-                result = calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos, sizeprec,
+                result = calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo, rap, ktos,
+                                      sizeprec,
                                       tableclean,
                                       eyeclean, ha, cutcomments, diameter, internalgraining, surfacegraining, flawless,
                                       tableintensity, crownintensity, topef, cavity, chip, extra_facet, crowncavity,
@@ -576,48 +658,48 @@ def page1():
                                       crownnatural,
                                       girdlenatural, pavilionnatural, chip, cavity, upgrade1, upgrade2, downgrade1,
                                       downgrade2, days,
-                                      min_diam, max_diam, tabl, height, ratio,  cr_angle, cr_height, pv_angle,
+                                      min_diam, max_diam, tabl, height, ratio, cr_angle, cr_height, pv_angle,
                                       pv_depth,
                                       girdle_percentage, girdle_from, girdle_to, girdle_condition, star_length,
                                       lower_half,
-                                        intended_natural, graining, rap_value, ktos_attribute, remarks)
+                                      intended_natural, graining, rap_value, ktos_attribute, remarks)
 
                 diamondData['FINAL_DISCOUNT_AFTER_CAPOFF'][i] = result[0]
                 if result[1] == 0:
                     diamondData['Base_Dis'][i] = 'NA'
                 else:
                     diamondData['Base_Dis'][i] = result[1]
-                diamondData['GD_Dis'][i] = result[2]
-                diamondData['Diameter_Dis_or_MM_Premium'][i] = result[3]
-                diamondData['Colshade_Dis'][i] = result[4]
-                diamondData['Milky_Dis'][i] = result[5]
-                diamondData['cutcomments_Dis'][i] = result[6]
-                diamondData['Graining_Dis'][i] = result[7]
-                diamondData['ha_Dis'][i] = result[8]
-                diamondData['EyeClean_Dis'][i] = result[9]
-                diamondData['TableClean_Dis'][i] = result[10]
-                diamondData['Black_Dis'][i] = result[11]
-                diamondData['SideBlack_Dis'][i] = result[12]
-                diamondData['Size_Premium'][i] = result[13]
-                diamondData['Open_Dis'][i] = result[14]
-                diamondData['Natural_Dis'][i] = result[15]
-                diamondData['IdentedNatural_Dis'][i] = result[16]
-                diamondData['Extra_Facet_Dis'][i] = result[17]
-                diamondData['Cavity_Dis'][i] = result[18]
-                diamondData['Chip_Dis'][i] = result[19]
-                diamondData['Ncolor_Dis'][i] = result[20]
-                diamondData['Depth_Dis'][i] = result[21]
-                diamondData['Ktos_Dis'][i] = result[22]
-                diamondData['Days_Dis'][i] = result[23]
-                diamondData['Very_Strong_Fluo_Dis'][i] = result[24]
-                diamondData['Fancy_Fluo_Dis'][i] = result[25]
-                diamondData['Fancy_Poly_Sym_Dis'][i] = result[26]
-                diamondData['FL_Premium'][i] = result[27]
-                diamondData['Polish_Symmetry_Dis'][i] = result[28]
-                diamondData['Capoff_premiums'][i] = result[29]
-                diamondData['Capoff_discounts'][i] = result[30]
-                diamondData['Capoff'][i] = result[31]
-                
+                diamondData['GD_Dis'][i] = result[2] if result[2] != 0 else ''
+                diamondData['Diameter_Dis_or_MM_Premium'][i] = result[3] if result[3] != 0 else ''
+                diamondData['Colshade_Dis'][i] = result[4] if result[4] != 0 else ''
+                diamondData['Milky_Dis'][i] = result[5] if result[5] != 0 else ''
+                diamondData['cutcomments_Dis'][i] = result[6] if result[6] != 0 else ''
+                diamondData['Graining_Dis'][i] = result[7] if result[7] != 0 else ''
+                diamondData['ha_Dis'][i] = result[8] if result[8] != 0 else ''
+                diamondData['EyeClean_Dis'][i] = result[9] if result[9] != 0 else ''
+                diamondData['TableClean_Dis'][i] = result[10] if result[10] != 0 else ''
+                diamondData['Black_Dis'][i] = result[11] if result[11] != 0 else ''
+                diamondData['SideBlack_Dis'][i] = result[12] if result[12] != 0 else ''
+                diamondData['Size_Premium'][i] = result[13] if result[13] != 0 else ''
+                diamondData['Open_Dis'][i] = result[14] if result[14] != 0 else ''
+                diamondData['Natural_Dis'][i] = result[15] if result[15] != 0 else ''
+                diamondData['IdentedNatural_Dis'][i] = result[16] if result[16] != 0 else ''
+                diamondData['Extra_Facet_Dis'][i] = result[17] if result[17] != 0 else ''
+                diamondData['Cavity_Dis'][i] = result[18] if result[18] != 0 else ''
+                diamondData['Chip_Dis'][i] = result[19] if result[19] != 0 else ''
+                diamondData['Ncolor_Dis'][i] = result[20] if result[20] != 0 else ''
+                diamondData['Depth_Dis'][i] = result[21] if result[21] != 0 else ''
+                diamondData['Ktos_Dis'][i] = result[22] if result[22] != 0 else ''
+                diamondData['Days_Dis'][i] = result[23] if result[23] != 0 else ''
+                diamondData['Very_Strong_Fluo_Dis'][i] = result[24] if result[24] != 0 else ''
+                diamondData['Fancy_Fluo_Dis'][i] = result[25] if result[25] != 0 else ''
+                diamondData['Fancy_Poly_Sym_Dis'][i] = result[26] if result[26] != 0 else ''
+                diamondData['FL_Premium'][i] = result[27] if result[27] != 0 else ''
+                diamondData['Polish_Symmetry_Dis'][i] = result[28] if result[28] != 0 else ''
+                diamondData['Capoff_premiums'][i] = result[29] if result[29] != 0 else ''
+                diamondData['Capoff_discounts'][i] = result[30] if result[30] != 0 else ''
+                diamondData['Capoff'][i] = result[31] if result[31] != 0 else ''
+
                 final_sum = 0
                 for j in range(len(result)):
                     if j not in [0, 31, 7, 8, 9, 10, 6, 4, 5, 11, 12, 14, 15, 16, 17, 18, 19]:
@@ -625,9 +707,9 @@ def page1():
                 final_sum = round_05(final_sum)
                 diamondData['Final_Total_discount'][i] = final_sum
                 diamondData['Differnce_between_Capped_and_Uncapped_Dis'][i] = result[0] - final_sum
-                #diamondData['BaseD'][i] = result[1]
+                # diamondData['BaseD'][i] = result[1]
                 diamondData['Discounted_RAP_price_of_stone'][i] = round(rap_value * ((100 + final_sum) / 100), 2)
-                           
+
             except ColumnError as c:
                 logging.error('Something went wrong, ' + str(c))
                 st.write(str(c))
@@ -644,9 +726,14 @@ def page1():
                 columns=['FINAL_DISCOUNT_AFTER_CAPOFF', 'GD_Dis', 'Capoff', 'DISCOUNT_BEFORE_CAPOFF',
                          'Differnce_between_Capped_and_Uncapped_Dis'])
             diamondData = diamondData.astype(str)
+            cols = diamondData.columns.tolist()
+            cols[-1], cols[-2], cols[-3] = cols[-2], cols[-3], cols[-1]
+            diamondData = diamondData[cols]
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
-                           mime='text/csv', file_name='discountOutput.csv')
+                               mime='text/csv', file_name='discountOutput.csv')
+
+
 page_names = {
     "Bulk upload": page1,
     'Price Module upload': page3,
