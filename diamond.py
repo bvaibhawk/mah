@@ -15,6 +15,7 @@ from days_discount_upload import page4
 from price_module_upload import page3
 from singlediscount import page2
 import warnings
+from sys import platform
 
 from very_strong_fl_upload import page5
 from price_module_history import page6
@@ -25,6 +26,12 @@ from upload_sheet import page8
 def match(a: str, b: str):
     return a.casefold() == b.casefold()
 
+
+data_path = ''
+if platform.startswith('linux'):
+    data_path = ''
+elif platform.startswith('win32'):
+    data_path = ''
 
 warnings.filterwarnings("ignore")
 st.set_page_config(page_title="Discount Calculator", page_icon='💎', layout="wide", initial_sidebar_state="collapsed",
@@ -328,8 +335,10 @@ def page1():
         if len(last_updated_r) == 0:
             st.write("Rapnet pricing not updated yet")
         else:
-            st.write("Round Rapnet pricing last updated on  - " + last_updated_r['update_date'][len(last_updated_r) - 1])
-            st.write("Fancy Rapnet pricing last updated on  - " + last_updated_f['update_date'][len(last_updated_f) - 1])
+            st.write(
+                "Round Rapnet pricing last updated on  - " + last_updated_r['update_date'][len(last_updated_r) - 1])
+            st.write(
+                "Fancy Rapnet pricing last updated on  - " + last_updated_f['update_date'][len(last_updated_f) - 1])
     if updated_file is not None:
         with col8:
             update_button = st.button('Update rapnet pricing for round')

@@ -16,7 +16,7 @@ def page6():
     uploaded_file = st.selectbox("Select File to download (sorted by oldest first)",["--Select--"]+file_names)
     if uploaded_file!="--Select--":
         # df = pd.read_excel("./miscellenious_discounts/input_files/"+uploaded_file)
-        with open("./miscellenious_discounts/input_files/pricing_module/"+uploaded_file, "rb") as fp:
+        with open("./miscellenious_discounts/input_files/"+uploaded_file, "rb") as fp:
             st.download_button(
                 label="📥 Download",
                 data=fp,

@@ -227,82 +227,82 @@ Others,Chip,CHT,-2.0,-2.0,-2.0,-2.0,-2.0,0.0,-1.0,-1.0,0.0,3,5.99,GD,,,RO
 Others,Chip,CHC,-1.5,-1.5,-1.0,-1.5,-1.5,0.0,-1.0,-1.0,0.0,3,5.99,GD,,,RO
 Others,Chip,CHG,-1.5,-1.5,-1.0,-1.5,-1.5,0.0,-0.5,-0.5,0.0,3,5.99,GD,,,RO
 Others,Chip,CHP,-1.5,-1.5,-1.0,-1.5,-1.5,0.0,-0.5,-0.5,0.0,3,5.99,GD,,,RO
-HO,HO,OHT,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,,,EX,EX,EX,Fancy
-HO,HO,OHC,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,,,EX,EX,EX,Fancy
-HO,HO,OHG,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,,,EX,EX,EX,Fancy
-HO,HO,OHP,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,,,EX,EX,EX,Fancy
-Open,Small,OT1,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,,EX,EX,EX,Fancy
-Open,Small,OC1,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,,,EX,EX,EX,Fancy
-Open,Small,OG1,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,,,EX,EX,EX,Fancy
-Open,Small,OP1,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,,,EX,EX,EX,Fancy
-Open,Medium,OT2,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,EX,EX,EX,Fancy
-Open,Medium,OC2,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,,,EX,EX,EX,Fancy
-Open,Medium,OG2,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,,EX,EX,EX,Fancy
-Open,Medium,OP2,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,,,EX,EX,EX,Fancy
-Open,Big,OT3,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,,,EX,EX,EX,Fancy
-Open,Big,OC3,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,,,EX,EX,EX,Fancy
-Open,Big,OG3,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,,,EX,EX,EX,Fancy
-Open,Big,OP3,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,EX,EX,EX,Fancy
-Natural,Indented Natural,INT,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Natural,Indented Natural,INC,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Natural,Indented Natural,ING,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Natural,Indented Natural,INP,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Natural,Natural,NC1,-1.5,-1.5,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,,EX,EX,EX,Fancy
-Natural,Natural,NC2,-2.0,-2.0,-1.5,-1.5,-1.5,-0.5,-1.0,-1.0,-0.5,,,EX,EX,EX,Fancy
-Natural,Natural,NC3,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,,,EX,EX,EX,Fancy
-Natural,Natural,NP1,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Natural,Natural,NP2,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,,,EX,EX,EX,Fancy
-Natural,Natural,NP3,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,EX,EX,EX,Fancy
-Others,Extra Facet,EFT,-1.0,-1.0,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Others,Extra Facet,EFC,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Others,Extra Facet,EFG,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Others,Extra Facet,EFP,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Others,Cavity,CTT,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,,,EX,EX,EX,Fancy
-Others,Cavity,CTC,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
-Others,Cavity,CTG,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,,,EX,EX,EX,Fancy
-Others,Cavity,CTP,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
-Others,Chip,CHT,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,0.0,,,EX,EX,EX,Fancy
-Others,Chip,CHC,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,,EX,EX,EX,Fancy
-Others,Chip,CHG,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,,EX,EX,EX,Fancy
-Others,Chip,CHP,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,,EX,EX,EX,Fancy
-HO,HO,OHT,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,,,,VG,VG,Fancy
-HO,HO,OHC,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,,,,VG,VG,Fancy
-HO,HO,OHG,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,,,,VG,VG,Fancy
-HO,HO,OHP,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,-1.0,-1.0,-0.5,,,,VG,VG,Fancy
-Open,Small,OT1,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,,,VG,VG,Fancy
-Open,Small,OC1,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,,,,VG,VG,Fancy
-Open,Small,OG1,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,,,,VG,VG,Fancy
-Open,Small,OP1,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,-1.5,-1.5,-1.0,,,,VG,VG,Fancy
-Open,Medium,OT2,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,,VG,VG,Fancy
-Open,Medium,OC2,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,,,,VG,VG,Fancy
-Open,Medium,OG2,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,,,VG,VG,Fancy
-Open,Medium,OP2,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,-3.5,-3.5,-2.5,,,,VG,VG,Fancy
-Open,Big,OT3,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,,,,VG,VG,Fancy
-Open,Big,OC3,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,,,,VG,VG,Fancy
-Open,Big,OG3,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,,,,VG,VG,Fancy
-Open,Big,OP3,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,,VG,VG,Fancy
-Natural,Indented Natural,INT,-2.0,-2.0,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-0.5,,,,VG,VG,Fancy
-Natural,Indented Natural,INC,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,,,VG,VG,Fancy
-Natural,Indented Natural,ING,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,,,VG,VG,Fancy
-Natural,Indented Natural,INP,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,0.0,0.0,0.0,,,,VG,VG,Fancy
-Natural,Natural,NC1,-1.5,-1.5,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,,,VG,VG,Fancy
-Natural,Natural,NC2,-2.0,-2.0,-1.5,-1.5,-1.5,-0.5,-1.0,-1.0,-0.5,,,,VG,VG,Fancy
-Natural,Natural,NC3,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,,,,VG,VG,Fancy
-Natural,Natural,NP1,-0.5,-0.5,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,,,,VG,VG,Fancy
-Natural,Natural,NP2,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-0.5,-0.5,-0.5,,,,VG,VG,Fancy
-Natural,Natural,NP3,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
-Others,Extra Facet,EFT,-1.0,-1.0,-0.5,-0.5,-0.5,0.0,0.0,0.0,0.0,,,,VG,VG,Fancy
-Others,Extra Facet,EFC,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,,,VG,VG,Fancy
-Others,Extra Facet,EFG,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,,,,VG,VG,Fancy
-Others,Extra Facet,EFP,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,,,VG,VG,Fancy
-Others,Cavity,CTT,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,,,,VG,VG,Fancy
-Others,Cavity,CTC,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,,,,VG,VG,Fancy
-Others,Cavity,CTG,-3.0,-3.0,-2.0,-3.0,-3.0,-2.0,-2.0,-2.0,-1.0,,,,VG,VG,Fancy
-Others,Cavity,CTP,-2.0,-2.0,-1.0,-2.0,-2.0,-1.0,-1.0,-1.0,-1.0,,,,VG,VG,Fancy
-Others,Chip,CHT,-1.0,-1.0,-1.0,-1.0,-1.0,-0.5,-1.0,-1.0,0.0,,,,VG,VG,Fancy
-Others,Chip,CHC,-1.0,-1.0,-1.0,-1.0,-1.0,0.0,-0.5,-0.5,0.0,,,,VG,VG,Fancy
-Others,Chip,CHG,-0.5,-0.5,0.0,-0.5,-0.5,0.0,0.0,0.0,0.0,,,,VG,VG,Fancy
-Others,Chip,CHP,-0.5,-0.5,0.0,-0.5,-0.5,-0.5,-0.5,0.0,0.0,,,,VG,VG,Fancy
+HO,HO,OHT,-3.0,-3.0,-2.5,-3.0,-3.0,-2.5,-3.0,-3.0,-2.5,,,EX,EX,EX,Fancy
+HO,HO,OHC,-2.5,-2.5,-2.0,-2.5,-2.5,-2.0,-2.0,-2.0,-2.0,,,EX,EX,EX,Fancy
+HO,HO,OHG,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,,,EX,EX,EX,Fancy
+HO,HO,OHP,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
+Open,Small,OT1,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,EX,EX,EX,Fancy
+Open,Small,OC1,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,,,EX,EX,EX,Fancy
+Open,Small,OG1,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-2.0,,,EX,EX,EX,Fancy
+Open,Small,OP1,-3.5,-3.5,-3.0,-3.5,-3.5,-3.0,-2.5,-2.5,-2.0,,,EX,EX,EX,Fancy
+Open,Medium,OT2,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,,,EX,EX,EX,Fancy
+Open,Medium,OC2,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-6.0,-6.0,-5.0,,,EX,EX,EX,Fancy
+Open,Medium,OG2,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-5.0,-5.0,-4.0,,,EX,EX,EX,Fancy
+Open,Medium,OP2,-5.5,-5.5,-4.5,-5.5,-5.5,-4.5,-4.5,-4.5,-3.5,,,EX,EX,EX,Fancy
+Open,Big,OT3,-11.0,-11.0,-10.0,-11.0,-11.0,-10.0,-11.0,-11.0,-10.0,,,EX,EX,EX,Fancy
+Open,Big,OC3,-10.0,-10.0,-9.0,-10.0,-10.0,-9.0,-9.0,-9.0,-8.0,,,EX,EX,EX,Fancy
+Open,Big,OG3,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-8.0,-8.0,-7.0,,,EX,EX,EX,Fancy
+Open,Big,OP3,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-7.0,-7.0,-6.0,,,EX,EX,EX,Fancy
+Natural,Indented Natural,INT,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,,,EX,EX,EX,Fancy
+Natural,Indented Natural,INC,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,,,EX,EX,EX,Fancy
+Natural,Indented Natural,ING,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,EX,EX,EX,Fancy
+Natural,Indented Natural,INP,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,EX,EX,EX,Fancy
+Natural,Natural,NC1,-3.5,-3.5,-3.0,-3.0,-3.0,-2.0,-2.5,-2.5,-2.0,,,EX,EX,EX,Fancy
+Natural,Natural,NC2,-4.0,-4.0,-3.5,-3.5,-3.5,-2.5,-3.0,-3.0,-2.5,,,EX,EX,EX,Fancy
+Natural,Natural,NC3,-6.0,-6.0,-5.5,-5.5,-5.5,-5.0,-5.0,-5.0,-4.5,,,EX,EX,EX,Fancy
+Natural,Natural,NP1,-2.5,-2.5,-2.5,-2.5,-2.5,-2.0,-2.0,-2.0,-2.0,,,EX,EX,EX,Fancy
+Natural,Natural,NP2,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.5,-2.5,-2.5,,,EX,EX,EX,Fancy
+Natural,Natural,NP3,-5.0,-5.0,-5.0,-5.0,-5.0,-4.5,-4.0,-4.0,-4.0,,,EX,EX,EX,Fancy
+Others,Extra Facet,EFT,-2.0,-2.0,-1.5,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
+Others,Extra Facet,EFC,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
+Others,Extra Facet,EFG,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
+Others,Extra Facet,EFP,-1.5,-1.5,-1.5,-1.0,-1.0,-1.0,-1.0,-1.0,-1.0,,,EX,EX,EX,Fancy
+Others,Cavity,CTT,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-5.0,-5.0,-4.0,,,EX,EX,EX,Fancy
+Others,Cavity,CTC,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,,,EX,EX,EX,Fancy
+Others,Cavity,CTG,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-3.0,,,EX,EX,EX,Fancy
+Others,Cavity,CTP,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,,,EX,EX,EX,Fancy
+Others,Chip,CHT,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-3.0,-3.0,-2.0,,,EX,EX,EX,Fancy
+Others,Chip,CHC,-3.0,-3.0,-3.0,-3.0,-3.0,-2.0,-2.5,-2.5,-2.0,,,EX,EX,EX,Fancy
+Others,Chip,CHG,-2.5,-2.5,-2.0,-2.5,-2.5,-2.5,-2.5,-2.0,-2.0,,,EX,EX,EX,Fancy
+Others,Chip,CHP,-3.0,-3.0,-3.0,-3.0,-3.0,-2.0,-2.5,-2.5,-2.0,,,EX,EX,EX,Fancy
+HO,HO,OHT,-3.0,-3.0,-2.5,-3.0,-3.0,-2.5,-3.0,-3.0,-2.5,,,,VG,VG,Fancy
+HO,HO,OHC,-2.5,-2.5,-2.0,-2.5,-2.5,-2.0,-2.5,-2.5,-2.0,,,,VG,VG,Fancy
+HO,HO,OHG,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,,,,VG,VG,Fancy
+HO,HO,OHP,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,-2.0,-2.0,-1.5,,,,VG,VG,Fancy
+Open,Small,OT1,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,,VG,VG,Fancy
+Open,Small,OC1,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,,,,VG,VG,Fancy
+Open,Small,OG1,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,,,,VG,VG,Fancy
+Open,Small,OP1,-3.5,-3.5,-3.0,-3.5,-3.5,-3.0,-3.5,-3.5,-3.0,,,,VG,VG,Fancy
+Open,Medium,OT2,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,,,,VG,VG,Fancy
+Open,Medium,OC2,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,-7.0,-7.0,-6.0,,,,VG,VG,Fancy
+Open,Medium,OG2,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,,,,VG,VG,Fancy
+Open,Medium,OP2,-5.5,-5.5,-4.5,-5.5,-5.5,-4.5,-5.5,-5.5,-4.5,,,,VG,VG,Fancy
+Open,Big,OT3,-11.0,-11.0,-10.0,-11.0,-11.0,-10.0,-11.0,-11.0,-10.0,,,,VG,VG,Fancy
+Open,Big,OC3,-10.0,-10.0,-9.0,-10.0,-10.0,-9.0,-10.0,-10.0,-9.0,,,,VG,VG,Fancy
+Open,Big,OG3,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,-9.0,-9.0,-8.0,,,,VG,VG,Fancy
+Open,Big,OP3,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,-8.0,-8.0,-7.0,,,,VG,VG,Fancy
+Natural,Indented Natural,INT,-4.0,-4.0,-3.5,-3.5,-3.5,-3.0,-3.0,-3.0,-2.5,,,,VG,VG,Fancy
+Natural,Indented Natural,INC,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Natural,Indented Natural,ING,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Natural,Indented Natural,INP,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Natural,Natural,NC1,-3.5,-3.5,-3.0,-3.0,-3.0,-2.0,-2.5,-2.5,-2.0,,,,VG,VG,Fancy
+Natural,Natural,NC2,-4.0,-4.0,-3.5,-3.5,-3.5,-2.5,-3.0,-3.0,-2.5,,,,VG,VG,Fancy
+Natural,Natural,NC3,-6.0,-6.0,-5.5,-5.5,-5.5,-5.0,-5.0,-5.0,-4.5,,,,VG,VG,Fancy
+Natural,Natural,NP1,-2.5,-2.5,-2.5,-2.5,-2.5,-2.0,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Natural,Natural,NP2,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-2.5,-2.5,-2.5,,,,VG,VG,Fancy
+Natural,Natural,NP3,-5.0,-5.0,-5.0,-5.0,-5.0,-4.5,-4.0,-4.0,-4.0,,,,VG,VG,Fancy
+Others,Extra Facet,EFT,-3.0,-3.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Others,Extra Facet,EFC,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Others,Extra Facet,EFG,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Others,Extra Facet,EFP,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,-2.0,,,,VG,VG,Fancy
+Others,Cavity,CTT,-6.0,-6.0,-5.0,-6.0,-6.0,-5.0,-5.0,-5.0,-4.0,,,,VG,VG,Fancy
+Others,Cavity,CTC,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,,,,VG,VG,Fancy
+Others,Cavity,CTG,-4.0,-4.0,-3.0,-4.0,-4.0,-3.0,-3.0,-3.0,-3.0,,,,VG,VG,Fancy
+Others,Cavity,CTP,-5.0,-5.0,-4.0,-5.0,-5.0,-4.0,-4.0,-4.0,-3.0,,,,VG,VG,Fancy
+Others,Chip,CHT,-3.0,-3.0,-3.0,-3.0,-3.0,-2.5,-3.0,-3.0,-2.0,,,,VG,VG,Fancy
+Others,Chip,CHC,-3.0,-3.0,-3.0,-3.0,-3.0,-2.0,-2.5,-2.5,-2.0,,,,VG,VG,Fancy
+Others,Chip,CHG,-2.5,-2.5,-2.0,-2.5,-2.5,-2.5,-2.5,-2.0,-2.0,,,,VG,VG,Fancy
+Others,Chip,CHP,-2.5,-2.5,-2.0,-2.5,-2.5,-2.5,-2.5,-2.0,-2.0,,,,VG,VG,Fancy
 HO,HO,OHT,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0.99,,,,Dossiers
 HO,HO,OHC,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0.99,,,,Dossiers
 HO,HO,OHG,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,0.99,,,,Dossiers
