@@ -674,8 +674,9 @@ def page1():
                                       intended_natural, graining, rap_value, ktos_attribute, remarks)
 
                 diamondData['FINAL_DISCOUNT_AFTER_CAPOFF'][i] = result[0]
-                if result[1] == 0:
+                if result[1] == 0 or pd.isna(result[1]):
                     diamondData['Base_Dis'][i] = 'NA'
+                    result[1] = 0
                 else:
                     diamondData['Base_Dis'][i] = result[1]
                 diamondData['GD_Dis'][i] = result[2] if result[2] != 0 else ''

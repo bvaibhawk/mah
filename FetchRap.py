@@ -12,12 +12,12 @@ def fetchrap(shape, szgr, color, clarity, sizeprec):
     if color == 'N':
         color = 'M'
     pysqldf = lambda q: sqldf(q, globals())
-    szlist = list(map(str, szgr.strip().split('-')))
+    # szlist = list(map(str, szgr.strip().split('-')))
     szmin = 0
     szmax = 0
-    if len(szlist) == 2:
-        szmin = szlist[0]
-        szmax = szlist[1]
+    # if len(szlist) == 2:
+    #     szmin = szlist[0]
+    #     szmax = szlist[1]
     rap = sqldf(
         "select RAP as RAP from rapsheet as r where r.shape = '" + str(shape) + "' and r.colour = '" + str(
             color) + "' and r.clarity = '" + str(clarity) + "'"
