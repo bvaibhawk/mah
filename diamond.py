@@ -749,6 +749,8 @@ def page1():
             # cols[-1], cols[-2], cols[-3] = cols[-2], cols[-3], cols[-1]
             cols.remove('Discounted_RAP_price_of_stone')
             cols.append('Discounted_RAP_price_of_stone')
+            cols.remove('Final_Total_discount')
+            cols.append('Final_Total_discount')
             diamondData = diamondData[cols]
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
