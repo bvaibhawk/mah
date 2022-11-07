@@ -86,6 +86,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     sym_pold = 0.0
     pol_symd = 0.0
     fl_premiumd = 0.0
+    fr_prd = 0.0
     ff = 0
     xx = 0
     identedcrownnatural = '0'
@@ -100,6 +101,14 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         polish_eff, symmetry_eff = 'VG', 'VG'
     else:
         polish_eff, symmetry_eff = 'EX', 'EX'
+
+    if cut == 'FR' or cut == 'PR':
+        cut = 'GD'
+        fr_prd = -5
+
+    if shape != 'RO' and fluo == 'Very Strong':
+        very_strong_fluod = -5
+
 
     if color == 'N':
         mn_data = pd.read_csv('discountsncolors.csv')
@@ -5886,7 +5895,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     ans = [result, base, gdd, diameterd, colshaded, milkyd, cutcommentsd, grainingd, had, eyecleand, tablecleand,
            blackd, sideblackd, sizepremd, opend, naturald, identednaturald, efd, cavityd, chipd, MNcolorD, depthd,
            ktosd, daysd, very_strong_fluod, fancy_fluod, sym_pold, fl_premiumd, pol_symd, capped_prem, capped_dis,
-           capped]
+           capped, fr_prd]
 
     return ans
 

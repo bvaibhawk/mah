@@ -420,6 +420,7 @@ def page1():
         diamondData = diamondData.assign(Graining_Dis='')
         diamondData = diamondData.assign(Extra_Facet_Dis='')
         diamondData = diamondData.assign(Very_Strong_Fluo_Dis='')
+        diamondData = diamondData.assign(FR_PR_dis='')
         diamondData = diamondData.assign(Fancy_Fluo_Dis='')
         diamondData = diamondData.assign(Fancy_Poly_Sym_Dis='')
         diamondData = diamondData.assign(FL_Premium='')
@@ -718,6 +719,7 @@ def page1():
                 diamondData['Capoff_premiums'][i] = result[29] if result[29] != 0 else ''
                 diamondData['Capoff_discounts'][i] = result[30] if result[30] != 0 else ''
                 diamondData['Capoff'][i] = result[31] if result[31] != 0 else ''
+                diamondData['FR_PR_dis'][i] = result[32] if result[32] != 0 else ''
 
                 final_sum = 0
                 for j in range(len(result)):
