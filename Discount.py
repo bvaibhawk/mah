@@ -140,6 +140,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
         #     MNcolorD = -7
         #     color = 'M'
         df = pd.read_csv('1ct_5ctup.csv')
+        df = df.replace({'FLUO': {'MED': 'Medium'}})
         for i in range(len(df)):
             # and polish == df['POL'][i] and symmetry == df['SYM'][i]
             if shape == df['Shape'][i] and color == df['COLOR'][i] and clarity == df['CLARITY'][i] and cut == df['CUT'][
@@ -5827,16 +5828,16 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     pass
     if ff == 0:
         rap = 0;
-    if color1 == 'N':
-        result = result - 7
-    if temp >= -40:
-        if temp - result > 20:
-            result = temp - 20
-            capped = 20
-    else:
-        if temp - result > 15:
-            result = temp - 15
-            capped = 15
+    # if color1 == 'N':
+    #     result = result - 7
+    # if temp >= -40:
+    #     if temp - result > 20:
+    #         result = temp - 20
+    #         capped = 20
+    # else:
+    #     if temp - result > 15:
+    #         result = temp - 15
+    #         capped = 15
 
     # polish_sym
     if shape == 'RO' and sizeprec < 1:

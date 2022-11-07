@@ -403,7 +403,7 @@ def page1():
         diamondData = diamondData.assign(ha_Dis='')
         diamondData = diamondData.assign(EyeClean_Dis='')
         diamondData = diamondData.assign(TableClean_Dis='')
-        diamondData = diamondData.assign(Black_Dis='')
+        diamondData = diamondData.assign(table_black='')
         diamondData = diamondData.assign(SideBlack_Dis='')
 
         diamondData = diamondData.assign(Open_Dis='')
@@ -423,10 +423,11 @@ def page1():
         diamondData = diamondData.assign(Fancy_Fluo_Dis='')
         diamondData = diamondData.assign(Fancy_Poly_Sym_Dis='')
         diamondData = diamondData.assign(FL_Premium='')
-        diamondData = diamondData.assign(Polish_Symmetry_Dis='')
+        diamondData = diamondData.assign(Round_Polish_Symmetry_Dis='')
         diamondData = diamondData.assign(Capoff_premiums='')
         diamondData = diamondData.assign(Capoff_discounts='')
         diamondData = diamondData.assign(Final_Total_discount='')
+        diamondData = diamondData.assign(Discounted_RAP_price_of_stone='')
 
         records_processed = st.empty()
         progress = st.progress(0)
@@ -568,11 +569,19 @@ def page1():
                 if match(shape, 'BUGGET'):
                     shape = 'BUGGET'
                     diamondData['SHAPE'][i] = shape
+                try:
+                    if match(shape, 'PRN'):
+                        if 0.95 <= float(ratio) <= 1.05:
+                            shape = 'PRINCESS'
+                        else:
+                            shape = 'PEAR'
+                except:
+                    pass
 
                 if match(fluo, 'FNT') or match(fluo, 'FAINT'):
                     fluo = 'Faint'
                     diamondData['FLUO'][i] = fluo
-                if match(fluo, 'MED') or match(fluo, 'MEDIUM'):
+                if match(fluo, 'MED') or match(fluo, 'MEDIUM') or match(fluo, 'STL'):
                     fluo = 'Medium'
                     diamondData['FLUO'][i] = fluo
                 if match(fluo, 'NON') or match(fluo, 'NN') or match(fluo, 'NONE'):
@@ -585,7 +594,7 @@ def page1():
                     fluo = 'Very Strong'
                     diamondData['FLUO'][i] = fluo
 
-                if match(cut, 'EX') or match(cut, 'EXCELLENT'):
+                if match(cut, 'EX') or match(cut, 'EXCELLENT') or match(cut, 'BL'):
                     cut = 'EX'
                 if match(cut, 'VG') or match(cut, 'VERY GOOD'):
                     cut = 'VG'
@@ -607,14 +616,14 @@ def page1():
                     symmetry = 'GD'
 
                 if match(ha, 'Yes') or match(ha, 'Y'):
-                    eyeclean = 'Y'
+                    ha = 'Y'
                 if match(ha, 'No') or match(ha, 'N'):
-                    eyeclean = 'N'
+                    ha = 'N'
 
                 if match(tableclean, 'Yes') or match(tableclean, 'Y'):
-                    eyeclean = 'Y'
+                    tableclean = 'Y'
                 if match(tableclean, 'No') or match(tableclean, 'N'):
-                    eyeclean = 'N'
+                    tableclean = 'N'
 
                 if match(eyeclean, 'Yes') or match(eyeclean, 'Y'):
                     eyeclean = 'Y'
@@ -688,7 +697,7 @@ def page1():
                 diamondData['ha_Dis'][i] = result[8] if result[8] != 0 else ''
                 diamondData['EyeClean_Dis'][i] = result[9] if result[9] != 0 else ''
                 diamondData['TableClean_Dis'][i] = result[10] if result[10] != 0 else ''
-                diamondData['Black_Dis'][i] = result[11] if result[11] != 0 else ''
+                diamondData['table_black'][i] = result[11] if result[11] != 0 else ''
                 diamondData['SideBlack_Dis'][i] = result[12] if result[12] != 0 else ''
                 diamondData['Size_Premium'][i] = result[13] if result[13] != 0 else ''
                 diamondData['Open_Dis'][i] = result[14] if result[14] != 0 else ''
@@ -705,7 +714,7 @@ def page1():
                 diamondData['Fancy_Fluo_Dis'][i] = result[25] if result[25] != 0 else ''
                 diamondData['Fancy_Poly_Sym_Dis'][i] = result[26] if result[26] != 0 else ''
                 diamondData['FL_Premium'][i] = result[27] if result[27] != 0 else ''
-                diamondData['Polish_Symmetry_Dis'][i] = result[28] if result[28] != 0 else ''
+                diamondData['Round_Polish_Symmetry_Dis'][i] = result[28] if result[28] != 0 else ''
                 diamondData['Capoff_premiums'][i] = result[29] if result[29] != 0 else ''
                 diamondData['Capoff_discounts'][i] = result[30] if result[30] != 0 else ''
                 diamondData['Capoff'][i] = result[31] if result[31] != 0 else ''
@@ -737,7 +746,9 @@ def page1():
                          'Differnce_between_Capped_and_Uncapped_Dis'])
             diamondData = diamondData.astype(str)
             cols = diamondData.columns.tolist()
-            cols[-1], cols[-2], cols[-3] = cols[-2], cols[-3], cols[-1]
+            # cols[-1], cols[-2], cols[-3] = cols[-2], cols[-3], cols[-1]
+            cols.remove('Discounted_RAP_price_of_stone')
+            cols.append('Discounted_RAP_price_of_stone')
             diamondData = diamondData[cols]
             st.write(diamondData)
             st.download_button('Download CSV', diamondData.to_csv(index=False),
