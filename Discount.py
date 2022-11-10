@@ -96,7 +96,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
     polish_eff = ''
     symmetry_eff = ''
     if polish == 'GD' or symmetry == 'GD':
-        polish_eff, symmetry_eff = 'GD', 'GD'
+        polish_eff, symmetry_eff = 'VG', 'VG'
     elif polish == 'VG' or symmetry == 'VG':
         polish_eff, symmetry_eff = 'VG', 'VG'
     else:
