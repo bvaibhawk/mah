@@ -77,3 +77,10 @@ def page3():
                 # os.rename(old_name, new_name)
                 logging.error(traceback.format_exc())
                 st.write('Error :: ' + str(e))
+    with open("./miscellenious_discounts/input_files/input_price_module_discounts.xlsm", "rb") as fp:
+        st.download_button(
+            label="📥 Download Consolidated Pricing Module",
+            data=fp,
+            file_name='input_price_module_discounts.xlsm',
+            mime="application/vnd.ms-excel"
+        )
