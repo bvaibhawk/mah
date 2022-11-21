@@ -2163,7 +2163,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     for i in range(len(df7)):
                         if (sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]):
                             if (sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                    (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                    (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                 result = result + df7['IF VVS F'][i] / 2
                                 sizepremd = df7['IF VVS F'][i] / 2
                             else:
@@ -2177,7 +2177,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             if xx == 1:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['1'][i] / 2
                                     sizepremd = df7['1'][i] / 2
                                 else:
@@ -2186,7 +2186,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 2:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['2'][i] / 2
                                     sizepremd = df7['2'][i] / 2
                                 else:
@@ -2195,7 +2195,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 3:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['3'][i] / 2
                                     sizepremd = df7['3'][i] / 2
                                 else:
@@ -2204,7 +2204,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 4:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['4'][i] / 2
                                     sizepremd = df7['4'][i] / 2
                                 else:
@@ -2213,7 +2213,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 5:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['5'][i] / 2
                                     sizepremd = df7['5'][i] / 2
                                 else:
@@ -2222,7 +2222,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 6:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['6'][i] / 2
                                     sizepremd = df7['6'][i] / 2
                                 else:
@@ -2231,7 +2231,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 7:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        (fluo == 'Strong' or fluo == 'Very Strong'))):
+                                        (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'))):
                                     result = result + df7['7'][i] / 2
                                     sizepremd = df7['7'][i] / 2
                                 else:
@@ -2240,7 +2240,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 8:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['8'][i] / 2
                                     sizepremd = df7['8'][i] / 2
                                 else:
@@ -2249,7 +2249,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 9:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['9'][i] / 2
                                     sizepremd = df7['9'][i] / 2
                                 else:
@@ -2261,7 +2261,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                     df7 = pd.read_csv('rovgsmF.csv')
                     for i in range(len(df7)):
                         if sizeprec >= df7['From'][i] and sizeprec <= df7['To'][i]:
-                            if sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong'):
+                            if sizeprec >= 1.20 and sizeprec <= 2.99 and (fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium'):
                                 result = result + df7['IF VVS F'][i] / 2
                                 sizepremd = df7['IF VVS F'][i] / 2
                             else:
@@ -2276,7 +2276,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             if xx == 1:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['1'][i] / 2
                                     sizepremd = df7['1'][i] / 2
                                 else:
@@ -2285,7 +2285,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 2:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['2'][i] / 2
                                     sizepremd = df7['2'][i] / 2
                                 else:
@@ -2294,7 +2294,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 3:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['3'][i] / 2
                                     sizepremd = df7['3'][i] / 2
                                 else:
@@ -2303,7 +2303,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 4:
                                 if (
                                         1.20 <= sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['4'][i] / 2
                                     sizepremd = df7['4'][i] / 2
                                 else:
@@ -2312,7 +2312,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 5:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['5'][i] / 2
                                     sizepremd = df7['5'][i] / 2
                                 else:
@@ -2321,7 +2321,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 6:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['6'][i] / 2
                                     sizepremd = df7['6'][i] / 2
                                 else:
@@ -2330,7 +2330,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 7:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['7'][i] / 2
                                     sizepremd = df7['7'][i] / 2
                                 else:
@@ -2339,7 +2339,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 8:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['8'][i] / 2
                                     sizepremd = df7['8'][i] / 2
                                 else:
@@ -2348,7 +2348,7 @@ def calcDiscount(cert, shape, szgr, color, clarity, cut, polish, symmetry, fluo,
                             elif xx == 9:
                                 if (
                                         sizeprec >= 1.20 and sizeprec <= 2.99 and (
-                                        fluo == 'Strong' or fluo == 'Very Strong')):
+                                        fluo == 'Strong' or fluo == 'Very Strong' or fluo == 'Medium')):
                                     result = result + df7['9'][i] / 2
                                     sizepremd = df7['9'][i] / 2
                                 else:
