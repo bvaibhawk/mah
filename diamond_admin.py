@@ -23,7 +23,7 @@ from individual_history import page7
 from upload_sheet import page8
 
 
-def main_page():
+def main_page_admin():
     def match(a: str, b: str):
         return a.casefold() == b.casefold()
 
